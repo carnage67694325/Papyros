@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papyros/app_router.dart';
 
 void main() {
   runApp(const PapyrosApp());
@@ -9,6 +10,8 @@ class PapyrosApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
+    );
   }
 }
