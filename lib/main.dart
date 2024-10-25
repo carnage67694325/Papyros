@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:papyros/app_router.dart';
+import 'package:papyros/core/app_router.dart';
 
 void main() {
   runApp(const PapyrosApp());

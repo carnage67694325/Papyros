@@ -9,4 +9,10 @@ abstract class AppColors {
   static const Color lightBrown = Color(0xFFC19C8D);
   static const Color mediumBrown = Color(0xFF896252);
   static const Color lightYellow = Color(0xFFF6EFBD);
+  static LinearGradient buildLinearGradient() {
+    return const LinearGradient(
+        colors: [AppColors.lightPeach, AppColors.mediumBrown],
+        begin: AlignmentDirectional.topStart,
+        end: Alignment.bottomCenter);
+  }
 }
