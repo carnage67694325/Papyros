@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:papyros/core/app_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/features/splash/presentation/view/widget/animated_logo.dart';
 
