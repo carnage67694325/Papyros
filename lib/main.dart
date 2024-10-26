@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/app_router.dart';
 import 'package:papyros/core/simple_bloc_observer.dart';
+import 'package:papyros/generated/l10n.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
@@ -20,8 +23,20 @@ class PapyrosApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (_, context) {
           return MaterialApp.router(
+            locale: const Locale('en'),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
             routerConfig: AppRouter.router,
           );
         });
   }
+}
+
+bool isArabic() {
+  return Intl.getCurrentLocale() == 'ar';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/generated/l10n.dart';
 
 class SlidingAnimatedLogo extends StatelessWidget {
   const SlidingAnimatedLogo({
@@ -23,7 +24,7 @@ class SlidingAnimatedLogo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Papyros',
+                  S.of(context).logo,
                   textAlign: TextAlign.center,
                   style: AppStyles.logo,
                 ),
