@@ -1,3 +1,21 @@
 {
-    "logo" : "بابروس"
+    "logo" : "بابروس",
+    "gettingStarted" : "ابدأ الأن",
+    "createAccount" : "أنشئ حسابك لبدء رحلتك",
+    "firstName" : "الاسم الأول",
+    "lastName" : "اسم العائلة",
+    "yourEmail" : "البريد الإلكتروني",
+    "yourPassword" : "كلمة المرور",
+    "confirmPassword" : "تأكيد كلمة المرورتأكيد كلمة المرور",
+    "agreement" : "بإنشاء حسابك، توافق على",
+    "conditions" :" الشروط والأحكام",
+    "register" : "تسجيل",
+    "haveAccount" : "هل لديك حساب بالفعل؟",
+    "login" : "تسجيل الدخول",
+    "signIN" : "تسجيل الدخول",
+    "signUp" : "أنشئ حسابًا",
+    "continueYourJourny" : "واصل رحلتك معنا",
+     "forgotPass" : "نسيت كلمة المرور؟",
+     "rememberMe" : "تذكرني",
+     "dontHaveAccount" : "ليس لديك حساب؟"
 }

@@ -22,6 +22,29 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "logo": MessageLookupByLibrary.simpleMessage("بابروس")
+        "agreement":
+            MessageLookupByLibrary.simpleMessage("بإنشاء حسابك، توافق على"),
+        "conditions": MessageLookupByLibrary.simpleMessage(" الشروط والأحكام"),
+        "confirmPassword": MessageLookupByLibrary.simpleMessage(
+            "تأكيد كلمة المرورتأكيد كلمة المرور"),
+        "continueYourJourny":
+            MessageLookupByLibrary.simpleMessage("واصل رحلتك معنا"),
+        "createAccount":
+            MessageLookupByLibrary.simpleMessage("أنشئ حسابك لبدء رحلتك"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
+        "forgotPass": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "gettingStarted": MessageLookupByLibrary.simpleMessage("ابدأ الأن"),
+        "haveAccount":
+            MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
+        "lastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "logo": MessageLookupByLibrary.simpleMessage("بابروس"),
+        "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
+        "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+        "signIN": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "yourEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "yourPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور")
       };
 }

@@ -22,6 +22,32 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "logo": MessageLookupByLibrary.simpleMessage("Papyros")
+        "agreement": MessageLookupByLibrary.simpleMessage(
+            "By creating an account, you agree our"),
+        "conditions":
+            MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "continueYourJourny": MessageLookupByLibrary.simpleMessage(
+            "Continue your journey with us"),
+        "createAccount": MessageLookupByLibrary.simpleMessage(
+            "Create your account to start your journey"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
+        "firstName": MessageLookupByLibrary.simpleMessage("first name"),
+        "forgotPass": MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "gettingStarted":
+            MessageLookupByLibrary.simpleMessage("Getting Started"),
+        "haveAccount":
+            MessageLookupByLibrary.simpleMessage("Have an account already?"),
+        "lastName": MessageLookupByLibrary.simpleMessage("last name"),
+        "login": MessageLookupByLibrary.simpleMessage("login"),
+        "logo": MessageLookupByLibrary.simpleMessage("Papyros"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+        "signIN": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "signUP": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "yourEmail": MessageLookupByLibrary.simpleMessage("Your Email"),
+        "yourPassword": MessageLookupByLibrary.simpleMessage("Your Password")
       };
 }

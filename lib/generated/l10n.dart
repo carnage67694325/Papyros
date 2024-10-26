@@ -59,6 +59,186 @@ class S {
       args: [],
     );
   }
+
+  /// `Getting Started`
+  String get gettingStarted {
+    return Intl.message(
+      'Getting Started',
+      name: 'gettingStarted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create your account to start your journey`
+  String get createAccount {
+    return Intl.message(
+      'Create your account to start your journey',
+      name: 'createAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `first name`
+  String get firstName {
+    return Intl.message(
+      'first name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `last name`
+  String get lastName {
+    return Intl.message(
+      'last name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Email`
+  String get yourEmail {
+    return Intl.message(
+      'Your Email',
+      name: 'yourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Password`
+  String get yourPassword {
+    return Intl.message(
+      'Your Password',
+      name: 'yourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get confirmPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By creating an account, you agree our`
+  String get agreement {
+    return Intl.message(
+      'By creating an account, you agree our',
+      name: 'agreement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions`
+  String get conditions {
+    return Intl.message(
+      'Terms and Conditions',
+      name: 'conditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an account already?`
+  String get haveAccount {
+    return Intl.message(
+      'Have an account already?',
+      name: 'haveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `login`
+  String get login {
+    return Intl.message(
+      'login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in`
+  String get signIN {
+    return Intl.message(
+      'Sign in',
+      name: 'signIN',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUP {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue your journey with us`
+  String get continueYourJourny {
+    return Intl.message(
+      'Continue your journey with us',
+      name: 'continueYourJourny',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forget Password?`
+  String get forgotPass {
+    return Intl.message(
+      'Forget Password?',
+      name: 'forgotPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remember me`
+  String get rememberMe {
+    return Intl.message(
+      'Remember me',
+      name: 'rememberMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have an account?`
+  String get dontHaveAccount {
+    return Intl.message(
+      'Don’t have an account?',
+      name: 'dontHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

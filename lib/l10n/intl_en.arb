@@ -1,3 +1,22 @@
 {
-    "logo" : "Papyros"
+    "logo" : "Papyros",
+    "gettingStarted" : "Getting Started",
+    "createAccount" : "Create your account to start your journey",
+    "firstName" : "first name",
+    "lastName" : "last name",
+    "yourEmail" : "Your Email",
+    "yourPassword" : "Your Password",
+    "confirmPassword" : "Confirm Password",
+    "agreement" : "By creating an account, you agree our",
+    "conditions" :"Terms and Conditions",
+    "register" : "Register",
+    "haveAccount" : "Have an account already?",
+    "login" : "login",
+    "signIN" : "Sign in",
+    "signUP" : "Sign Up",
+    "continueYourJourny" : "Continue your journey with us",
+     "forgotPass" : "Forget Password?",
+     "rememberMe" : "Remember me",
+     "dontHaveAccount" : "Don’t have an account?"
+
 }
