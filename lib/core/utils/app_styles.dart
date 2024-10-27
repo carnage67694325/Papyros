@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-abstract class AppStyles {
+ class AppStyles {
   static TextStyle logo = GoogleFonts.sonsieOne(
     fontSize: 32,
     color: Colors.white,
