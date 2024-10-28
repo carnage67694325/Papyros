@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/generated/l10n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpBody extends StatelessWidget {
   const SignUpBody({
@@ -46,23 +48,23 @@ class SignUpBody extends StatelessWidget {
           CustomTextFormField(
             hintText: S.of(context).yourEmail,
             hintStyle: AppStyles.textfieldHint,
-            prefixIcon: Image.asset(AppIcons.assetsIconsEmailicon),
+            prefixIcon: SvgPicture.asset(AppIcons.assetsIconsEmailicon),
           ),
           const SizedBox(height: 10),
           CustomTextFormField(
             obscureText: true,
             hintText: S.of(context).yourPassword,
             hintStyle: AppStyles.textfieldHint,
-            prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
-            suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
+            prefixIcon: SvgPicture.asset(AppIcons.assetsIconsLockPasswordicon),
+            suffixIcon: SvgPicture.asset(AppIcons.assetsIconsShowPasswordicon),
           ),
           const SizedBox(height: 10),
           CustomTextFormField(
             obscureText: true,
             hintText: S.of(context).confirmPassword,
             hintStyle: AppStyles.textfieldHint,
-            prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
-            suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
+            prefixIcon: SvgPicture.asset(AppIcons.assetsIconsLockPasswordicon),
+            suffixIcon: SvgPicture.asset(AppIcons.assetsIconsShowPasswordicon),
           ),
           const SizedBox(height: 10),
           Row(
@@ -106,27 +108,6 @@ class SignUpBody extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({
-    super.key,
-    this.onPressed,
-    this.buttonText,
-  });
-  final void Function()? onPressed;
-  final Widget? buttonText;
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 50),
-        backgroundColor: AppColors.lightPeach,
-      ),
-      child: buttonText,
     );
   }
 }
