@@ -10,6 +10,7 @@ abstract class AppColors {
   static const Color mediumBrown = Color(0xFF896252);
   static const Color lightYellow = Color(0xFFF6EFBD);
   static const Color textFieldFillColor = Color(0xFFE8E8E8);
+  static const Color backGroundColor = Color(0xFFF9F5F5);
 
   static LinearGradient buildLinearGradient() {
     return const LinearGradient(

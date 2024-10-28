@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
-import 'package:papyros/features/authentication/presentation/views/widgets/custom_divider.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
-import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/user_data_section.dart';
 import 'package:papyros/generated/l10n.dart';
 
