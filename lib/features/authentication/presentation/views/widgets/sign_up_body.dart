@@ -40,7 +40,7 @@ class SignUpBody extends StatelessWidget {
                   child: Text(
                     S.of(context).conditions,
                     style: AppStyles.subHeader
-                        .copyWith(color: AppColors.mediumBrown, fontSize: 12),
+                        .copyWith(color: AppColors.lightBrown, fontSize: 12),
                   ),
                 ),
               ),
@@ -53,6 +53,7 @@ class SignUpBody extends StatelessWidget {
               S.of(context).register,
               style: AppStyles.header.copyWith(
                 color: Colors.white,
+                fontSize: 24,
               ),
             ),
           ),
@@ -65,7 +66,7 @@ class SignUpBody extends StatelessWidget {
               child: Text(
                 S.of(context).haveAccount,
                 style: AppStyles.subHeader.copyWith(
-                  color: AppColors.mediumBrown,
+                  color: AppColors.lightBrown,
                 ),
               ),
             ),
