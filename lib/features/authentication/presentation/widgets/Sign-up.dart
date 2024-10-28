@@ -6,6 +6,8 @@ import '../../../../core/utils/app_styles.dart';
 import '../../../../generated/l10n.dart';
 
 class Signup extends StatelessWidget {
+  const Signup({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,68 +17,57 @@ class Signup extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(S.of(context).gettingStarted, style: AppStyles.header),
+            const SizedBox(height: 10),
             Text(
-             S.of(context).gettingStarted,
-              style:AppStyles.header
+              S.of(context).createAccount,
+              style: AppStyles.subHeader,
             ),
-            SizedBox(height: 10),
-            Text(
-              S.of(context).createAccount
-                  ,style: AppStyles.subHeader,
-            ),
-            SizedBox(height: 20),
-
+            const SizedBox(height: 20),
             Row(
               children: [
                 Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText:S.of(context).firstName
-                      ,hintStyle: AppStyles.textfieldHint,
-
-
-                      border: OutlineInputBorder(),
+                      hintText: S.of(context).firstName,
+                      hintStyle: AppStyles.textfieldHint,
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText:S.of(context).lastName,
+                      hintText: S.of(context).lastName,
                       hintStyle: AppStyles.textfieldHint,
-
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             TextFormField(
               decoration: InputDecoration(
-                hintText:S.of(context).yourEmail,
+                hintText: S.of(context).yourEmail,
                 hintStyle: AppStyles.textfieldHint,
-                prefixIcon: Image.asset(AppIcons.assetsIconsEmailicon)
-                ,
-                border: OutlineInputBorder(),
+                prefixIcon: Image.asset(AppIcons.assetsIconsEmailicon),
+                border: const OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             TextFormField(
               obscureText: true,
               decoration: InputDecoration(
                 hintText: S.of(context).yourPassword,
                 hintStyle: AppStyles.textfieldHint,
-                  prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
-                suffixIcon:Image.asset(AppIcons.assetsIconsShowPasswordicon),
-                border: OutlineInputBorder(),
+                prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
+                suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
+                border: const OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             TextFormField(
               obscureText: true,
               decoration: InputDecoration(
@@ -84,11 +75,10 @@ class Signup extends StatelessWidget {
                 hintStyle: AppStyles.textfieldHint,
                 prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
                 suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 10),
-
+            const SizedBox(height: 10),
             Row(
               children: [
                 Checkbox(value: false, onChanged: (bool? value) {}),
@@ -99,35 +89,35 @@ class Signup extends StatelessWidget {
                   },
                   child: Text(
                     S.of(context).conditions,
-                    style:AppStyles.subHeader.copyWith(color: AppColors.lightPeach),
+                    style: AppStyles.subHeader
+                        .copyWith(color: AppColors.lightPeach),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {},
-              child: Text(S.of(context).register,style: AppStyles.header.copyWith(
-                  color: Colors.white,
-
-              ),),
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 50),
-                backgroundColor: AppColors.lightPeach
+                  minimumSize: const Size(double.infinity, 50),
+                  backgroundColor: AppColors.lightPeach),
+              child: Text(
+                S.of(context).register,
+                style: AppStyles.header.copyWith(
+                  color: Colors.white,
+                ),
               ),
             ),
-
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: GestureDetector(
                 onTap: () {
                   // Add navigation to login page
                 },
                 child: Text(
-                 S.of(context).haveAccount,
-                  style: AppStyles.subHeader.copyWith(color: AppColors.lightPeach)
-                  ,
+                  S.of(context).haveAccount,
+                  style:
+                      AppStyles.subHeader.copyWith(color: AppColors.lightPeach),
                 ),
               ),
             ),
