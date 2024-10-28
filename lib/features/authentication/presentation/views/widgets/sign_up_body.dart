@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/generated/l10n.dart';
 
 class SignUpBody extends StatelessWidget {
@@ -80,13 +81,9 @@ class SignUpBody extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          ElevatedButton(
+          CustomElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 50),
-              backgroundColor: AppColors.lightPeach,
-            ),
-            child: Text(
+            buttonText: Text(
               S.of(context).register,
               style: AppStyles.header.copyWith(
                 color: Colors.white,
@@ -113,32 +110,23 @@ class SignUpBody extends StatelessWidget {
   }
 }
 
-class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton({
     super.key,
-    required this.hintText,
-    this.hintStyle,
-    this.prefixIcon,
-    this.obscureText,
-    this.suffixIcon,
+    this.onPressed,
+    this.buttonText,
   });
-  final String hintText;
-  final TextStyle? hintStyle;
-  final Widget? prefixIcon;
-  final bool? obscureText;
-  final Widget? suffixIcon;
-
+  final void Function()? onPressed;
+  final Widget? buttonText;
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: obscureText ?? false,
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: hintStyle,
-        prefixIcon: prefixIcon,
-        suffixIcon: suffixIcon,
-        border: const OutlineInputBorder(),
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(double.infinity, 50),
+        backgroundColor: AppColors.lightPeach,
       ),
+      child: buttonText,
     );
   }
 }
