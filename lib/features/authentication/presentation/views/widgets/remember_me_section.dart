@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_check_box.dart';
 import 'package:papyros/generated/l10n.dart';
 
 class RememberMeSection extends StatelessWidget {
@@ -14,21 +15,7 @@ class RememberMeSection extends StatelessWidget {
       padding: const EdgeInsets.only(left: 4),
       child: Row(
         children: [
-          Checkbox(
-              value: true,
-              fillColor: WidgetStateProperty.resolveWith<Color>(
-                (Set<WidgetState> states) {
-                  // Customize the color based on the state of the checkbox
-                  if (states.contains(WidgetState.selected)) {
-                    return AppColors
-                        .mediumBrown; // Color when checkbox is selected
-                  }
-                  return Colors.white; // Color when checkbox is unselected
-                },
-              ),
-              onChanged: (bool? value) {
-                value = true;
-              }),
+          const CustomCheckBox(),
           const SizedBox(
             width: 4,
           ),

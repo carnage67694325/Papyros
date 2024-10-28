@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_check_box.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/user_data_section.dart';
 import 'package:papyros/generated/l10n.dart';
@@ -32,7 +33,7 @@ class SignUpBody extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Checkbox(value: false, onChanged: (bool? value) {}),
+                        const CustomCheckBox(),
                         Text(S.of(context).agreement),
                       ],
                     ),
