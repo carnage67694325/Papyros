@@ -4,6 +4,7 @@ import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_divider.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
@@ -14,16 +15,10 @@ class UserDataSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          S.of(context).gettingStarted,
-          style: AppStyles.header,
+        HeaderSection(
+          headerText: S.of(context).gettingStarted,
+          subHeaderText: S.of(context).createAccount,
         ),
-        const SizedBox(height: 10),
-        Text(
-          S.of(context).createAccount,
-          style: AppStyles.subHeader,
-        ),
-        const CustomDivider(),
         const SizedBox(height: 25),
         Row(
           children: [
