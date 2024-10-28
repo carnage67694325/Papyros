@@ -27,56 +27,41 @@ class SignUpBody extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: S.of(context).firstName,
-                    hintStyle: AppStyles.textfieldHint,
-                    border: const OutlineInputBorder(),
-                  ),
+                child: CustomTextFormField(
+                  hintText: S.of(context).firstName,
+                  hintStyle: AppStyles.textfieldHint,
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: S.of(context).lastName,
-                    hintStyle: AppStyles.textfieldHint,
-                    border: const OutlineInputBorder(),
-                  ),
+                child: CustomTextFormField(
+                  hintText: S.of(context).lastName,
+                  hintStyle: AppStyles.textfieldHint,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: S.of(context).yourEmail,
-              hintStyle: AppStyles.textfieldHint,
-              prefixIcon: Image.asset(AppIcons.assetsIconsEmailicon),
-              border: const OutlineInputBorder(),
-            ),
+          CustomTextFormField(
+            hintText: S.of(context).yourEmail,
+            hintStyle: AppStyles.textfieldHint,
+            prefixIcon: Image.asset(AppIcons.assetsIconsEmailicon),
           ),
           const SizedBox(height: 10),
-          TextFormField(
+          CustomTextFormField(
             obscureText: true,
-            decoration: InputDecoration(
-              hintText: S.of(context).yourPassword,
-              hintStyle: AppStyles.textfieldHint,
-              prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
-              suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
-              border: const OutlineInputBorder(),
-            ),
+            hintText: S.of(context).yourPassword,
+            hintStyle: AppStyles.textfieldHint,
+            prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
+            suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
           ),
           const SizedBox(height: 10),
-          TextFormField(
+          CustomTextFormField(
             obscureText: true,
-            decoration: InputDecoration(
-              hintText: S.of(context).confirmPassword,
-              hintStyle: AppStyles.textfieldHint,
-              prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
-              suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
-              border: const OutlineInputBorder(),
-            ),
+            hintText: S.of(context).confirmPassword,
+            hintStyle: AppStyles.textfieldHint,
+            prefixIcon: Image.asset(AppIcons.assetsIconsLockPasswordicon),
+            suffixIcon: Image.asset(AppIcons.assetsIconsShowPasswordicon),
           ),
           const SizedBox(height: 10),
           Row(
@@ -84,13 +69,12 @@ class SignUpBody extends StatelessWidget {
               Checkbox(value: false, onChanged: (bool? value) {}),
               Text(S.of(context).agreement),
               GestureDetector(
-                onTap: () {
-                  // Add your terms and conditions navigation here
-                },
+                onTap: () {},
                 child: Text(
                   S.of(context).conditions,
-                  style:
-                      AppStyles.subHeader.copyWith(color: AppColors.lightPeach),
+                  style: AppStyles.subHeader.copyWith(
+                    color: AppColors.lightPeach,
+                  ),
                 ),
               ),
             ],
@@ -99,8 +83,9 @@ class SignUpBody extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 50),
-                backgroundColor: AppColors.lightPeach),
+              minimumSize: const Size(double.infinity, 50),
+              backgroundColor: AppColors.lightPeach,
+            ),
             child: Text(
               S.of(context).register,
               style: AppStyles.header.copyWith(
@@ -116,12 +101,43 @@ class SignUpBody extends StatelessWidget {
               },
               child: Text(
                 S.of(context).haveAccount,
-                style:
-                    AppStyles.subHeader.copyWith(color: AppColors.lightPeach),
+                style: AppStyles.subHeader.copyWith(
+                  color: AppColors.lightPeach,
+                ),
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    this.hintStyle,
+    this.prefixIcon,
+    this.obscureText,
+    this.suffixIcon,
+  });
+  final String hintText;
+  final TextStyle? hintStyle;
+  final Widget? prefixIcon;
+  final bool? obscureText;
+  final Widget? suffixIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      obscureText: obscureText ?? false,
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: hintStyle,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        border: const OutlineInputBorder(),
       ),
     );
   }
