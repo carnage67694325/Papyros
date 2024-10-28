@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/email_password_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/remember_me_section.dart';
@@ -42,6 +43,23 @@ class SignInBody extends StatelessWidget {
                   height: 25,
                 ),
                 const RememberMeSection(),
+                const SizedBox(height: 47),
+                CustomElevatedButton(
+                    onPressed: () {},
+                    buttonText: Text(S.of(context).signIN,
+                        style: AppStyles.header.copyWith(
+                          color: Colors.white,
+                          fontSize: 24,
+                        ))),
+                const SizedBox(
+                  height: 14,
+                ),
+                Text(
+                  S.of(context).dontHaveAccount,
+                  style: AppStyles.subHeader.copyWith(
+                    color: AppColors.lightBrown,
+                  ),
+                ),
               ],
             ),
           ),
