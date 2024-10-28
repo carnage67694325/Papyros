@@ -16,49 +16,71 @@ class SignUpBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(26),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const UserDataSection(),
-          const SizedBox(height: 45),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Checkbox(value: false, onChanged: (bool? value) {}),
-                  Text(S.of(context).agreement),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 50),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).conditions,
-                    style: AppStyles.subHeader
-                        .copyWith(color: AppColors.lightBrown, fontSize: 12),
-                  ),
-                ),
-              ),
-            ],
+    return CustomScrollView(
+      slivers: [
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 50,
           ),
-          const SizedBox(height: 20),
-          CustomElevatedButton(
-            onPressed: () {},
-            buttonText: Text(
-              S.of(context).register,
-              style: AppStyles.header.copyWith(
-                color: Colors.white,
-                fontSize: 24,
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.all(26),
+          sliver: SliverToBoxAdapter(
+            child: Column(
+              children: [
+                const UserDataSection(),
+                const SizedBox(height: 45),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Checkbox(value: false, onChanged: (bool? value) {}),
+                        Text(S.of(context).agreement),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 50),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Text(
+                          S.of(context).conditions,
+                          style: AppStyles.subHeader.copyWith(
+                            color: AppColors.lightBrown,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 20),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: CustomElevatedButton(
+              onPressed: () {},
+              buttonText: Text(
+                S.of(context).register,
+                style: AppStyles.header.copyWith(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
               ),
             ),
           ),
-          const SizedBox(height: 20),
-          Center(
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 20),
+        ),
+        SliverToBoxAdapter(
+          child: Center(
             child: GestureDetector(
               onTap: () {
                 // Add navigation to login page
@@ -71,8 +93,8 @@ class SignUpBody extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
