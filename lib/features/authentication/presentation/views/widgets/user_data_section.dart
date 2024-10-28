@@ -5,6 +5,7 @@ import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_divider.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/generated/l10n.dart';
+import 'package:papyros/main.dart';
 
 class UserDataSection extends StatelessWidget {
   const UserDataSection({super.key});
@@ -46,8 +47,11 @@ class UserDataSection extends StatelessWidget {
           hintText: S.of(context).yourEmail,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 6, top: 16, bottom: 16),
+            padding: isArabic()
+                ? const EdgeInsets.only(
+                    right: 16, left: 10, top: 16, bottom: 16)
+                : const EdgeInsets.only(
+                    left: 16, right: 10, top: 16, bottom: 16),
             child: SvgPicture.asset(
               AppIcons.assetsIconsEmailicon,
               width: 15, // Adjust width as needed
@@ -62,8 +66,11 @@ class UserDataSection extends StatelessWidget {
           hintText: S.of(context).yourPassword,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 6, top: 16, bottom: 16),
+            padding: isArabic()
+                ? const EdgeInsets.only(
+                    right: 16, left: 10, top: 16, bottom: 16)
+                : const EdgeInsets.only(
+                    left: 16, right: 10, top: 16, bottom: 16),
             child: SvgPicture.asset(
               AppIcons.assetsIconsLockPasswordicon,
               width: 20,
@@ -72,8 +79,10 @@ class UserDataSection extends StatelessWidget {
             ),
           ),
           suffixIcon: Padding(
-            padding:
-                const EdgeInsets.only(left: 6, right: 16, top: 16, bottom: 16),
+            padding: isArabic()
+                ? const EdgeInsets.only(right: 6, left: 16, top: 16, bottom: 16)
+                : const EdgeInsets.only(
+                    left: 6, right: 16, top: 16, bottom: 16),
             child: SvgPicture.asset(
               AppIcons.assetsIconsShowPasswordicon,
               width: 15,
@@ -88,8 +97,11 @@ class UserDataSection extends StatelessWidget {
           hintText: S.of(context).confirmPassword,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 6, top: 16, bottom: 16),
+            padding: isArabic()
+                ? const EdgeInsets.only(
+                    right: 16, left: 10, top: 16, bottom: 16)
+                : const EdgeInsets.only(
+                    left: 16, right: 10, top: 16, bottom: 16),
             child: SvgPicture.asset(
               AppIcons.assetsIconsLockPasswordicon,
               width: 20,
@@ -98,8 +110,10 @@ class UserDataSection extends StatelessWidget {
             ),
           ),
           suffixIcon: Padding(
-            padding:
-                const EdgeInsets.only(left: 6, right: 16, top: 16, bottom: 16),
+            padding: isArabic()
+                ? const EdgeInsets.only(right: 6, left: 16, top: 16, bottom: 16)
+                : const EdgeInsets.only(
+                    left: 6, right: 16, top: 16, bottom: 16),
             child: SvgPicture.asset(
               AppIcons.assetsIconsShowPasswordicon,
               width: 15,

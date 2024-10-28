@@ -4,6 +4,7 @@ import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/user_data_section.dart';
 import 'package:papyros/generated/l10n.dart';
+import 'package:papyros/main.dart';
 
 class SignUpBody extends StatelessWidget {
   const SignUpBody({
@@ -36,7 +37,9 @@ class SignUpBody extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 50),
+                      padding: isArabic()
+                          ? const EdgeInsets.only(right: 30)
+                          : const EdgeInsets.only(left: 50),
                       child: GestureDetector(
                         onTap: () {},
                         child: Text(
