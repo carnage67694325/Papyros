@@ -3,8 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_divider.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/user_data_section.dart';
 import 'package:papyros/generated/l10n.dart';
 
 class SignUpBody extends StatelessWidget {
@@ -15,113 +17,30 @@ class SignUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(26),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(S.of(context).gettingStarted, style: AppStyles.header),
-          const SizedBox(height: 10),
-          Text(
-            S.of(context).createAccount,
-            style: AppStyles.subHeader,
-          ),
-          const SizedBox(height: 20),
-          Row(
+          const UserDataSection(),
+          const SizedBox(height: 45),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: CustomTextFormField(
-                  hintText: S.of(context).firstName,
-                  hintStyle: AppStyles.textfieldHint,
-                ),
+              Row(
+                children: [
+                  Checkbox(value: false, onChanged: (bool? value) {}),
+                  Text(S.of(context).agreement),
+                ],
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: CustomTextFormField(
-                  hintText: S.of(context).lastName,
-                  hintStyle: AppStyles.textfieldHint,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          CustomTextFormField(
-            hintText: S.of(context).yourEmail,
-            hintStyle: AppStyles.textfieldHint,
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(
-                  left: 16, right: 6, top: 16, bottom: 16),
-              child: SvgPicture.asset(
-                AppIcons.assetsIconsEmailicon,
-                width: 15, // Adjust width as needed
-                height: 15, // Adjust height as needed
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          CustomTextFormField(
-            obscureText: true,
-            hintText: S.of(context).yourPassword,
-            hintStyle: AppStyles.textfieldHint,
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(
-                  left: 16, right: 6, top: 16, bottom: 16),
-              child: SvgPicture.asset(
-                AppIcons.assetsIconsLockPasswordicon,
-                width: 20,
-                height: 25,
-                fit: BoxFit.contain,
-              ),
-            ),
-            suffixIcon: Padding(
-              padding: const EdgeInsets.only(
-                  left: 6, right: 16, top: 16, bottom: 16),
-              child: SvgPicture.asset(
-                AppIcons.assetsIconsShowPasswordicon,
-                width: 15,
-                height: 15,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          CustomTextFormField(
-            obscureText: true,
-            hintText: S.of(context).confirmPassword,
-            hintStyle: AppStyles.textfieldHint,
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(
-                  left: 16, right: 6, top: 16, bottom: 16),
-              child: SvgPicture.asset(
-                AppIcons.assetsIconsLockPasswordicon,
-                width: 20,
-                height: 25,
-                fit: BoxFit.contain,
-              ),
-            ),
-            suffixIcon: Padding(
-              padding: const EdgeInsets.only(
-                  left: 6, right: 16, top: 16, bottom: 16),
-              child: SvgPicture.asset(
-                AppIcons.assetsIconsShowPasswordicon,
-                width: 15,
-                height: 15,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              Checkbox(value: false, onChanged: (bool? value) {}),
-              Text(S.of(context).agreement),
-              GestureDetector(
-                onTap: () {},
-                child: Text(
-                  S.of(context).conditions,
-                  style: AppStyles.subHeader.copyWith(
-                    color: AppColors.lightPeach,
+              Padding(
+                padding: const EdgeInsets.only(left: 50),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Text(
+                    S.of(context).conditions,
+                    style: AppStyles.subHeader
+                        .copyWith(color: AppColors.mediumBrown, fontSize: 12),
                   ),
                 ),
               ),
@@ -146,7 +65,7 @@ class SignUpBody extends StatelessWidget {
               child: Text(
                 S.of(context).haveAccount,
                 style: AppStyles.subHeader.copyWith(
-                  color: AppColors.lightPeach,
+                  color: AppColors.mediumBrown,
                 ),
               ),
             ),

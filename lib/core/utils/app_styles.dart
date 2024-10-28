@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
- class AppStyles {
+class AppStyles {
   static TextStyle logo = GoogleFonts.sonsieOne(
     fontSize: 32,
     color: Colors.white,
@@ -12,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
     fontWeight: FontWeight.normal,
   );
   static TextStyle subHeader = GoogleFonts.notoSansSymbols(
-    fontSize: 32,
+    fontSize: 16,
     fontWeight: FontWeight.normal,
     color: Colors.black.withOpacity(0.53),
   );
