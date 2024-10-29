@@ -4,6 +4,7 @@ import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/generated/l10n.dart';
 
 class GettingStartedBody extends StatelessWidget {
@@ -40,6 +41,16 @@ class GettingStartedBody extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   )),
             ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          CustomTextButton(
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kSignUp);
+            },
+            buttonText: S.of(context).dontHaveAccount,
+            fontColor: Colors.white,
           )
         ],
       ),

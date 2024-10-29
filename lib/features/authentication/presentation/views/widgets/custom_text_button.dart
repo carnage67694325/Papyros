@@ -8,10 +8,12 @@ class CustomTextButton extends StatelessWidget {
     this.onTap,
     required this.buttonText,
     this.fontSize,
+    this.fontColor,
   });
   final void Function()? onTap;
   final String buttonText;
   final double? fontSize;
+  final Color? fontColor;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,7 +21,7 @@ class CustomTextButton extends StatelessWidget {
       child: Text(
         buttonText,
         style: AppStyles.subHeader.copyWith(
-          color: AppColors.lightBrown,
+          color: fontColor ?? AppColors.lightBrown,
           fontSize: fontSize ?? 16,
         ),
       ),
