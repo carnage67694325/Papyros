@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/sign_in_body.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+class SignInView extends StatelessWidget {
+  const SignInView({super.key});
 
   @override
   Widget build(BuildContext context) {
