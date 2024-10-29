@@ -7,7 +7,9 @@ class GettingStartedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: GettingStartedBody(),
+      body: SafeArea(
+        child: GettingStartedBody(),
+      ),
     );
   }
 }

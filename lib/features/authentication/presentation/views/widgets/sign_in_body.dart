@@ -46,12 +46,15 @@ class SignInBody extends StatelessWidget {
                 const RememberMeSection(),
                 const SizedBox(height: 47),
                 CustomElevatedButton(
-                    onPressed: () {},
-                    buttonText: Text(S.of(context).signIN,
-                        style: AppStyles.header.copyWith(
-                          color: Colors.white,
-                          fontSize: 24,
-                        ))),
+                  onPressed: () {},
+                  buttonText: Text(
+                    S.of(context).signIN,
+                    style: AppStyles.header.copyWith(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
                 const SizedBox(
                   height: 14,
                 ),

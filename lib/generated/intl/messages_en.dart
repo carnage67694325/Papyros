@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
         "firstName": MessageLookupByLibrary.simpleMessage("first name"),
         "forgotPass": MessageLookupByLibrary.simpleMessage("Forget Password?"),
+        "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "gettingStarted":
             MessageLookupByLibrary.simpleMessage("Getting Started"),
         "haveAccount":
