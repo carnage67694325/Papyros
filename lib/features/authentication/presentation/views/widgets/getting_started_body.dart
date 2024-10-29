@@ -5,10 +5,25 @@ import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/language_toggle.dart';
 import 'package:papyros/generated/l10n.dart';
 
-class GettingStartedBody extends StatelessWidget {
+class GettingStartedBody extends StatefulWidget {
   const GettingStartedBody({super.key});
+
+  @override
+  _GettingStartedBodyState createState() => _GettingStartedBodyState();
+}
+
+class _GettingStartedBodyState extends State<GettingStartedBody> {
+  Locale currentLocale = const Locale('en'); // Default to English
+
+  void _updateLocale(Locale newLocale) {
+    setState(() {
+      currentLocale = newLocale;
+      S.load(newLocale); // Load the new locale
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +34,12 @@ class GettingStartedBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          LanguageToggle(
+            onLocaleChange: _updateLocale, // Update locale using callback
+          ),
+          const SizedBox(
+            height: 109,
+          ),
           Text(
             S.of(context).logo,
             textAlign: TextAlign.center,

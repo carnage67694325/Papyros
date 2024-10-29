@@ -13,8 +13,21 @@ void main() {
   runApp(const PapyrosApp());
 }
 
-class PapyrosApp extends StatelessWidget {
+class PapyrosApp extends StatefulWidget {
   const PapyrosApp({super.key});
+
+  @override
+  State<PapyrosApp> createState() => _PapyrosAppState();
+}
+
+class _PapyrosAppState extends State<PapyrosApp> {
+  Locale currentLocale = const Locale('en');
+
+  void updateLocale(Locale newLocale) {
+    setState(() {
+      currentLocale = newLocale;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +39,7 @@ class PapyrosApp extends StatelessWidget {
           return MaterialApp.router(
             theme:
                 ThemeData(scaffoldBackgroundColor: AppColors.backGroundColor),
-            locale: const Locale('en'),
+            locale: currentLocale,
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
