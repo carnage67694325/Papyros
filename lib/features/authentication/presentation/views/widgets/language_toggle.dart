@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/manager/cubit/change_local_cubit.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
 class LanguageToggle extends StatefulWidget {
-  const LanguageToggle({super.key, required this.onLocaleChange});
-  final ValueChanged<Locale> onLocaleChange;
+  const LanguageToggle({
+    super.key,
+  });
+
   @override
   _LanguageToggleState createState() => _LanguageToggleState();
 }
@@ -19,12 +23,9 @@ class _LanguageToggleState extends State<LanguageToggle> {
       onTap: () {
         setState(() {
           isEnglishSelected = !isEnglishSelected;
+          BlocProvider.of<ChangeLocalCubit>(context)
+              .changeLocal(isEnglishSelected);
         });
-
-        // Determine the new locale and trigger the callback to update the app's locale
-        Locale newLocale =
-            isEnglishSelected ? const Locale('en') : const Locale('ar');
-        widget.onLocaleChange(newLocale);
       },
       child: Padding(
         padding: isArabic()

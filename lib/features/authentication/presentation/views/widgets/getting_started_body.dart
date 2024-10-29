@@ -8,22 +8,8 @@ import 'package:papyros/features/authentication/presentation/views/widgets/custo
 import 'package:papyros/features/authentication/presentation/views/widgets/language_toggle.dart';
 import 'package:papyros/generated/l10n.dart';
 
-class GettingStartedBody extends StatefulWidget {
+class GettingStartedBody extends StatelessWidget {
   const GettingStartedBody({super.key});
-
-  @override
-  _GettingStartedBodyState createState() => _GettingStartedBodyState();
-}
-
-class _GettingStartedBodyState extends State<GettingStartedBody> {
-  Locale currentLocale = const Locale('en'); // Default to English
-
-  void _updateLocale(Locale newLocale) {
-    setState(() {
-      currentLocale = newLocale;
-      S.load(newLocale); // Load the new locale
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +20,7 @@ class _GettingStartedBodyState extends State<GettingStartedBody> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          LanguageToggle(
-            onLocaleChange: _updateLocale, // Update locale using callback
-          ),
+          const LanguageToggle(),
           const SizedBox(
             height: 109,
           ),

@@ -5,12 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/simple_bloc_observer.dart';
+import 'package:papyros/core/utils/manager/cubit/change_local_cubit.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:intl/intl.dart';
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
-  runApp(const PapyrosApp());
+  runApp(BlocProvider(
+    create: (context) => ChangeLocalCubit(),
+    child: const PapyrosApp(),
+  ));
 }
 
 class PapyrosApp extends StatefulWidget {
@@ -21,14 +25,7 @@ class PapyrosApp extends StatefulWidget {
 }
 
 class _PapyrosAppState extends State<PapyrosApp> {
-  Locale currentLocale = const Locale('en');
-
-  void updateLocale(Locale newLocale) {
-    setState(() {
-      currentLocale = newLocale;
-    });
-  }
-
+  Locale local = const Locale('ar');
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -36,19 +33,26 @@ class _PapyrosAppState extends State<PapyrosApp> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, context) {
-          return MaterialApp.router(
-            theme:
-                ThemeData(scaffoldBackgroundColor: AppColors.backGroundColor),
-            locale: currentLocale,
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            routerConfig: AppRouter.router,
-          );
+          return BlocConsumer<ChangeLocalCubit, ChangeLocalState>(
+              listener: (context, state) {
+            if (state is ChangeLocalCurrent) {
+              local = state.currentLocale;
+            }
+          }, builder: (context, state) {
+            return MaterialApp.router(
+              theme:
+                  ThemeData(scaffoldBackgroundColor: AppColors.backGroundColor),
+              locale: local,
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              routerConfig: AppRouter.router,
+            );
+          });
         });
   }
 }
@@ -56,3 +60,4 @@ class _PapyrosAppState extends State<PapyrosApp> {
 bool isArabic() {
   return Intl.getCurrentLocale() == 'ar';
 }
+// No changes to ChangeLocalCubit and GettingStartedBody (already provided)

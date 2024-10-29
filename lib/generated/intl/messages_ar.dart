@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
         "lastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-        "logo": MessageLookupByLibrary.simpleMessage("بابروس"),
+        "logo": MessageLookupByLibrary.simpleMessage("Papyros"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
         "signIN": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
