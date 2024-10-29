@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:papyros/core/utils/app_colors.dart';
+import 'package:go_router/go_router.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_check_box.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/user_data_section.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
@@ -41,15 +43,10 @@ class SignUpBody extends StatelessWidget {
                       padding: isArabic()
                           ? const EdgeInsets.only(right: 30)
                           : const EdgeInsets.only(left: 50),
-                      child: GestureDetector(
+                      child: CustomTextButton(
                         onTap: () {},
-                        child: Text(
-                          S.of(context).conditions,
-                          style: AppStyles.subHeader.copyWith(
-                            color: AppColors.lightBrown,
-                            fontSize: 12,
-                          ),
-                        ),
+                        buttonText: S.of(context).conditions,
+                        fontSize: 12,
                       ),
                     ),
                   ],
@@ -81,17 +78,11 @@ class SignUpBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: Center(
-            child: GestureDetector(
-              onTap: () {
-                // Add navigation to login page
-              },
-              child: Text(
-                S.of(context).haveAccount,
-                style: AppStyles.subHeader.copyWith(
-                  color: AppColors.lightBrown,
-                ),
-              ),
-            ),
+            child: CustomTextButton(
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.kSignIn);
+                },
+                buttonText: S.of(context).haveAccount),
           ),
         ),
       ],

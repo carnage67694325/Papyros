@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:papyros/core/utils/app_colors.dart';
+import 'package:go_router/go_router.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/email_password_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/remember_me_section.dart';
@@ -34,10 +36,9 @@ class SignInBody extends StatelessWidget {
                 const SizedBox(
                   height: 11,
                 ),
-                Text(
-                  S.of(context).forgotPass,
-                  style: AppStyles.textfieldHint
-                      .copyWith(color: AppColors.lightBrown, fontSize: 16),
+                CustomTextButton(
+                  onTap: () {},
+                  buttonText: S.of(context).forgotPass,
                 ),
                 const SizedBox(
                   height: 25,
@@ -54,11 +55,11 @@ class SignInBody extends StatelessWidget {
                 const SizedBox(
                   height: 14,
                 ),
-                Text(
-                  S.of(context).dontHaveAccount,
-                  style: AppStyles.subHeader.copyWith(
-                    color: AppColors.lightBrown,
-                  ),
+                CustomTextButton(
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kSignUp);
+                  },
+                  buttonText: S.of(context).dontHaveAccount,
                 ),
               ],
             ),
