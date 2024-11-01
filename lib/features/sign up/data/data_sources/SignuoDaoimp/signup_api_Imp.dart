@@ -21,7 +21,7 @@ class SignupApiImp extends SignupDao {
       required String confirmPassword,
       required String phone}) async {
     try {
-      Response response = await apiService.post(Endpiont.Signupendpiont, body: {
+      Response response = await apiService.post(Endpiont.signupEndpiont, body: {
         "firstname": firstname,
         "lastname": lastname,
         "email": email,

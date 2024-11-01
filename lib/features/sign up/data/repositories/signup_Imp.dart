@@ -5,10 +5,10 @@ import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/signup
 import 'package:papyros/features/sign%20up/domain/repositories/signup_repo.dart';
 
 // @Injectable(as: Signuorebo)
-class SignuprepoImp extends Signuorebo {
+class SignupRepoImp extends Signuorebo {
   SignupDao signupApi;
   // @factoryMethod
-  SignuprepoImp(this.signupApi);
+  SignupRepoImp(this.signupApi);
   @override
   Future<Either<SignupEntity, String>> signup(
       {required String firstname,
