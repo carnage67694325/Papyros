@@ -3,14 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:papyros/core/DI/DI.dart';
+import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/simple_bloc_observer.dart';
-import 'package:papyros/core/utils/manager/cubit/change_local_cubit.dart';
+
 import 'package:papyros/generated/l10n.dart';
 import 'package:intl/intl.dart';
 
+import 'core/utils/manager/locale_cubit/change_local_cubit.dart';
+
 Future<void> main() async {
+  configureDependencies();
+
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   runApp(BlocProvider(

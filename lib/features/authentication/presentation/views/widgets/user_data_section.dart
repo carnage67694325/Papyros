@@ -18,6 +18,7 @@ class UserDataSection extends StatelessWidget {
         HeaderSection(
           headerText: S.of(context).gettingStarted,
           subHeaderText: S.of(context).createAccount,
+
         ),
         const SizedBox(height: 25),
         Row(
@@ -26,6 +27,7 @@ class UserDataSection extends StatelessWidget {
               child: CustomTextFormField(
                 hintText: S.of(context).firstName,
                 hintStyle: AppStyles.textfieldHint,
+
               ),
             ),
             const SizedBox(width: 12),
