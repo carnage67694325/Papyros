@@ -1,4 +1,4 @@
-import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/SignupEntity.dart';
+import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/signup_entity.dart';
 
 import 'data_model.dart';
 

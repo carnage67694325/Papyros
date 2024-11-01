@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
+// import 'package:injectable/injectable.dart';
 import 'package:papyros/features/sign%20up/data/data_sources/Signupdao.dart';
-import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/SignupEntity.dart';
-import 'package:papyros/features/sign%20up/domain/repositories/Signuprepo.dart';
+import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/signup_entity.dart';
+import 'package:papyros/features/sign%20up/domain/repositories/signup_repo.dart';
 
-@Injectable(as: Signuorebo)
+// @Injectable(as: Signuorebo)
 class SignuprepoImp extends Signuorebo {
   SignupDao signupApi;
-  @factoryMethod
+  // @factoryMethod
   SignuprepoImp(this.signupApi);
   @override
   Future<Either<SignupEntity, String>> signup(

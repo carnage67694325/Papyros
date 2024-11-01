@@ -1,4 +1,4 @@
-import 'DataEntity.dart';
+import 'data_entity.dart';
 
 /// message : "sucess"
 /// error : "error"
@@ -6,16 +6,12 @@ import 'DataEntity.dart';
 
 class SignupEntity {
   SignupEntity({
-      this.message, 
-      this.error, 
-      this.data,});
-
+    this.message,
+    this.error,
+    this.data,
+  });
 
   String? message;
   String? error;
   DataEntity? data;
-
-
-
-  }
-
+}

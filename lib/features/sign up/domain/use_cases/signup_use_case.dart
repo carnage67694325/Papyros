@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
-import 'package:injectable/injectable.dart';
-import 'package:papyros/features/sign%20up/domain/repositories/Signuprepo.dart';
+// import 'package:injectable/injectable.dart';
+import 'package:papyros/features/sign%20up/domain/repositories/signup_repo.dart';
 
-import '../entities/Sigup entity/SignupEntity.dart';
+import '../entities/Sigup entity/signup_entity.dart';
 
-@injectable
+// @injectable
 class SignUpUseCase {
   Signuorebo rebo;
-  @factoryMethod
+  // @factoryMethod
   SignUpUseCase(this.rebo) {}
   Future<Either<SignupEntity, String>> call(
           {required String firstname,

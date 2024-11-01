@@ -1,4 +1,4 @@
-import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/DataEntity.dart';
+import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/data_entity.dart';
 
 /// userName : "test test2"
 /// firstName : "test"

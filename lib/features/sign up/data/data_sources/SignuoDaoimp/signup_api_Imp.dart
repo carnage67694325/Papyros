@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:injectable/injectable.dart';
+// import 'package:injectable/injectable.dart';
 import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/sign%20up/data/data_sources/Signupdao.dart';
-import 'package:papyros/features/sign%20up/data/models/Signup%20Response/SignupResponse.dart';
+import 'package:papyros/features/sign%20up/data/models/Signup%20Response/signup_response.dart';
 
 import '../../../../../core/endpoints/endpiont.dart';
 
-@Injectable(as: SignupDao)
+// @Injectable(as: SignupDao)
 class SignupApiImp extends SignupDao {
   ApiService apiService;
-  @factoryMethod
+  // @factoryMethod
   SignupApiImp(this.apiService);
   @override
   Future<Either<SignupResponse, String>> signup(
