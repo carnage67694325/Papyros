@@ -17,26 +17,27 @@ import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/DataEn
 /// updatedAt : "2024-11-01T04:33:39.262Z"
 /// __v : 0
 
-class DataModle {
-  DataModle({
-      this.userName, 
-      this.firstName, 
-      this.lastName, 
-      this.email, 
-      this.password, 
-      this.phone, 
-      this.status, 
-      this.active, 
-      this.dob, 
-      this.otp, 
-      this.otpExp, 
-      this.gender, 
-      this.id, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.v,});
+class DataModel {
+  DataModel({
+    this.userName,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.password,
+    this.phone,
+    this.status,
+    this.active,
+    this.dob,
+    this.otp,
+    this.otpExp,
+    this.gender,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+  });
 
-  DataModle.fromJson(dynamic json) {
+  DataModel.fromJson(dynamic json) {
     userName = json['userName'];
     firstName = json['firstName'];
     lastName = json['lastName'];
@@ -91,18 +92,16 @@ class DataModle {
     map['__v'] = v;
     return map;
   }
-  DataEntity toDataEntity(){
+
+  DataEntity toDataEntity() {
     return DataEntity(
       email: email,
       firstName: firstName,
-      lastName:lastName ,
-      password:password ,
-      phone:phone ,
-      status:status ,
-      userName:userName ,
-
-
+      lastName: lastName,
+      password: password,
+      phone: phone,
+      status: status,
+      userName: userName,
     );
   }
-
 }
