@@ -43,7 +43,7 @@ class _SignInBodyState extends State<SignInBody> {
                   const SizedBox(
                     height: 54,
                   ),
-                  const EmailPassWordSection(),
+                  //const EmailPassWordSection(),
                   const SizedBox(
                     height: 11,
                   ),

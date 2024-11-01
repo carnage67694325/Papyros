@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
@@ -8,6 +9,8 @@ import 'package:papyros/features/authentication/presentation/views/widgets/custo
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/user_data_section.dart';
+import 'package:papyros/features/sign%20up/data/models/Signup%20Response/user_model.dart';
+import 'package:papyros/features/sign%20up/presentation/manager/sign_up_cubit.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
@@ -22,6 +25,7 @@ class SignUpBody extends StatefulWidget {
 
 class _SignUpBodyState extends State<SignUpBody> {
   GlobalKey<FormState> formKey = GlobalKey();
+  UserModel? userModel;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -38,7 +42,9 @@ class _SignUpBodyState extends State<SignUpBody> {
               key: formKey,
               child: Column(
                 children: [
-                  const UserDataSection(),
+                  UserDataSection(
+                    userModel: userModel ?? UserModel(),
+                  ),
                   const SizedBox(height: 45),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +81,14 @@ class _SignUpBodyState extends State<SignUpBody> {
             child: CustomElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  log('valdiated');
+                  BlocProvider.of<SignupCubit>(context).signUp(
+                      name: userModel!.firstName!,
+                      email: userModel!.email!,
+                      password: userModel!.password!,
+                      phone: userModel!.phone!,
+                      firstname: userModel!.firstName!,
+                      lastname: userModel!.lastName!,
+                      confirmPassword: userModel!.password!);
                 } else {
                   return log('data required');
                 }

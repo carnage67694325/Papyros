@@ -5,12 +5,13 @@ import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/email_password_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
+import 'package:papyros/features/sign%20up/data/models/Signup%20Response/user_model.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
 class UserDataSection extends StatelessWidget {
-  const UserDataSection({super.key});
-
+  const UserDataSection({super.key, required this.userModel});
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,21 +19,25 @@ class UserDataSection extends StatelessWidget {
         HeaderSection(
           headerText: S.of(context).gettingStarted,
           subHeaderText: S.of(context).createAccount,
-
         ),
         const SizedBox(height: 25),
         Row(
           children: [
             Expanded(
               child: CustomTextFormField(
+                onChanged: (data) {
+                  userModel!.firstName = data;
+                },
                 hintText: S.of(context).firstName,
                 hintStyle: AppStyles.textfieldHint,
-
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: CustomTextFormField(
+                onChanged: (data) {
+                  userModel!.lastName = data;
+                },
                 hintText: S.of(context).lastName,
                 hintStyle: AppStyles.textfieldHint,
               ),
@@ -40,7 +45,9 @@ class UserDataSection extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 25),
-        const EmailPassWordSection(),
+        EmailPassWordSection(
+          userModel: userModel,
+        ),
         const SizedBox(height: 25),
         CustomTextFormField(
           obscureText: true,

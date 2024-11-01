@@ -17,8 +17,8 @@ import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/data_e
 /// updatedAt : "2024-11-01T04:33:39.262Z"
 /// __v : 0
 
-class DataModel {
-  DataModel({
+class UserModel {
+  UserModel({
     this.userName,
     this.firstName,
     this.lastName,
@@ -37,7 +37,7 @@ class DataModel {
     this.v,
   });
 
-  DataModel.fromJson(dynamic json) {
+  UserModel.fromJson(dynamic json) {
     userName = json['userName'];
     firstName = json['firstName'];
     lastName = json['lastName'];

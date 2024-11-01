@@ -1,6 +1,6 @@
 import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/signup_entity.dart';
 
-import 'data_model.dart';
+import 'user_model.dart';
 
 /// message : "sucess"
 /// error : "error"
@@ -16,11 +16,11 @@ class SignupResponse {
   SignupResponse.fromJson(dynamic json) {
     message = json['message'];
     error = json['error'];
-    data = json['data'] != null ? DataModel.fromJson(json['data']) : null;
+    data = json['data'] != null ? UserModel.fromJson(json['data']) : null;
   }
   String? message;
   String? error;
-  DataModel? data;
+  UserModel? data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
