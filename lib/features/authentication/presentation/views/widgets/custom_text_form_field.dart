@@ -9,17 +9,20 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.obscureText,
     this.suffixIcon,
+      this.controller,
   });
   final String hintText;
   final TextStyle? hintStyle;
   final Widget? prefixIcon;
   final bool? obscureText;
   final Widget? suffixIcon;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText ?? false,
+      controller:controller ,
       decoration: InputDecoration(
         filled: true,
         fillColor: AppColors.textFieldFillColor.withOpacity(0.7),
@@ -27,6 +30,7 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: hintStyle,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
+
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.all(Radius.circular(24)),

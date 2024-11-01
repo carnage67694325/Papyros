@@ -16,6 +16,7 @@ class EmailPassWordSection extends StatelessWidget {
     return Column(
       children: [
         CustomTextFormField(
+
           hintText: S.of(context).yourEmail,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
