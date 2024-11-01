@@ -25,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       obscureText: obscureText ?? false,
       validator: (value) {
-        if (value!.isEmpty) {
+        if (value == null || value!.isEmpty) {
           return 'field is required';
         }
       },

@@ -25,7 +25,7 @@ class SignUpBody extends StatefulWidget {
 
 class _SignUpBodyState extends State<SignUpBody> {
   GlobalKey<FormState> formKey = GlobalKey();
-  UserModel? userModel;
+  final UserModel userModel = UserModel();
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -82,10 +82,9 @@ class _SignUpBodyState extends State<SignUpBody> {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   BlocProvider.of<SignupCubit>(context).signUp(
-                      name: userModel!.firstName!,
                       email: userModel!.email!,
                       password: userModel!.password!,
-                      phone: userModel!.phone!,
+                      phone: "",
                       firstname: userModel!.firstName!,
                       lastname: userModel!.lastName!,
                       confirmPassword: userModel!.password!);

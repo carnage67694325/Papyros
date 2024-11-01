@@ -16,8 +16,7 @@ class SignupCubit extends Cubit<SignupState> {
 
   SignUpUseCase signUpUseCase;
   signUp(
-      {required String name,
-      required String email,
+      {required String email,
       required String password,
       required String phone,
       required String firstname,

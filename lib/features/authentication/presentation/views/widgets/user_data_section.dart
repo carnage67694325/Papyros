@@ -27,6 +27,7 @@ class UserDataSection extends StatelessWidget {
               child: CustomTextFormField(
                 onChanged: (data) {
                   userModel!.firstName = data;
+                  userModel!.userName = data;
                 },
                 hintText: S.of(context).firstName,
                 hintStyle: AppStyles.textfieldHint,
