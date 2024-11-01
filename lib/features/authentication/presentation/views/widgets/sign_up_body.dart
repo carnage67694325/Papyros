@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_router.dart';
@@ -9,11 +11,17 @@ import 'package:papyros/features/authentication/presentation/views/widgets/user_
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
-class SignUpBody extends StatelessWidget {
+class SignUpBody extends StatefulWidget {
   const SignUpBody({
     super.key,
   });
 
+  @override
+  State<SignUpBody> createState() => _SignUpBodyState();
+}
+
+class _SignUpBodyState extends State<SignUpBody> {
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -26,32 +34,35 @@ class SignUpBody extends StatelessWidget {
         SliverPadding(
           padding: const EdgeInsets.all(26),
           sliver: SliverToBoxAdapter(
-            child: Column(
-              children: [
-                const UserDataSection(),
-                const SizedBox(height: 45),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const CustomCheckBox(),
-                        Text(S.of(context).agreement),
-                      ],
-                    ),
-                    Padding(
-                      padding: isArabic()
-                          ? const EdgeInsets.only(right: 30)
-                          : const EdgeInsets.only(left: 50),
-                      child: CustomTextButton(
-                        onTap: () {},
-                        buttonText: S.of(context).conditions,
-                        fontSize: 12,
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  const UserDataSection(),
+                  const SizedBox(height: 45),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const CustomCheckBox(),
+                          Text(S.of(context).agreement),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      Padding(
+                        padding: isArabic()
+                            ? const EdgeInsets.only(right: 30)
+                            : const EdgeInsets.only(left: 50),
+                        child: CustomTextButton(
+                          onTap: () {},
+                          buttonText: S.of(context).conditions,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -62,7 +73,13 @@ class SignUpBody extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: CustomElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  log('valdiated');
+                } else {
+                  return log('data required');
+                }
+              },
               buttonText: Text(
                 S.of(context).register,
                 style: AppStyles.header.copyWith(
