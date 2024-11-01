@@ -2,28 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.hintText,
-      this.hintStyle,
-      this.prefixIcon,
-      this.obscureText,
-      this.suffixIcon,
-      this.controller,
-      this.validator});
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    this.hintStyle,
+    this.prefixIcon,
+    this.obscureText,
+    this.suffixIcon,
+    this.controller,
+    this.onChanged,
+  });
   final String hintText;
   final TextStyle? hintStyle;
   final Widget? prefixIcon;
   final bool? obscureText;
   final Widget? suffixIcon;
   final TextEditingController? controller;
-  final String? Function(String?)? validator;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText ?? false,
-      validator: validator,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'field is required';
+        }
+      },
+      onChanged: onChanged,
       controller: controller,
       decoration: InputDecoration(
         filled: true,
