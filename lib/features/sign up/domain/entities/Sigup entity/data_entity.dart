@@ -11,7 +11,7 @@ class DataEntity {
       this.userName, 
       this.firstName, 
       this.lastName, 
-      this.email, 
+        this.email,
       this.password, 
       this.phone, 
       this.status,});
