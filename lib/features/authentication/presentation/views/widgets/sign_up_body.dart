@@ -81,10 +81,10 @@ class _SignUpBodyState extends State<SignUpBody> {
             child: CustomElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  BlocProvider.of<SignupCubit>(context).signUp(
+                  BlocProvider.of<SignupCubit>(context).signUpUseCase(
                       email: userModel!.email!,
                       password: userModel!.password!,
-                      phone: "",
+                      phone: userModel!.phone!,
                       firstname: userModel!.firstName!,
                       lastname: userModel!.lastName!,
                       confirmPassword: userModel!.password!);

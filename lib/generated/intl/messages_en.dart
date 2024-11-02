@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("last name"),
         "login": MessageLookupByLibrary.simpleMessage("login"),
         "logo": MessageLookupByLibrary.simpleMessage("Papyros"),
+        "phone": MessageLookupByLibrary.simpleMessage("phone"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "signIN": MessageLookupByLibrary.simpleMessage("Sign in"),

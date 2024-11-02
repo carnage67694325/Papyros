@@ -18,6 +18,8 @@
      "forgotPass" : "Forget Password?",
      "rememberMe" : "Remember me",
      "dontHaveAccount" : "Don’t have an account?",
-     "getStarted" : "Get Started"
+     "getStarted" : "Get Started",
+     "phone" : "phone"
+
 
 }

@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logo": MessageLookupByLibrary.simpleMessage("Papyros"),
+        "phone": MessageLookupByLibrary.simpleMessage("موبايل"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
         "signIN": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),

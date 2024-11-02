@@ -18,5 +18,6 @@
      "forgotPass" : "نسيت كلمة المرور؟",
      "rememberMe" : "تذكرني",
      "dontHaveAccount" : "ليس لديك حساب؟",
-     "getStarted" : "ابدأ الأن "
+     "getStarted" : "ابدأ الأن ",
+     "phone" : "موبايل"
 }

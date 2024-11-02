@@ -41,6 +41,28 @@ class EmailPassWordSection extends StatelessWidget {
         const SizedBox(height: 25),
         CustomTextFormField(
           onChanged: (data) {
+            userModel!.phone = data;
+          },
+          obscureText: true,
+          hintText: S.of(context).phone,
+          hintStyle: AppStyles.textfieldHint,
+          prefixIcon: Padding(
+            padding: isArabic()
+                ? const EdgeInsets.only(
+                    right: 16, left: 10, top: 16, bottom: 16)
+                : const EdgeInsets.only(
+                    left: 16, right: 10, top: 16, bottom: 16),
+            child: SvgPicture.asset(
+              AppIcons.assetsIconsLockPasswordicon,
+              width: 20,
+              height: 25,
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+        const SizedBox(height: 25),
+        CustomTextFormField(
+          onChanged: (data) {
             userModel!.password = data;
           },
           obscureText: true,
