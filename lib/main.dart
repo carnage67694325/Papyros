@@ -10,7 +10,11 @@ import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart'
 import 'package:papyros/generated/l10n.dart';
 import 'package:intl/intl.dart';
 
+import 'core/Prefernces/Shaerdperefeancses.dart';
+
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await prefasHandelr.init();
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   runApp(BlocProvider(
