@@ -52,37 +52,6 @@ class UserDataSection extends StatelessWidget {
           signUpDataEntity: signUpDataEntity,
         ),
         const SizedBox(height: 25),
-        CustomTextFormField(
-          obscureText: true,
-          hintText: S.of(context).confirmPassword,
-          hintStyle: AppStyles.textfieldHint,
-          prefixIcon: Padding(
-            padding: isArabic()
-                ? const EdgeInsets.only(
-                    right: 16, left: 10, top: 16, bottom: 16)
-                : const EdgeInsets.only(
-                    left: 16, right: 10, top: 16, bottom: 16),
-            child: SvgPicture.asset(
-              AppIcons.assetsIconsLockPasswordicon,
-              width: 20,
-              height: 25,
-              fit: BoxFit.contain,
-            ),
-          ),
-          suffixIcon: Padding(
-            padding: isArabic()
-                ? const EdgeInsets.only(right: 6, left: 16, top: 16, bottom: 16)
-                : const EdgeInsets.only(
-                    left: 6, right: 16, top: 16, bottom: 16),
-            child: SvgPicture.asset(
-              AppIcons.assetsIconsShowPasswordicon,
-              width: 15,
-              height: 15,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
-        const SizedBox(height: 25),
         const DateOfBirthTextFormField(hintText: "YY/DD/MM"),
         const SizedBox(height: 25),
         const GenderSelectionTextFormField(hintText: "gender"),

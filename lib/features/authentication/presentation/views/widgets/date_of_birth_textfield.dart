@@ -48,7 +48,7 @@ class _DateOfBirthTextFormFieldState extends State<DateOfBirthTextFormField> {
 
         // If a date is picked, format it and set it to the TextFormField
         if (pickedDate != null) {
-          String formattedDate = DateFormat('yy-MM-dd').format(pickedDate);
+          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
           _controller.text = formattedDate;
         }
       },
