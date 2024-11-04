@@ -15,13 +15,16 @@ class SignupCubit extends Cubit<SignupState> {
   static SignupCubit get(context) => BlocProvider.of(context);
 
   SignUpUseCase signUpUseCase;
-  signUp(
-      {required String email,
-      required String password,
-      required String phone,
-      required String firstname,
-      required String lastname,
-      required String confirmPassword}) async {
+  signUp({
+    required String email,
+    required String password,
+    required String phone,
+    required String firstname,
+    required String lastname,
+    required String confirmPassword,
+    required String dob,
+    required String gender,
+  }) async {
     emit(SignupLoadingState());
     var result = await signUpUseCase.call(
         email: email,
@@ -29,7 +32,9 @@ class SignupCubit extends Cubit<SignupState> {
         phone: phone,
         firstname: firstname,
         lastname: lastname,
-        confirmPassword: confirmPassword);
+        confirmPassword: confirmPassword,
+        dob: dob,
+        gender: gender);
     result.fold((signupEntity) {
       if (signupEntity.error != null) {
         emit(SignupErrorState(signupEntity.error!));

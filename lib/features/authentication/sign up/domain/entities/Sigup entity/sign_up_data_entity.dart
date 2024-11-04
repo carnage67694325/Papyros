@@ -6,16 +6,17 @@
 /// phone : "01000020940"
 /// status : "pending"
 
-class DataEntity {
-  DataEntity({
-      this.userName, 
-      this.firstName, 
-      this.lastName, 
-        this.email,
-      this.password, 
-      this.phone, 
-      this.status,});
-
+class SignUpDataEntity {
+  SignUpDataEntity(
+      {this.userName,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.password,
+      this.phone,
+      this.status,
+      this.gender,
+      this.dob});
 
   String? userName;
   String? firstName;
@@ -24,7 +25,6 @@ class DataEntity {
   String? password;
   String? phone;
   String? status;
-
-
-
+  String? gender;
+  String? dob;
 }

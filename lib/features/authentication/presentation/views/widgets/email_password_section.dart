@@ -3,24 +3,25 @@ import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:papyros/features/sign%20up/data/models/Signup%20Response/user_model.dart';
+import 'package:papyros/features/authentication/sign%20up/data/models/Signup%20Response/user_model.dart';
+import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/sign_up_data_entity.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
 class EmailPassWordSection extends StatelessWidget {
   const EmailPassWordSection({
     super.key,
-    required this.userModel,
+    required this.signUpDataEntity,
   });
 
-  final UserModel userModel;
+  final SignUpDataEntity signUpDataEntity;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomTextFormField(
           onChanged: (data) {
-            userModel!.email = data;
+            signUpDataEntity!.email = data;
           },
           hintText: S.of(context).yourEmail,
           hintStyle: AppStyles.textfieldHint,
@@ -41,7 +42,7 @@ class EmailPassWordSection extends StatelessWidget {
         const SizedBox(height: 25),
         CustomTextFormField(
           onChanged: (data) {
-            userModel!.phone = data;
+            signUpDataEntity!.phone = data;
           },
           obscureText: true,
           hintText: S.of(context).phone,
@@ -63,7 +64,7 @@ class EmailPassWordSection extends StatelessWidget {
         const SizedBox(height: 25),
         CustomTextFormField(
           onChanged: (data) {
-            userModel!.password = data;
+            signUpDataEntity!.password = data;
           },
           obscureText: true,
           hintText: S.of(context).yourPassword,

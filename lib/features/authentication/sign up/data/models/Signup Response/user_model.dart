@@ -1,4 +1,4 @@
-import 'package:papyros/features/sign%20up/domain/entities/Sigup%20entity/data_entity.dart';
+import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/data_entity.dart';
 
 /// userName : "test test2"
 /// firstName : "test"
@@ -93,8 +93,8 @@ class UserModel {
     return map;
   }
 
-  DataEntity toDataEntity() {
-    return DataEntity(
+  SignUpDataEntity toDataEntity() {
+    return SignUpDataEntity(
       email: email,
       firstName: firstName,
       lastName: lastName,

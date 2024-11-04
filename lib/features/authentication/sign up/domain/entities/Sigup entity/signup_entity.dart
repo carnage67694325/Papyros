@@ -13,5 +13,5 @@ class SignupEntity {
 
   String? message;
   String? error;
-  DataEntity? data;
+  SignUpDataEntity? data;
 }
