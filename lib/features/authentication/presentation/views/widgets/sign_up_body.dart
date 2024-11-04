@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,7 +8,6 @@ import 'package:papyros/features/authentication/presentation/views/widgets/custo
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/user_data_section.dart';
-import 'package:papyros/features/authentication/sign%20up/data/models/Signup%20Response/user_model.dart';
 import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/sign_up_data_entity.dart';
 import 'package:papyros/features/authentication/sign%20up/presentation/manager/sign_up_cubit.dart';
 import 'package:papyros/generated/l10n.dart';

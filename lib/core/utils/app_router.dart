@@ -6,10 +6,10 @@ import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
 import 'package:papyros/features/authentication/presentation/views/sign_in_view.dart';
 import 'package:papyros/features/authentication/presentation/views/sign_up_view.dart';
-import 'package:papyros/features/sign%20up/data/data_sources/SignuoDaoimp/signup_api_Imp.dart';
-import 'package:papyros/features/sign%20up/data/repositories/signup_Imp.dart';
-import 'package:papyros/features/sign%20up/domain/use_cases/signup_use_case.dart';
-import 'package:papyros/features/sign%20up/presentation/manager/sign_up_cubit.dart';
+import 'package:papyros/features/authentication/sign%20up/data/data_sources/SignuoDaoimp/signup_api_Imp.dart';
+import 'package:papyros/features/authentication/sign%20up/data/repositories/signup_Imp.dart';
+import 'package:papyros/features/authentication/sign%20up/domain/use_cases/signup_use_case.dart';
+import 'package:papyros/features/authentication/sign%20up/presentation/manager/sign_up_cubit.dart';
 import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
 abstract class AppRouter {

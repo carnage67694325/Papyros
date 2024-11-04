@@ -1,12 +1,10 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
-import 'package:papyros/features/authentication/presentation/views/widgets/email_password_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/remember_me_section.dart';
 import 'package:papyros/generated/l10n.dart';

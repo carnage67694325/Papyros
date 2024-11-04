@@ -1,4 +1,4 @@
-import 'data_entity.dart';
+import 'sign_up_data_entity.dart';
 
 /// message : "sucess"
 /// error : "error"
