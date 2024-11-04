@@ -5,6 +5,7 @@ import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/date_of_birth_textfield.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/email_password_section.dart';
+import 'package:papyros/features/authentication/presentation/views/widgets/gender_selection_text_field.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/sign_up_data_entity.dart';
 import 'package:papyros/generated/l10n.dart';
@@ -83,6 +84,8 @@ class UserDataSection extends StatelessWidget {
         ),
         const SizedBox(height: 25),
         const DateOfBirthTextFormField(hintText: "YY/DD/MM"),
+        const SizedBox(height: 25),
+        const GenderSelectionTextFormField(hintText: "gender"),
       ],
     );
   }
