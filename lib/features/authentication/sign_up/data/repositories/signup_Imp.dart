@@ -21,13 +21,14 @@ class SignupRepoImp extends SignupRebo {
     required String gender,
   }) async {
     var result = await signupApi.signup(
-      email: email,
-      password: password,
-      phone: phone,
-      firstname: firstname,
-      lastname: lastname,
-      confirmPassword: confirmPassword,
-    );
+        email: email,
+        password: password,
+        phone: phone,
+        firstname: firstname,
+        lastname: lastname,
+        confirmPassword: confirmPassword,
+        dob: dob,
+        gender: gender);
     return result.fold((response) {
       var signupEntity = response.toSignupEntity();
       return Left(signupEntity);

@@ -4,8 +4,9 @@ import 'package:papyros/main.dart';
 
 class GenderSelectionTextFormField extends StatefulWidget {
   final String hintText;
-
-  const GenderSelectionTextFormField({super.key, required this.hintText});
+  final Function(String)? onChanged;
+  const GenderSelectionTextFormField(
+      {super.key, required this.hintText, this.onChanged});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -20,7 +21,13 @@ class _GenderSelectionTextFormFieldState
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.onChanged,
       controller: _controller,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'field is required';
+        }
+      },
       readOnly: true,
       decoration: InputDecoration(
         filled: true,

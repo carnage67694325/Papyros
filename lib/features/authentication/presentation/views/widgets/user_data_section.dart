@@ -49,9 +49,17 @@ class UserDataSection extends StatelessWidget {
           signUpDataEntity: signUpDataEntity,
         ),
         const SizedBox(height: 25),
-        const DateOfBirthTextFormField(hintText: "YY/DD/MM"),
+        DateOfBirthTextFormField(
+            onChanged: (data) {
+              signUpDataEntity.dob = data;
+            },
+            hintText: "YY/DD/MM"),
         const SizedBox(height: 25),
-        const GenderSelectionTextFormField(hintText: "gender"),
+        GenderSelectionTextFormField(
+            onChanged: (data) {
+              signUpDataEntity.gender = data;
+            },
+            hintText: "gender"),
       ],
     );
   }

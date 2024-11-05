@@ -27,95 +27,107 @@ class _SignUpBodyState extends State<SignUpBody> {
   final SignUpDataEntity signUpDataEntity = SignUpDataEntity();
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 50,
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.all(26),
-          sliver: SliverToBoxAdapter(
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  UserDataSection(
-                    signUpDataEntity: signUpDataEntity,
-                  ),
-                  const SizedBox(height: 45),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocConsumer<SignupCubit, SignupState>(
+      listener: (context, state) {
+        if (state is SignupSuccessState) {
+          GoRouter.of(context).push(AppRouter.kVerfiyOtp);
+          log(state.signUpEntity.toString());
+        } else if (state is SignupErrorState) {
+          log(state.error);
+        }
+      },
+      builder: (context, state) {
+        return CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 50,
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.all(26),
+              sliver: SliverToBoxAdapter(
+                child: Form(
+                  key: formKey,
+                  child: Column(
                     children: [
-                      Row(
-                        children: [
-                          const CustomCheckBox(),
-                          Text(S.of(context).agreement),
-                        ],
+                      UserDataSection(
+                        signUpDataEntity: signUpDataEntity,
                       ),
-                      Padding(
-                        padding: isArabic()
-                            ? const EdgeInsets.only(right: 30)
-                            : const EdgeInsets.only(left: 50),
-                        child: CustomTextButton(
-                          onTap: () {},
-                          buttonText: S.of(context).conditions,
-                          fontSize: 12,
-                        ),
+                      const SizedBox(height: 45),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const CustomCheckBox(),
+                              Text(S.of(context).agreement),
+                            ],
+                          ),
+                          Padding(
+                            padding: isArabic()
+                                ? const EdgeInsets.only(right: 30)
+                                : const EdgeInsets.only(left: 50),
+                            child: CustomTextButton(
+                              onTap: () {},
+                              buttonText: S.of(context).conditions,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(height: 20),
-        ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: CustomElevatedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  BlocProvider.of<SignupCubit>(context).signUp(
-                      email: signUpDataEntity.email!,
-                      password: signUpDataEntity.password!,
-                      phone: signUpDataEntity.phone!,
-                      firstname: signUpDataEntity.firstName!,
-                      lastname: signUpDataEntity.lastName!,
-                      confirmPassword: signUpDataEntity.password!,
-                      dob: signUpDataEntity.dob!,
-                      gender: signUpDataEntity.gender!);
-                } else {
-                  return log('data required');
-                }
-              },
-              buttonText: Text(
-                S.of(context).register,
-                style: AppStyles.header.copyWith(
-                  color: Colors.white,
-                  fontSize: 24,
                 ),
               ),
             ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(height: 20),
-        ),
-        SliverToBoxAdapter(
-          child: Center(
-            child: CustomTextButton(
-                onTap: () {
-                  GoRouter.of(context).push(AppRouter.kSignIn);
-                },
-                buttonText: S.of(context).haveAccount),
-          ),
-        ),
-      ],
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 20),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: CustomElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      BlocProvider.of<SignupCubit>(context).signUp(
+                          email: signUpDataEntity.email!,
+                          password: signUpDataEntity.password!,
+                          phone: signUpDataEntity.phone!,
+                          firstname: signUpDataEntity.firstName!,
+                          lastname: signUpDataEntity.lastName!,
+                          confirmPassword: signUpDataEntity.password!,
+                          dob: signUpDataEntity.dob ?? "2003-07-20",
+                          gender: signUpDataEntity.gender ?? "male");
+                    } else {
+                      return log('data required');
+                    }
+                  },
+                  buttonText: Text(
+                    S.of(context).register,
+                    style: AppStyles.header.copyWith(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 20),
+            ),
+            SliverToBoxAdapter(
+              child: Center(
+                child: CustomTextButton(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.kSignIn);
+                    },
+                    buttonText: S.of(context).haveAccount),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -102,6 +102,8 @@ class UserModel {
       phone: phone,
       status: status,
       userName: userName,
+      dob: dob,
+      gender: gender,
     );
   }
 }

@@ -5,9 +5,9 @@ import 'package:papyros/main.dart';
 
 class DateOfBirthTextFormField extends StatefulWidget {
   final String hintText;
-
-  const DateOfBirthTextFormField({Key? key, required this.hintText})
-      : super(key: key);
+  final Function(String)? onChanged;
+  const DateOfBirthTextFormField(
+      {super.key, required this.hintText, this.onChanged});
 
   @override
   _DateOfBirthTextFormFieldState createState() =>
@@ -20,7 +20,13 @@ class _DateOfBirthTextFormFieldState extends State<DateOfBirthTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.onChanged,
       controller: _controller,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'field is required';
+        }
+      },
       readOnly: true,
       decoration: InputDecoration(
         filled: true,

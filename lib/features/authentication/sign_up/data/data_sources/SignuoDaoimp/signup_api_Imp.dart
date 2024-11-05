@@ -19,7 +19,9 @@ class SignupApiImp extends SignupDao {
       required String email,
       required String password,
       required String confirmPassword,
-      required String phone}) async {
+      required String phone,
+      required String dob,
+      required String gender}) async {
     try {
       Response response = await apiService.post(Endpiont.signupEndpiont, body: {
         "firstname": firstname,
@@ -27,7 +29,9 @@ class SignupApiImp extends SignupDao {
         "email": email,
         "password": password,
         "rePassword": password,
-        "phone": phone
+        "phone": phone,
+        "DOB": dob,
+        "gender": gender,
       });
       SignupResponse signUpResponse = SignupResponse.fromJson(response.data);
       return Left(signUpResponse);
