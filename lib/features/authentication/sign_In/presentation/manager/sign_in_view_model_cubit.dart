@@ -9,19 +9,19 @@ part 'sign_in_view_model_state.dart';
 
 class SignInViewModelCubit extends Cubit<SignInViewModelState> {
   SignInViewModelCubit(this.signInUseCase) : super(SignInViewModelInitial());
-  static SignInViewModelCubit get(context)=>BlocProvider.of(context);
+  static SignInViewModelCubit get(context) => BlocProvider.of(context);
 
   SignInUseCase signInUseCase;
-  SignIn({required String email , required String password})async{
+  SignIn({required String email, required String password}) async {
     emit(SignInViewModelLoadingState());
     var result = await signInUseCase.call(email: email, password: password);
-    result.fold((data){
-      if(data.message!=null){
+    result.fold((data) {
+      if (data.message != null) {
         emit(SignInViewModelErrorState(data.message!));
-      }else{
+      } else {
         emit(SignInViewModelSuccessState(data));
       }
-    }, (error){
+    }, (error) {
       emit(SignInViewModelErrorState(error));
     });
   }

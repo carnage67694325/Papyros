@@ -6,7 +6,8 @@ class SignInResponse {
     this.message,
     this.statusMsg,
     this.user,
-    this.token,});
+    this.token,
+  });
 
   SignInResponse.fromJson(dynamic json) {
     message = json['message'];
@@ -30,11 +31,10 @@ class SignInResponse {
     return map;
   }
 
-  SignInEntity toSignInEntity(){
+  SignInEntity toSignInEntity() {
     return SignInEntity(
-        message: message,
-        token: token,
-
+      message: message,
+      token: token,
     );
   }
 }

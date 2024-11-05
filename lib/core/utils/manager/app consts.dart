@@ -1,4 +1,3 @@
-
 class AppConstants {
   static const String delete = "Delete";
   static const String searchHint = "what do you search for?";

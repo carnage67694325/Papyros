@@ -5,23 +5,23 @@ import '../../domain/entities/SignInEntity.dart';
 import '../../domain/repositories/SignInRepo.dart';
 import '../data_sources/SignInDau.dart';
 
-class SignInRepoImpl extends SignInRepo{
+class SignInRepoImpl extends SignInRepo {
   SignInDao apiDao;
 
   SignInRepoImpl(this.apiDao);
   @override
-  Future<Either<SignInEntity, String>> SignIn({required String email, required String password})async {
+  Future<Either<SignInEntity, String>> SignIn(
+      {required String email, required String password}) async {
     bool isConnected = await InternetChecker.CheckNetwork();
-    if(isConnected){
+    if (isConnected) {
       var result = await apiDao.SignIn(email: email, password: password);
-      return result.fold((response){
+      return result.fold((response) {
         return Left(response.toSignInEntity());
-      }, (error){
+      }, (error) {
         return Right(error);
       });
-    }else{
+    } else {
       return Right("No Internet Connection");
     }
   }
-
 }

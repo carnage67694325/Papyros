@@ -3,8 +3,9 @@
 
 class SignInEntity {
   SignInEntity({
-      this.message, 
-      this.token,});
+    this.message,
+    this.token,
+  });
 
   SignInEntity.fromJson(dynamic json) {
     message = json['message'];
@@ -19,5 +20,4 @@ class SignInEntity {
     map['token'] = token;
     return map;
   }
-
 }

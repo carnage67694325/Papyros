@@ -2,7 +2,8 @@ class User {
   User({
     this.name,
     this.email,
-    this.phone,});
+    this.phone,
+  });
 
   User.fromJson(dynamic json) {
     name = json['name'];
@@ -20,5 +21,4 @@ class User {
     map['phone'] = phone;
     return map;
   }
-
 }
