@@ -27,9 +27,7 @@ class _LanguageToggleState extends State<LanguageToggle> {
         });
       },
       child: Padding(
-        padding: isArabic()
-            ? const EdgeInsets.only(right: 230)
-            : const EdgeInsets.only(left: 230),
+        padding: const EdgeInsets.only(right: 230),
         child: Container(
           width: 120,
           height: 40,
@@ -61,7 +59,7 @@ class _LanguageToggleState extends State<LanguageToggle> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "Arabic",
+                        !isEnglishSelected ? "ُEnglish" : "ُالعربية",
                         style: TextStyle(
                           color: isEnglishSelected
                               ? Colors.black
@@ -74,7 +72,7 @@ class _LanguageToggleState extends State<LanguageToggle> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "English",
+                        isEnglishSelected ? "الانجليزية" : " Arabic",
                         style: TextStyle(
                           color: isEnglishSelected
                               ? AppColors.mediumBrown
