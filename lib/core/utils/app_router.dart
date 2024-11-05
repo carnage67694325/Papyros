@@ -4,6 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:papyros/core/animations/transition_animation.dart';
 import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
+import 'package:papyros/features/authentication/sign_In/data/data_sources/SignInDau.dart';
+import 'package:papyros/features/authentication/sign_In/data/data_sources/SignInDauImp/SignInApiImp.dart';
+import 'package:papyros/features/authentication/sign_In/data/repositories/SignInReboImp.dart';
+import 'package:papyros/features/authentication/sign_In/domain/use_cases/SignInUseCase.dart';
+import 'package:papyros/features/authentication/sign_In/presentation/manager/sign_in_view_model_cubit.dart';
 import 'package:papyros/features/authentication/sign_In/presentation/view/sign_in_view.dart';
 import 'package:papyros/features/authentication/sign_up/presentation/view/sign_up_view.dart';
 import 'package:papyros/features/authentication/sign_up/data/data_sources/SignuoDaoimp/signup_api_Imp.dart';
@@ -39,7 +44,11 @@ abstract class AppRouter {
       path: kSignIn,
       pageBuilder: (context, state) {
         return TransitionAnimation.slidingTransitionAnimations(state,
-            route: const SignInView());
+            route: BlocProvider(
+              create: (context) => SignInViewModelCubit(SignInUseCase(
+                  SignInRepoImpl(SignInDaoApiImpl(ApiService(Dio()))))),
+              child: const SignInView(),
+            ));
       },
     ),
     GoRoute(
