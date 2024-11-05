@@ -81,7 +81,10 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                     padding: const EdgeInsets.symmetric(horizontal: 38),
                     child: CustomElevatedButton(
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {}
+                        if (formKey.currentState!.validate()) {
+                          BlocProvider.of<VerfiyOtpCubit>(context).verfiyOtp(
+                              verfiyOtpEntity.email, verfiyOtpEntity.otp);
+                        }
                       },
                       buttonText: Text(S.of(context).sendOTP,
                           style: AppStyles.header.copyWith(
