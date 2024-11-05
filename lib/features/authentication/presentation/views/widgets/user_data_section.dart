@@ -26,7 +26,6 @@ class UserDataSection extends StatelessWidget {
               child: CustomTextFormField(
                 onChanged: (data) {
                   signUpDataEntity.firstNameEntity = data;
-                  signUpDataEntity.userNameEntity = data;
                 },
                 hintText: S.of(context).firstName,
                 hintStyle: AppStyles.textfieldHint,

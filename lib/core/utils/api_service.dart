@@ -9,9 +9,9 @@ class ApiService {
 
   ApiService(this.dio) {
     // Setting up Dio timeouts
-    dio.options.connectTimeout = const Duration(seconds: 10);
-    dio.options.receiveTimeout = const Duration(seconds: 10);
-    dio.options.sendTimeout = const Duration(seconds: 10);
+    dio.options.connectTimeout = const Duration(seconds: 60);
+    dio.options.receiveTimeout = const Duration(seconds: 60);
+    dio.options.sendTimeout = const Duration(seconds: 60);
   }
 
   Future<List<dynamic>> get({required String endPoints}) async {
@@ -20,9 +20,8 @@ class ApiService {
   }
 
   Future<Response> post(String endpoint, {Map<String, dynamic>? body}) {
-    return dio.post(
-      '$_baseUrl$endpoint',
-      data: body,
-    );
+    return dio.post('$_baseUrl$endpoint',
+        data: body,
+        options: Options(headers: {'Content-Type': 'application/json'}));
   }
 }

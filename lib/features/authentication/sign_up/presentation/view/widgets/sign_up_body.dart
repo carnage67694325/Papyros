@@ -33,7 +33,8 @@ class _SignUpBodyState extends State<SignUpBody> {
           GoRouter.of(context).push(AppRouter.kVerfiyOtp);
           log(state.signUpEntity.toString());
         } else if (state is SignupErrorState) {
-          log(state.error);
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.error)));
         }
       },
       builder: (context, state) {

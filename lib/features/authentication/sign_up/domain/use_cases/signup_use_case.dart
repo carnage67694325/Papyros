@@ -8,7 +8,7 @@ import '../entities/Sigup entity/signup_entity.dart';
 class SignUpUseCase {
   final SignupRebo signupRebo;
   // @factoryMethod
-  SignUpUseCase(this.signupRebo) {}
+  SignUpUseCase(this.signupRebo);
   Future<Either<SignupEntity, String>> call({
     required String firstname,
     required String lastname,
@@ -17,8 +17,8 @@ class SignUpUseCase {
     required String phone,
     required String dob,
     required String gender,
-  }) =>
-      signupRebo.signup(
+  }) async =>
+      await signupRebo.signup(
           firstname: firstname,
           lastname: lastname,
           email: email,
