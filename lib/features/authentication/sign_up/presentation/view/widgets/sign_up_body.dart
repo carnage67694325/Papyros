@@ -35,6 +35,7 @@ class _SignUpBodyState extends State<SignUpBody> {
         } else if (state is SignupErrorState) {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(state.error)));
+          log('${state.error}');
         }
       },
       builder: (context, state) {

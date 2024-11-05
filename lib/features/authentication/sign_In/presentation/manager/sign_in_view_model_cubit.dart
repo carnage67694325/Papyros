@@ -12,7 +12,7 @@ class SignInViewModelCubit extends Cubit<SignInViewModelState> {
   static SignInViewModelCubit get(context) => BlocProvider.of(context);
 
   SignInUseCase signInUseCase;
-  SignIn({required String email, required String password}) async {
+  signin({required String email, required String password}) async {
     emit(SignInViewModelLoadingState());
     var result = await signInUseCase.call(email: email, password: password);
     result.fold((data) {

@@ -1,5 +1,6 @@
+import 'package:papyros/features/authentication/sign_In/data/models/sigin.model.dart';
+
 import '../../domain/entities/SignInEntity.dart';
-import 'User.dart';
 
 class SignInResponse {
   SignInResponse({
@@ -12,12 +13,12 @@ class SignInResponse {
   SignInResponse.fromJson(dynamic json) {
     message = json['message'];
     statusMsg = json['statusMsg'];
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    user = json['user'] != null ? SiginModel.fromJson(json['user']) : null;
     token = json['token'];
   }
   String? message;
   String? statusMsg;
-  User? user;
+  SiginModel? user;
   String? token;
 
   Map<String, dynamic> toJson() {

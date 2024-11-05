@@ -9,28 +9,15 @@ class SignInDaoApiImpl extends SignInDao {
   ApiService apiManager;
 
   SignInDaoApiImpl(this.apiManager);
-
   @override
-  Future<Either<SignInResponse, String>> signIn({
-    required String email,
-    required String password,
-  }) async {
-    // Validate required fields
-    if (email.isEmpty || password.isEmpty) {
-      return Right('Error: Email and password are required.');
-    }
-
+  Future<Either<SignInResponse, String>> SignIn(
+      {required String email, required String password}) async {
     try {
-      var response = await apiManager.post(
-        Endpiont.signipEndpiont,
-        body: {
-          "email": email,
-          "password": password,
-        },
-      );
+      var response = await apiManager.post(Endpiont.signipEndpiont,
+          body: {"email": email, "password": password});
       return Left(SignInResponse.fromJson(response.data));
     } catch (e) {
-      return Right('Unexpected error: ${e.toString()}');
+      return Right(e.toString());
     }
   }
 }
