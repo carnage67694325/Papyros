@@ -19,7 +19,9 @@
      "rememberMe" : "Remember me",
      "dontHaveAccount" : "Don’t have an account?",
      "getStarted" : "Get Started",
-     "phone" : "phone"
+     "phone" : "phone",
+     "OTP"   : "OTP",
+     "sendOTP" : "send OTP"
 
 
 }

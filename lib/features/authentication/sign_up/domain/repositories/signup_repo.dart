@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/signup_entity.dart';
+import 'package:papyros/features/authentication/sign_up/domain/entities/Sigup%20entity/signup_entity.dart';
 
 abstract class SignupRebo {
   Future<Either<SignupEntity, String>> signup({

@@ -5,7 +5,7 @@ import 'package:papyros/features/authentication/presentation/views/widgets/date_
 import 'package:papyros/features/authentication/presentation/views/widgets/email_password_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/gender_selection_text_field.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
-import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/sign_up_data_entity.dart';
+import 'package:papyros/features/authentication/sign_up/domain/entities/Sigup%20entity/sign_up_data_entity.dart';
 import 'package:papyros/generated/l10n.dart';
 
 class UserDataSection extends StatelessWidget {

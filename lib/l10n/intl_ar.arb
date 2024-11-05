@@ -19,5 +19,7 @@
      "rememberMe" : "تذكرني",
      "dontHaveAccount" : "ليس لديك حساب؟",
      "getStarted" : "ابدأ الأن ",
-     "phone" : "موبايل"
+     "phone" : "موبايل",
+     "OTP"   : "رقم المتغير",
+     "sendOTP"   : "ارسال الرقم المتغير "
 }

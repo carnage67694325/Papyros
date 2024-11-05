@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import 'package:papyros/features/authentication/sign%20up/domain/repositories/signup_repo.dart';
+import 'package:papyros/features/authentication/sign_up/domain/repositories/signup_repo.dart';
 
 import '../entities/Sigup entity/signup_entity.dart';
 

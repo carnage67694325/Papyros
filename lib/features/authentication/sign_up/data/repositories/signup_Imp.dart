@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 // import 'package:injectable/injectable.dart';
-import 'package:papyros/features/authentication/sign%20up/data/data_sources/Signupdao.dart';
-import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/signup_entity.dart';
-import 'package:papyros/features/authentication/sign%20up/domain/repositories/signup_repo.dart';
+import 'package:papyros/features/authentication/sign_up/data/data_sources/Signupdao.dart';
+import 'package:papyros/features/authentication/sign_up/domain/entities/Sigup%20entity/signup_entity.dart';
+import 'package:papyros/features/authentication/sign_up/domain/repositories/signup_repo.dart';
 
 // @Injectable(as: Signuorebo)
 class SignupRepoImp extends SignupRebo {

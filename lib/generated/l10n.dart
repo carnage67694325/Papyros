@@ -259,6 +259,26 @@ class S {
       args: [],
     );
   }
+
+  /// `OTP`
+  String get OTP {
+    return Intl.message(
+      'OTP',
+      name: 'OTP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `send OTP`
+  String get sendOTP {
+    return Intl.message(
+      'send OTP',
+      name: 'sendOTP',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

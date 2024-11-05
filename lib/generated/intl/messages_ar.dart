@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "OTP": MessageLookupByLibrary.simpleMessage("رقم المتغير"),
         "agreement":
             MessageLookupByLibrary.simpleMessage("بإنشاء حسابك، توافق على"),
         "conditions": MessageLookupByLibrary.simpleMessage(" الشروط والأحكام"),
@@ -45,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone": MessageLookupByLibrary.simpleMessage("موبايل"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+        "sendOTP": MessageLookupByLibrary.simpleMessage("ارسال الرقم المتغير "),
         "signIN": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "yourEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "yourPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور")
