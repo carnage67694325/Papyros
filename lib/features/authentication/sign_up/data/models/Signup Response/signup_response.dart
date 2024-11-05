@@ -1,3 +1,4 @@
+import 'package:papyros/features/authentication/sign_up/data/models/sign_up.model.dart';
 import 'package:papyros/features/authentication/sign_up/domain/entities/Sigup%20entity/signup_entity.dart';
 
 import 'user_model.dart';
@@ -16,11 +17,11 @@ class SignupResponse {
   SignupResponse.fromJson(dynamic json) {
     message = json['message'];
     error = json['error'];
-    data = json['data'] != null ? UserModel.fromJson(json['data']) : null;
+    data = json['data'] != null ? SignUpModel.fromJson(json['data']) : null;
   }
   String? message;
   String? error;
-  UserModel? data;
+  SignUpModel? data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -30,13 +31,5 @@ class SignupResponse {
       map['data'] = data?.toJson();
     }
     return map;
-  }
-
-  SignupEntity toSignupEntity() {
-    return SignupEntity(
-      data: data?.toDataEntity(),
-      error: error,
-      message: message,
-    );
   }
 }

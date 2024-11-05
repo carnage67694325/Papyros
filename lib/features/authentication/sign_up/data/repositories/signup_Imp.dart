@@ -15,7 +15,6 @@ class SignupRepoImp extends SignupRebo {
     required String lastname,
     required String email,
     required String password,
-    required String confirmPassword,
     required String phone,
     required String dob,
     required String gender,
@@ -26,11 +25,10 @@ class SignupRepoImp extends SignupRebo {
         phone: phone,
         firstname: firstname,
         lastname: lastname,
-        confirmPassword: confirmPassword,
         dob: dob,
         gender: gender);
     return result.fold((response) {
-      var signupEntity = response.toSignupEntity();
+      var signupEntity = SignupEntity();
       return Left(signupEntity);
     }, (error) {
       return Right(error);

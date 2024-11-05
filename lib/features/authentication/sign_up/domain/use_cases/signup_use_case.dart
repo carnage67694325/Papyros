@@ -13,7 +13,6 @@ class SignUpUseCase {
     required String firstname,
     required String lastname,
     required String password,
-    required String confirmPassword,
     required String email,
     required String phone,
     required String dob,
@@ -24,7 +23,6 @@ class SignUpUseCase {
           lastname: lastname,
           email: email,
           password: password,
-          confirmPassword: confirmPassword,
           phone: phone,
           dob: dob,
           gender: gender);

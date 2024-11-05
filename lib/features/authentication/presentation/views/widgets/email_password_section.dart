@@ -27,7 +27,7 @@ class _EmailPassWordSectionState extends State<EmailPassWordSection> {
       children: [
         CustomTextFormField(
           onChanged: (data) {
-            widget.signUpDataEntity.email = data;
+            widget.signUpDataEntity.emailEntity = data;
           },
           hintText: S.of(context).yourEmail,
           hintStyle: AppStyles.textfieldHint,
@@ -48,7 +48,7 @@ class _EmailPassWordSectionState extends State<EmailPassWordSection> {
         const SizedBox(height: 25),
         CustomTextFormField(
           onChanged: (data) {
-            widget.signUpDataEntity.phone = data;
+            widget.signUpDataEntity.phoneEntity = data;
           },
           obscureText: true,
           hintText: S.of(context).phone,
@@ -70,8 +70,8 @@ class _EmailPassWordSectionState extends State<EmailPassWordSection> {
         const SizedBox(height: 25),
         CustomTextFormField(
           onChanged: (data) {
-            widget.signUpDataEntity.password = data;
-            conformPass = widget.signUpDataEntity.phone!;
+            widget.signUpDataEntity.passwordEntity = data;
+            conformPass = widget.signUpDataEntity.phoneEntity!;
           },
           obscureText: true,
           hintText: S.of(context).yourPassword,

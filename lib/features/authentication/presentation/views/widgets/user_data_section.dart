@@ -25,8 +25,8 @@ class UserDataSection extends StatelessWidget {
             Expanded(
               child: CustomTextFormField(
                 onChanged: (data) {
-                  signUpDataEntity.firstName = data;
-                  signUpDataEntity.userName = data;
+                  signUpDataEntity.firstNameEntity = data;
+                  signUpDataEntity.userNameEntity = data;
                 },
                 hintText: S.of(context).firstName,
                 hintStyle: AppStyles.textfieldHint,
@@ -36,7 +36,7 @@ class UserDataSection extends StatelessWidget {
             Expanded(
               child: CustomTextFormField(
                 onChanged: (data) {
-                  signUpDataEntity.lastName = data;
+                  signUpDataEntity.lastNameEntity = data;
                 },
                 hintText: S.of(context).lastName,
                 hintStyle: AppStyles.textfieldHint,
@@ -51,13 +51,13 @@ class UserDataSection extends StatelessWidget {
         const SizedBox(height: 25),
         DateOfBirthTextFormField(
             onChanged: (data) {
-              signUpDataEntity.dob = data;
+              signUpDataEntity.dobEntity = data;
             },
             hintText: "YY/DD/MM"),
         const SizedBox(height: 25),
         GenderSelectionTextFormField(
             onChanged: (data) {
-              signUpDataEntity.gender = data;
+              signUpDataEntity.genderEntity = data;
             },
             hintText: "gender"),
       ],

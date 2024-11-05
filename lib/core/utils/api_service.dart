@@ -20,6 +20,9 @@ class ApiService {
   }
 
   Future<Response> post(String endpoint, {Map<String, dynamic>? body}) {
-    return dio.post('$_baseUrl$endpoint', data: body);
+    return dio.post(
+      '$_baseUrl$endpoint',
+      data: body,
+    );
   }
 }

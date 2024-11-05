@@ -18,7 +18,6 @@ class SignupApiImp extends SignupDao {
       required String lastname,
       required String email,
       required String password,
-      required String confirmPassword,
       required String phone,
       required String dob,
       required String gender}) async {
@@ -27,11 +26,10 @@ class SignupApiImp extends SignupDao {
         "firstname": firstname,
         "lastname": lastname,
         "email": email,
-        "password": password,
-        "rePassword": password,
         "phone": phone,
         "DOB": dob,
         "gender": gender,
+        "password": password,
       });
       SignupResponse signUpResponse = SignupResponse.fromJson(response.data);
       return Left(signUpResponse);

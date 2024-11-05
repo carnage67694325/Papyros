@@ -21,7 +21,6 @@ class SignupCubit extends Cubit<SignupState> {
     required String phone,
     required String firstname,
     required String lastname,
-    required String confirmPassword,
     required String dob,
     required String gender,
   }) async {
@@ -32,7 +31,6 @@ class SignupCubit extends Cubit<SignupState> {
         phone: phone,
         firstname: firstname,
         lastname: lastname,
-        confirmPassword: confirmPassword,
         dob: dob,
         gender: gender);
     result.fold((signupEntity) {

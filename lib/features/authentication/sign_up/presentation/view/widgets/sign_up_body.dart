@@ -91,14 +91,13 @@ class _SignUpBodyState extends State<SignUpBody> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       BlocProvider.of<SignupCubit>(context).signUp(
-                          email: signUpDataEntity.email!,
-                          password: signUpDataEntity.password!,
-                          phone: signUpDataEntity.phone!,
-                          firstname: signUpDataEntity.firstName!,
-                          lastname: signUpDataEntity.lastName!,
-                          confirmPassword: signUpDataEntity.password!,
-                          dob: signUpDataEntity.dob ?? "2003-07-20",
-                          gender: signUpDataEntity.gender ?? "male");
+                          email: signUpDataEntity.emailEntity!,
+                          password: signUpDataEntity.passwordEntity!,
+                          phone: signUpDataEntity.phoneEntity!,
+                          firstname: signUpDataEntity.firstNameEntity!,
+                          lastname: signUpDataEntity.lastNameEntity!,
+                          dob: signUpDataEntity.dobEntity ?? "2003-07-20",
+                          gender: signUpDataEntity.genderEntity ?? "male");
                     } else {
                       return log('data required');
                     }

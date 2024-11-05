@@ -8,23 +8,23 @@
 
 class SignUpDataEntity {
   SignUpDataEntity(
-      {this.userName,
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.password,
-      this.phone,
-      this.status,
-      this.gender,
-      this.dob});
+      {this.userNameEntity,
+      this.firstNameEntity,
+      this.lastNameEntity,
+      this.emailEntity,
+      this.passwordEntity,
+      this.phoneEntity,
+      this.statusEntity,
+      this.genderEntity,
+      this.dobEntity});
 
-  String? userName;
-  String? firstName;
-  String? lastName;
-  String? email;
-  String? password;
-  String? phone;
-  String? status;
-  String? gender;
-  String? dob;
+  String? userNameEntity;
+  String? firstNameEntity;
+  String? lastNameEntity;
+  String? emailEntity;
+  String? passwordEntity;
+  String? phoneEntity;
+  String? statusEntity;
+  String? genderEntity;
+  String? dobEntity;
 }
