@@ -42,7 +42,7 @@ class _SignUpBodyState extends State<SignUpBody> {
               child: Column(
                 children: [
                   UserDataSection(
-                    signUpDataEntity: signUpDataEntity ?? SignUpDataEntity(),
+                    signUpDataEntity: signUpDataEntity,
                   ),
                   const SizedBox(height: 45),
                   Column(
@@ -81,12 +81,12 @@ class _SignUpBodyState extends State<SignUpBody> {
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   BlocProvider.of<SignupCubit>(context).signUp(
-                      email: signUpDataEntity!.email!,
-                      password: signUpDataEntity!.password!,
-                      phone: signUpDataEntity!.phone!,
-                      firstname: signUpDataEntity!.firstName!,
-                      lastname: signUpDataEntity!.lastName!,
-                      confirmPassword: signUpDataEntity!.password!,
+                      email: signUpDataEntity.email!,
+                      password: signUpDataEntity.password!,
+                      phone: signUpDataEntity.phone!,
+                      firstname: signUpDataEntity.firstName!,
+                      lastname: signUpDataEntity.lastName!,
+                      confirmPassword: signUpDataEntity.password!,
                       dob: signUpDataEntity.dob!,
                       gender: signUpDataEntity.gender!);
                 } else {

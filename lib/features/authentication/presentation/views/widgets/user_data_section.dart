@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/date_of_birth_textfield.dart';
@@ -9,7 +7,6 @@ import 'package:papyros/features/authentication/presentation/views/widgets/gende
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/features/authentication/sign%20up/domain/entities/Sigup%20entity/sign_up_data_entity.dart';
 import 'package:papyros/generated/l10n.dart';
-import 'package:papyros/main.dart';
 
 class UserDataSection extends StatelessWidget {
   const UserDataSection({super.key, required this.signUpDataEntity});
@@ -28,8 +25,8 @@ class UserDataSection extends StatelessWidget {
             Expanded(
               child: CustomTextFormField(
                 onChanged: (data) {
-                  signUpDataEntity!.firstName = data;
-                  signUpDataEntity!.userName = data;
+                  signUpDataEntity.firstName = data;
+                  signUpDataEntity.userName = data;
                 },
                 hintText: S.of(context).firstName,
                 hintStyle: AppStyles.textfieldHint,
@@ -39,7 +36,7 @@ class UserDataSection extends StatelessWidget {
             Expanded(
               child: CustomTextFormField(
                 onChanged: (data) {
-                  signUpDataEntity!.lastName = data;
+                  signUpDataEntity.lastName = data;
                 },
                 hintText: S.of(context).lastName,
                 hintStyle: AppStyles.textfieldHint,
