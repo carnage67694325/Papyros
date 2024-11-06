@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/simple_bloc_observer.dart';
+import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +18,7 @@ Future<void> main() async {
   await prefasHandelr.init();
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
+  setupServiceLoactor();
   runApp(BlocProvider(
     create: (context) => ChangeLocalCubit(),
     child: const PapyrosApp(),
