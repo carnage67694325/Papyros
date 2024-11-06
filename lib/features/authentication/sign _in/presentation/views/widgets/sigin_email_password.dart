@@ -3,19 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:papyros/features/authentication/sign_In/domain/entities/SignInEntity.dart';
-import 'package:papyros/features/authentication/sign_In/domain/entities/sigin_data_entity.dart';
-import 'package:papyros/features/authentication/sign_up/domain/entities/Sigup%20entity/sign_up_data_entity.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
 class SigninEmailPassWordSection extends StatefulWidget {
   const SigninEmailPassWordSection({
     super.key,
-    required this.siginDataEntity,
+    // required this.siginDataEntity,
   });
 
-  final SiginDataEntity siginDataEntity;
+  // final SiginDataEntity siginDataEntity;
 
   @override
   State<SigninEmailPassWordSection> createState() =>
@@ -29,9 +26,7 @@ class _SigninEmailPassWordSectionState
     return Column(
       children: [
         CustomTextFormField(
-          onChanged: (data) {
-            widget.siginDataEntity.emailEntity = data;
-          },
+          onChanged: (data) {},
           hintText: S.of(context).yourEmail,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
@@ -50,9 +45,7 @@ class _SigninEmailPassWordSectionState
         ),
         const SizedBox(height: 25),
         CustomTextFormField(
-          onChanged: (data) {
-            widget.siginDataEntity.passwordEntity = data;
-          },
+          onChanged: (data) {},
           obscureText: true,
           hintText: S.of(context).yourPassword,
           hintStyle: AppStyles.textfieldHint,
