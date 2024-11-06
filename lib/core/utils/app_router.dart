@@ -3,7 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/animations/transition_animation.dart';
 import 'package:papyros/core/utils/api_service.dart';
+import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
+import 'package:papyros/features/authentication/sign%20_in/domain/use_cases_dart/sign_in_use_case.dart';
+import 'package:papyros/features/authentication/sign%20_in/presentation/views/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:papyros/features/authentication/sign%20_in/presentation/views/sign_in_view.dart';
 import 'package:papyros/features/authentication/presentation/views/sign_up_view.dart';
 import 'package:papyros/features/authentication/verfiy_otp/data/repos/verfiy_otp_imp.dart';
@@ -35,7 +38,10 @@ abstract class AppRouter {
       path: kSignIn,
       pageBuilder: (context, state) {
         return TransitionAnimation.slidingTransitionAnimations(state,
-            route: const SignInView());
+            route: BlocProvider(
+              create: (context) => SignInCubit(getIt.get<SignInUseCase>()),
+              child: const SignInView(),
+            ));
       },
     ),
     // GoRoute(
@@ -44,17 +50,17 @@ abstract class AppRouter {
     //     return TransitionAnimation.slidingTransitionAnimations(state,
     //         route: const SignupView());
     //   },
+    // // ),
+    // GoRoute(
+    //   path: kSignUp,
+    //   pageBuilder: (context, state) {
+    //     return TransitionAnimation.slidingTransitionAnimations(state,
+    //         route: BlocProvider(
+    //           create: (context) => VerfiyOtpCubit(
+    //               VerfiyOtpUseCase(VerfiyOtpRepoImp(ApiService(Dio())))),
+    //           child: const VerfiyOtpView(),
+    //         ));
+    //   },
     // ),
-    GoRoute(
-      path: kSignUp,
-      pageBuilder: (context, state) {
-        return TransitionAnimation.slidingTransitionAnimations(state,
-            route: BlocProvider(
-              create: (context) => VerfiyOtpCubit(
-                  VerfiyOtpUseCase(VerfiyOtpRepoImp(ApiService(Dio())))),
-              child: const VerfiyOtpView(),
-            ));
-      },
-    ),
   ]);
 }

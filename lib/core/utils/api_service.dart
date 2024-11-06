@@ -19,10 +19,11 @@ class ApiService {
     return response.data;
   }
 
-  Future<dynamic> post(
-      {required String endpoint, required Map<String, dynamic>? body}) {
-    return dio.post('$_baseUrl$endpoint',
+  Future<Map<String, dynamic>> post(
+      {required String endpoint, required Map<String, dynamic>? body}) async {
+    var response = await dio.post('$_baseUrl$endpoint',
         data: body,
         options: Options(headers: {'Content-Type': 'application/json'}));
+    return response.data;
   }
 }
