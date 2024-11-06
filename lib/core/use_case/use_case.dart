@@ -4,3 +4,7 @@ import 'package:papyros/core/errors/failure.dart';
 abstract class UseCase<T, Param> {
   Future<Either<Failure, T>> call([Param param]);
 }
+
+abstract class UseCaseWithParam<T, Param> {
+  Future<Either<Failure, T>> call(Param param);
+}

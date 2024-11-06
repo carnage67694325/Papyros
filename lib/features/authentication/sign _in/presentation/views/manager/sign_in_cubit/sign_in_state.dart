@@ -13,4 +13,8 @@ final class SignInFailure extends SignInState {
   SignInFailure({required this.errMessage});
 }
 
-final class SignInSuccess extends SignInState {}
+final class SignInSuccess extends SignInState {
+  final SignInEntity signInEntity;
+
+  SignInSuccess({required this.signInEntity});
+}

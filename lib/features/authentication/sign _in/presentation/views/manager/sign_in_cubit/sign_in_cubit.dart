@@ -1,8 +1,28 @@
+import 'dart:math';
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-
+import 'package:papyros/core/errors/failure.dart';
+import 'package:papyros/features/authentication/sign%20_in/domain/use_cases_dart/sign_in_use_case.dart';
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
-  SignInCubit() : super(SignInInitial());
+  SignInCubit(this.signInUseCase) : super(SignInInitial());
+
+  final SignInUseCase signInUseCase;
+
+  Future<void> signIn({required String email, required String pass}) async {
+    emit(SignInLoading());
+    var response = await signInUseCase.call(email: email, pass: pass);
+
+    response.fold(
+      (failure) {
+        emit(SignInFailure(errMessage: failure.errMessage));
+      },
+      (signInEntity) {
+        emit(SignInSuccess(signInEntity: signInEntity));
+      },
+    );
+  }
 }
