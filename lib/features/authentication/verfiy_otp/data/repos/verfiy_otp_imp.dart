@@ -17,7 +17,8 @@ class VerfiyOtpRepoImp implements VerfiyOtpRepo {
     try {
       // Use the apiService to make a POST request to the send OTP endpoint
       Response response = await apiService.post(
-        Endpiont.verfiyOtpEndpoint, // Ensure this endpoint is correctly defined
+        endpoint: Endpiont
+            .verfiyOtpEndpoint, // Ensure this endpoint is correctly defined
         body: {
           "email": verfiyOtpImp.email,
           "otp": verfiyOtpImp.otp,

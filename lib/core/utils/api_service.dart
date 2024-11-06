@@ -19,7 +19,8 @@ class ApiService {
     return response.data;
   }
 
-  Future<Response> post(String endpoint, {Map<String, dynamic>? body}) {
+  Future<Response> post(
+      {required String endpoint, required Map<String, dynamic>? body}) {
     return dio.post('$_baseUrl$endpoint',
         data: body,
         options: Options(headers: {'Content-Type': 'application/json'}));
