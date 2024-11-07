@@ -5,7 +5,7 @@ class SigninModel extends SignInEntity {
   String? password;
 
   SigninModel({this.email, this.password})
-      : super(emailEntity: email!, passwordEntity: password!);
+      : super(emailEntity: email ?? '', passwordEntity: password ?? '');
 
   factory SigninModel.fromJson(Map<String, dynamic> json) => SigninModel(
         email: json['email'] as String?,

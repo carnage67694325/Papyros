@@ -17,7 +17,7 @@ class SignInRepoImpl implements SignInRepo {
       return right(response);
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure(e.toString()));
+        return left(ServerFailure.fromDioException(e));
       } else {
         return left(ServerFailure(e.toString()));
       }

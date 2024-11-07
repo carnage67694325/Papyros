@@ -6,7 +6,6 @@ import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
-import 'package:papyros/features/authentication/presentation/views/widgets/email_password_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/remember_me_section.dart';
 import 'package:papyros/features/authentication/sign%20_in/domain/entities/sign_in_entity.dart';
@@ -23,8 +22,7 @@ class SignInBody extends StatefulWidget {
 
 class _SignInBodyState extends State<SignInBody> {
   GlobalKey<FormState> formKey = GlobalKey();
-  late SignInEntity siginEntity =
-      SignInEntity(emailEntity: '', passwordEntity: '');
+  SignInEntity siginEntity = SignInEntity(emailEntity: '', passwordEntity: '');
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignInCubit, SignInState>(
