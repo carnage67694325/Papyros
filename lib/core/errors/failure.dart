@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 abstract class Failure {
@@ -11,11 +13,11 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromDioException(DioException dioException) {
     // Log the full exception for debugging
-    print('DioException caught: ${dioException.toString()}');
+    log('DioException caught: ${dioException.toString()}');
     if (dioException.response != null) {
-      print('Raw response data: ${dioException.response?.data}');
-      print('Response status code: ${dioException.response?.statusCode}');
-      print('Response headers: ${dioException.response?.headers}');
+      log('Raw response data: ${dioException.response?.data}');
+      log('Response status code: ${dioException.response?.statusCode}');
+      log('Response headers: ${dioException.response?.headers}');
     }
 
     // Handle specific DioException types
@@ -74,7 +76,7 @@ class ServerFailure extends Failure {
       }
     } else if (response != null) {
       // Handle unexpected formats by printing the raw response
-      print('Unexpected response format: $response');
+      log('Unexpected response format: $response');
       return ServerFailure('Server responded with unexpected data: $response');
     } else {
       return ServerFailure(

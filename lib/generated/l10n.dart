@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Papyros`
+  /// `Papyrus`
   String get logo {
     return Intl.message(
-      'Papyros',
+      'Papyrus',
       name: 'logo',
       desc: '',
       args: [],
