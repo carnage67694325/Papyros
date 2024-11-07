@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
@@ -31,7 +32,7 @@ class _SignInBodyState extends State<SignInBody> {
       listener: (context, state) {
         if (state is SignInSuccess) {
           log(state.signInEntity.toString());
-          successSnackBar(context, 'logged successfuly');
+          successSnackBar(context, 'logged successfully');
         } else if (state is SignInFailure) {
           log(state.errMessage);
           errorSnackBar(context, state.errMessage);
@@ -82,13 +83,16 @@ class _SignInBodyState extends State<SignInBody> {
                           return log('data required');
                         }
                       },
-                      buttonText: Text(
-                        S.of(context).signIN,
-                        style: AppStyles.header.copyWith(
-                          color: Colors.white,
-                          fontSize: 24,
-                        ),
-                      ),
+                      buttonText: state is! SignInLoading
+                          ? Text(
+                              S.of(context).signIN,
+                              style: AppStyles.header.copyWith(
+                                color: Colors.white,
+                                fontSize: 24,
+                              ),
+                            )
+                          : LoadingAnimationWidget.threeRotatingDots(
+                              color: Colors.white, size: 35),
                     ),
                     const SizedBox(
                       height: 14,
