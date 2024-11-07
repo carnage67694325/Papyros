@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/functions/error_snack.dart';
+import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
@@ -25,15 +27,17 @@ class _SignInBodyState extends State<SignInBody> {
   SignInEntity siginEntity = SignInEntity(emailEntity: '', passwordEntity: '');
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignInCubit, SignInState>(
+    return BlocConsumer<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state is SignInSuccess) {
           log(state.signInEntity.toString());
+          successSnackBar(context, 'logged successfuly');
         } else if (state is SignInFailure) {
           log(state.errMessage);
+          errorSnackBar(context, state.errMessage);
         }
       },
-      child: CustomScrollView(
+      builder: (context, state) => CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
             child: SizedBox(
