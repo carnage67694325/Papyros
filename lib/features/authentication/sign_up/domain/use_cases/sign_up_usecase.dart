@@ -16,7 +16,7 @@ class SignUpUsecase {
     required String gender,
     required String dob,
   }) {
-    return signUpRepo.signIn(
+    return signUpRepo.signUp(
         firstName: firstName,
         lastName: lastName,
         email: email,
