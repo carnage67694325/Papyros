@@ -4,7 +4,7 @@ import 'package:papyros/features/authentication/sign_up/data/models/sign_up_mode
 import 'package:papyros/features/authentication/sign_up/domain/entities/sign_up_entity.dart';
 
 abstract class SignUpDataSource {
-  Future<SignUpEntity> signIn({
+  Future<SignUpEntity> signUp({
     required String firstName,
     required String lastName,
     required String email,
@@ -20,7 +20,7 @@ class SignUpDataSourceImpl implements SignUpDataSource {
 
   SignUpDataSourceImpl({required this.apiService});
   @override
-  Future<SignUpEntity> signIn(
+  Future<SignUpEntity> signUp(
       {required String firstName,
       required String lastName,
       required String email,
