@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:papyros/core/endpoints/endpiont.dart';
 import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/authentication/sign_in/data/model/sign_in_model.dart';

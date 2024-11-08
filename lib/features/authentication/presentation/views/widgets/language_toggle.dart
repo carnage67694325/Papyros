@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
-import 'package:papyros/main.dart';
 
 class LanguageToggle extends StatefulWidget {
   const LanguageToggle({
