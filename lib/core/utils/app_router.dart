@@ -8,7 +8,7 @@ import 'package:papyros/features/authentication/presentation/views/getting_start
 import 'package:papyros/features/authentication/sign_in/domain/use_cases_dart/sign_in_use_case.dart';
 import 'package:papyros/features/authentication/sign_in/presentation/views/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:papyros/features/authentication/sign_in/presentation/views/sign_in_view.dart';
-import 'package:papyros/features/authentication/presentation/views/sign_up_view.dart';
+import 'package:papyros/features/authentication/sign_up/presentation/views/sign_up_view.dart';
 import 'package:papyros/features/authentication/verfiy_otp/data/repos/verfiy_otp_imp.dart';
 import 'package:papyros/features/authentication/verfiy_otp/domain/repos/verfiy_otp_repo.dart';
 import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verfiy_otp_use_case.dart';
