@@ -1,4 +1,4 @@
-import 'package:papyros/features/authentication/sign%20_in/domain/entities/sign_in_entity.dart';
+import 'package:papyros/features/authentication/sign_in/domain/entities/sign_in_entity.dart';
 
 class SigninModel extends SignInEntity {
   String? email;

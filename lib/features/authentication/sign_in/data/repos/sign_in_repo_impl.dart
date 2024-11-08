@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:papyros/core/errors/failure.dart';
-import 'package:papyros/features/authentication/sign%20_in/data/data_source/sign_in_data_source.dart';
-import 'package:papyros/features/authentication/sign%20_in/domain/entities/sign_in_entity.dart';
-import 'package:papyros/features/authentication/sign%20_in/domain/repos/sign_in_repo.dart';
+import 'package:papyros/features/authentication/sign_in/data/data_source/sign_in_data_source.dart';
+import 'package:papyros/features/authentication/sign_in/domain/entities/sign_in_entity.dart';
+import 'package:papyros/features/authentication/sign_in/domain/repos/sign_in_repo.dart';
 
 class SignInRepoImpl implements SignInRepo {
   final SignInDataSource signInDataSource;

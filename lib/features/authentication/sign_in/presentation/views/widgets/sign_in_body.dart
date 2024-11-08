@@ -12,9 +12,9 @@ import 'package:papyros/features/authentication/presentation/views/widgets/custo
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/remember_me_section.dart';
-import 'package:papyros/features/authentication/sign%20_in/domain/entities/sign_in_entity.dart';
-import 'package:papyros/features/authentication/sign%20_in/presentation/views/manager/sign_in_cubit/sign_in_cubit.dart';
-import 'package:papyros/features/authentication/sign%20_in/presentation/views/widgets/sigin_email_password.dart';
+import 'package:papyros/features/authentication/sign_in/domain/entities/sign_in_entity.dart';
+import 'package:papyros/features/authentication/sign_in/presentation/views/manager/sign_in_cubit/sign_in_cubit.dart';
+import 'package:papyros/features/authentication/sign_in/presentation/views/widgets/sigin_email_password.dart';
 import 'package:papyros/generated/l10n.dart';
 
 class SignInBody extends StatefulWidget {

@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
-import 'package:papyros/features/authentication/sign%20_in/domain/entities/sign_in_entity.dart';
+import 'package:papyros/features/authentication/sign_in/domain/entities/sign_in_entity.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 

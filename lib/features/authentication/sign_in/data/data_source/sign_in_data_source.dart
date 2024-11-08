@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:papyros/core/endpoints/endpiont.dart';
 import 'package:papyros/core/utils/api_service.dart';
-import 'package:papyros/features/authentication/sign%20_in/data/model/sign_in_model.dart';
-import 'package:papyros/features/authentication/sign%20_in/domain/entities/sign_in_entity.dart';
+import 'package:papyros/features/authentication/sign_in/data/model/sign_in_model.dart';
+import 'package:papyros/features/authentication/sign_in/domain/entities/sign_in_entity.dart';
 
 abstract class SignInDataSource {
   Future<SignInEntity> signIn({required String email, required String pass});

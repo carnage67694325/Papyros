@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:papyros/features/authentication/sign%20_in/presentation/views/manager/sign_in_cubit/sign_in_cubit.dart';
+import 'package:papyros/features/authentication/sign_in/presentation/views/manager/sign_in_cubit/sign_in_cubit.dart';
 
 void successSnackBar(BuildContext context, String errMessage) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
