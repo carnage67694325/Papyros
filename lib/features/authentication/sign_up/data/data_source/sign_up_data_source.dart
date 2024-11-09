@@ -29,7 +29,7 @@ class SignUpDataSourceImpl implements SignUpDataSource {
       required String gender,
       required String dob}) async {
     var response =
-        await apiService.post(endpoint: Endpiont.signInEndpiont, body: {
+        await apiService.post(endpoint: Endpiont.signUpEndpiont, body: {
       'firstName': firstName,
       'lastName': lastName,
       'email': email,

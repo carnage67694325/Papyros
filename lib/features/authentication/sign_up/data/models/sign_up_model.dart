@@ -18,13 +18,13 @@ class SignUpModel extends SignUpEntity {
     this.gender,
     this.password,
   }) : super(
-            firstNameEntity: firstName ?? "",
-            lastNameEntity: lastName ?? "",
-            emailEntity: email ?? "",
-            phoneEntity: phone ?? "",
-            dobEntity: dob ?? "",
-            genderEntity: gender ?? "",
-            passwordEntity: password ?? "");
+            firstNameEntity: firstName ?? '',
+            lastNameEntity: lastName ?? '',
+            emailEntity: email ?? '',
+            phoneEntity: phone ?? '',
+            dobEntity: dob ?? '',
+            genderEntity: gender ?? '',
+            passwordEntity: password ?? '');
 
   factory SignUpModel.fromJson(Map<String, dynamic> json) => SignUpModel(
         firstName: json['firstName'] as String?,

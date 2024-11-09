@@ -7,14 +7,14 @@ final class SignUpInitial extends SignUpState {}
 
 final class SignUpLoading extends SignUpState {}
 
-final class SignUpInFailure extends SignUpState {
+final class SignUpFailure extends SignUpState {
   final String errMessage;
 
-  SignUpInFailure({required this.errMessage});
+  SignUpFailure({required this.errMessage});
 }
 
-final class SignUpInSuccess extends SignUpState {
+final class SignUpSuccess extends SignUpState {
   final SignUpEntity signUpEntity;
 
-  SignUpInSuccess({required this.signUpEntity});
+  SignUpSuccess({required this.signUpEntity});
 }

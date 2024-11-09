@@ -6,6 +6,9 @@ import 'package:papyros/features/authentication/presentation/views/getting_start
 import 'package:papyros/features/authentication/sign_in/domain/use_cases/sign_in_use_case.dart';
 import 'package:papyros/features/authentication/sign_in/presentation/views/manager/sign_in_cubit/sign_in_cubit.dart';
 import 'package:papyros/features/authentication/sign_in/presentation/views/sign_in_view.dart';
+import 'package:papyros/features/authentication/sign_up/domain/use_cases/sign_up_usecase.dart';
+import 'package:papyros/features/authentication/sign_up/presentation/manager/sign_up/sign_up_cubit.dart';
+import 'package:papyros/features/authentication/sign_up/presentation/views/sign_up_view.dart';
 
 import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
@@ -37,23 +40,27 @@ abstract class AppRouter {
             ));
       },
     ),
-    // GoRoute(
-    //   path: kSignUp,
-    //   pageBuilder: (context, state) {
-    //     return TransitionAnimation.slidingTransitionAnimations(state,
-    //         route: const SignupView());
-    //   },
-    // // ),
-    // GoRoute(
-    //   path: kSignUp,
-    //   pageBuilder: (context, state) {
-    //     return TransitionAnimation.slidingTransitionAnimations(state,
-    //         route: BlocProvider(
-    //           create: (context) => VerfiyOtpCubit(
-    //               VerfiyOtpUseCase(VerfiyOtpRepoImp(ApiService(Dio())))),
-    //           child: const VerfiyOtpView(),
-    //         ));
-    //   },
-    // ),
+    GoRoute(
+      path: kSignUp,
+      pageBuilder: (context, state) {
+        return TransitionAnimation.slidingTransitionAnimations(state,
+            route: BlocProvider(
+              create: (context) => SignUpCubit(getIt.get<SignUpUsecase>()),
+              child: const SignupView(),
+            ));
+      },
+      // ),
+      // GoRoute(
+      //   path: kSignUp,
+      //   pageBuilder: (context, state) {
+      //     return TransitionAnimation.slidingTransitionAnimations(state,
+      //         route: BlocProvider(
+      //           create: (context) => VerfiyOtpCubit(
+      //               VerfiyOtpUseCase(VerfiyOtpRepoImp(ApiService(Dio())))),
+      //           child: const VerfiyOtpView(),
+      //         ));
+      //   },
+      // ),
+    )
   ]);
 }
