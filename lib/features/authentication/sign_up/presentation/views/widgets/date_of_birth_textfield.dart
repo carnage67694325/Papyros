@@ -44,7 +44,10 @@ class _DateOfBirthTextFormFieldState extends State<DateOfBirthTextFormField> {
           padding: isArabic()
               ? const EdgeInsets.only(right: 16, left: 10, top: 16, bottom: 16)
               : const EdgeInsets.only(left: 16, right: 10, top: 16, bottom: 16),
-          child: const Icon(Icons.calendar_today),
+          child: const Icon(
+            Icons.calendar_today,
+            color: AppColors.iconColor,
+          ),
         ),
       ),
       onTap: () async {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
@@ -53,24 +54,21 @@ class _EmailPassWordSectionState extends State<EmailPassWordSection> {
           hintText: S.of(context).phone,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
-            padding: isArabic()
-                ? const EdgeInsets.only(
-                    right: 16, left: 10, top: 16, bottom: 16)
-                : const EdgeInsets.only(
-                    left: 16, right: 10, top: 16, bottom: 16),
-            child: SvgPicture.asset(
-              AppIcons.assetsIconsLockPasswordicon,
-              width: 20,
-              height: 25,
-              fit: BoxFit.contain,
-            ),
-          ),
+              padding: isArabic()
+                  ? const EdgeInsets.only(
+                      right: 16, left: 10, top: 16, bottom: 16)
+                  : const EdgeInsets.only(
+                      left: 16, right: 10, top: 16, bottom: 16),
+              child: const Icon(
+                Icons.phone_android,
+                color: AppColors.iconColor,
+              )),
         ),
         const SizedBox(height: 25),
         CustomTextFormField(
           onChanged: (data) {
             widget.signUpEntity.passwordEntity = data;
-            conformPass = widget.signUpEntity.phoneEntity!;
+            conformPass = widget.signUpEntity.phoneEntity;
           },
           obscureText: true,
           hintText: S.of(context).yourPassword,

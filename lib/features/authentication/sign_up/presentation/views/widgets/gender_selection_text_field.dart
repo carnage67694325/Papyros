@@ -44,7 +44,10 @@ class _GenderSelectionTextFormFieldState
           padding: isArabic()
               ? const EdgeInsets.only(right: 16, left: 10, top: 16, bottom: 16)
               : const EdgeInsets.only(left: 16, right: 10, top: 16, bottom: 16),
-          child: const Icon(Icons.person),
+          child: const Icon(
+            Icons.person,
+            color: AppColors.iconColor,
+          ),
         ),
       ),
       onTap: () async {
