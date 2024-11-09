@@ -32,8 +32,8 @@ class _SignUpBodyState extends State<SignUpBody> {
       emailEntity: '',
       passwordEntity: '',
       phoneEntity: '',
-      genderEntity: 'male',
-      dobEntity: '2003-07-20');
+      genderEntity: '',
+      dobEntity: '');
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpState>(

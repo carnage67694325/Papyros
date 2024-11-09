@@ -5,11 +5,14 @@ import 'package:papyros/main.dart';
 class GenderSelectionTextFormField extends StatefulWidget {
   final String hintText;
   final Function(String)? onChanged;
-  const GenderSelectionTextFormField(
-      {super.key, required this.hintText, this.onChanged});
+
+  const GenderSelectionTextFormField({
+    super.key,
+    required this.hintText,
+    this.onChanged,
+  });
 
   @override
-  // ignore: library_private_types_in_public_api
   _GenderSelectionTextFormFieldState createState() =>
       _GenderSelectionTextFormFieldState();
 }
@@ -63,28 +66,30 @@ class _GenderSelectionTextFormFieldState
               // Female selection button
               GestureDetector(
                 onTap: () {
-                  _controller.text = 'Female';
+                  _controller.text = 'female';
+                  widget.onChanged?.call('female'); // Notify parent widget
                   Navigator.of(context).pop();
                 },
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.female, size: 48, color: Colors.pink),
-                    Text('Female'),
+                    Text('female'),
                   ],
                 ),
               ),
               // Male selection button
               GestureDetector(
                 onTap: () {
-                  _controller.text = 'Male';
+                  _controller.text = 'male';
+                  widget.onChanged?.call('male'); // Notify parent widget
                   Navigator.of(context).pop();
                 },
                 child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.male, size: 48, color: Colors.blue),
-                    Text('Male'),
+                    Text('male'),
                   ],
                 ),
               ),
