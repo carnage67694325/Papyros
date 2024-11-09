@@ -10,7 +10,7 @@ class SignUpRepoImpl implements SignUpRepo {
 
   SignUpRepoImpl({required this.signUpDataSource});
   @override
-  Future<Either<Failure, SignUpEntity>> signIn({
+  Future<Either<Failure, SignUpEntity>> signUp({
     required String firstName,
     required String lastName,
     required String email,

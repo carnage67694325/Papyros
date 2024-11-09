@@ -15,7 +15,7 @@ class SignUpUsecase {
     required String phone,
     required String gender,
     required String dob,
-  }) {
+  }) async {
     return signUpRepo.signUp(
         firstName: firstName,
         lastName: lastName,
