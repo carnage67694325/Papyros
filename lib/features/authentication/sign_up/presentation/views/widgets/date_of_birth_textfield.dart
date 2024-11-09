@@ -6,8 +6,12 @@ import 'package:papyros/main.dart';
 class DateOfBirthTextFormField extends StatefulWidget {
   final String hintText;
   final Function(String)? onChanged;
-  const DateOfBirthTextFormField(
-      {super.key, required this.hintText, this.onChanged});
+
+  const DateOfBirthTextFormField({
+    super.key,
+    required this.hintText,
+    this.onChanged,
+  });
 
   @override
   _DateOfBirthTextFormFieldState createState() =>
@@ -56,6 +60,7 @@ class _DateOfBirthTextFormFieldState extends State<DateOfBirthTextFormField> {
         if (pickedDate != null) {
           String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
           _controller.text = formattedDate;
+          widget.onChanged?.call(formattedDate); // Notify the parent widget
         }
       },
     );

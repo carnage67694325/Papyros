@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
@@ -112,13 +113,16 @@ class _SignUpBodyState extends State<SignUpBody> {
                       return log('data required');
                     }
                   },
-                  buttonText: Text(
-                    S.of(context).register,
-                    style: AppStyles.header.copyWith(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
-                  ),
+                  buttonText: state is! SignUpLoading
+                      ? Text(
+                          S.of(context).register,
+                          style: AppStyles.header.copyWith(
+                            color: Colors.white,
+                            fontSize: 24,
+                          ),
+                        )
+                      : LoadingAnimationWidget.threeRotatingDots(
+                          color: Colors.white, size: 35),
                 ),
               ),
             ),
