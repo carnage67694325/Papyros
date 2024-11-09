@@ -22,6 +22,8 @@ class EmailPassWordSection extends StatefulWidget {
 
 class _EmailPassWordSectionState extends State<EmailPassWordSection> {
   late String conformPass;
+  bool isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -70,7 +72,7 @@ class _EmailPassWordSectionState extends State<EmailPassWordSection> {
             widget.signUpEntity.passwordEntity = data;
             conformPass = widget.signUpEntity.phoneEntity;
           },
-          obscureText: true,
+          obscureText: isObscure,
           hintText: S.of(context).yourPassword,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
@@ -87,24 +89,43 @@ class _EmailPassWordSectionState extends State<EmailPassWordSection> {
             ),
           ),
           suffixIcon: Padding(
-            padding: isArabic()
-                ? const EdgeInsets.only(right: 6, left: 16, top: 16, bottom: 16)
-                : const EdgeInsets.only(
-                    left: 6, right: 16, top: 16, bottom: 16),
-            child: SvgPicture.asset(
-              AppIcons.assetsIconsShowPasswordicon,
-              width: 15,
-              height: 15,
-              fit: BoxFit.contain,
-            ),
-          ),
+              padding: isArabic()
+                  ? const EdgeInsets.only(
+                      right: 6,
+                      left: 16,
+                    )
+                  : const EdgeInsets.only(
+                      left: 6,
+                      right: 16,
+                    ),
+              child: IconButton(
+                onPressed: () {
+                  if (isObscure) {
+                    setState(() {
+                      isObscure = false;
+                    });
+                  } else {
+                    setState(() {
+                      isObscure = true;
+                    });
+                  }
+                },
+                icon: isObscure
+                    ? SvgPicture.asset(
+                        AppIcons.assetsIconsShowPasswordicon,
+                        width: 15,
+                        height: 15,
+                        fit: BoxFit.contain,
+                      )
+                    : const Icon(Icons.visibility_off),
+              )),
         ),
         const SizedBox(height: 25),
         CustomTextFormField(
           onChanged: (data) {
             if (data == conformPass) {}
           },
-          obscureText: true,
+          obscureText: isObscure,
           hintText: S.of(context).confirmPassword,
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
@@ -117,18 +138,6 @@ class _EmailPassWordSectionState extends State<EmailPassWordSection> {
               AppIcons.assetsIconsLockPasswordicon,
               width: 20,
               height: 25,
-              fit: BoxFit.contain,
-            ),
-          ),
-          suffixIcon: Padding(
-            padding: isArabic()
-                ? const EdgeInsets.only(right: 6, left: 16, top: 16, bottom: 16)
-                : const EdgeInsets.only(
-                    left: 6, right: 16, top: 16, bottom: 16),
-            child: SvgPicture.asset(
-              AppIcons.assetsIconsShowPasswordicon,
-              width: 15,
-              height: 15,
               fit: BoxFit.contain,
             ),
           ),
