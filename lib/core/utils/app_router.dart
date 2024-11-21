@@ -9,6 +9,9 @@ import 'package:papyros/features/authentication/sign_in/presentation/views/sign_
 import 'package:papyros/features/authentication/sign_up/domain/use_cases/sign_up_usecase.dart';
 import 'package:papyros/features/authentication/sign_up/presentation/manager/sign_up/sign_up_cubit.dart';
 import 'package:papyros/features/authentication/sign_up/presentation/views/sign_up_view.dart';
+import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verfiy_otp_use_case.dart';
+import 'package:papyros/features/authentication/verfiy_otp/presentation/manager/verfiy_otp_cubit/verfiy_otp_cubit.dart';
+import 'package:papyros/features/authentication/verfiy_otp/presentation/view/verfiy_otp_view.dart';
 
 import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
@@ -49,18 +52,17 @@ abstract class AppRouter {
               child: const SignupView(),
             ));
       },
-      // ),
-      // GoRoute(
-      //   path: kSignUp,
-      //   pageBuilder: (context, state) {
-      //     return TransitionAnimation.slidingTransitionAnimations(state,
-      //         route: BlocProvider(
-      //           create: (context) => VerfiyOtpCubit(
-      //               VerfiyOtpUseCase(VerfiyOtpRepoImp(ApiService(Dio())))),
-      //           child: const VerfiyOtpView(),
-      //         ));
-      //   },
-      // ),
-    )
+    ),
+    GoRoute(
+      path: kSignUp,
+      pageBuilder: (context, state) {
+        return TransitionAnimation.slidingTransitionAnimations(state,
+            route: BlocProvider(
+              create: (context) =>
+                  VerfiyOtpCubit(getIt.get<VerfiyOtpUseCase>()),
+              child: const VerfiyOtpView(),
+            ));
+      },
+    ),
   ]);
 }

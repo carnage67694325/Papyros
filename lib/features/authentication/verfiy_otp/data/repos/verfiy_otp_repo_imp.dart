@@ -1,7 +1,5 @@
-import 'dart:ffi';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:papyros/core/endpoints/endpiont.dart';
 import 'package:papyros/core/errors/failure.dart';
 import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/authentication/verfiy_otp/data/data_source/verfiy_otp_data_source.dart';
@@ -9,9 +7,8 @@ import 'package:papyros/features/authentication/verfiy_otp/domain/entities/verfi
 import 'package:papyros/features/authentication/verfiy_otp/domain/repos/verfiy_otp_repo.dart';
 
 class VerfiyOtpRepoImp implements VerfiyOtpRepo {
-  final ApiService apiService;
   final VerfiyOtpDataSource verfiyOtpDataSource;
-  VerfiyOtpRepoImp(this.apiService, this.verfiyOtpDataSource);
+  VerfiyOtpRepoImp(this.verfiyOtpDataSource);
 
   @override
   Future<Either<Failure, VerfiyOtpEntity>> verfiyOtp(

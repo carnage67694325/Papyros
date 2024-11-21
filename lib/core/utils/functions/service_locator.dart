@@ -7,6 +7,9 @@ import 'package:papyros/features/authentication/sign_in/domain/use_cases/sign_in
 import 'package:papyros/features/authentication/sign_up/data/data_source/sign_up_data_source.dart';
 import 'package:papyros/features/authentication/sign_up/data/repos/sign_up_repo_impl.dart';
 import 'package:papyros/features/authentication/sign_up/domain/use_cases/sign_up_usecase.dart';
+import 'package:papyros/features/authentication/verfiy_otp/data/data_source/verfiy_otp_data_source.dart';
+import 'package:papyros/features/authentication/verfiy_otp/data/repos/verfiy_otp_repo_imp.dart';
+import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verfiy_otp_use_case.dart';
 
 final getIt = GetIt.instance;
 void setupServiceLoactor() {
@@ -19,4 +22,6 @@ void setupServiceLoactor() {
       signUpRepo: SignUpRepoImpl(
           signUpDataSource:
               SignUpDataSourceImpl(apiService: getIt.get<ApiService>()))));
+  getIt.registerSingleton<VerfiyOtpUseCase>(VerfiyOtpUseCase(VerfiyOtpRepoImp(
+      VerfiyOtpDataSourceImpl(apiService: getIt.get<ApiService>()))));
 }
