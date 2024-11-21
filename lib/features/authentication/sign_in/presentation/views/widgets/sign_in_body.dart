@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
@@ -34,6 +35,7 @@ class _SignInBodyState extends State<SignInBody> {
         if (state is SignInSuccess) {
           log(state.signInEntity.toString());
           successSnackBar(context, 'logged successfully');
+          PrefasHandelr().printAuthToken();
         } else if (state is SignInFailure) {
           log(state.errMessage);
           errorSnackBar(context, state.errMessage);

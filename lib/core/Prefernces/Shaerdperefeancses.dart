@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefasHandelr {
@@ -5,10 +7,6 @@ class PrefasHandelr {
 
   static Future<void> init() async {
     prefs = await SharedPreferences.getInstance();
-  }
-
-  static Future<bool> setToken(String token) {
-    return prefs.setString('token', token);
   }
 
   Future<String?> getAuthToken() async {
@@ -19,6 +17,17 @@ class PrefasHandelr {
   Future<void> storeToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('auth_token', token);
+  }
+
+  Future<void> printAuthToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_token');
+
+    if (token != null) {
+      log('Stored Token: $token');
+    } else {
+      log('No token found in SharedPreferences.');
+    }
   }
 
   static Future<bool> clearToken() {
