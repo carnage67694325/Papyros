@@ -6,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/functions/error_snack.dart';
+import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_elevated_button.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/features/authentication/verfiy_otp/domain/entities/verfiy_otp_entity.dart';
@@ -27,15 +29,16 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<VerfiyOtpCubit, VerfiyOtpState>(
+    return BlocConsumer<VerfiyOtpCubit, VerfiyOtpState>(
       listener: (context, state) {
         if (state is VerfiyOtpSuccess) {
-          log("account verified");
+          successSnackBar(context, 'OTP Verified');
         } else if (state is VerfiyOtpFaliure) {
+          errorSnackBar(context, state.errMessage);
           log('${state.errMessage}');
         }
       },
-      child: CustomScrollView(
+      builder: (context, state) => CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Form(

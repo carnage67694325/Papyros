@@ -54,7 +54,7 @@ abstract class AppRouter {
       },
     ),
     GoRoute(
-      path: kSignUp,
+      path: kVerfiyOtp,
       pageBuilder: (context, state) {
         return TransitionAnimation.slidingTransitionAnimations(state,
             route: BlocProvider(

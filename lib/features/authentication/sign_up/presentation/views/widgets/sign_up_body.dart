@@ -41,6 +41,7 @@ class _SignUpBodyState extends State<SignUpBody> {
       listener: (context, state) {
         if (state is SignUpSuccess) {
           successSnackBar(context, 'created account');
+          GoRouter.of(context).push(AppRouter.kVerfiyOtp);
           log(state.signUpEntity.toString());
         } else if (state is SignUpFailure) {
           errorSnackBar(context, state.errMessage);
