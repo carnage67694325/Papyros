@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:go_router/go_router.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PrefasHandelr {
@@ -27,6 +29,18 @@ class PrefasHandelr {
       log('Stored Token: $token');
     } else {
       log('No token found in SharedPreferences.');
+    }
+  }
+
+  Future<void> checkAuthToken(context) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('auth_token');
+
+    if (token != null) {
+      GoRouter.of(context).push(AppRouter.kSignIn);
+    } else {
+      // Token is null, navigate to login screen (optional)
+      GoRouter.of(context).push(AppRouter.kSignUp);
     }
   }
 

@@ -35,7 +35,6 @@ class _SignInBodyState extends State<SignInBody> {
         if (state is SignInSuccess) {
           log(state.signInEntity.toString());
           successSnackBar(context, 'logged successfully');
-          PrefasHandelr().printAuthToken();
         } else if (state is SignInFailure) {
           log(state.errMessage);
           errorSnackBar(context, state.errMessage);
