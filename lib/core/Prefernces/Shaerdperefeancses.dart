@@ -40,11 +40,14 @@ class PrefasHandelr {
       GoRouter.of(context).push(AppRouter.kSignIn);
     } else {
       // Token is null, navigate to login screen (optional)
-      GoRouter.of(context).push(AppRouter.kSignUp);
+      GoRouter.of(context).push(AppRouter.kGettingStarted);
     }
   }
 
-  static Future<bool> clearToken() {
-    return prefs.remove("token");
+  Future<void> clearAuthToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs
+        .remove('auth_token'); // Removes the token from SharedPreferences
+    log('Auth token cleared successfully.');
   }
 }

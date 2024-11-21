@@ -20,9 +20,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
     initiSlidingAnimation();
-    transitionToGetStarted();
-
-    PrefasHandelr().checkAuthToken(context);
+    transitionFromSplash();
   }
 
   @override
@@ -54,9 +52,9 @@ class _SplashViewBodyState extends State<SplashViewBody>
     animationController.forward();
   }
 
-  void transitionToGetStarted() {
+  void transitionFromSplash() {
     Future.delayed(const Duration(milliseconds: 1200), () {
-      GoRouter.of(context).push(AppRouter.kGettingStarted);
+      PrefasHandelr().checkAuthToken(context);
     });
   }
 }
