@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
@@ -91,12 +92,14 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                               verfiyOtpEntity.otpEntity);
                         }
                       },
-                      buttonText: Text(S.of(context).sendOTP,
-                          style: AppStyles.header.copyWith(
-                            color: AppColors.darkBrown,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          )),
+                      buttonText: state is! VerfiyOtpLoading
+                          ? Text(S.of(context).sendOTP,
+                              style: AppStyles.header.copyWith(
+                                color: Colors.white,
+                                fontSize: 24,
+                              ))
+                          : LoadingAnimationWidget.threeRotatingDots(
+                              color: Colors.white, size: 35),
                     ),
                   ),
                 ],
