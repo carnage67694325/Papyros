@@ -16,7 +16,7 @@ class VerfiyOtpDataSourceImpl implements VerfiyOtpDataSource {
   Future<VerfiyOtpEntity> verfiyOtp(
       {required String email, required String otp}) async {
     var response = await apiService.post(
-        endpoint: Endpiont.signInEndpiont,
+        endpoint: Endpiont.verfiyOtpEndpoint,
         body: {"email": email, "password": otp});
     return Otp.fromJson(response);
   }

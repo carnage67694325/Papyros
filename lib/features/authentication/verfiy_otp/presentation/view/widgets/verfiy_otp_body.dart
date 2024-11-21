@@ -21,7 +21,8 @@ class VerfiyOtpBody extends StatefulWidget {
 }
 
 class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
-  late VerfiyOtpEntity verfiyOtpEntity = VerfiyOtpEntity(email: "", otp: "");
+  late VerfiyOtpEntity verfiyOtpEntity =
+      VerfiyOtpEntity(emailEntity: "", otpEntity: "");
   GlobalKey<FormState> formKey = GlobalKey();
 
   @override
@@ -47,7 +48,7 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                   ),
                   CustomTextFormField(
                     onChanged: (data) {
-                      verfiyOtpEntity.email = data;
+                      verfiyOtpEntity.emailEntity = data;
                     },
                     hintText: S.of(context).yourEmail,
                     hintStyle: AppStyles.textfieldHint,
@@ -70,7 +71,7 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                   ),
                   CustomTextFormField(
                     onChanged: (data) {
-                      verfiyOtpEntity.otp = data;
+                      verfiyOtpEntity.otpEntity = data;
                     },
                     hintText: 'verfiy OTP',
                   ),
@@ -83,7 +84,8 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           BlocProvider.of<VerfiyOtpCubit>(context).verfiyOtp(
-                              verfiyOtpEntity.email, verfiyOtpEntity.otp);
+                              verfiyOtpEntity.emailEntity,
+                              verfiyOtpEntity.otpEntity);
                         }
                       },
                       buttonText: Text(S.of(context).sendOTP,

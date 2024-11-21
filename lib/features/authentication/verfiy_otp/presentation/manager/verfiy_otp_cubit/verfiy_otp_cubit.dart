@@ -12,8 +12,8 @@ class VerfiyOtpCubit extends Cubit<VerfiyOtpState> {
   final VerfiyOtpUseCase verfiyOtpUseCase;
   Future<void> verfiyOtp(String email, String otp) async {
     emit(VerfiyOtpLoading());
-    var result =
-        await verfiyOtpUseCase.call(VerfiyOtpEntity(email: email, otp: otp));
+    var result = await verfiyOtpUseCase
+        .call(VerfiyOtpEntity(emailEntity: email, otpEntity: otp));
     result.fold((failure) {
       emit(VerfiyOtpFaliure(errMessage: failure.errMessage));
     }, (succes) {
