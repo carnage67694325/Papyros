@@ -139,6 +139,9 @@ class _SignUpBodyState extends State<SignUpBody> {
                     buttonText: S.of(context).haveAccount),
               ),
             ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 20),
+            ),
           ],
         );
       },
