@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/features/splash/presentation/view/widget/animated_logo.dart';
@@ -20,6 +21,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
     super.initState();
     initiSlidingAnimation();
     transitionToGetStarted();
+
+    PrefasHandelr().checkAuthToken(context);
   }
 
   @override
