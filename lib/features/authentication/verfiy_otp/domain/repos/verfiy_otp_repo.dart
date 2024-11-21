@@ -4,5 +4,5 @@ import 'package:papyros/features/authentication/verfiy_otp/domain/entities/verfi
 import 'package:papyros/features/authentication/verfiy_otp/presentation/view/verfiy_otp_view.dart';
 
 abstract class VerfiyOtpRepo {
-  Future<Either<Failure, void>> verfiyOtp(VerfiyOtpEntity otp);
+  Future<Either<Failure, VerfiyOtpEntity>> verfiyOtp(VerfiyOtpEntity otp);
 }

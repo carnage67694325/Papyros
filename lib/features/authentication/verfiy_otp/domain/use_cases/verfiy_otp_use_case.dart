@@ -11,9 +11,6 @@ class VerfiyOtpUseCase {
   VerfiyOtpUseCase(this.verfiyOtpRepo);
 
   Future<Either<Failure, void>> call(VerfiyOtpEntity verfiyOtpEntity) {
-    if (!verfiyOtpEntity.isValidOtp()) {
-      throw Exception("Invalid OTP format");
-    }
     return verfiyOtpRepo.verfiyOtp(verfiyOtpEntity);
   }
 }
