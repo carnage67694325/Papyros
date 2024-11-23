@@ -33,7 +33,7 @@ class PapyrosApp extends StatefulWidget {
 }
 
 class _PapyrosAppState extends State<PapyrosApp> {
-  Locale local = const Locale('ar');
+  Locale local = const Locale('en');
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
