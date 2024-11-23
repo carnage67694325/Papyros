@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ProfileManagementViewBody extends StatelessWidget {
@@ -5,6 +6,27 @@ class ProfileManagementViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Stack(
+                children: [
+                  CachedNetworkImage(
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                      imageUrl:
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReLD4P3O8RByhrHas25UgVcCDF0CucrSAP5A&s'),
+                ],
+              )
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
