@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "OTP": MessageLookupByLibrary.simpleMessage("رقم المتغير"),
         "agreement":
             MessageLookupByLibrary.simpleMessage("بإنشاء حسابك، توافق على"),
+        "bio": MessageLookupByLibrary.simpleMessage("النبذة التعريفية"),
         "conditions": MessageLookupByLibrary.simpleMessage(" الشروط والأحكام"),
         "confirmPassword": MessageLookupByLibrary.simpleMessage(
             "تأكيد كلمة المرورتأكيد كلمة المرور"),
@@ -34,20 +35,25 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أنشئ حسابك لبدء رحلتك"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "editProfile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "forgotPass": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+        "gender": MessageLookupByLibrary.simpleMessage("النوع"),
         "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الأن "),
         "gettingStarted": MessageLookupByLibrary.simpleMessage("ابدأ الأن"),
         "haveAccount":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
         "lastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
+        "location": MessageLookupByLibrary.simpleMessage("الموقع الجغرافي"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logo": MessageLookupByLibrary.simpleMessage("Papyrus"),
+        "name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "phone": MessageLookupByLibrary.simpleMessage("موبايل"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+        "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "sendOTP": MessageLookupByLibrary.simpleMessage("ارسال الرقم المتغير "),
         "signIN": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "yourEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),

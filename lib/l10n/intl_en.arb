@@ -22,7 +22,16 @@
      "phone" : "phone",
      "OTP"   : "OTP",
      "sendOTP" : "send OTP",
-     "editProfile" : "Edit profile"
+     "editProfile" : "Edit profile",
+     "save" : "Save",
+     "name": "Name",
+     "bio" : "Bio",
+     "location" : "Location",
+     "gender" : "Gender",
+     "birth date" : "Birth date ",
+     "edit" : "Edit",
+     "account Settings" : "Account Settings"
+
 
 
 }
