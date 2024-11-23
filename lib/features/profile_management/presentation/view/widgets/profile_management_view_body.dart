@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
 
 class ProfileManagementViewBody extends StatelessWidget {
   const ProfileManagementViewBody({super.key});
@@ -17,10 +20,16 @@ class ProfileManagementViewBody extends StatelessWidget {
               Stack(
                 children: [
                   CachedNetworkImage(
-                      width: double.infinity,
-                      fit: BoxFit.fill,
-                      imageUrl:
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReLD4P3O8RByhrHas25UgVcCDF0CucrSAP5A&s'),
+                    width: double.infinity,
+                    fit: BoxFit.fill,
+                    imageUrl:
+                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReLD4P3O8RByhrHas25UgVcCDF0CucrSAP5A&s',
+                  ),
+                  const Positioned(
+                    right: 220,
+                    top: 90,
+                    child: AddImageButton(),
+                  ),
                 ],
               )
             ],

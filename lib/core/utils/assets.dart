@@ -30,7 +30,7 @@ class Assets {
 
   /// Assets for assetsIconsVector
   /// assets/icons/Vector.svg
-  static const String assetsIconsVector = "assets/icons/Vector.svg";
+  static const String assetsIconsCamera = "assets/icons/Vector.svg";
 
   /// Assets for assetsLogoPapyros
   /// assets/logo/Papyros.svg
