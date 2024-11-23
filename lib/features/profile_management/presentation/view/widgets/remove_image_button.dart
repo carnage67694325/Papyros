@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/assets.dart';
 
-class AddImageButton extends StatelessWidget {
-  const AddImageButton({
+class RemoveImageButton extends StatelessWidget {
+  const RemoveImageButton({
     super.key,
   });
 
@@ -19,8 +19,8 @@ class AddImageButton extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: SvgPicture.asset(Assets.assetsIconsCamera),
+          padding: const EdgeInsets.all(15),
+          child: SvgPicture.asset(Assets.assetsIconsCloseSM),
         ),
       ),
     );

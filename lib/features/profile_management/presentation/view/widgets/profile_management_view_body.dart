@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
+import 'package:papyros/features/profile_management/presentation/view/widgets/remove_image_button.dart';
 
 class ProfileManagementViewBody extends StatelessWidget {
   const ProfileManagementViewBody({super.key});
@@ -29,6 +30,11 @@ class ProfileManagementViewBody extends StatelessWidget {
                     right: 220,
                     top: 90,
                     child: AddImageButton(),
+                  ),
+                  const Positioned(
+                    right: 140,
+                    top: 90,
+                    child: RemoveImageButton(),
                   ),
                 ],
               )
