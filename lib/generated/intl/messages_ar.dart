@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أنشئ حسابك لبدء رحلتك"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "editProfile":
+            MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "forgotPass": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الأن "),

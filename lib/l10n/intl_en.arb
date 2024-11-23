@@ -21,7 +21,8 @@
      "getStarted" : "Get Started",
      "phone" : "phone",
      "OTP"   : "OTP",
-     "sendOTP" : "send OTP"
+     "sendOTP" : "send OTP",
+     "editProfile" : "Edit profile"
 
 
 }
