@@ -5,6 +5,7 @@ import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/remove_image_button.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/user_profile_avatar.dart';
+import 'package:papyros/main.dart';
 
 class ProfileManagementViewBody extends StatelessWidget {
   const ProfileManagementViewBody({super.key});
@@ -39,10 +40,10 @@ class ProfileManagementViewBody extends StatelessWidget {
                       top: 90,
                       child: RemoveImageButton(),
                     ),
-                    const Positioned(
-                      right: 265,
+                    Positioned(
+                      right: isArabic() ? 10 : 265,
                       top: 160,
-                      child: UserProfileAvatar(),
+                      child: const UserProfileAvatar(),
                     ),
                   ],
                 ),
