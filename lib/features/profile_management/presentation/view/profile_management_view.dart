@@ -4,6 +4,7 @@ import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/profile_management_view_body.dart';
 import 'package:papyros/generated/l10n.dart';
+import 'package:papyros/main.dart';
 
 class ProfileManagementView extends StatelessWidget {
   const ProfileManagementView({super.key});
@@ -28,8 +29,8 @@ class ProfileManagementView extends StatelessWidget {
             style: AppStyles.header
                 .copyWith(fontSize: 16.5, fontWeight: FontWeight.w600),
           ),
-          const SizedBox(
-            width: 150,
+          SizedBox(
+            width: isArabic() ? 100 : 150,
           ),
           ElevatedButton(
             onPressed: () {},
