@@ -340,7 +340,15 @@ class S {
     );
   }
 
-  // skipped getter for the 'birth date' key
+  /// `Birth date `
+  String get birthDate {
+    return Intl.message(
+      'Birth date ',
+      name: 'birthDate',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Edit`
   String get edit {

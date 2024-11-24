@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
+import 'package:papyros/features/profile_management/presentation/view/widgets/edit_profile_birth_date.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/remove_image_button.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/user_data_profile_info.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/user_profile_avatar.dart';
-import 'package:papyros/features/profile_management/presentation/view/widgets/user_profile_text_form_field.dart';
-import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
 class ProfileManagementViewBody extends StatelessWidget {
@@ -52,7 +51,14 @@ class ProfileManagementViewBody extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              const UserProfileDataInfo()
+              const UserProfileDataInfo(),
+              const SizedBox(
+                height: 5,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 18),
+                child: EditProfileBirthDate(),
+              )
             ],
           ),
         )

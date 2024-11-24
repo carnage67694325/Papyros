@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "agreement": MessageLookupByLibrary.simpleMessage(
             "By creating an account, you agree our"),
         "bio": MessageLookupByLibrary.simpleMessage("Bio"),
+        "birthDate": MessageLookupByLibrary.simpleMessage("Birth date "),
         "conditions":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
         "confirmPassword":

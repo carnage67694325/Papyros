@@ -28,7 +28,7 @@
      "bio" : "Bio",
      "location" : "Location",
      "gender" : "Gender",
-     "birth date" : "Birth date ",
+     "birthDate" : "Birth date ",
      "edit" : "Edit",
      "account Settings" : "Account Settings"
 
