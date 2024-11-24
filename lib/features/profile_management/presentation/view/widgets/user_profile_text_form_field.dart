@@ -23,31 +23,27 @@ class UserProfileTextFormField extends StatelessWidget {
           decoration: InputDecoration(
             labelText: lableText,
             labelStyle: const TextStyle(
-              color: AppColors.lightBrown, // Set the label color to grey
+              color: AppColors.lightBrown,
             ),
             hintText: hintText,
-            hintStyle: const TextStyle(
-              color: AppColors.lightBrown, // Set the hint text color to grey
-            ),
+            hintStyle: const TextStyle(),
             contentPadding: const EdgeInsets.all(20.0),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(
-                color: Colors.grey, // Set the border color to grey
+                color: Colors.grey,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(
                 color: Colors.grey,
-                // Set the border color to grey
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(
                 color: Colors.grey,
-                // Set the border color to grey
               ),
             ),
           ),

@@ -17,10 +17,10 @@ class _GenderDropdownState extends State<GenderDropdown> {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Material(
           elevation: 20,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           child: DropdownButtonFormField<String>(
             value: selectedGender,
             decoration: InputDecoration(
@@ -30,6 +30,21 @@ class _GenderDropdownState extends State<GenderDropdown> {
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: Colors.grey,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: Colors.grey,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: Colors.grey,
+                ),
               ),
             ),
             items: [
