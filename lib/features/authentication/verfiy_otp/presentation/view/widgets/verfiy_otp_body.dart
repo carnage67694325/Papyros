@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:papyros/core/utils/app_colors.dart';
+
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';

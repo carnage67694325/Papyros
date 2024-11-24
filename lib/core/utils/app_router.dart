@@ -13,17 +13,19 @@ import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verf
 import 'package:papyros/features/authentication/verfiy_otp/presentation/manager/verfiy_otp_cubit/verfiy_otp_cubit.dart';
 import 'package:papyros/features/authentication/verfiy_otp/presentation/view/verfiy_otp_view.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
+import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
 abstract class AppRouter {
   static const kGettingStarted = '/gettingStarted';
   static const kSignIn = "/signIn";
   static const kSignUp = '/signUp';
   static const kVerfiyOtp = '/verfiyOtp';
+  static const kProfileManage = '/profileManage';
 
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const ProfileManagementView(),
+      builder: (context, state) => const SplashView(),
     ),
     GoRoute(
       path: kGettingStarted,
@@ -60,6 +62,17 @@ abstract class AppRouter {
               create: (context) =>
                   VerfiyOtpCubit(getIt.get<VerfiyOtpUseCase>()),
               child: const VerfiyOtpView(),
+            ));
+      },
+    ),
+    GoRoute(
+      path: kProfileManage,
+      pageBuilder: (context, state) {
+        return TransitionAnimation.slidingTransitionAnimations(state,
+            route: BlocProvider(
+              create: (context) =>
+                  VerfiyOtpCubit(getIt.get<VerfiyOtpUseCase>()),
+              child: const ProfileManagementView(),
             ));
       },
     ),

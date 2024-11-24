@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:papyros/core/errors/failure.dart';
 import 'package:papyros/features/authentication/verfiy_otp/domain/entities/verfiy_otp_entity.dart';
