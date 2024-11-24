@@ -69,7 +69,7 @@ class ProfileManagementViewBody extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: CustomTextButton(
                   onTap: () {},
-                  buttonText: S.of(context).editProfile,
+                  buttonText: S.of(context).accountSettings,
                   fontSize: 20,
                 ),
               ),
