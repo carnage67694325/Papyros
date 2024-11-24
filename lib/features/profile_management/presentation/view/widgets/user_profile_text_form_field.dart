@@ -3,10 +3,13 @@ import 'package:papyros/core/utils/app_colors.dart';
 
 class UserProfileTextFormField extends StatelessWidget {
   const UserProfileTextFormField(
-      {super.key, required this.lableText, required this.hintText});
+      {super.key,
+      required this.lableText,
+      required this.hintText,
+      required this.onSubmitted});
   final String lableText;
   final String hintText;
-
+  final void Function(String) onSubmitted;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,6 +18,7 @@ class UserProfileTextFormField extends StatelessWidget {
         elevation: 20,
         borderRadius: BorderRadius.circular(8),
         child: TextField(
+          onSubmitted: onSubmitted,
           maxLines: 1,
           decoration: InputDecoration(
             labelText: lableText,
