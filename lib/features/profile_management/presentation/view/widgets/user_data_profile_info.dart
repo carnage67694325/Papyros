@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papyros/features/profile_management/presentation/view/widgets/gender_dropdown_menu.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/user_profile_text_form_field.dart';
 import 'package:papyros/generated/l10n.dart';
 
@@ -23,6 +24,7 @@ class UserProfileDataInfo extends StatelessWidget {
             onSubmitted: (data) {},
             lableText: S.of(context).location,
             hintText: 'Your Location'),
+        const GenderDropdown()
       ],
     );
   }
