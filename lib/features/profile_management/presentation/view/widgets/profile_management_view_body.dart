@@ -41,11 +41,11 @@ class ProfileManagementViewBody extends StatelessWidget {
                       child: Stack(
                         children: [
                           CachedNetworkImage(
-                            width: double.infinity,
-                            fit: BoxFit.fill,
-                            imageUrl:
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReLD4P3O8RByhrHas25UgVcCDF0CucrSAP5A&s',
-                          ),
+                              width: double.infinity,
+                              fit: BoxFit.fill,
+                              imageUrl: state.userProfileEntity
+                                  .backgroundImage // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReLD4P3O8RByhrHas25UgVcCDF0CucrSAP5A&s',
+                              ),
                           const Positioned(
                             right: 220,
                             top: 90,
@@ -59,7 +59,10 @@ class ProfileManagementViewBody extends StatelessWidget {
                           Positioned(
                             right: isArabic() ? 10 : 265,
                             top: 160,
-                            child: const UserProfileAvatar(),
+                            child: UserProfileAvatar(
+                              userProfileImage:
+                                  state.userProfileEntity.profileImage,
+                            ),
                           ),
                         ],
                       ),
@@ -75,9 +78,11 @@ class ProfileManagementViewBody extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 18),
-                      child: EditProfileBirthDate(),
+                      child: EditProfileBirthDate(
+                        date: state.userProfileEntity.dob,
+                      ),
                     ),
                     const SizedBox(
                       height: 20,

@@ -50,6 +50,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
         profileImage: profile.profileImage,
         backgroundImage: profile.backgroundImage,
         location: profile.location,
+        dob: profile.dob,
       );
 
       await remoteDataSource.updateUserProfile(profileModel, token);

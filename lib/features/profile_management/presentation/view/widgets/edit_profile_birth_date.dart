@@ -7,8 +7,9 @@ import 'package:papyros/generated/l10n.dart';
 class EditProfileBirthDate extends StatelessWidget {
   const EditProfileBirthDate({
     super.key,
+    required this.date,
   });
-
+  final String date;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +30,7 @@ class EditProfileBirthDate extends StatelessWidget {
           height: 5,
         ),
         Text(
-          'August 20, 2003',
+          date,
           style: AppStyles.header
               .copyWith(fontSize: 20, fontWeight: FontWeight.w500),
         ),

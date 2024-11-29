@@ -8,6 +8,7 @@ class UserProfileEntity {
   final String profileImage;
   final String backgroundImage;
   final String location;
+  final String dob;
 
   UserProfileEntity({
     required this.userName,
@@ -19,5 +20,6 @@ class UserProfileEntity {
     required this.profileImage,
     required this.backgroundImage,
     required this.location,
+    required this.dob,
   });
 }
