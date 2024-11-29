@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_managment_dau.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../models/Userprofile_model.dart';
+import '../models/User_profile_model.dart';
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   final Dio dio;

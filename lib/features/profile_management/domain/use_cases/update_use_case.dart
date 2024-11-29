@@ -1,4 +1,4 @@
-import '../entities/user profile entity.dart';
+import '../entities/user_profile_entity.dart';
 import '../repositories/profile_managment_repo.dart';
 
 class UpdateUserProfileUseCase {

@@ -1,4 +1,4 @@
-import '../../domain/entities/user profile entity.dart';
+import '../../domain/entities/user_profile_entity.dart';
 
 class UserProfileModel extends UserProfileEntity {
   UserProfileModel({

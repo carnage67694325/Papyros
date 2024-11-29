@@ -5,10 +5,10 @@ import 'package:dio/dio.dart';
 
 import '../../../../core/Prefernces/Shaerdperefeancses.dart';
 import '../../../../core/errors/failure.dart';
-import '../../domain/entities/user profile entity.dart';
+import '../../domain/entities/user_profile_entity.dart';
 import '../../domain/repositories/profile_managment_repo.dart';
 import '../data_sources/profile_managment_dau.dart';
-import '../models/Userprofile_model.dart';
+import '../models/User_profile_model.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileRemoteDataSource remoteDataSource;
