@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:dartz/dartz.dart';
@@ -23,6 +24,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<Either<Failure, UserProfileEntity>> getUserProfile() async {
     try {
       final token = await tokenHandler.getAuthToken();
+      log(token!);
       final data = await remoteDataSource.fetchUserProfile(token!);
       return right(UserProfileModel.fromJson(data['user']));
     } catch (e) {

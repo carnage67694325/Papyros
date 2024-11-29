@@ -37,7 +37,7 @@ class PrefasHandelr {
     final token = prefs.getString('auth_token');
 
     if (token != null) {
-      GoRouter.of(context).go(AppRouter.kSignIn);
+      GoRouter.of(context).go(AppRouter.kProfileManage);
     } else {
       // Token is null, navigate to login screen (optional)
       GoRouter.of(context).go(AppRouter.kGettingStarted);

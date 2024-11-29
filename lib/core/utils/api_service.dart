@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:injectable/injectable.dart';
 // @singleton
 class ApiService {
-  static final _baseUrl = dotenv.env['Base_Url'];
+  static final baseUrl = dotenv.env['Base_Url'];
   final Dio dio;
 
   ApiService(this.dio) {
@@ -15,13 +15,13 @@ class ApiService {
   }
 
   Future<List<dynamic>> get({required String endPoints}) async {
-    Response response = await dio.get('$_baseUrl$endPoints');
+    Response response = await dio.get('$baseUrl$endPoints');
     return response.data;
   }
 
   Future<Map<String, dynamic>> post(
       {required String endpoint, required Map<String, dynamic>? body}) async {
-    var response = await dio.post('$_baseUrl$endpoint',
+    var response = await dio.post('$baseUrl$endpoint',
         data: body,
         options: Options(headers: {'Content-Type': 'application/json'}));
     return response.data;

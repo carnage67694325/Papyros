@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:papyros/core/endpoints/endpiont.dart';
+import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_managment_dau.dart';
 
 import '../../../../core/errors/failure.dart';
@@ -13,8 +17,8 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   @override
   Future<Map<String, dynamic>> fetchUserProfile(String token) async {
     final response = await dio.get(
-      '/myprofile',
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      '${ApiService.baseUrl}${Endpiont.myProflieEndpoint}',
+      options: Options(headers: {'token': token}),
     );
     return response.data;
   }
