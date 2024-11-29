@@ -2,22 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 
 class UserProfileTextFormField extends StatelessWidget {
-  const UserProfileTextFormField(
-      {super.key,
-      required this.lableText,
-      required this.hintText,
-      required this.onSubmitted});
+  const UserProfileTextFormField({
+    super.key,
+    required this.lableText,
+    required this.hintText,
+    required this.onSubmitted,
+    required this.initialValue,
+  });
+
   final String lableText;
   final String hintText;
   final void Function(String) onSubmitted;
+  final String initialValue;
+
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller =
+        TextEditingController(text: initialValue);
+
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Material(
         elevation: 20,
         borderRadius: BorderRadius.circular(8),
         child: TextField(
+          controller: controller, // Use the controller here
           onSubmitted: onSubmitted,
           maxLines: 1,
           decoration: InputDecoration(
