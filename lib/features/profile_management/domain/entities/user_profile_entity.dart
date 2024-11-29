@@ -1,4 +1,4 @@
-class UserProfile {
+class UserProfileEntity {
   final String userName;
   final String firstName;
   final String lastName;
@@ -9,7 +9,7 @@ class UserProfile {
   final String backgroundImage;
   final String location;
 
-  UserProfile({
+  UserProfileEntity({
     required this.userName,
     required this.firstName,
     required this.lastName,
