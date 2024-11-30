@@ -53,17 +53,17 @@ class PrefasHandelr {
     log('Auth token cleared successfully.');
   }
 
-  Future<void> storeImagePath(String imagePath) async {
+  static Future<void> storeImagePath(String imagePath) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('stored_image_path', imagePath);
   }
 
-  Future<String?> retrieveStoredImagePath() async {
+  static Future<String?> retrieveStoredImagePath() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('stored_image_path');
   }
 
-  Future<ImageProvider?> getStoredImageProvider() async {
+  static Future<ImageProvider?> getStoredImageProvider() async {
     final String? imagePath = await retrieveStoredImagePath();
     if (imagePath != null && imagePath.isNotEmpty) {
       return FileImage(File(imagePath));
