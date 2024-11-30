@@ -13,7 +13,9 @@ import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verf
 import 'package:papyros/features/authentication/verfiy_otp/presentation/manager/verfiy_otp_cubit/verfiy_otp_cubit.dart';
 import 'package:papyros/features/authentication/verfiy_otp/presentation/view/verfiy_otp_view.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
+import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
+import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
 import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
@@ -71,9 +73,17 @@ abstract class AppRouter {
       path: kProfileManage,
       pageBuilder: (context, state) {
         return TransitionAnimation.slidingTransitionAnimations(state,
-            route: BlocProvider(
-              create: (context) =>
-                  GetUserProfileCubit(getIt.get<GetUserProfileUseCase>()),
+            route: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) =>
+                      GetUserProfileCubit(getIt.get<GetUserProfileUseCase>()),
+                ),
+                BlocProvider(
+                  create: (context) =>
+                      UpdateUserCubit(getIt.get<UpdateUserProfileUseCase>()),
+                ),
+              ],
               child: const ProfileManagementView(),
             ));
       },
