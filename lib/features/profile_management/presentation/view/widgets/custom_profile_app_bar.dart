@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
+import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
 class CustomProfileAppBar extends StatelessWidget {
   const CustomProfileAppBar({
     super.key,
+    required this.userProfileEntity,
   });
-
+  final UserProfileEntity userProfileEntity;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -33,7 +38,22 @@ class CustomProfileAppBar extends StatelessWidget {
           width: isArabic() ? 100 : 150,
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            BlocProvider.of<UpdateUserCubit>(context).updateUserProfile(
+                UserProfileEntity(
+                    userName: userProfileEntity.userName,
+                    firstName: userProfileEntity.firstName,
+                    lastName: userProfileEntity.lastName,
+                    email: userProfileEntity.email,
+                    phone: userProfileEntity.phone,
+                    bio: userProfileEntity.profileImage,
+                    profileImage: userProfileEntity.profileImage,
+                    backgroundImage: userProfileEntity.backgroundImage,
+                    location: userProfileEntity.location,
+                    dob: userProfileEntity.dob,
+                    gender: userProfileEntity.gender),
+                PrefasHandelr().getAuthToken().toString());
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.lightBrown, // Light brown background
             shape: RoundedRectangleBorder(
