@@ -53,18 +53,28 @@ class PrefasHandelr {
     log('Auth token cleared successfully.');
   }
 
-  static Future<void> storeImagePath(String imagePath) async {
+  static Future<void> storeUserProfileImagePath(String imagePath) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('stored_image_path', imagePath);
+    await prefs.setString('stored_user_profile_image_path', imagePath);
   }
 
-  static Future<String?> retrieveStoredImagePath() async {
+  static Future<String?> retrieveStoredUserProfileImagePath() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('stored_image_path');
+    return prefs.getString('stored_user_profile_image_path');
+  }
+
+  static Future<void> storeBackGroundProfileImagePath(String imagePath) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('stored_background_profile_image_path', imagePath);
+  }
+
+  static Future<String?> retrieveStoredBackGroundProfileImagePath() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('stored_background_profile_image_path');
   }
 
   static Future<ImageProvider?> getStoredImageProvider() async {
-    final String? imagePath = await retrieveStoredImagePath();
+    final String? imagePath = await retrieveStoredUserProfileImagePath();
     if (imagePath != null && imagePath.isNotEmpty) {
       return FileImage(File(imagePath));
     }

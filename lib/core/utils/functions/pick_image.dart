@@ -11,7 +11,7 @@ Future<void> pickImage(BuildContext context) async {
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
-      await PrefasHandelr.storeImagePath(image.path);
+      await PrefasHandelr.storeUserProfileImagePath(image.path);
       successSnackBar(context, 'Image selected: ${image.path}');
     } else {
       successSnackBar(context, 'No image selected');
