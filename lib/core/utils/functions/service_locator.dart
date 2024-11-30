@@ -15,7 +15,6 @@ import 'package:papyros/features/profile_management/data/data_sources/profile_ma
 import 'package:papyros/features/profile_management/data/repositories/profile_managment_repo_imp.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
-import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 
 final getIt = GetIt.instance;
 void setupServiceLoactor() {

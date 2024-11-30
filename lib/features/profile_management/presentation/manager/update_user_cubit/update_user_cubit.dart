@@ -1,10 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:papyros/core/errors/failure.dart';
 import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
-
 part 'update_user_state.dart';
 
 class UpdateUserCubit extends Cubit<UpdateUserState> {
