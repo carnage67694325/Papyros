@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/core/utils/functions/pick_image.dart';
 
 class AddImageButton extends StatelessWidget {
   const AddImageButton({
@@ -14,7 +15,9 @@ class AddImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () async {
+        await pickImage(context);
+      },
       child: Container(
         height: height ?? 50,
         width: width ?? 50,

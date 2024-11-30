@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,5 +51,23 @@ class PrefasHandelr {
     await prefs
         .remove('auth_token'); // Removes the token from SharedPreferences
     log('Auth token cleared successfully.');
+  }
+
+  Future<void> storeImagePath(String imagePath) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('stored_image_path', imagePath);
+  }
+
+  Future<String?> retrieveStoredImagePath() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('stored_image_path');
+  }
+
+  Future<ImageProvider?> getStoredImageProvider() async {
+    final String? imagePath = await retrieveStoredImagePath();
+    if (imagePath != null && imagePath.isNotEmpty) {
+      return FileImage(File(imagePath));
+    }
+    return null; // No image stored
   }
 }
