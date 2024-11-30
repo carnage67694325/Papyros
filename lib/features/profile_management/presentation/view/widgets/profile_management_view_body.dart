@@ -10,6 +10,7 @@ import 'package:papyros/features/authentication/presentation/views/widgets/custo
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
+import 'package:papyros/features/profile_management/presentation/view/widgets/back_ground_profile_image.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/custom_profile_app_bar.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/edit_profile_birth_date.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/remove_image_button.dart';
@@ -60,21 +61,8 @@ class ProfileManagementViewBody extends StatelessWidget {
                         height: MediaQuery.sizeOf(context).height * 0.34,
                         child: Stack(
                           children: [
-                            CachedNetworkImage(
-                                width: double.infinity,
-                                fit: BoxFit.fill,
-                                imageUrl: state.userProfileEntity
-                                    .backgroundImage // 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReLD4P3O8RByhrHas25UgVcCDF0CucrSAP5A&s',
-                                ),
-                            const Positioned(
-                              right: 220,
-                              top: 90,
-                              child: AddImageButton(),
-                            ),
-                            const Positioned(
-                              right: 140,
-                              top: 90,
-                              child: RemoveImageButton(),
+                            BackGroundProfileImage(
+                              image: state.userProfileEntity.backgroundImage,
                             ),
                             Positioned(
                               right: isArabic() ? 10 : 265,
