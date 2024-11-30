@@ -30,8 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bio": MessageLookupByLibrary.simpleMessage("النبذة التعريفية"),
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
         "conditions": MessageLookupByLibrary.simpleMessage(" الشروط والأحكام"),
-        "confirmPassword": MessageLookupByLibrary.simpleMessage(
-            "تأكيد كلمة المرورتأكيد كلمة المرور"),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "continueYourJourny":
             MessageLookupByLibrary.simpleMessage("واصل رحلتك معنا"),
         "createAccount":

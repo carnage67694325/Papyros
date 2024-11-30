@@ -12,6 +12,7 @@ class UserProfileModel extends UserProfileEntity {
     required String backgroundImage,
     required String location,
     required String dob,
+    required String gender,
   }) : super(
           userName: userName,
           lastName: lastName,
@@ -23,6 +24,7 @@ class UserProfileModel extends UserProfileEntity {
           backgroundImage: backgroundImage,
           location: location,
           dob: dob,
+          gender: gender,
         );
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
@@ -37,6 +39,7 @@ class UserProfileModel extends UserProfileEntity {
       backgroundImage: json['backGroungImage'] ?? '',
       location: json['location'] ?? '',
       dob: json['DOB'] ?? '',
+      gender: json['gender'] ?? '',
     );
   }
 

@@ -9,17 +9,18 @@ class UserProfileEntity {
   final String backgroundImage;
   final String location;
   final String dob;
+  final String gender;
 
-  UserProfileEntity({
-    required this.userName,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.phone,
-    required this.bio,
-    required this.profileImage,
-    required this.backgroundImage,
-    required this.location,
-    required this.dob,
-  });
+  UserProfileEntity(
+      {required this.userName,
+      required this.firstName,
+      required this.lastName,
+      required this.email,
+      required this.phone,
+      required this.bio,
+      required this.profileImage,
+      required this.backgroundImage,
+      required this.location,
+      required this.dob,
+      required this.gender});
 }

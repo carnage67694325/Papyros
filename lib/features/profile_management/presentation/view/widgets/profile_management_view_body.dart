@@ -71,15 +71,15 @@ class ProfileManagementViewBody extends StatelessWidget {
                       height: 5,
                     ),
                     UserProfileDataInfo(
-                      name: state.userProfileEntity.userName,
-                      bio: state.userProfileEntity.bio,
-                      location: state.userProfileEntity.location,
-                    ),
+                        name: state.userProfileEntity.userName,
+                        bio: state.userProfileEntity.bio,
+                        location: state.userProfileEntity.location,
+                        gender: state.userProfileEntity.gender),
                     const SizedBox(
                       height: 5,
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18),
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
                       child: EditProfileBirthDate(
                         date: state.userProfileEntity.dob,
                       ),

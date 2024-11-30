@@ -9,10 +9,12 @@ class UserProfileDataInfo extends StatelessWidget {
     required this.name,
     required this.bio,
     required this.location,
+    required this.gender,
   });
   final String name;
   final String bio;
   final String location;
+  final String gender;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,9 @@ class UserProfileDataInfo extends StatelessWidget {
           hintText: 'Your Location',
           initialValue: location,
         ),
-        const GenderDropdown()
+        GenderDropdown(
+          initialValue: gender,
+        )
       ],
     );
   }

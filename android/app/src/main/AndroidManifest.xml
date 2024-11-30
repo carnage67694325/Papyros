@@ -1,9 +1,12 @@
-]<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Permissions to access Wi-Fi state and manage Wi-Fi connections -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     
+    <!-- Permission to access the internet -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="papyros"
         android:name="${applicationName}"

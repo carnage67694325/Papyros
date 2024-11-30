@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 
 class GenderDropdown extends StatefulWidget {
-  const GenderDropdown({super.key});
+  const GenderDropdown({super.key, required this.initialValue});
+  final String initialValue;
 
   @override
   _GenderDropdownState createState() => _GenderDropdownState();
 }
 
 class _GenderDropdownState extends State<GenderDropdown> {
-  String? selectedGender; // Holds the selected value
+  String? selectedGender;
+  @override
+  void initState() {
+    super.initState();
+
+    selectedGender = widget.initialValue;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +55,8 @@ class _GenderDropdownState extends State<GenderDropdown> {
               ),
             ),
             items: [
-              'Male',
-              'Female',
+              'male',
+              'female',
               'Prefer not to say',
             ].map((gender) {
               return DropdownMenuItem<String>(
