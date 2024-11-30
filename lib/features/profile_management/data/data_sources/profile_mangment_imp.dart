@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -23,29 +24,41 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     return response.data;
   }
 
-  @override
   Future<void> updateUserProfile(
       UserProfileModel profileModel, String token) async {
+    // Prepare the form data
     final formData = FormData.fromMap({
       'bio': profileModel.bio,
       'location': profileModel.location,
-      'profileimage': await MultipartFile.fromFile(profileModel.profileImage),
-      'backimage': await MultipartFile.fromFile(profileModel.backgroundImage),
+      // Ensure profile image is valid before adding to the form
+      if (profileModel.profileImage != null &&
+          await File(profileModel.profileImage).exists())
+        'profileimage': await MultipartFile.fromFile(
+          profileModel.profileImage,
+          filename: profileModel.profileImage.split('/').last,
+        ),
+      // Ensure background image is valid before adding to the form
+      if (profileModel.backgroundImage != null &&
+          await File(profileModel.backgroundImage).exists())
+        'backimage': await MultipartFile.fromFile(
+          profileModel.backgroundImage,
+          filename: profileModel.backgroundImage.split('/').last,
+        ),
     });
 
     await dio.put(
-      '/myprofile',
+      '${ApiService.baseUrl}${Endpiont.myProflieEndpoint}',
       data: formData,
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      options: Options(headers: {'token': token}),
     );
   }
 
   @override
   Future<void> deleteUserProfile(String password, String token) async {
     await dio.delete(
-      '/myprofile',
+      '${ApiService.baseUrl}${Endpiont.myProflieEndpoint}',
       data: {'password': password},
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      options: Options(headers: {'token': token}),
     );
   }
 }

@@ -38,8 +38,13 @@ class CustomProfileAppBar extends StatelessWidget {
           width: isArabic() ? 100 : 150,
         ),
         ElevatedButton(
-          onPressed: () {
-            BlocProvider.of<UpdateUserCubit>(context).updateUserProfile(
+          onPressed: () async {
+            String? storedProfileImagePath =
+                await PrefasHandelr.retrieveStoredUserProfileImagePath();
+            String? storedBackgroundImagePath =
+                await PrefasHandelr.retrieveStoredBackGroundProfileImagePath();
+            String? authToken = await PrefasHandelr().getAuthToken();
+            await BlocProvider.of<UpdateUserCubit>(context).updateUserProfile(
                 UserProfileEntity(
                     userName: userProfileEntity.userName,
                     firstName: userProfileEntity.firstName,
@@ -47,12 +52,14 @@ class CustomProfileAppBar extends StatelessWidget {
                     email: userProfileEntity.email,
                     phone: userProfileEntity.phone,
                     bio: userProfileEntity.profileImage,
-                    profileImage: userProfileEntity.profileImage,
-                    backgroundImage: userProfileEntity.backgroundImage,
+                    profileImage: storedProfileImagePath ??
+                        userProfileEntity.profileImage,
+                    backgroundImage: storedBackgroundImagePath ??
+                        userProfileEntity.backgroundImage,
                     location: userProfileEntity.location,
                     dob: userProfileEntity.dob,
                     gender: userProfileEntity.gender),
-                PrefasHandelr().getAuthToken().toString());
+                authToken!);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.lightBrown, // Light brown background
