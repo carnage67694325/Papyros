@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:papyros/core/utils/functions/error_snack.dart';
+import 'package:papyros/core/utils/functions/success_snack.dart';
+import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-class UserProfileAvatar extends StatefulWidget {
+class UserProfileAvatar extends StatelessWidget {
   const UserProfileAvatar({
     super.key,
     required this.userProfileImage,
@@ -14,95 +16,69 @@ class UserProfileAvatar extends StatefulWidget {
   final String userProfileImage;
 
   @override
-  _UserProfileAvatarState createState() => _UserProfileAvatarState();
-}
-
-class _UserProfileAvatarState extends State<UserProfileAvatar> {
-  ImageProvider? _currentImage;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadInitialImage();
-  }
-
-  /// Load the initial image from SharedPreferences or fallback to network image
-  Future<void> _loadInitialImage() async {
-    final storedImagePath = await PrefasHandelr.retrieveStoredImagePath();
-    if (storedImagePath != null) {
-      setState(() {
-        _currentImage = FileImage(File(storedImagePath));
-      });
-    } else {
-      setState(() {
-        _currentImage = CachedNetworkImageProvider(widget.userProfileImage);
-      });
-    }
-  }
-
-  /// Method to pick a new image and update the profile picture
-  Future<void> _updateProfileImage(BuildContext context) async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? pickedFile =
-        await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      // Store the picked image path in SharedPreferences
-      await PrefasHandelr.storeImagePath(pickedFile.path);
-
-      // Clear the old image cache to ensure the new one loads
-      setState(() {
-        _currentImage = FileImage(File(pickedFile.path))
-          ..evict(); // Clear cached image for the new file
-
-        // Force a rebuild to load the new image
-        _currentImage = FileImage(File(pickedFile.path));
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text('Image updated successfully: ${pickedFile.path}')),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("No image selected.")),
-      );
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: 115, // Diameter of the circle
-          height: 115,
-          decoration: BoxDecoration(
-            border: const Border.symmetric(
-              horizontal: BorderSide(color: Colors.white, width: 2.5),
-              vertical: BorderSide(color: Colors.white, width: 2.5),
-            ),
-            shape: BoxShape.circle, // Makes the container circular
-            image: DecorationImage(
-              image: _currentImage ??
-                  CachedNetworkImageProvider(widget.userProfileImage),
-              fit: BoxFit
-                  .cover, // Fills the circle while maintaining aspect ratio
-            ),
-          ),
-        ),
-        Positioned(
-          right: 35,
-          top: 40,
-          child: GestureDetector(
-            onTap: () => _updateProfileImage(
-                context), // Trigger image picker on button press
-            child: const AddImageButton(
-              height: 40,
-            ),
-          ),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) =>
+          UpdateProfileImageCubit(), // Initialize the cubit and load the stored image
+      child: BlocConsumer<UpdateProfileImageCubit, UpdateProfileImageState>(
+        listener: (context, state) {
+          if (state is UpdateProfileFailure) {
+            // Show an error message if image loading fails
+            errorSnackBar(context, state.errMessage);
+          } else if (state is UpdateProfileImageSuccess) {
+            // Optionally show success snackbar or perform other actions
+
+            successSnackBar(context, 'Image updated successfully!');
+          }
+        },
+        builder: (context, state) {
+          ImageProvider? imageProvider;
+
+          if (state is UpdateProfileImageLoading) {
+            imageProvider = CachedNetworkImageProvider(
+                userProfileImage); // Placeholder while loading
+          } else if (state is UpdateProfileImageSuccess) {
+            imageProvider = FileImage(
+                File(state.imagePath)); // Display the newly picked image
+          } else {
+            imageProvider =
+                CachedNetworkImageProvider(userProfileImage); // Default image
+          }
+
+          return Stack(
+            children: [
+              Container(
+                width: 115, // Diameter of the circle
+                height: 115,
+                decoration: BoxDecoration(
+                  border: const Border.symmetric(
+                    horizontal: BorderSide(color: Colors.white, width: 2.5),
+                    vertical: BorderSide(color: Colors.white, width: 2.5),
+                  ),
+                  shape: BoxShape.circle, // Makes the container circular
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit
+                        .cover, // Fills the circle while maintaining aspect ratio
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 35,
+                top: 40,
+                child: GestureDetector(
+                  onTap: () => context
+                      .read<UpdateProfileImageCubit>()
+                      .pickImage(), // Trigger image picker on button press
+                  child: const AddImageButton(
+                    height: 40,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

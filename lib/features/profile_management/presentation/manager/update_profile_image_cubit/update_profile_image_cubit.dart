@@ -15,11 +15,17 @@ class UpdateProfileImageCubit extends Cubit<UpdateProfileImageState> {
       final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
       if (image != null) {
-        // Store the image path in SharedPreferences
-        await PrefasHandelr.storeImagePath(image.path);
-
-        // Update the state with the new image path
-        emit(UpdateProfileImageSuccess(imagePath: image.path));
+        // Check if an image path already exists
+        final storedImagePath = await PrefasHandelr.retrieveStoredImagePath();
+        if (storedImagePath != null && storedImagePath.isNotEmpty) {
+          // If there is already a stored image, only update when a new one is picked
+          await PrefasHandelr.storeImagePath(image.path);
+          emit(UpdateProfileImageSuccess(imagePath: image.path));
+        } else {
+          // If no image exists, directly store the new image
+          await PrefasHandelr.storeImagePath(image.path);
+          emit(UpdateProfileImageSuccess(imagePath: image.path));
+        }
       } else {
         emit(UpdateProfileFailure(errMessage: 'No image selected'));
       }

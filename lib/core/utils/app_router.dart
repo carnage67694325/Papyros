@@ -15,6 +15,7 @@ import 'package:papyros/features/authentication/verfiy_otp/presentation/view/ver
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
+import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
 import 'package:papyros/features/splash/presentation/view/splash_view.dart';
@@ -83,6 +84,7 @@ abstract class AppRouter {
                   create: (context) =>
                       UpdateUserCubit(getIt.get<UpdateUserProfileUseCase>()),
                 ),
+                BlocProvider(create: (context) => UpdateProfileImageCubit()),
               ],
               child: const ProfileManagementView(),
             ));
