@@ -48,9 +48,10 @@ class BackGroundProfileImage extends StatelessWidget {
           return Stack(children: [
             Container(
               width: double.infinity,
+              height: MediaQuery.sizeOf(context).height * 0.24,
               decoration: BoxDecoration(
                   image:
-                      DecorationImage(image: imageProvider, fit: BoxFit.fill)),
+                      DecorationImage(image: imageProvider, fit: BoxFit.cover)),
             ),
             const Positioned(
               right: 220,
