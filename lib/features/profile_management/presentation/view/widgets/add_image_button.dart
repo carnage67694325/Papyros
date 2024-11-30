@@ -10,17 +10,15 @@ class AddImageButton extends StatelessWidget {
     super.key,
     this.height,
     this.width,
+    this.onTap,
   });
   final double? height;
   final double? width;
-
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        await BlocProvider.of<UpdateProfileImageCubit>(context)
-            .pickUserProfileImage();
-      },
+      onTap: onTap,
       child: Container(
         height: height ?? 50,
         width: width ?? 50,

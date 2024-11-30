@@ -66,13 +66,12 @@ class UserProfileAvatar extends StatelessWidget {
               Positioned(
                 right: 35,
                 top: 40,
-                child: GestureDetector(
-                  onTap: () => context
-                      .read<UpdateProfileImageCubit>()
-                      .pickUserProfileImage(), // Trigger image picker on button press
-                  child: const AddImageButton(
-                    height: 40,
-                  ),
+                child: AddImageButton(
+                  onTap: () async {
+                    await BlocProvider.of<UpdateProfileImageCubit>(context)
+                        .pickUserProfileImage();
+                  },
+                  height: 40,
                 ),
               ),
             ],

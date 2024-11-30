@@ -53,10 +53,15 @@ class BackGroundProfileImage extends StatelessWidget {
                   image:
                       DecorationImage(image: imageProvider, fit: BoxFit.cover)),
             ),
-            const Positioned(
+            Positioned(
               right: 220,
               top: 90,
-              child: AddImageButton(),
+              child: AddImageButton(
+                onTap: () async {
+                  await BlocProvider.of<UpdateProfileImageCubit>(context)
+                      .pickBackGroundProfileImage();
+                },
+              ),
             ),
             const Positioned(
               right: 140,
