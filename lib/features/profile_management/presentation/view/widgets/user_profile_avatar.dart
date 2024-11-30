@@ -69,7 +69,7 @@ class UserProfileAvatar extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => context
                       .read<UpdateProfileImageCubit>()
-                      .pickImage(), // Trigger image picker on button press
+                      .pickUserProfileImage(), // Trigger image picker on button press
                   child: const AddImageButton(
                     height: 40,
                   ),

@@ -18,7 +18,8 @@ class AddImageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await BlocProvider.of<UpdateProfileImageCubit>(context).pickImage();
+        await BlocProvider.of<UpdateProfileImageCubit>(context)
+            .pickUserProfileImage();
       },
       child: Container(
         height: height ?? 50,
