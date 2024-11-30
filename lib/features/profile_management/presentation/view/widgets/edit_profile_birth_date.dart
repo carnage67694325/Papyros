@@ -30,7 +30,7 @@ class EditProfileBirthDate extends StatelessWidget {
           height: 5,
         ),
         Text(
-          date,
+          date.substring(0, 10),
           style: AppStyles.header
               .copyWith(fontSize: 20, fontWeight: FontWeight.w500),
         ),

@@ -1,3 +1,6 @@
+import 'package:dartz/dartz.dart';
+import 'package:papyros/core/errors/failure.dart';
+
 import '../repositories/profile_managment_repo.dart';
 
 class DeleteUserProfileUseCase {
@@ -5,7 +8,8 @@ class DeleteUserProfileUseCase {
 
   DeleteUserProfileUseCase(this.profileRepository);
 
-  Future<void> call(String password, String token) async {
-    await profileRepository.deleteUserProfile(password: password, token: token);
+  Future<Either<Failure, void>> call(String password, String token) async {
+    return await profileRepository.deleteUserProfile(
+        password: password, token: token);
   }
 }
