@@ -37,24 +37,26 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> updateUserProfile(UserProfileEntity profile,
-      {required String token}) async {
+  Future<Either<Failure, void>> updateUserProfile(
+    UserProfileEntity profile,
+  ) async {
     try {
+      final token = await tokenHandler.getAuthToken();
       final profileModel = UserProfileModel(
-        userName: profile.userName,
-        firstName: profile.firstName,
-        lastName: profile.lastName,
-        email: profile.email,
-        phone: profile.phone,
-        bio: profile.bio,
+        userName: profile.userName!,
+        firstName: profile.firstName!,
+        lastName: profile.lastName!,
+        email: profile.email!,
+        phone: profile.phone!,
+        bio: profile.bio!,
         profileImage: profile.profileImage,
         backgroundImage: profile.backgroundImage,
-        location: profile.location,
-        dob: profile.dob,
-        gender: profile.gender,
+        location: profile.location!,
+        dob: profile.dob!,
+        gender: profile.gender!,
       );
 
-      await remoteDataSource.updateUserProfile(profileModel, token);
+      await remoteDataSource.updateUserProfile(profileModel, token!);
       return right(null);
     } catch (e) {
       if (e is DioException) {

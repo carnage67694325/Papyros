@@ -43,23 +43,21 @@ class CustomProfileAppBar extends StatelessWidget {
                 await PrefasHandelr.retrieveStoredUserProfileImagePath();
             String? storedBackgroundImagePath =
                 await PrefasHandelr.retrieveStoredBackGroundProfileImagePath();
-            String? authToken = await PrefasHandelr().getAuthToken();
+
             await BlocProvider.of<UpdateUserCubit>(context).updateUserProfile(
-                UserProfileEntity(
-                    userName: userProfileEntity.userName,
-                    firstName: userProfileEntity.firstName,
-                    lastName: userProfileEntity.lastName,
-                    email: userProfileEntity.email,
-                    phone: userProfileEntity.phone,
-                    bio: userProfileEntity.profileImage,
-                    profileImage: storedProfileImagePath ??
-                        userProfileEntity.profileImage,
-                    backgroundImage: storedBackgroundImagePath ??
-                        userProfileEntity.backgroundImage,
-                    location: userProfileEntity.location,
-                    dob: userProfileEntity.dob,
-                    gender: userProfileEntity.gender),
-                authToken!);
+              UserProfileEntity(
+                  userName: userProfileEntity.userName,
+                  firstName: userProfileEntity.firstName,
+                  lastName: userProfileEntity.lastName,
+                  email: userProfileEntity.email,
+                  phone: userProfileEntity.phone,
+                  bio: userProfileEntity.bio,
+                  profileImage: storedProfileImagePath,
+                  backgroundImage: storedBackgroundImagePath,
+                  location: userProfileEntity.location,
+                  dob: userProfileEntity.dob,
+                  gender: userProfileEntity.gender),
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.lightBrown, // Light brown background

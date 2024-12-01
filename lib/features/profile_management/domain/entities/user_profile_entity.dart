@@ -1,26 +1,26 @@
 class UserProfileEntity {
-  final String userName;
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String phone;
-  final String bio;
-  final String profileImage;
-  final String backgroundImage;
-  final String location;
-  final String dob;
-  final String gender;
+  final String? userName;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? phone;
+  final String? bio;
+  final String? profileImage;
+  final String? backgroundImage;
+  final String? location;
+  final String? dob;
+  final String? gender;
 
   UserProfileEntity(
-      {required this.userName,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.phone,
-      required this.bio,
-      required this.profileImage,
-      required this.backgroundImage,
-      required this.location,
-      required this.dob,
-      required this.gender});
+      {this.userName,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.phone,
+      this.bio,
+      this.profileImage,
+      this.backgroundImage,
+      this.location,
+      this.dob,
+      this.gender});
 }

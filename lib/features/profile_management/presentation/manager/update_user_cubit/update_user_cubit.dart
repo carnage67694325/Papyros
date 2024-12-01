@@ -7,10 +7,9 @@ part 'update_user_state.dart';
 class UpdateUserCubit extends Cubit<UpdateUserState> {
   UpdateUserCubit(this.updateUserProfileUseCase) : super(UpdateUserInitial());
   final UpdateUserProfileUseCase updateUserProfileUseCase;
-  Future<void> updateUserProfile(
-      UserProfileEntity profile, String token) async {
+  Future<void> updateUserProfile(UserProfileEntity profile) async {
     emit(UpdateUserLoading());
-    var response = await updateUserProfileUseCase.call(profile, token);
+    var response = await updateUserProfileUseCase.call(profile);
     response.fold((failure) {
       return emit(UpdateUserFailure(errMessage: failure.errMessage));
     }, (success) {

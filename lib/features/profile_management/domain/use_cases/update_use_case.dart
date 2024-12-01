@@ -9,8 +9,7 @@ class UpdateUserProfileUseCase {
 
   UpdateUserProfileUseCase(this.profileRepository);
 
-  Future<Either<Failure, void>> call(
-      UserProfileEntity profile, String token) async {
-    return await profileRepository.updateUserProfile(profile, token: token);
+  Future<Either<Failure, void>> call(UserProfileEntity profile) async {
+    return await profileRepository.updateUserProfile(profile);
   }
 }

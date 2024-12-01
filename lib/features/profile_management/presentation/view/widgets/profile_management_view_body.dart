@@ -62,14 +62,14 @@ class ProfileManagementViewBody extends StatelessWidget {
                         child: Stack(
                           children: [
                             BackGroundProfileImage(
-                              image: state.userProfileEntity.backgroundImage,
+                              image: state.userProfileEntity.backgroundImage!,
                             ),
                             Positioned(
                               right: isArabic() ? 10 : 265,
                               top: 160,
                               child: UserProfileAvatar(
                                 userProfileImage:
-                                    state.userProfileEntity.profileImage,
+                                    state.userProfileEntity.profileImage!,
                               ),
                             ),
                           ],
@@ -79,17 +79,17 @@ class ProfileManagementViewBody extends StatelessWidget {
                         height: 5,
                       ),
                       UserProfileDataInfo(
-                          name: state.userProfileEntity.userName,
-                          bio: state.userProfileEntity.bio,
-                          location: state.userProfileEntity.location,
-                          gender: state.userProfileEntity.gender),
+                          name: state.userProfileEntity.userName!,
+                          bio: state.userProfileEntity.bio!,
+                          location: state.userProfileEntity.location!,
+                          gender: state.userProfileEntity.gender!),
                       const SizedBox(
                         height: 5,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 18),
                         child: EditProfileBirthDate(
-                          date: state.userProfileEntity.dob,
+                          date: state.userProfileEntity.dob!,
                         ),
                       ),
                       const SizedBox(

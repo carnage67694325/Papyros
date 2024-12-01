@@ -1,13 +1,8 @@
-import 'dart:developer';
 import 'dart:io';
-
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:papyros/core/endpoints/endpiont.dart';
 import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_managment_dau.dart';
-
-import '../../../../core/errors/failure.dart';
 import '../models/User_profile_model.dart';
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
@@ -24,6 +19,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     return response.data;
   }
 
+  @override
   Future<void> updateUserProfile(
       UserProfileModel profileModel, String token) async {
     // Prepare the form data
@@ -31,18 +27,16 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       'bio': profileModel.bio,
       'location': profileModel.location,
       // Ensure profile image is valid before adding to the form
-      if (profileModel.profileImage != null &&
-          await File(profileModel.profileImage).exists())
+      if (await File(profileModel.profileImage!).exists())
         'profileimage': await MultipartFile.fromFile(
-          profileModel.profileImage,
-          filename: profileModel.profileImage.split('/').last,
+          profileModel.profileImage!,
+          filename: profileModel.profileImage!.split('/').last,
         ),
       // Ensure background image is valid before adding to the form
-      if (profileModel.backgroundImage != null &&
-          await File(profileModel.backgroundImage).exists())
+      if (await File(profileModel.backgroundImage!).exists())
         'backimage': await MultipartFile.fromFile(
-          profileModel.backgroundImage,
-          filename: profileModel.backgroundImage.split('/').last,
+          profileModel.backgroundImage!,
+          filename: profileModel.backgroundImage!.split('/').last,
         ),
     });
 

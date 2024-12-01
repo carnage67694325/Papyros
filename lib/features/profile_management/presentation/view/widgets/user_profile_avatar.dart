@@ -28,7 +28,7 @@ class UserProfileAvatar extends StatelessWidget {
           } else if (state is UpdateProfileImageSuccess) {
             // Optionally show success snackbar or perform other actions
 
-            successSnackBar(context, 'Image updated successfully!');
+            // successSnackBar(context, 'Image updated successfully!');
           }
         },
         builder: (context, state) {
