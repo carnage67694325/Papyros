@@ -6,6 +6,7 @@ import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
+import 'package:papyros/features/profile_management/presentation/view/widgets/user_data_profile_info.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
@@ -46,15 +47,15 @@ class CustomProfileAppBar extends StatelessWidget {
 
             await BlocProvider.of<UpdateUserCubit>(context).updateUserProfile(
               UserProfileEntity(
-                  userName: userProfileEntity.userName,
+                  userName: newUserName ?? userProfileEntity.userName,
                   firstName: userProfileEntity.firstName,
                   lastName: userProfileEntity.lastName,
                   email: userProfileEntity.email,
                   phone: userProfileEntity.phone,
-                  bio: userProfileEntity.bio,
+                  bio: newUserBio ?? userProfileEntity.bio,
                   profileImage: storedProfileImagePath,
                   backgroundImage: storedBackgroundImagePath,
-                  location: userProfileEntity.location,
+                  location: newUserLocation ?? userProfileEntity.location,
                   dob: userProfileEntity.dob,
                   gender: userProfileEntity.gender),
             );

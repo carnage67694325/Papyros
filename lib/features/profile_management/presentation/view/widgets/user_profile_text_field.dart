@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 
-class UserProfileTextFormField extends StatelessWidget {
-  const UserProfileTextFormField({
+class UserProfileTexField extends StatelessWidget {
+  const UserProfileTexField({
     super.key,
     required this.lableText,
     required this.hintText,
-    required this.onSubmitted,
+    required this.onChanged,
     required this.initialValue,
   });
 
   final String lableText;
   final String hintText;
-  final void Function(String) onSubmitted;
+  final void Function(String) onChanged;
   final String initialValue;
 
   @override
@@ -27,7 +27,7 @@ class UserProfileTextFormField extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         child: TextField(
           controller: controller, // Use the controller here
-          onSubmitted: onSubmitted,
+          onChanged: onChanged,
           maxLines: 1,
           decoration: InputDecoration(
             labelText: lableText,
