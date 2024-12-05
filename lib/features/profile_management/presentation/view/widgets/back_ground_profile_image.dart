@@ -26,10 +26,7 @@ class BackGroundProfileImage extends StatelessWidget {
           if (state is UpdateProfileFailure) {
             // Show an error message if image loading fails
             errorSnackBar(context, state.errMessage);
-          } else if (state is UpdateProfileImageSuccess) {
-            // Optionally show success snackbar or perform other actions
-            successSnackBar(context, 'Image updated successfully!');
-          }
+          } else if (state is UpdateProfileImageSuccess) {}
         },
         builder: (context, state) {
           // Define the ImageProvider to be used based on the state

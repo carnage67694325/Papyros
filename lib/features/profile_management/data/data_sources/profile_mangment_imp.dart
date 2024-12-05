@@ -27,7 +27,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     final formData = FormData.fromMap({
       'bio': profileModel.bio,
       'location': profileModel.location,
-      'name': profileModel.userName,
+      'userName': profileModel.userName,
       // Ensure profile image is valid before adding to the form
       if (await File(profileModel.profileImage!).exists())
         'profileimage': await MultipartFile.fromFile(
