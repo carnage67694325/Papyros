@@ -1,19 +1,13 @@
 import 'dart:developer';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
-import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/back_ground_profile_image.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/custom_profile_app_bar.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/edit_profile_birth_date.dart';
-import 'package:papyros/features/profile_management/presentation/view/widgets/remove_image_button.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/user_data_profile_info.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/user_profile_avatar.dart';
 import 'package:papyros/generated/l10n.dart';
@@ -51,6 +45,9 @@ class ProfileManagementViewBody extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
                       CustomProfileAppBar(
                         userProfileEntity: state.userProfileEntity,
                       ),
@@ -112,7 +109,7 @@ class ProfileManagementViewBody extends StatelessWidget {
               ],
             );
           } else {
-            return const Text('');
+            return const AppLoadingAnimation();
           }
         },
       ),
