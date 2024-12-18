@@ -26,7 +26,7 @@ class UserProfileDataInfo extends StatelessWidget {
           },
           lableText: S.of(context).name,
           hintText: 'Your Name',
-          initialValue: name,
+          initialValue: newUserName ?? name,
         ),
         UserProfileTexField(
           onChanged: (data) {
@@ -34,7 +34,7 @@ class UserProfileDataInfo extends StatelessWidget {
           },
           lableText: S.of(context).bio,
           hintText: 'Your Bio',
-          initialValue: bio,
+          initialValue: newUserBio ?? bio,
         ),
         UserProfileTexField(
           onChanged: (data) {
@@ -42,7 +42,7 @@ class UserProfileDataInfo extends StatelessWidget {
           },
           lableText: S.of(context).location,
           hintText: 'Your Location',
-          initialValue: location,
+          initialValue: newUserLocation ?? location,
         ),
         GenderDropdown(
           initialValue: gender,

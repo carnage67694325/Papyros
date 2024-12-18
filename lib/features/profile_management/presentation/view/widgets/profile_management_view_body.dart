@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
+import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
@@ -27,6 +28,8 @@ class ProfileManagementViewBody extends StatelessWidget {
           listener: (context, state) {
             if (state is UpdateUserFailure) {
               log(state.errMessage);
+              updatingLoading.value = false;
+              errorSnackBar(context, state.errMessage);
             } else if (state is UpdateUserSuccess) {
               log('success');
               updatingLoading.value = false;

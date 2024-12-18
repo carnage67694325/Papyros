@@ -16,7 +16,7 @@ import 'core/Prefernces/Shaerdperefeancses.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PrefasHandelr.init();
-  PrefasHandelr().printAuthToken();
+  // PrefasHandelr().clearAuthToken();
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   setupServiceLoactor();
