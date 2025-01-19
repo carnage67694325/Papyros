@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papyros/core/utils/new_user_data.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/gender_dropdown_menu.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/user_profile_text_field.dart';
 import 'package:papyros/generated/l10n.dart';
@@ -22,27 +23,27 @@ class UserProfileDataInfo extends StatelessWidget {
       children: [
         UserProfileTexField(
           onChanged: (data) {
-            newUserName = data;
+            NewUserData().newUserName = data;
           },
           lableText: S.of(context).name,
           hintText: 'Your Name',
-          initialValue: newUserName ?? name,
+          initialValue: NewUserData().newUserName ?? name,
         ),
         UserProfileTexField(
           onChanged: (data) {
-            newUserBio = data;
+            NewUserData().newUserBio = data;
           },
           lableText: S.of(context).bio,
           hintText: 'Your Bio',
-          initialValue: newUserBio ?? bio,
+          initialValue: NewUserData().newUserBio ?? bio,
         ),
         UserProfileTexField(
           onChanged: (data) {
-            newUserLocation = data;
+            NewUserData().newUserLocation = data;
           },
           lableText: S.of(context).location,
           hintText: 'Your Location',
-          initialValue: newUserLocation ?? location,
+          initialValue: NewUserData().newUserLocation ?? location,
         ),
         GenderDropdown(
           initialValue: gender,
@@ -51,8 +52,3 @@ class UserProfileDataInfo extends StatelessWidget {
     );
   }
 }
-
-String? newUserName;
-String? newUserBio;
-String? newUserLocation;
-String? newUserGender;
