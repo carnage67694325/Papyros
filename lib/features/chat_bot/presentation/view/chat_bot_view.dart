@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_drawer.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_view_body.dart';
 
 class ChatBotView extends StatelessWidget {
@@ -7,6 +8,7 @@ class ChatBotView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      drawer: ChatBotDrawer(),
       body: ChatBotViewBody(),
     );
   }

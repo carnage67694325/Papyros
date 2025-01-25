@@ -12,9 +12,14 @@ class ChatBotAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Icon(
-          Icons.menu,
-          size: 25,
+        IconButton(
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          icon: const Icon(
+            Icons.menu,
+            size: 28,
+          ),
         ),
         Text(
           'Papchat',
