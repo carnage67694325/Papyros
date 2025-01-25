@@ -23,27 +23,27 @@ class UserProfileDataInfo extends StatelessWidget {
       children: [
         UserProfileTexField(
           onChanged: (data) {
-            NewUserData().newUserName = data;
+            NewUserData.newUserName = data;
           },
           lableText: S.of(context).name,
           hintText: 'Your Name',
-          initialValue: NewUserData().newUserName ?? name,
+          initialValue: NewUserData.newUserName ?? name,
         ),
         UserProfileTexField(
           onChanged: (data) {
-            NewUserData().newUserBio = data;
+            NewUserData.newUserBio = data;
           },
           lableText: S.of(context).bio,
           hintText: 'Your Bio',
-          initialValue: NewUserData().newUserBio ?? bio,
+          initialValue: NewUserData.newUserBio ?? bio,
         ),
         UserProfileTexField(
           onChanged: (data) {
-            NewUserData().newUserLocation = data;
+            NewUserData.newUserLocation = data;
           },
           lableText: S.of(context).location,
           hintText: 'Your Location',
-          initialValue: NewUserData().newUserLocation ?? location,
+          initialValue: NewUserData.newUserLocation ?? location,
         ),
         GenderDropdown(
           initialValue: gender,
