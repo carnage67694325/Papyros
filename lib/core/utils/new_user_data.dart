@@ -1,6 +1,6 @@
 class NewUserData {
-  String? newUserName;
-  String? newUserBio;
-  String? newUserLocation;
-  String? newUserGender;
+  static String? newUserName;
+  static String? newUserBio;
+  static String? newUserLocation;
+  static String? newUserGender;
 }
