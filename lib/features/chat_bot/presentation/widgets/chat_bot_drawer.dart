@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
-import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/new+chat_button.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/user_name_profile_circle.dart';
 
