@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
-import 'package:papyros/core/utils/functions/success_snack.dart';
-import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_app_bar.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
-import 'package:papyros/features/chat_bot/presentation/widgets/send_prompt_textfield.dart';
 import 'package:papyros/generated/l10n.dart';
 
 class ChatbotGreetingState extends StatelessWidget {
