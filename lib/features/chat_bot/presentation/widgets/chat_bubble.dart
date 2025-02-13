@@ -9,8 +9,8 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BubbleSpecialOne(
-      text: "Hello, how can I help you today?",
+    return BubbleSpecialOne(
+      text: message,
       color: AppColors.lightPeach,
     );
   }

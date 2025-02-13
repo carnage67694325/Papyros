@@ -48,12 +48,6 @@ class ChatbotGreetingState extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 290),
-        SendPromptTextfield(
-            controller: TextEditingController(),
-            onSend: () {
-              successSnackBar(context, "Message sent successfully");
-            })
       ],
     );
   }
