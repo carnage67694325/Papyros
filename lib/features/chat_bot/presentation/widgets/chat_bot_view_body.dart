@@ -35,25 +35,33 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
               const SizedBox(
                 height: 50,
               ),
-              ChatbotGreetingState()
-              // ChatbotMessagesList(messages: messages),
-              // const SizedBox(
-              //   height: 50,
-              // ),
-              // Row(
-              //   children: [
-              //     Text(
-              //       "Hi Yoda how Are You doing? ",
-              //       style: AppStyles.chatHeader.copyWith(
-              //         fontSize: 18,
-              //         fontWeight: FontWeight.w400,
-              //       ),
-              //     ),
-              //     const ChatBotLogo(
-              //       height: 35,
-              //     )
-              //   ],
-              // )
+              ChatbotMessagesList(messages: messages),
+              const SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: Text(
+                        "The Great Pyramid of Giza was built by the ancient Egyptians during the reign of Pharaoh Khufu .it was constructed as a monumental tomb for Khufu and took approximately 20years to complete. ",
+                        style: AppStyles.chatHeader.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          wordSpacing: 1.0,
+                        ),
+                        softWrap: true,
+                      ),
+                    ),
+                    const ChatBotLogo(
+                      height: 35,
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
