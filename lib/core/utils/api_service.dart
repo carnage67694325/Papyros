@@ -5,6 +5,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 // @singleton
 class ApiService {
   static final baseUrl = dotenv.env['Base_Url'];
+  static final baseChatBotUrl = dotenv.env['Base_Chat_Bot_Url'];
+
   final Dio dio;
 
   ApiService(this.dio) {
@@ -16,6 +18,11 @@ class ApiService {
 
   Future<List<dynamic>> get({required String endPoints}) async {
     Response response = await dio.get('$baseUrl$endPoints');
+    return response.data;
+  }
+
+  Future<List<dynamic>> postPrompt({required String endPoints}) async {
+    Response response = await dio.post('$baseChatBotUrl$endPoints');
     return response.data;
   }
 
