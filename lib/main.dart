@@ -49,8 +49,9 @@ class _PapyrosAppState extends State<PapyrosApp> {
             }
           }, builder: (context, state) {
             return MaterialApp.router(
-              theme:
-                  ThemeData(scaffoldBackgroundColor: AppColors.backGroundColor),
+              theme: ThemeData(
+                scaffoldBackgroundColor: AppColors.backGroundColor,
+              ),
               locale: local,
               localizationsDelegates: const [
                 S.delegate,

@@ -6,10 +6,11 @@ import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_
 part 'send_prompt_state.dart';
 
 class SendPromptCubit extends Cubit<SendPromptState> {
-  SendPromptCubit(this.chatBotSendPromptUseCase, this.message)
-      : super(SendPromptInitial());
+  SendPromptCubit(
+    this.chatBotSendPromptUseCase,
+  ) : super(SendPromptInitial());
   final ChatBotSendPromptUseCase chatBotSendPromptUseCase;
-  final String message;
+  late String message;
   Future<void> getUserProfile() async {
     emit(SendPromptLoading());
     var response = await chatBotSendPromptUseCase.call(message);
