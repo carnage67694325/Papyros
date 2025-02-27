@@ -5,20 +5,16 @@ import 'package:papyros/core/utils/assets.dart';
 class ChatBotLogo extends StatelessWidget {
   const ChatBotLogo({
     super.key,
+    this.height,
   });
-
+  final double? height;
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SvgPicture.asset(Assets.assetsRobotCricle),
-        Positioned(
-            left: 24,
-            right: 24,
-            top: 24,
-            bottom: 24,
-            child: SvgPicture.asset(Assets.assetsRoboIcon))
-      ],
-    );
+    return Padding(
+        padding: const EdgeInsets.all(10),
+        child: SvgPicture.asset(
+          Assets.assetsRoboIcon,
+          height: height ?? 25,
+        ));
   }
 }

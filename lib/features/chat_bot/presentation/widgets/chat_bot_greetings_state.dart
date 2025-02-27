@@ -14,7 +14,9 @@ class ChatbotGreetingState extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(height: 179),
-        const ChatBotLogo(),
+        const ChatBotLogo(
+          height: 97,
+        ),
         const SizedBox(height: 25),
         Padding(
           padding: const EdgeInsets.only(left: 22, right: 26),

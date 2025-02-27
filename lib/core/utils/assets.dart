@@ -8,7 +8,7 @@ class Assets {
   static const String assetsPoflieCricle =
       "assets/icons/profile-circle-svgrepo-com(2)1.svg";
   static const String assetsRobotCricle = "assets/icons/Ellipse4.svg";
-  static const String assetsRoboIcon = "assets/icons/robot-svgrepo-com 1.svg";
+  static const String assetsRoboIcon = "assets/icons/Group 5.svg";
 
   /// Assets for assetsIconsCloseSM
   /// assets/icons/Close_SM.svg
