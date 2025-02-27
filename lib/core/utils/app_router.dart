@@ -34,7 +34,11 @@ abstract class AppRouter {
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const ChatBotView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) =>
+            SendPromptCubit(getIt.get<ChatBotSendPromptUseCase>()),
+        child: const ChatBotView(),
+      ),
     ),
     GoRoute(
       path: kGettingStarted,

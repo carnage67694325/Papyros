@@ -21,8 +21,11 @@ class ApiService {
     return response.data;
   }
 
-  Future<List<dynamic>> postPrompt({required String endPoints}) async {
-    Response response = await dio.post('$baseChatBotUrl$endPoints');
+  Future<Map<String, dynamic>> postPrompt(
+      {required String endPoint, required Map<String, dynamic>? body}) async {
+    var response = await dio.post('$baseChatBotUrl$endPoint',
+        data: body,
+        options: Options(headers: {'Content-Type': 'application/json'}));
     return response.data;
   }
 

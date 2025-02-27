@@ -10,10 +10,9 @@ class SendPromptCubit extends Cubit<SendPromptState> {
     this.chatBotSendPromptUseCase,
   ) : super(SendPromptInitial());
   final ChatBotSendPromptUseCase chatBotSendPromptUseCase;
-  late String message;
-  Future<void> getUserProfile() async {
+  Future<void> sendPrompt({required prompt}) async {
     emit(SendPromptLoading());
-    var response = await chatBotSendPromptUseCase.call(message);
+    var response = await chatBotSendPromptUseCase.call(prompt);
     response.fold(
       (failure) {
         return emit(SendPromptFailure(errMessage: failure.toString()));

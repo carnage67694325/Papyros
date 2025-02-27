@@ -8,6 +8,7 @@ class SendPromptDataSourceImpl implements SendPromptDataSource {
   SendPromptDataSourceImpl({required this.apiService});
   @override
   Future<void> sendPrompt({required String prompt}) async {
-    await apiService.postPrompt(endPoints: Endpiont.chatPotEndpoint);
+    await apiService.postPrompt(
+        endPoint: Endpiont.chatPotEndpoint, body: {'user_input': prompt});
   }
 }
