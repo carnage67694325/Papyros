@@ -7,7 +7,7 @@ class ChatbotMessagesList extends StatelessWidget {
     required this.messages,
   });
 
-  final List<ChatBubble> messages;
+  final List<Widget> messages;
 
   @override
   Widget build(BuildContext context) {

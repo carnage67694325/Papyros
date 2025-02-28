@@ -19,13 +19,13 @@ class ChatBotViewBody extends StatefulWidget {
 
 class _ChatBotViewBodyState extends State<ChatBotViewBody> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  List<ChatBubble> messages = [];
+  List<Widget> messages = [];
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SendPromptCubit, SendPromptState>(
       builder: (context, state) {
-        if (state is SendPromptInitial) {
+        if (state is SendPromptSuccess || state is SendPromptInitial) {
           return Column(
             children: [
               SingleChildScrollView(
@@ -52,7 +52,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                           SizedBox(
                             width: 300,
                             child: Text(
-                              "The Great Pyramid of Giza was built by the ancient Egyptians during the reign of Pharaoh Khufu .it was constructed as a monumental tomb for Khufu and took approximately 20years to complete. ",
+                              "hello",
                               style: AppStyles.chatHeader.copyWith(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w400,
