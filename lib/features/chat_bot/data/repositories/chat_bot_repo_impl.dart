@@ -10,16 +10,21 @@ class ChatBotRepoImpl implements ChatBotRepo {
   final SendPromptDataSource sendPromptDataSource;
 
   ChatBotRepoImpl({required this.sendPromptDataSource});
+
   @override
   Future<Either<Failure, ChatBotEntity>> sendPrompt(String message) async {
     try {
-      var response = await sendPromptDataSource.sendPrompt(prompt: message);
-      return Right(ChatBotModel(userInput: message));
+      final response = await sendPromptDataSource.sendPrompt(prompt: message);
+      // Create a ChatBotEntity with the response data
+      return Right(ChatBotModel(
+        userInput: message,
+        response: response['response'], // Pass the API response
+      ));
     } catch (e) {
       if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+        return Left(ServerFailure.fromDioException(e));
       } else {
-        return left(ServerFailure(e.toString()));
+        return Left(ServerFailure(e.toString()));
       }
     }
   }

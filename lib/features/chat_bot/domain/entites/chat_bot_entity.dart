@@ -1,6 +1,7 @@
 class ChatBotEntity {
-  String? userPrompt;
-  String? botResponse;
+  final String? userPrompt;
+  final String? botResponse;
+
   ChatBotEntity({
     this.userPrompt,
     this.botResponse,

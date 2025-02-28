@@ -8,6 +8,7 @@ import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_app_bar.
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_greetings_state.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_message_list.dart';
+import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_respsne.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bubble.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/send_prompt_textfield.dart';
 
@@ -25,7 +26,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
   Widget build(BuildContext context) {
     return BlocBuilder<SendPromptCubit, SendPromptState>(
       builder: (context, state) {
-        if (state is SendPromptSuccess || state is SendPromptInitial) {
+        if (state is SendPromptSuccess) {
           return Column(
             children: [
               SingleChildScrollView(
@@ -45,23 +46,14 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                       height: 50,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
+                      padding: EdgeInsets.only(left: 16.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            width: 300,
-                            child: Text(
-                              "hello",
-                              style: AppStyles.chatHeader.copyWith(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400,
-                                wordSpacing: 1.0,
-                              ),
-                              softWrap: true,
-                            ),
+                          ChatBotResponse(
+                            response: state.chatBotEntity.botResponse ?? "haga",
                           ),
-                          const ChatBotLogo(
+                          ChatBotLogo(
                             height: 35,
                           )
                         ],
@@ -84,7 +76,16 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
             ],
           );
         } else {
-          return const ChatbotGreetingState();
+          return SendPromptTextfield(
+              controller: controller,
+              onSend: () {
+                successSnackBar(context, "Message sent successfully");
+                messages.add(ChatBubble(
+                  message: controller.text,
+                ));
+                BlocProvider.of<SendPromptCubit>(context)
+                    .sendPrompt(prompt: controller.text);
+              });
         }
       },
     );
