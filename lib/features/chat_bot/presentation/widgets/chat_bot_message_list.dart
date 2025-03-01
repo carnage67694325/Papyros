@@ -5,14 +5,15 @@ class ChatbotMessagesList extends StatelessWidget {
   const ChatbotMessagesList({
     super.key,
     required this.messages,
+    required this.controller,
   });
 
   final List<Widget> messages;
-
+  final ScrollController controller;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
+      controller: controller,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: messages.length,
       itemBuilder: (context, index) {
