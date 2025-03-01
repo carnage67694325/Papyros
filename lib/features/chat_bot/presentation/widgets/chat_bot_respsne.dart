@@ -50,7 +50,7 @@ class _ChatBotResponseState extends State<ChatBotResponse> {
             SizedBox(
               width: 300,
               child: Text(
-                widget.response,
+                widget.response..replaceAll(RegExp(r'[*]+'), '').trim(),
                 style: AppStyles.chatHeader.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
