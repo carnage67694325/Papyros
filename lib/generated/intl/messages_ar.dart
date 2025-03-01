@@ -1,15 +1,4 @@
-// DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a ar locale. All the
-// messages from the main program should be duplicated here with the same
-// function name.
-
-// Ignore issues from commonly used lints in this file.
-// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
-// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
-// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
-// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
-
+// GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 
@@ -29,7 +18,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بإنشاء حسابك، توافق على"),
         "bio": MessageLookupByLibrary.simpleMessage("النبذة التعريفية"),
         "birthDate": MessageLookupByLibrary.simpleMessage("تاريخ الميلاد"),
-        "conditions": MessageLookupByLibrary.simpleMessage(" الشروط والأحكام"),
+        "conditions": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "continueYourJourny":
@@ -44,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "forgotPass": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "gender": MessageLookupByLibrary.simpleMessage("النوع"),
-        "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الأن "),
+        "getStarted": MessageLookupByLibrary.simpleMessage("ابدأ الأن"),
         "gettingStarted": MessageLookupByLibrary.simpleMessage("ابدأ الأن"),
         "haveAccount":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
@@ -57,9 +46,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
-        "sendOTP": MessageLookupByLibrary.simpleMessage("ارسال الرقم المتغير "),
+        "sendOTP": MessageLookupByLibrary.simpleMessage("ارسال الرقم المتغير"),
         "signIN": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "yourEmail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
-        "yourPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور")
+        "yourPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "hello": MessageLookupByLibrary.simpleMessage("مرحبا"),
+        "chatBotGreetings":
+            MessageLookupByLibrary.simpleMessage("كيف يمكنني مساعدتك اليوم؟"),
       };
 }

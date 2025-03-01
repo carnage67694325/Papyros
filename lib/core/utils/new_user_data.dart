@@ -1,4 +1,4 @@
-class NewUserData {
+abstract class NewUserData {
   static String? newUserName;
   static String? newUserBio;
   static String? newUserLocation;

@@ -12,6 +12,9 @@ import 'package:papyros/features/authentication/sign_up/presentation/views/sign_
 import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verfiy_otp_use_case.dart';
 import 'package:papyros/features/authentication/verfiy_otp/presentation/manager/verfiy_otp_cubit/verfiy_otp_cubit.dart';
 import 'package:papyros/features/authentication/verfiy_otp/presentation/view/verfiy_otp_view.dart';
+import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_UseCase.dart';
+import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
+import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
@@ -26,11 +29,16 @@ abstract class AppRouter {
   static const kSignUp = '/signUp';
   static const kVerfiyOtp = '/verfiyOtp';
   static const kProfileManage = '/profileManage';
+  static const kChatBot = '/chatBot';
 
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const SplashView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) =>
+            SendPromptCubit(getIt.get<ChatBotSendPromptUseCase>()),
+        child: const ChatBotView(),
+      ),
     ),
     GoRoute(
       path: kGettingStarted,
@@ -90,5 +98,15 @@ abstract class AppRouter {
             ));
       },
     ),
+    GoRoute(
+        path: kChatBot,
+        pageBuilder: (context, state) {
+          return TransitionAnimation.slidingTransitionAnimations(state,
+              route: BlocProvider(
+                create: (context) =>
+                    SendPromptCubit(getIt.get<ChatBotSendPromptUseCase>()),
+                child: const ChatBotView(),
+              ));
+        }),
   ]);
 }

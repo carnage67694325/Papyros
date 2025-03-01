@@ -5,8 +5,9 @@ import 'package:papyros/core/utils/app_colors.dart';
 class AppLoadingAnimation extends StatelessWidget {
   const AppLoadingAnimation({
     super.key,
+    this.size,
   });
-
+  final double? size;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +18,7 @@ class AppLoadingAnimation extends StatelessWidget {
           child: LoadingAnimationWidget.flickr(
               leftDotColor: AppColors.darkBrown,
               rightDotColor: AppColors.lightPeach,
-              size: 65),
+              size: size ?? 65),
         ),
       ],
     );

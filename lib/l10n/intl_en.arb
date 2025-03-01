@@ -30,7 +30,9 @@
      "gender" : "Gender",
      "birthDate" : "Birth date ",
      "edit" : "Edit",
-     "accountSettings" : "Account Settings"
+     "accountSettings" : "Account Settings",
+     "hello" : "Hello",
+     "chatBotGreetings" : "How can I help you today?"
 
 
 

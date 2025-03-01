@@ -369,6 +369,24 @@ class S {
       args: [],
     );
   }
+
+  String get hello {
+    return Intl.message(
+      'Hello',
+      name: 'hello',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get chatBotGreetings {
+    return Intl.message(
+      'How can I help you today?',
+      name: 'chatBotGreetings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

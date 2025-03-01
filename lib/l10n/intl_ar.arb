@@ -30,5 +30,7 @@
      "gender" : "النوع",
      "birthDate" : "تاريخ الميلاد",
      "edit" : "تعديل",
-     "accountSettings" : "إعدادات الحساب"
+     "accountSettings" : "إعدادات الحساب",
+     "hello" : "مرحبا",
+     "chatBotGreetings" : " كيف يمكنني مساعدتك اليوم؟"
 }
