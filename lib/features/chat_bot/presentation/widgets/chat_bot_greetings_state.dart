@@ -13,7 +13,7 @@ class ChatbotGreetingState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 179),
+        const SizedBox(height: 88),
         const ChatBotLogo(
           height: 97,
         ),

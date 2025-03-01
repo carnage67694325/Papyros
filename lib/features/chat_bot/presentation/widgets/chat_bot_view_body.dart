@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_app_bar.dart';
@@ -33,11 +34,19 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SendPromptCubit, SendPromptState>(
+    return BlocConsumer<SendPromptCubit, SendPromptState>(
+      listener: (context, state) {
+        if (state is SendPromptInitial) {
+          messages.clear();
+        } else if (state is SendPromptFailure) {
+          errorSnackBar(context, state.errMessage);
+        }
+      },
       builder: (context, state) {
         if (state is SendPromptSuccess) {
           messages.add(ChatBotResponse(
             response: state.chatBotEntity.botResponse!,
+            scrollController: scrollController,
           ));
           return Column(
             children: [
@@ -56,7 +65,6 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
               SendPromptTextfield(
                 controller: controller,
                 onSend: () async {
-                  successSnackBar(context, "Message sent successfully");
                   setState(() {
                     messages.add(Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
@@ -75,19 +83,42 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
             ],
           );
         } else {
-          return SendPromptTextfield(
-              controller: controller,
-              onSend: () async {
-                successSnackBar(context, "Message sent successfully");
-                messages.add(Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: ChatBubble(
-                    message: controller.text,
-                  ),
-                ));
-                await BlocProvider.of<SendPromptCubit>(context)
-                    .sendPrompt(prompt: controller.text);
-              });
+          return Column(
+            children: [
+              const SizedBox(height: 25),
+              const Padding(
+                padding: EdgeInsets.only(left: 10, right: 26),
+                child: ChatBotAppBar(),
+              ),
+              const SizedBox(height: 50),
+              Expanded(
+                child: state is SendPromptInitial
+                    ? const ChatbotGreetingState()
+                    : ChatbotMessagesList(
+                        messages: messages,
+                        controller: scrollController,
+                      ),
+              ),
+              SendPromptTextfield(
+                controller: controller,
+                onSend: () async {
+                  setState(() {
+                    messages.add(Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: ChatBubble(
+                        message: controller.text,
+                      ),
+                    ));
+                  });
+                  scrollToBottom();
+
+                  await BlocProvider.of<SendPromptCubit>(context)
+                      .sendPrompt(prompt: controller.text);
+                  controller.clear();
+                },
+              ),
+            ],
+          );
         }
       },
     );

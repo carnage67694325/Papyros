@@ -13,8 +13,9 @@ class ChatbotMessagesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      scrollDirection: Axis.vertical,
       controller: controller,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemCount: messages.length,
       itemBuilder: (context, index) {
         return messages[index];

@@ -10,6 +10,9 @@ class SendPromptCubit extends Cubit<SendPromptState> {
     this.chatBotSendPromptUseCase,
   ) : super(SendPromptInitial());
   final ChatBotSendPromptUseCase chatBotSendPromptUseCase;
+  void startNewChatBotSession() {
+    emit(SendPromptInitial());
+  }
 
   Future<void> sendPrompt({required String prompt}) async {
     emit(SendPromptLoading());
