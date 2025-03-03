@@ -15,6 +15,7 @@ import 'package:papyros/features/authentication/verfiy_otp/presentation/view/ver
 import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_UseCase.dart';
 import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
+import 'package:papyros/features/home_screen/presentation/view/home_screen.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
@@ -34,11 +35,7 @@ abstract class AppRouter {
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => BlocProvider(
-        create: (context) =>
-            SendPromptCubit(getIt.get<ChatBotSendPromptUseCase>()),
-        child: const ChatBotView(),
-      ),
+      builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
       path: kGettingStarted,
