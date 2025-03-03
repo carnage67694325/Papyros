@@ -11,4 +11,5 @@ class AppIcons {
       "assets/icons/Show Password icon.svg";
 
   static const String assetsLogoPapyros = "assets/logo/Papyros.svg";
+  static const String assetsChatBotNavIcon = "assets/logo/Group 8.svg";
 }

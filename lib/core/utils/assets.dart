@@ -9,6 +9,7 @@ class Assets {
       "assets/icons/profile-circle-svgrepo-com(2)1.svg";
   static const String assetsRobotCricle = "assets/icons/Ellipse4.svg";
   static const String assetsRoboIcon = "assets/icons/Group 5.svg";
+  static const String assetsRoboNavIcon = "assets/icons/Group 8.svg";
 
   /// Assets for assetsIconsCloseSM
   /// assets/icons/Close_SM.svg
