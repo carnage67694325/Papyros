@@ -9,14 +9,14 @@ import 'package:papyros/features/authentication/presentation/views/getting_start
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Navigation extends StatefulWidget {
+  const Navigation({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Navigation> createState() => _NavigationState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _NavigationState extends State<Navigation> {
   late PersistentTabController _controller;
   bool isVisable = true;
 
