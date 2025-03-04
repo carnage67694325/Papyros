@@ -10,6 +10,7 @@ class Assets {
   static const String assetsRobotCricle = "assets/icons/Ellipse4.svg";
   static const String assetsRoboIcon = "assets/icons/Group 5.svg";
   static const String assetsRoboNavIcon = "assets/icons/Group 8.svg";
+  static const String assetsPapyrus = "assets/icons/Papyrus.svg";
 
   /// Assets for assetsIconsCloseSM
   /// assets/icons/Close_SM.svg
