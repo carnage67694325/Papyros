@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/presentation/view/widgets/home_screen_app_bar.dart';
+import 'package:papyros/features/home/presentation/view/widgets/post_card.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -14,7 +13,10 @@ class HomeViewBody extends StatelessWidget {
     return const CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: HomeScreenAppBar(),
+          child: Column(
+            spacing: 14,
+            children: [HomeScreenAppBar(), PostCard()],
+          ),
         )
       ],
     );

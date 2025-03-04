@@ -11,7 +11,11 @@ class UserProfileHomeAvatar extends StatelessWidget {
   const UserProfileHomeAvatar({
     super.key,
     required this.userProfileImage,
+    this.height,
+    this.width,
   });
+  final double? height;
+  final double? width;
 
   final String userProfileImage;
 
@@ -45,25 +49,21 @@ class UserProfileHomeAvatar extends StatelessWidget {
                 CachedNetworkImageProvider(userProfileImage); // Default image
           }
 
-          return Stack(
-            children: [
-              Container(
-                width: 45, // Diameter of the circle
-                height: 45,
-                decoration: BoxDecoration(
-                  border: const Border.symmetric(
-                    horizontal: BorderSide(color: Colors.white, width: 2.5),
-                    vertical: BorderSide(color: Colors.white, width: 2.5),
-                  ),
-                  shape: BoxShape.circle, // Makes the container circular
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit
-                        .cover, // Fills the circle while maintaining aspect ratio
-                  ),
-                ),
+          return Container(
+            width: width ?? 45, // Diameter of the circle
+            height: height ?? 45,
+            decoration: BoxDecoration(
+              border: const Border.symmetric(
+                horizontal: BorderSide(color: Colors.white, width: 2.5),
+                vertical: BorderSide(color: Colors.white, width: 2.5),
               ),
-            ],
+              shape: BoxShape.circle, // Makes the container circular
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit
+                    .cover, // Fills the circle while maintaining aspect ratio
+              ),
+            ),
           );
         },
       ),

@@ -27,4 +27,11 @@ class AppStyles {
     ),
     fontWeight: FontWeight.bold,
   );
+  static TextStyle postContent = GoogleFonts.inter(
+    fontSize: 16,
+    color: Colors.black.withValues(
+      alpha: 0.75,
+    ),
+    fontWeight: FontWeight.normal,
+  );
 }
