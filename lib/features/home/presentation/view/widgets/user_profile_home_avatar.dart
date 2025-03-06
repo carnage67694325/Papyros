@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 
@@ -50,8 +51,8 @@ class UserProfileHomeAvatar extends StatelessWidget {
           }
 
           return Container(
-            width: width ?? 45, // Diameter of the circle
-            height: height ?? 45,
+            width: width ?? 45.w, // Diameter of the circle
+            height: height ?? 45.h,
             decoration: BoxDecoration(
               border: const Border.symmetric(
                 horizontal: BorderSide(color: Colors.white, width: 2.5),
