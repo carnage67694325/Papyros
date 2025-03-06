@@ -11,6 +11,15 @@ class Assets {
   static const String assetsRoboIcon = "assets/icons/Group 5.svg";
   static const String assetsRoboNavIcon = "assets/icons/Group 8.svg";
   static const String assetsPapyrus = "assets/icons/Papyrus.svg";
+  static const String assetsShareIcon =
+      "assets/icons/share-arrow-solid-svgrepo-com 1.svg";
+
+  static const String assetsCommentIcon =
+      "assets/icons/comment-1-svgrepo-com 1.svg";
+  static const String assetsRepostIcon =
+      "assets/icons/repost-svgrepo-com 1.svg";
+  static const String assetsBookMarkIcon =
+      "assets/icons/bookmark-fill-svgrepo-com 1.svg";
 
   /// Assets for assetsIconsCloseSM
   /// assets/icons/Close_SM.svg

@@ -106,12 +106,12 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
         } else {
           return Column(
             children: [
-              const SizedBox(height: 25),
-              const Padding(
-                padding: EdgeInsets.only(left: 10, right: 26),
-                child: ChatBotAppBar(),
+              SizedBox(height: 25.h),
+              Padding(
+                padding: EdgeInsets.only(left: 10.w, right: 26.w),
+                child: const ChatBotAppBar(),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: 50.h),
               Expanded(
                 child: state is SendPromptInitial
                     ? const ChatbotGreetingState()
@@ -125,7 +125,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                 onSend: () async {
                   setState(() {
                     messages.add(Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
+                      padding: EdgeInsets.only(bottom: 8.0.h),
                       child: ChatBubble(
                         message: controller.text,
                       ),

@@ -27,10 +27,10 @@ class ChatBotDrawer extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Padding(
-            padding: EdgeInsets.only(left: 20.w, right: 90.w),
+            padding: EdgeInsets.only(left: 20.w, right: 75.w),
             child: const NewChatButton(),
           ),
-          SizedBox(height: 680.h),
+          SizedBox(height: 725.h),
           Padding(
             padding: EdgeInsets.only(left: 19.w),
             child: const UserNameAndProfileCircle(),

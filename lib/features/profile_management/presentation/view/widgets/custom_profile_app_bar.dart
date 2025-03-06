@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
@@ -30,14 +31,14 @@ class CustomProfileAppBar extends StatelessWidget {
             size: 25,
           ),
         ),
-        const SizedBox(width: 15.5),
+        SizedBox(width: 15.5.w),
         Text(
           S.of(context).editProfile,
           style: AppStyles.header
-              .copyWith(fontSize: 16.5, fontWeight: FontWeight.w600),
+              .copyWith(fontSize: 16.5.sp, fontWeight: FontWeight.w600),
         ),
         SizedBox(
-          width: isArabic() ? 100 : 150,
+          width: isArabic() ? 100.w : 150.w,
         ),
         ElevatedButton(
           onPressed: () async {
@@ -69,15 +70,15 @@ class CustomProfileAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(20), // Rounded corners
             ),
             elevation: 4, // Remove shadow
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           ),
           child: Text(
             S.of(context).save,
             style: AppStyles.textfieldHint.copyWith(color: Colors.white),
           ),
         ),
-        const SizedBox(
-          width: 20,
+        SizedBox(
+          width: 20.w,
         )
       ],
     );

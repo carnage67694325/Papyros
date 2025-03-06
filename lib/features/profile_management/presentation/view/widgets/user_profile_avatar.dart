@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
@@ -47,8 +48,8 @@ class UserProfileAvatar extends StatelessWidget {
           return Stack(
             children: [
               Container(
-                width: 115, // Diameter of the circle
-                height: 115,
+                width: 115.w, // Diameter of the circle
+                height: 115.h,
                 decoration: BoxDecoration(
                   border: const Border.symmetric(
                     horizontal: BorderSide(color: Colors.white, width: 2.5),
