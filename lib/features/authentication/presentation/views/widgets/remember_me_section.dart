@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_check_box.dart';
 import 'package:papyros/generated/l10n.dart';
@@ -15,13 +16,13 @@ class RememberMeSection extends StatelessWidget {
       child: Row(
         children: [
           const CustomCheckBox(),
-          const SizedBox(
-            width: 4,
+          SizedBox(
+            width: 4.w,
           ),
           Text(
             S.of(context).rememberMe,
             style: AppStyles.textfieldHint.copyWith(
-              fontSize: 16,
+              fontSize: 16.sp,
             ),
           ),
         ],

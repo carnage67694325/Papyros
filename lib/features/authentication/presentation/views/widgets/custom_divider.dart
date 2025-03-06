@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({
@@ -7,11 +8,11 @@ class CustomDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Divider(
+    return Divider(
       color: Color(0xFFE8E8E8),
-      height: 30,
-      indent: 45,
-      endIndent: 45,
+      height: 30.h,
+      indent: 45.w,
+      endIndent: 45.w,
     );
   }
 }

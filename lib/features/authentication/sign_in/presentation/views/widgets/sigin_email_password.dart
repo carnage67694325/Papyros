@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_styles.dart';
@@ -35,19 +36,19 @@ class _SigninEmailPassWordSectionState
           hintStyle: AppStyles.textfieldHint,
           prefixIcon: Padding(
             padding: isArabic()
-                ? const EdgeInsets.only(
-                    right: 16, left: 10, top: 16, bottom: 16)
-                : const EdgeInsets.only(
-                    left: 16, right: 10, top: 16, bottom: 16),
+                ? EdgeInsets.only(
+                    right: 16.w, left: 10.w, top: 16.h, bottom: 16.h)
+                : EdgeInsets.only(
+                    left: 16.w, right: 10.w, top: 16.h, bottom: 16.h),
             child: SvgPicture.asset(
               AppIcons.assetsIconsEmailicon,
-              width: 15, // Adjust width as needed
-              height: 15, // Adjust height as needed
+              width: 15.w, // Adjust width as needed
+              height: 15.h, // Adjust height as needed
               fit: BoxFit.contain,
             ),
           ),
         ),
-        const SizedBox(height: 25),
+        SizedBox(height: 25.h),
         CustomTextFormField(
           onChanged: (data) {
             widget.signInEntity.passwordEntity = data;
@@ -57,9 +58,8 @@ class _SigninEmailPassWordSectionState
           hintStyle: AppStyles.textfieldHint,
           suffixIcon: Padding(
               padding: isArabic()
-                  ? const EdgeInsets.only(right: 6, left: 16, top: 0, bottom: 0)
-                  : const EdgeInsets.only(
-                      left: 6, right: 16, top: 0, bottom: 0),
+                  ? EdgeInsets.only(right: 6.w, left: 16.w, top: 0, bottom: 0)
+                  : EdgeInsets.only(left: 6.w, right: 16.w, top: 0, bottom: 0),
               child: IconButton(
                 onPressed: () {
                   if (isObscure) {
@@ -75,27 +75,27 @@ class _SigninEmailPassWordSectionState
                 icon: isObscure
                     ? SvgPicture.asset(
                         AppIcons.assetsIconsShowPasswordicon,
-                        width: 15,
-                        height: 15,
+                        width: 15.w,
+                        height: 15.h,
                         fit: BoxFit.contain,
                       )
                     : const Icon(Icons.visibility_off),
               )),
           prefixIcon: Padding(
             padding: isArabic()
-                ? const EdgeInsets.only(
-                    right: 16, left: 10, top: 16, bottom: 16)
-                : const EdgeInsets.only(
-                    left: 16, right: 10, top: 16, bottom: 16),
+                ? EdgeInsets.only(
+                    right: 16.w, left: 10.w, top: 16.h, bottom: 16.h)
+                : EdgeInsets.only(
+                    left: 16.w, right: 10.w, top: 16.h, bottom: 16.h),
             child: SvgPicture.asset(
               AppIcons.assetsIconsLockPasswordicon,
-              width: 20,
-              height: 25,
+              width: 20.w,
+              height: 25.h,
               fit: BoxFit.contain,
             ),
           ),
         ),
-        const SizedBox(height: 25),
+        SizedBox(height: 25.h),
       ],
     );
   }

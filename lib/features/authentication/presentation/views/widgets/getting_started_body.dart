@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
@@ -21,16 +22,16 @@ class GettingStartedBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const LanguageToggle(),
-          const SizedBox(
-            height: 109,
+          SizedBox(
+            height: 109.h,
           ),
           Text(
             S.of(context).logo,
             textAlign: TextAlign.center,
             style: AppStyles.logo,
           ),
-          const SizedBox(
-            height: 445,
+          SizedBox(
+            height: 445.h,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 38),
@@ -42,13 +43,13 @@ class GettingStartedBody extends StatelessWidget {
               buttonText: Text(S.of(context).getStarted,
                   style: AppStyles.header.copyWith(
                     color: AppColors.darkBrown,
-                    fontSize: 24,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.w500,
                   )),
             ),
           ),
-          const SizedBox(
-            height: 8,
+          SizedBox(
+            height: 8.h,
           ),
           CustomTextButton(
             onTap: () {

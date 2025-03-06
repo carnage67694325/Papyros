@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 
@@ -26,10 +27,10 @@ class _LanguageToggleState extends State<LanguageToggle> {
         });
       },
       child: Padding(
-        padding: const EdgeInsets.only(right: 230),
+        padding: EdgeInsets.only(right: 230.w),
         child: Container(
-          width: 120,
-          height: 40,
+          width: 120.w,
+          height: 40.h,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
             color: AppColors.lightPeach, // Background color of the toggle
@@ -44,8 +45,8 @@ class _LanguageToggleState extends State<LanguageToggle> {
                     ? Alignment.centerRight
                     : Alignment.centerLeft,
                 child: Container(
-                  width: 55,
-                  height: 30,
+                  width: 55.w,
+                  height: 30.h,
                   decoration: BoxDecoration(
                     color: Colors.white, // Color of the selected option
                     borderRadius: BorderRadius.circular(20),

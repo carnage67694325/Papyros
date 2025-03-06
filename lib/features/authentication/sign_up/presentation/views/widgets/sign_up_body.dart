@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:papyros/core/utils/app_router.dart';
@@ -51,9 +52,9 @@ class _SignUpBodyState extends State<SignUpBody> {
       builder: (context, state) {
         return CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: SizedBox(
-                height: 50,
+                height: 50.h,
               ),
             ),
             SliverPadding(
@@ -66,7 +67,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                       UserDataSection(
                         signUpEntity: signUpEntity,
                       ),
-                      const SizedBox(height: 45),
+                      SizedBox(height: 45.h),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -78,12 +79,12 @@ class _SignUpBodyState extends State<SignUpBody> {
                           ),
                           Padding(
                             padding: isArabic()
-                                ? const EdgeInsets.only(right: 30)
-                                : const EdgeInsets.only(left: 50),
+                                ? EdgeInsets.only(right: 30.w)
+                                : EdgeInsets.only(left: 50.w),
                             child: CustomTextButton(
                               onTap: () {},
                               buttonText: S.of(context).conditions,
-                              fontSize: 12,
+                              fontSize: 12.sp,
                             ),
                           ),
                         ],
@@ -93,12 +94,12 @@ class _SignUpBodyState extends State<SignUpBody> {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 20),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 20.h),
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: EdgeInsets.symmetric(horizontal: 30.w),
                 child: CustomElevatedButton(
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {
@@ -119,7 +120,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                           S.of(context).register,
                           style: AppStyles.header.copyWith(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 24.sp,
                           ),
                         )
                       : LoadingAnimationWidget.threeRotatingDots(
@@ -127,8 +128,8 @@ class _SignUpBodyState extends State<SignUpBody> {
                 ),
               ),
             ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 20),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 20.h),
             ),
             SliverToBoxAdapter(
               child: Center(
@@ -139,8 +140,8 @@ class _SignUpBodyState extends State<SignUpBody> {
                     buttonText: S.of(context).haveAccount),
               ),
             ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 20),
+            SliverToBoxAdapter(
+              child: SizedBox(height: 20.h),
             ),
           ],
         );

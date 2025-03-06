@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_form_field.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/header_section.dart';
@@ -19,7 +20,7 @@ class UserDataSection extends StatelessWidget {
           headerText: S.of(context).gettingStarted,
           subHeaderText: S.of(context).createAccount,
         ),
-        const SizedBox(height: 25),
+        SizedBox(height: 25.h),
         Row(
           children: [
             Expanded(
@@ -31,7 +32,7 @@ class UserDataSection extends StatelessWidget {
                 hintStyle: AppStyles.textfieldHint,
               ),
             ),
-            const SizedBox(width: 12),
+            SizedBox(width: 12.w),
             Expanded(
               child: CustomTextFormField(
                 onChanged: (data) {
@@ -43,17 +44,17 @@ class UserDataSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 25),
+        SizedBox(height: 25.h),
         EmailPassWordSection(
           signUpEntity: signUpEntity,
         ),
-        const SizedBox(height: 25),
+        SizedBox(height: 25.h),
         DateOfBirthTextFormField(
             onChanged: (data) {
               signUpEntity.dobEntity = data;
             },
             hintText: "YY/DD/MM"),
-        const SizedBox(height: 25),
+        SizedBox(height: 25.h),
         GenderSelectionTextFormField(
             onChanged: (data) {
               signUpEntity.genderEntity = data;
