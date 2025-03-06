@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
@@ -13,13 +14,13 @@ class ChatbotGreetingState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 88),
-        const ChatBotLogo(
-          height: 97,
+        SizedBox(height: 88.h),
+        ChatBotLogo(
+          height: 97.h,
         ),
-        const SizedBox(height: 25),
+        SizedBox(height: 25.h),
         Padding(
-          padding: const EdgeInsets.only(left: 22, right: 26),
+          padding: EdgeInsets.only(left: 22.w, right: 26.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment:
@@ -29,16 +30,16 @@ class ChatbotGreetingState extends StatelessWidget {
                 S.of(context).hello + ",",
                 style: AppStyles.chatHeader.copyWith(
                   color: AppColors.lightPeach,
-                  fontSize: 32,
+                  fontSize: 32.sp,
                 ),
               ),
-              const SizedBox(width: 8), // Adjust spacing between the two texts
+              SizedBox(width: 8.w), // Adjust spacing between the two texts
               Flexible(
                 child: Text(
                   S.of(context).chatBotGreetings,
                   softWrap: true, // Ensure text wraps if necessary
                   style: AppStyles.chatHeader.copyWith(
-                    fontSize: 32,
+                    fontSize: 32.sp,
                   ),
                   overflow: TextOverflow
                       .visible, // Allow the text to go beyond if needed

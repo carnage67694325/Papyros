@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/new+chat_button.dart';
@@ -16,7 +17,7 @@ class ChatBotDrawer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           Padding(
             padding: const EdgeInsets.only(left: 51),
             child: Text(
@@ -24,15 +25,15 @@ class ChatBotDrawer extends StatelessWidget {
               style: AppStyles.chatHeader,
             ),
           ),
-          const SizedBox(height: 10),
-          const Padding(
-            padding: EdgeInsets.only(left: 20, right: 90),
-            child: NewChatButton(),
+          SizedBox(height: 10.h),
+          Padding(
+            padding: EdgeInsets.only(left: 20.w, right: 90.w),
+            child: const NewChatButton(),
           ),
-          const SizedBox(height: 680),
-          const Padding(
-            padding: EdgeInsets.only(left: 19),
-            child: UserNameAndProfileCircle(),
+          SizedBox(height: 680.h),
+          Padding(
+            padding: EdgeInsets.only(left: 19.w),
+            child: const UserNameAndProfileCircle(),
           )
         ],
       ),

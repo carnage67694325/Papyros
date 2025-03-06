@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_styles.dart';
@@ -71,11 +72,11 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
           return Column(
             children: [
               const SizedBox(height: 25),
-              const Padding(
-                padding: EdgeInsets.only(left: 10, right: 26),
-                child: ChatBotAppBar(),
+              Padding(
+                padding: EdgeInsets.only(left: 10.w, right: 26.w),
+                child: const ChatBotAppBar(),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: 50.h),
               Expanded(
                 child: ChatbotMessagesList(
                   messages: messages,
@@ -87,7 +88,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                 onSend: () async {
                   setState(() {
                     messages.add(Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
+                      padding: EdgeInsets.only(bottom: 8.0.h, top: 8.0.h),
                       child: ChatBubble(
                         message: controller.text,
                       ),
