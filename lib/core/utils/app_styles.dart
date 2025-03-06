@@ -22,9 +22,7 @@ class AppStyles {
   );
   static TextStyle chatHeader = GoogleFonts.inter(
     fontSize: 24,
-    color: Colors.black.withValues(
-      alpha: 0.75,
-    ),
+    color: Colors.black,
     fontWeight: FontWeight.bold,
   );
 }
