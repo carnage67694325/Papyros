@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/assets.dart';
-import 'package:papyros/core/utils/functions/pick_image.dart';
-import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 
 class AddImageButton extends StatelessWidget {
   const AddImageButton({

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/generated/l10n.dart';
 
@@ -28,8 +29,8 @@ class SlidingAnimatedLogo extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: AppStyles.logo,
                 ),
-                const SizedBox(
-                  height: 4,
+                SizedBox(
+                  height: 4.h,
                 ),
               ],
             ),

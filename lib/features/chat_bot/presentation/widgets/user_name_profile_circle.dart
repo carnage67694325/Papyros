@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/assets.dart';
@@ -14,14 +15,14 @@ class UserNameAndProfileCircle extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(Assets.assetsPoflieCricle),
-        const SizedBox(width: 10),
+        SizedBox(width: 10.w),
         Text(
           'User Name',
           style: AppStyles.chatHeader
-              .copyWith(fontSize: 15, color: Colors.black),
+              .copyWith(fontSize: 15.sp, color: Colors.black),
         ),
-        const SizedBox(
-          height: 19,
+        SizedBox(
+          height: 19.h,
         )
       ],
     );

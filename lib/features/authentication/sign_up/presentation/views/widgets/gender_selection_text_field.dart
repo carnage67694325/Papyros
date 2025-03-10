@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/main.dart';
 
@@ -42,8 +43,10 @@ class _GenderSelectionTextFormFieldState
         hintText: widget.hintText,
         prefixIcon: Padding(
           padding: isArabic()
-              ? const EdgeInsets.only(right: 16, left: 10, top: 16, bottom: 16)
-              : const EdgeInsets.only(left: 16, right: 10, top: 16, bottom: 16),
+              ? EdgeInsets.only(
+                  right: 16.w, left: 10.w, top: 16.h, bottom: 16.h)
+              : EdgeInsets.only(
+                  left: 16.w, right: 10.w, top: 16.h, bottom: 16.h),
           child: const Icon(
             Icons.person,
             color: AppColors.iconColor,

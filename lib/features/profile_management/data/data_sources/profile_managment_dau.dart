@@ -1,6 +1,3 @@
-import 'package:dartz/dartz.dart';
-import 'package:papyros/core/errors/failure.dart';
-
 import '../models/User_profile_model.dart';
 
 abstract class ProfileRemoteDataSource {

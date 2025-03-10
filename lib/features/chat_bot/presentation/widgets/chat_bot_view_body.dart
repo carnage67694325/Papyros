@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
-import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
-import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_app_bar.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_greetings_state.dart';
-import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_message_list.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_respsne.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bubble.dart';
@@ -71,11 +68,11 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
           return Column(
             children: [
               const SizedBox(height: 25),
-              const Padding(
-                padding: EdgeInsets.only(left: 10, right: 26),
-                child: ChatBotAppBar(),
+              Padding(
+                padding: EdgeInsets.only(left: 10.w, right: 26.w),
+                child: const ChatBotAppBar(),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: 50.h),
               Expanded(
                 child: ChatbotMessagesList(
                   messages: messages,
@@ -87,7 +84,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                 onSend: () async {
                   setState(() {
                     messages.add(Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
+                      padding: EdgeInsets.only(bottom: 8.0.h, top: 8.0.h),
                       child: ChatBubble(
                         message: controller.text,
                       ),
@@ -105,12 +102,12 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
         } else {
           return Column(
             children: [
-              const SizedBox(height: 25),
-              const Padding(
-                padding: EdgeInsets.only(left: 10, right: 26),
-                child: ChatBotAppBar(),
+              SizedBox(height: 25.h),
+              Padding(
+                padding: EdgeInsets.only(left: 10.w, right: 26.w),
+                child: const ChatBotAppBar(),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: 50.h),
               Expanded(
                 child: state is SendPromptInitial
                     ? const ChatbotGreetingState()
@@ -124,7 +121,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                 onSend: () async {
                   setState(() {
                     messages.add(Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
+                      padding: EdgeInsets.only(bottom: 8.0.h),
                       child: ChatBubble(
                         message: controller.text,
                       ),

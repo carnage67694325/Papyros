@@ -1,17 +1,22 @@
 import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
-import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
-class UserProfileAvatar extends StatelessWidget {
-  const UserProfileAvatar({
+class UserProfileHomeAvatar extends StatelessWidget {
+  const UserProfileHomeAvatar({
     super.key,
     required this.userProfileImage,
+    this.height,
+    this.width,
   });
+  final double? height;
+  final double? width;
 
   final String userProfileImage;
 
@@ -45,36 +50,21 @@ class UserProfileAvatar extends StatelessWidget {
                 CachedNetworkImageProvider(userProfileImage); // Default image
           }
 
-          return Stack(
-            children: [
-              Container(
-                width: 115.w, // Diameter of the circle
-                height: 115.h,
-                decoration: BoxDecoration(
-                  border: const Border.symmetric(
-                    horizontal: BorderSide(color: Colors.white, width: 2.5),
-                    vertical: BorderSide(color: Colors.white, width: 2.5),
-                  ),
-                  shape: BoxShape.circle, // Makes the container circular
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit
-                        .cover, // Fills the circle while maintaining aspect ratio
-                  ),
-                ),
+          return Container(
+            width: width ?? 45.w, // Diameter of the circle
+            height: height ?? 45.h,
+            decoration: BoxDecoration(
+              border: const Border.symmetric(
+                horizontal: BorderSide(color: Colors.white, width: 2.5),
+                vertical: BorderSide(color: Colors.white, width: 2.5),
               ),
-              Positioned(
-                right: 35,
-                top: 40,
-                child: AddImageButton(
-                  onTap: () async {
-                    await BlocProvider.of<UpdateProfileImageCubit>(context)
-                        .pickUserProfileImage();
-                  },
-                  height: 40,
-                ),
+              shape: BoxShape.circle, // Makes the container circular
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit
+                    .cover, // Fills the circle while maintaining aspect ratio
               ),
-            ],
+            ),
           );
         },
       ),

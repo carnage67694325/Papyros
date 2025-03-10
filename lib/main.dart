@@ -38,7 +38,7 @@ class _PapyrosAppState extends State<PapyrosApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(360, 690),
+        designSize: const Size(393, 915),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, context) {

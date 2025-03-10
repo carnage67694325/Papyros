@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
-import 'package:papyros/features/profile_management/presentation/view/widgets/user_data_profile_info.dart';
 
 part 'get_user_profile_state.dart';
 

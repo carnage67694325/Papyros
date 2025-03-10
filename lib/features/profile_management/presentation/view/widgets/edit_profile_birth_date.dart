@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
@@ -26,13 +27,13 @@ class EditProfileBirthDate extends StatelessWidget {
             CustomTextButton(onTap: () {}, buttonText: S.of(context).edit),
           ],
         ),
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: 5.h,
         ),
         Text(
           date.substring(0, 10),
           style: AppStyles.header
-              .copyWith(fontSize: 20, fontWeight: FontWeight.w500),
+              .copyWith(fontSize: 20.sp, fontWeight: FontWeight.w500),
         ),
       ],
     );

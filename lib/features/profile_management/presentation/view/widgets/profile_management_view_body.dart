@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
@@ -62,14 +63,14 @@ class ProfileManagementViewBody extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: 20.h,
                           ),
                           CustomProfileAppBar(
                             userProfileEntity: state.userProfileEntity,
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: 10.h,
                           ),
                           SizedBox(
                             height: MediaQuery.sizeOf(context).height * 0.34,
@@ -80,8 +81,8 @@ class ProfileManagementViewBody extends StatelessWidget {
                                       state.userProfileEntity.backgroundImage!,
                                 ),
                                 Positioned(
-                                  right: isArabic() ? 10 : 265,
-                                  top: 160,
+                                  right: isArabic() ? 10.w : 265.w,
+                                  top: 160.h,
                                   child: UserProfileAvatar(
                                     userProfileImage:
                                         state.userProfileEntity.profileImage!,
@@ -90,8 +91,8 @@ class ProfileManagementViewBody extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 5,
+                          SizedBox(
+                            height: 5.h,
                           ),
                           UserProfileDataInfo(
                               name: state.userProfileEntity.userName!,
@@ -102,24 +103,24 @@ class ProfileManagementViewBody extends StatelessWidget {
                             height: 5,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            padding: EdgeInsets.symmetric(horizontal: 18.w),
                             child: EditProfileBirthDate(
                               date: state.userProfileEntity.dob!,
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: 20.h,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18),
+                            padding: EdgeInsets.symmetric(horizontal: 18.w),
                             child: CustomTextButton(
                               onTap: () {},
                               buttonText: S.of(context).accountSettings,
                               fontSize: 20,
                             ),
                           ),
-                          const SizedBox(
-                            height: 105,
+                          SizedBox(
+                            height: 105.h,
                           ),
                         ],
                       ),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:papyros/core/utils/app_router.dart';
@@ -50,14 +51,14 @@ class _SignInBodyState extends State<SignInBody> {
           shrinkWrap:
               true, // Allows the content to be resized within the available space
           slivers: [
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: SizedBox(
-                height: 50,
+                height: 50.h,
               ),
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(26),
+                padding: EdgeInsets.all(26.r),
                 child: Form(
                   key: formKey,
                   child: Column(
@@ -78,11 +79,11 @@ class _SignInBodyState extends State<SignInBody> {
                         onTap: () {},
                         buttonText: S.of(context).forgotPass,
                       ),
-                      const SizedBox(
-                        height: 25,
+                      SizedBox(
+                        height: 25.h,
                       ),
                       const RememberMeSection(),
-                      const SizedBox(height: 47),
+                      SizedBox(height: 47.h),
                       CustomElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
@@ -98,14 +99,14 @@ class _SignInBodyState extends State<SignInBody> {
                                 S.of(context).signIN,
                                 style: AppStyles.header.copyWith(
                                   color: Colors.white,
-                                  fontSize: 24,
+                                  fontSize: 24.sp,
                                 ),
                               )
                             : LoadingAnimationWidget.threeRotatingDots(
                                 color: Colors.white, size: 35),
                       ),
-                      const SizedBox(
-                        height: 14,
+                      SizedBox(
+                        height: 14.h,
                       ),
                       CustomTextButton(
                         onTap: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 
 class SendPromptTextfield extends StatelessWidget {
@@ -14,7 +15,7 @@ class SendPromptTextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 100.h,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: AppColors.textfieldBackGroundColor,
@@ -48,8 +49,8 @@ class SendPromptTextfield extends StatelessWidget {
           GestureDetector(
             onTap: onSend,
             child: Container(
-              height: 40,
-              width: 40,
+              height: 40.h,
+              width: 40.w,
               decoration: const BoxDecoration(
                 color: AppColors.lightPeach,
                 shape: BoxShape.circle,

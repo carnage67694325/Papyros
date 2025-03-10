@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -47,8 +48,8 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 350,
+                  SizedBox(
+                    height: 350.h,
                   ),
                   CustomTextFormField(
                     onChanged: (data) {
@@ -58,14 +59,14 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                     hintStyle: AppStyles.textfieldHint,
                     prefixIcon: Padding(
                       padding: isArabic()
-                          ? const EdgeInsets.only(
-                              right: 16, left: 10, top: 16, bottom: 16)
-                          : const EdgeInsets.only(
-                              left: 16, right: 10, top: 16, bottom: 16),
+                          ? EdgeInsets.only(
+                              right: 16.w, left: 10.w, top: 16.h, bottom: 16.h)
+                          : EdgeInsets.only(
+                              left: 16.w, right: 10.w, top: 16.h, bottom: 16.h),
                       child: SvgPicture.asset(
                         AppIcons.assetsIconsEmailicon,
-                        width: 15, // Adjust width as needed
-                        height: 15, // Adjust height as needed
+                        width: 15.w, // Adjust width as needed
+                        height: 15.h, // Adjust height as needed
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -79,8 +80,8 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                     },
                     hintText: 'verfiy OTP',
                   ),
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: 50.h,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 38),
@@ -96,7 +97,7 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                           ? Text(S.of(context).sendOTP,
                               style: AppStyles.header.copyWith(
                                 color: Colors.white,
-                                fontSize: 24,
+                                fontSize: 24.sp,
                               ))
                           : LoadingAnimationWidget.threeRotatingDots(
                               color: Colors.white, size: 35),

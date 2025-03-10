@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/assets.dart';
 
@@ -12,14 +13,14 @@ class RemoveImageButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        height: 50,
-        width: 50,
+        height: 50.h,
+        width: 50.w,
         decoration: BoxDecoration(
           color: Colors.grey[800]!.withOpacity(0.68), // Dark grey color
           shape: BoxShape.circle,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.all(15.r),
           child: SvgPicture.asset(Assets.assetsIconsCloseSM),
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:papyros/features/chat_bot/presentation/widgets/chat_bubble.dart';
 
 class ChatbotMessagesList extends StatelessWidget {
   const ChatbotMessagesList({
