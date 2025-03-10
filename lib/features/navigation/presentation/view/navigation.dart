@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/app_icons.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
-import 'package:papyros/features/home/presentation/view/widgets/home_view_body.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class Navigation extends StatefulWidget {

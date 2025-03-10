@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
-import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:papyros/features/profile_management/presentation/view/widgets/add_image_button.dart';

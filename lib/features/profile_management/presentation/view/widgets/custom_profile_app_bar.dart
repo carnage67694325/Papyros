@@ -8,7 +8,6 @@ import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/new_user_data.dart';
 import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
-import 'package:papyros/features/profile_management/presentation/view/widgets/user_data_profile_info.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:papyros/main.dart';
 
