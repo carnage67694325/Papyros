@@ -9,10 +9,10 @@ import 'package:papyros/features/home/domain/repositories/post_repo.dart';
 
 import '../../../../core/Prefernces/Shaerdperefeancses.dart';
 
-class Postsrepoimp implements GetPostsRepo {
+class GetPostsRepoimp implements GetPostsRepo {
   final Getpostsdatasource postdau;
   final PrefasHandelr tokenHandler;
-  Postsrepoimp(this.postdau, this.tokenHandler);
+  GetPostsRepoimp(this.postdau, this.tokenHandler);
   @override
   Future<Either<Failure, PostsEntity>> getPosts() async {
     try {

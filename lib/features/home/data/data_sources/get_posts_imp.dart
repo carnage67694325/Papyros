@@ -4,9 +4,9 @@ import 'package:papyros/features/home/data/data_sources/get_posts.dart';
 import '../../../../core/endpoints/endpiont.dart';
 import '../../../../core/utils/api_service.dart';
 
-class Getpostsimp implements Getpostsdatasource {
+class GetPostsImp implements Getpostsdatasource {
   final Dio dio;
-  Getpostsimp(this.dio);
+  GetPostsImp(this.dio);
   @override
   Future<Map<String, dynamic>> getallposts(String token) async {
     final response = await dio.get(
