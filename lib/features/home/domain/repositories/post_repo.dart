@@ -3,6 +3,6 @@ import 'package:papyros/features/home/domain/entities/posts_entity.dart';
 
 import '../../../../core/errors/failure.dart';
 
-abstract class PostsRepe {
+abstract class GetPostsRepo {
   Future<Either<Failure, PostsEntity>> getPosts();
 }

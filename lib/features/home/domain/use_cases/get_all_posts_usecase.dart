@@ -6,7 +6,7 @@ import '../../../../core/errors/failure.dart';
 import '../../../profile_management/domain/entities/user_profile_entity.dart';
 
 class GetPostsUsecase {
-  final PostsRepe postrepo;
+  final GetPostsRepo postrepo;
 
   GetPostsUsecase(this.postrepo);
   Future<Either<Failure, PostsEntity>> call() async {

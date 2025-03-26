@@ -14,6 +14,12 @@ import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verf
 import 'package:papyros/features/chat_bot/data/data_source/send_prompt_data_source_impl.dart';
 import 'package:papyros/features/chat_bot/data/repositories/chat_bot_repo_impl.dart';
 import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_UseCase.dart';
+import 'package:papyros/features/home/data/data_sources/get_posts.dart';
+import 'package:papyros/features/home/data/data_sources/get_posts_imp.dart';
+import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
+import 'package:papyros/features/home/domain/repositories/post_repo.dart';
+import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
+import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_mangment_imp.dart';
 import 'package:papyros/features/profile_management/data/repositories/profile_managment_repo_imp.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
@@ -47,4 +53,6 @@ void setupServiceLoactor() {
       ChatBotRepoImpl(
           sendPromptDataSource:
               SendPromptDataSourceImpl(apiService: getIt.get<ApiService>()))));
+  getIt.registerSingleton<GetPostsUsecase>(
+      (GetPostsUsecase(GetPostsRepoimp(GetPostsImp(Dio()), PrefasHandelr()))));
 }
