@@ -5,8 +5,9 @@ import 'Posts.dart';
 
 class Allpostsmodel {
   Allpostsmodel({
-      this.message, 
-      this.posts,});
+    this.message,
+    this.posts,
+  });
 
   Allpostsmodel.fromJson(dynamic json) {
     message = json['message'];
@@ -28,5 +29,4 @@ class Allpostsmodel {
     }
     return map;
   }
-
 }

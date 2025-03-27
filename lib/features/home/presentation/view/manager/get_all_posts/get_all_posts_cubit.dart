@@ -13,8 +13,8 @@ class GetAllPostsCubit extends Cubit<GetAllPostsState> {
     var response = await getPostsUsecase.call();
     response.fold((failure) {
       return emit(GetAllPostsFailure(errMessage: failure.errMessage));
-    }, (postsEntity) {
-      return emit(GetAllPostsSuccess(posts: const <PostsEntity>[]));
+    }, (List<PostsEntity> posts) {
+      return emit(GetAllPostsSuccess(posts: posts));
     });
   }
 }

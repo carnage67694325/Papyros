@@ -9,7 +9,7 @@ class GetPostsUsecase {
   final GetPostsRepo postrepo;
 
   GetPostsUsecase(this.postrepo);
-  Future<Either<Failure, PostsEntity>> call() async {
+  Future<Either<Failure, List<PostsEntity>>> call() async {
     return await postrepo.getPosts();
   }
 }

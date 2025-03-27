@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:papyros/features/home/data/data_sources/get_posts.dart';
 
@@ -8,11 +10,13 @@ class GetPostsImp implements Getpostsdatasource {
   final Dio dio;
   GetPostsImp(this.dio);
   @override
-  Future<Map<String, dynamic>> getallposts(String token) async {
+  Future<Map<String, dynamic>> getallposts() async {
+    final String url = '${ApiService.baseUrl}${Endpiont.allpostsEndpoint}';
+    log(url);
     final response = await dio.get(
-      '${ApiService.baseUrl}${Endpiont.allpostsEndpoint}',
-      options: Options(headers: {'token': token}),
+      url,
     );
+
     return response.data;
   }
 

@@ -54,5 +54,5 @@ void setupServiceLoactor() {
           sendPromptDataSource:
               SendPromptDataSourceImpl(apiService: getIt.get<ApiService>()))));
   getIt.registerSingleton<GetPostsUsecase>(
-      (GetPostsUsecase(GetPostsRepoimp(GetPostsImp(Dio()), PrefasHandelr()))));
+      (GetPostsUsecase(GetPostsRepoimp(GetPostsImp(Dio())))));
 }

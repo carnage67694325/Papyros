@@ -11,15 +11,15 @@ import '../../../../core/Prefernces/Shaerdperefeancses.dart';
 
 class GetPostsRepoimp implements GetPostsRepo {
   final Getpostsdatasource postdau;
-  final PrefasHandelr tokenHandler;
-  GetPostsRepoimp(this.postdau, this.tokenHandler);
+  GetPostsRepoimp(this.postdau);
   @override
-  Future<Either<Failure, PostsEntity>> getPosts() async {
+  Future<Either<Failure, List<PostsEntity>>> getPosts() async {
     try {
-      final token = await tokenHandler.getAuthToken();
+      final data = await postdau.getallposts();
+      final List<PostsEntity> postsList =
+          (data["posts"] as List).map((post) => Posts.fromJson(post)).toList();
 
-      final data = await postdau.getallposts(token!);
-      return right(Allpostsmodel.fromJson(data["Posts"]) as PostsEntity);
+      return right(postsList);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
