@@ -13,14 +13,14 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GetAllPostsCubit, GetAllPostsState>(
-      listener: (context, state) {
-        if (state is GetAllPostsFailure) {
-          errorSnackBar(context, state.errMessage);
-          log(state.errMessage);
-        }
-      },
-      child: CustomScrollView(
+    return BlocConsumer<GetAllPostsCubit, GetAllPostsState>(
+        listener: (context, state) {
+      if (state is GetAllPostsFailure) {
+        errorSnackBar(context, state.errMessage);
+        log(state.errMessage);
+      }
+    }, builder: (context, state) {
+      return CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
             child: Column(
@@ -30,12 +30,19 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          SliverList.builder(
-            itemBuilder: (context, index) => const PostCard(),
-            itemCount: 10,
-          ),
+          state is GetAllPostsSuccess
+              ? SliverList.builder(
+                  itemBuilder: (context, index) => PostCard(
+                    description: state.posts[index].description!,
+                    userName: '',
+                    userProfileImageUrl: '',
+                    imageUrl: state.posts[index].images![0].image,
+                  ),
+                  itemCount: state.posts.length,
+                )
+              : const SliverToBoxAdapter(child: SizedBox()),
         ],
-      ),
-    );
+      );
+    });
   }
 }
