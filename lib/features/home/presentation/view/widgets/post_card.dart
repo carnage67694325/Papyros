@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_interact_seaction.dart';
@@ -19,6 +22,7 @@ class PostCard extends StatelessWidget {
   final String userProfileImageUrl;
   final String description;
   final String? imageUrl;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,8 +41,7 @@ class PostCard extends StatelessWidget {
             child: Row(
               children: [
                 UserProfileHomeAvatar(
-                  userProfileImage: userProfileImageUrl ??
-                      "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
+                  userProfileImage: userProfileImageUrl,
                   height: 55.h,
                   width: 55.w,
                 ),
@@ -88,21 +91,68 @@ class PostCard extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(
                   left: 65.0.h, right: 32.h, top: 16.h, bottom: 6.h),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(imageUrl ??
-                        "https://www.thetimes.com/imageserver/image/%2Fmethode%2Ftimes%2Fprod%2Fweb%2Fbin%2F99fb9468-4b44-406d-a4c2-5646791b6367.jpg?crop=1600%2C900%2C0%2C0&resize=1200"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              child: imageUrl != null
+                  ? GestureDetector(
+                      onTap: () {
+                        showImageInFull(context);
+                      },
+                      child: Hero(
+                        tag: imageUrl!,
+                        child: Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(imageUrl!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(
+                      height: 50.h,
+                      color: AppColors.darkBrown,
+                    ),
             ),
           ),
           const PostInteractSection()
         ],
       ),
+    );
+  }
+
+  Future<Object?> showImageInFull(BuildContext context) {
+    return showGeneralDialog(
+      context: context,
+      barrierLabel: "ImagePreview",
+      barrierDismissible: true,
+      barrierColor:
+          Colors.black.withOpacity(0.7), // semi-transparent background
+      transitionDuration: Duration(milliseconds: 300),
+      pageBuilder: (_, __, ___) {
+        return Center(
+          child: Hero(
+            tag: imageUrl!,
+            child: GestureDetector(
+              onTap: () => GoRouter.of(context).pop(),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl!,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return FadeTransition(
+          opacity: anim,
+          child: child,
+        );
+      },
     );
   }
 }
