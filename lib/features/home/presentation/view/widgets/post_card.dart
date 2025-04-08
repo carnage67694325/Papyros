@@ -38,7 +38,7 @@ class PostCard extends StatelessWidget {
               children: [
                 UserProfileHomeAvatar(
                   userProfileImage: userProfileImageUrl ??
-                      "https://images.immediate.co.uk/production/volatile/sites/3/2017/12/yoda-the-empire-strikes-back-28a7558.jpg?quality=90&webp=true&resize=800,534",
+                      "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
                   height: 55.h,
                   width: 55.w,
                 ),
@@ -53,7 +53,7 @@ class PostCard extends StatelessWidget {
                       height: 16.h,
                     ),
                     Text(
-                      "Yoda",
+                      userName,
                       style: AppStyles.chatHeader.copyWith(fontSize: 16),
                     ),
                     SizedBox(

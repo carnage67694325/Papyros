@@ -4,5 +4,5 @@ class Endpiont {
   static const String verfiyOtpEndpoint = "auth/otp";
   static const String myProflieEndpoint = "myprofile";
   static const String chatPotEndpoint = "api/prompt";
-  static const String allpostsEndpoint = "posts?size=10";
+  static const String allpostsEndpoint = "posts?size=200";
 }

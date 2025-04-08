@@ -34,8 +34,9 @@ class HomeViewBody extends StatelessWidget {
               ? SliverList.builder(
                   itemBuilder: (context, index) => PostCard(
                     description: state.posts[index].description!,
-                    userName: '',
-                    userProfileImageUrl: '',
+                    userName: state.posts[index].createdBy!.userName!,
+                    userProfileImageUrl:
+                        state.posts[index].createdBy!.profileImage!,
                     imageUrl: state.posts[index].images![0].image,
                   ),
                   itemCount: state.posts.length,

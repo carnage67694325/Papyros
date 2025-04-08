@@ -1,11 +1,13 @@
-import '../../domain/entities/posts_entity.dart';
+import 'package:papyros/features/home/data/models/createdBy.dart';
+
 import 'Images.dart';
+import '../../domain/entities/posts_entity.dart';
 
 class Posts extends PostsEntity {
   Posts({
     String? id,
     String? description,
-    String? createdBy,
+    CreatedBy? createdBy,
     String? createdAt,
     bool? isEdited,
     String? tag,
@@ -14,23 +16,25 @@ class Posts extends PostsEntity {
     List<Images>? images,
     String? updatedAt,
   }) : super(
-          id ?? '', // Default empty string if null
-          description ?? '',
-          createdBy ?? '',
-          createdAt ?? '',
-          isEdited ?? false,
-          tag ?? '',
-          likes ?? [],
-          mention ?? [],
-          images ?? [],
-          updatedAt ?? '',
+          id: id ?? '',
+          description: description ?? '',
+          createdBy: createdBy ?? CreatedBy(),
+          createdAt: createdAt ?? '',
+          isEdited: isEdited ?? false,
+          tag: tag ?? '',
+          likes: likes ?? [],
+          mention: mention ?? [],
+          images: images ?? [],
+          updatedAt: updatedAt ?? '',
         );
 
   factory Posts.fromJson(Map<String, dynamic> json) {
     return Posts(
       id: json['_id'],
       description: json['description'],
-      createdBy: json['createdBy'],
+      createdBy: json['createdBy'] != null
+          ? CreatedBy.fromJson(json['createdBy'])
+          : null,
       createdAt: json['createdAt'],
       isEdited: json['isEdited'] ?? false,
       tag: json['tag'] ?? '',
@@ -48,7 +52,7 @@ class Posts extends PostsEntity {
     return {
       '_id': id,
       'description': description,
-      'createdBy': createdBy,
+      'createdBy': createdBy?.toJson(),
       'createdAt': createdAt,
       'isEdited': isEdited,
       'tag': tag,
