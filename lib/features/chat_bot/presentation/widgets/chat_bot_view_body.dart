@@ -119,19 +119,21 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
               SendPromptTextfield(
                 controller: controller,
                 onSend: () async {
-                  setState(() {
-                    messages.add(Padding(
-                      padding: EdgeInsets.only(bottom: 8.0.h),
-                      child: ChatBubble(
-                        message: controller.text,
-                      ),
-                    ));
-                  });
-                  scrollToBottom();
+                  if (controller.text.isNotEmpty) {
+                    setState(() {
+                      messages.add(Padding(
+                        padding: EdgeInsets.only(bottom: 8.0.h),
+                        child: ChatBubble(
+                          message: controller.text,
+                        ),
+                      ));
+                    });
+                    scrollToBottom();
 
-                  await BlocProvider.of<SendPromptCubit>(context)
-                      .sendPrompt(prompt: controller.text);
-                  controller.clear();
+                    await BlocProvider.of<SendPromptCubit>(context)
+                        .sendPrompt(prompt: controller.text);
+                    controller.clear();
+                  } else {}
                 },
               ),
             ],

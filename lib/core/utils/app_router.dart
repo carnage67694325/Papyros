@@ -24,6 +24,7 @@ import 'package:papyros/features/profile_management/presentation/manager/get_use
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
+import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
 abstract class AppRouter {
   static const kGettingStarted = '/gettingStarted';
@@ -41,6 +42,10 @@ abstract class AppRouter {
         child: const Navigation(),
       ),
     ),
+    /*GoRoute(
+      path: '/',
+      builder: (context, state) => const SplashView(),
+    ),*/
     GoRoute(
       path: kGettingStarted,
       pageBuilder: (context, state) {

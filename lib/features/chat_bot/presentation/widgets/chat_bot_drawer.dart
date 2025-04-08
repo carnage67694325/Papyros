@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
-import 'package:papyros/features/chat_bot/presentation/widgets/new+chat_button.dart';
+import 'package:papyros/features/chat_bot/presentation/widgets/new_chat_button.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/user_name_profile_circle.dart';
 
 class ChatBotDrawer extends StatelessWidget {
