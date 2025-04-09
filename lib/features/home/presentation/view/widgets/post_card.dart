@@ -162,13 +162,20 @@ class PostCard extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: AppColors.backGroundColor.withOpacity(0.2),
+                  color: Colors.black.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Text(
-                  description,
-                  style: AppStyles.postContent,
-                  textAlign: TextAlign.center,
+                child: SelectionContainer.disabled(
+                  // Wrap with this to disable selection
+                  child: Text(
+                    description,
+                    style: AppStyles.postContent.copyWith(
+                      color: Colors.white,
+                      // Ensure no text decoration is applied
+                      decoration: TextDecoration.none,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ],

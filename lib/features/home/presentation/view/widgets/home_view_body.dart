@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
+import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/widgets/home_screen_app_bar.dart';
@@ -65,7 +66,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         return RefreshIndicator(
           key: _refreshIndicatorKey,
           onRefresh: _refreshPosts,
-          color: Theme.of(context).primaryColor,
+          color: AppColors.lightPeach,
           backgroundColor: Colors.white,
           strokeWidth: 2.5,
           displacement: 40,
