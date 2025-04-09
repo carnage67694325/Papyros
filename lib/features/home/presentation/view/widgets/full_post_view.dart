@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_interact_seaction.dart';
+import 'package:papyros/features/home/presentation/view/widgets/post_interaction_with_stats.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
 
 class FullPostView extends StatelessWidget {
@@ -14,12 +15,16 @@ class FullPostView extends StatelessWidget {
     this.imageUrl,
     required this.userName,
     required this.userProfileImageUrl,
+    required this.createdAtString,
+    required this.numberOfLikes,
   });
 
   final String userName;
   final String userProfileImageUrl;
   final String description;
   final List<String?>? imageUrl;
+  final String createdAtString;
+  final int numberOfLikes;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +73,8 @@ class FullPostView extends StatelessWidget {
                         ),
                         SizedBox(height: 4.h),
                         Text(
-                          'Posted • 2h ago', // You can replace with actual timestamp
+                          timeAgo(
+                              createdAtString), // You can replace with actual timestamp
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 14.sp,
@@ -123,27 +129,6 @@ class FullPostView extends StatelessWidget {
                   ),
                 ),
               ),
-
-            // // Stats section (views, etc.)
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       SizedBox(width: 16.w),
-            //       Text(
-            //         '•',
-            //         textAlign: TextAlign.center,
-            //         style: TextStyle(
-            //           color: Colors.grey,
-            //           fontSize: 14.sp,
-            //         ),
-            //       ),
-            //       SizedBox(width: 16.w),
-            //     ],
-            //   ),
-            // ),
-
             // Divider before interaction section
             Divider(
               color: Colors.grey.withOpacity(0.2),
@@ -152,7 +137,7 @@ class FullPostView extends StatelessWidget {
             ),
 
             // Interaction section
-            const PostInteractSection(),
+            PostInteractSectionWithStats(numberOfLikes: numberOfLikes),
 
             // Comments section header
             Padding(
@@ -355,5 +340,31 @@ class FullPostView extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+String timeAgo(String createdAtString) {
+  // Parse the ISO 8601 date string
+  DateTime createdAt = DateTime.parse(createdAtString);
+  DateTime now = DateTime.now();
+
+  // Calculate the difference
+  Duration difference = now.difference(createdAt);
+
+  // Convert to appropriate time unit
+  if (difference.inSeconds < 60) {
+    return '${difference.inSeconds} ${difference.inSeconds == 1 ? 'second' : 'seconds'} ago';
+  } else if (difference.inMinutes < 60) {
+    return '${difference.inMinutes} ${difference.inMinutes == 1 ? 'minute' : 'minutes'} ago';
+  } else if (difference.inHours < 24) {
+    return '${difference.inHours} ${difference.inHours == 1 ? 'hour' : 'hours'} ago';
+  } else if (difference.inDays < 30) {
+    return '${difference.inDays} ${difference.inDays == 1 ? 'day' : 'days'} ago';
+  } else if (difference.inDays < 365) {
+    int months = (difference.inDays / 30).floor();
+    return '$months ${months == 1 ? 'month' : 'months'} ago';
+  } else {
+    int years = (difference.inDays / 365).floor();
+    return '$years ${years == 1 ? 'year' : 'years'} ago';
   }
 }

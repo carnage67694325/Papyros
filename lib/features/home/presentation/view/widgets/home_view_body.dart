@@ -161,6 +161,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           userName: state.posts[index].createdBy!.userName ?? "user-name",
           userProfileImageUrl: state.posts[index].createdBy!.profileImage ??
               "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
+          createdAtString: state.posts[index].createdAt!,
+          numberOfLikes: state.posts[index].likes!.length,
         ),
       ),
     );
