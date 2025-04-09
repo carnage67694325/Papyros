@@ -27,9 +27,19 @@ class _PostInteractSectionWithStatsState
         SizedBox(
           width: 10.w,
         ),
-        _buildIconButton(0, Assets.assetsShareIcon, 20, () {
-          log("Share clicked");
-        }),
+        Row(
+          children: [
+            _buildIconButton(0, Assets.assetsShareIcon, 20, () {
+              log("Share clicked");
+            }),
+            Text("2",
+                style: TextStyle(
+                  color: AppColors.iconColor,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                )),
+          ],
+        ),
         _buildIconButton(1, Assets.assetsBookMarkIcon, 25, () {
           log("Bookmark clicked");
         }),
@@ -55,12 +65,37 @@ class _PostInteractSectionWithStatsState
             ),
           ),
         ]),
-        _buildIconButton(3, Assets.assetsCommentIcon, 20, () {
-          log("Comment clicked");
-        }),
-        _buildIconButton(4, Assets.assetsRepostIcon, 30, () {
-          log("Repost clicked");
-        }),
+        Row(children: [
+          _buildIconButton(3, Assets.assetsCommentIcon, 20, () {
+            log("Comment clicked");
+          }),
+          Text(
+            "2",
+            style: TextStyle(
+              color: AppColors.iconColor,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          )
+        ]),
+        Row(
+          children: [
+            _buildIconButton(4, Assets.assetsRepostIcon, 30, () {
+              log("Repost clicked");
+            }),
+            Text(
+              "50",
+              style: TextStyle(
+                color: AppColors.iconColor,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+              ),
+            )
+          ],
+        ),
+        SizedBox(
+          width: 10.w,
+        ),
       ],
     );
   }
