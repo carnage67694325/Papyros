@@ -1,12 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:papyros/core/animations/app_loading_animation.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
+import 'package:papyros/features/home/presentation/view/widgets/full_post_view.dart';
 import 'package:papyros/features/home/presentation/view/widgets/home_screen_app_bar.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_card.dart';
 import 'package:papyros/features/home/presentation/view/widgets/shimmer_post_card.dart';
@@ -74,11 +74,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             controller: _scrollController,
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Column(
                   children: [
-                    HomeScreenAppBar(),
-                    SizedBox(height: 14),
+                    const HomeScreenAppBar(),
+                    SizedBox(height: 2.h),
                   ],
                 ),
               ),
@@ -94,15 +94,21 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               // Show posts when data is loaded successfully
               else if (state is GetAllPostsSuccess)
                 SliverList.builder(
-                  itemBuilder: (context, index) => PostCard(
-                    description: state.posts[index].description!,
-                    userName:
-                        state.posts[index].createdBy!.userName ?? "user-name",
-                    userProfileImageUrl: state
-                            .posts[index].createdBy!.profileImage ??
-                        "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
-                    imageUrl:
-                        state.posts[index].images?.map((e) => e.image).toList(),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      openFullPostView(context, state, index);
+                    },
+                    child: PostCard(
+                      description: state.posts[index].description!,
+                      userName:
+                          state.posts[index].createdBy!.userName ?? "user-name",
+                      userProfileImageUrl: state
+                              .posts[index].createdBy!.profileImage ??
+                          "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
+                      imageUrl: state.posts[index].images
+                          ?.map((e) => e.image)
+                          .toList(),
+                    ),
                   ),
                   itemCount: state.posts.length,
                 )
@@ -142,6 +148,22 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           ),
         );
       },
+    );
+  }
+
+  void openFullPostView(
+      BuildContext context, GetAllPostsSuccess state, int index) {
+    log("post tapped");
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => FullPostView(
+          description: state.posts[index].description!,
+          imageUrl: state.posts[index].images?.map((e) => e.image).toList(),
+          userName: state.posts[index].createdBy!.userName ?? "user-name",
+          userProfileImageUrl: state.posts[index].createdBy!.profileImage ??
+              "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
+        ),
+      ),
     );
   }
 }

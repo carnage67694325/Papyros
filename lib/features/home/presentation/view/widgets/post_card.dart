@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -44,7 +43,7 @@ class PostCard extends StatelessWidget {
         children: [
           /// Header Row: User Profile + Name
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: Row(
               children: [
                 UserProfileHomeAvatar(
@@ -64,7 +63,7 @@ class PostCard extends StatelessWidget {
                       ),
                       if (!hasImage)
                         Padding(
-                          padding: const EdgeInsets.only(top: 6.0),
+                          padding: EdgeInsets.only(top: 6.0.h),
                           child: Text(
                             description,
                             style: AppStyles.postContent,
