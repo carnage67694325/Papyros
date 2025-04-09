@@ -76,6 +76,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               SliverToBoxAdapter(
                 child: Column(
                   children: [
+                    SizedBox(height: 16.h),
                     const HomeScreenAppBar(),
                     SizedBox(height: 2.h),
                   ],
@@ -153,17 +154,45 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   void openFullPostView(
       BuildContext context, GetAllPostsSuccess state, int index) {
     log("post tapped");
+
+    // Create a unique hero tag for this post to ensure proper animation
+    final String heroTag = "post-${state.posts[index].id}";
+
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => FullPostView(
-          description: state.posts[index].description!,
-          imageUrl: state.posts[index].images?.map((e) => e.image).toList(),
-          userName: state.posts[index].createdBy!.userName ?? "user-name",
-          userProfileImageUrl: state.posts[index].createdBy!.profileImage ??
-              "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
-          createdAtString: state.posts[index].createdAt!,
-          numberOfLikes: state.posts[index].likes!.length,
-        ),
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 300),
+        reverseTransitionDuration: const Duration(milliseconds: 300),
+        pageBuilder: (context, animation, secondaryAnimation) {
+          // Scale animation
+          final curvedAnimation = CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          );
+
+          return ScaleTransition(
+            scale: Tween<double>(begin: 0.8, end: 1.0).animate(curvedAnimation),
+            child: FadeTransition(
+              opacity:
+                  Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation),
+              child: FullPostView(
+                heroTag: heroTag,
+                description: state.posts[index].description!,
+                imageUrl:
+                    state.posts[index].images?.map((e) => e.image).toList(),
+                userName: state.posts[index].createdBy!.userName ?? "user-name",
+                userProfileImageUrl: state
+                        .posts[index].createdBy!.profileImage ??
+                    "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
+                createdAtString: state.posts[index].createdAt!,
+                numberOfLikes: state.posts[index].likes!.length,
+              ),
+            ),
+          );
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          // Add additional transition effects if needed
+          return child;
+        },
       ),
     );
   }

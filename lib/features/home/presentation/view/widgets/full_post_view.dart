@@ -17,6 +17,7 @@ class FullPostView extends StatelessWidget {
     required this.userProfileImageUrl,
     required this.createdAtString,
     required this.numberOfLikes,
+    this.heroTag,
   });
 
   final String userName;
@@ -25,6 +26,7 @@ class FullPostView extends StatelessWidget {
   final List<String?>? imageUrl;
   final String createdAtString;
   final int numberOfLikes;
+  final String? heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +75,7 @@ class FullPostView extends StatelessWidget {
                         ),
                         SizedBox(height: 4.h),
                         Text(
-                          timeAgo(
-                              createdAtString), // You can replace with actual timestamp
+                          timeAgo(createdAtString),
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 14.sp,
@@ -115,7 +116,7 @@ class FullPostView extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => showImageInFull(context),
                   child: Hero(
-                    tag: 'fullPost-${imageUrl!}',
+                    tag: heroTag ?? 'fullPost-${imageUrl!}',
                     child: Container(
                       height: 300.h,
                       width: double.infinity,
@@ -318,7 +319,7 @@ class FullPostView extends StatelessWidget {
           child: GestureDetector(
             onTap: () => GoRouter.of(context).pop(),
             child: Hero(
-              tag: 'fullPost-${imageUrl!}',
+              tag: heroTag ?? 'fullPost-${imageUrl!}',
               child: InteractiveViewer(
                 minScale: 0.5,
                 maxScale: 3.0,
