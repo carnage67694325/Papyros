@@ -39,7 +39,8 @@ class HomeViewBody extends StatelessWidget {
                     userProfileImageUrl: state
                             .posts[index].createdBy!.profileImage ??
                         " https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
-                    imageUrl: state.posts[index].images![0].image,
+                    imageUrl:
+                        state.posts[index].images?.map((e) => e.image).toList(),
                   ),
                   itemCount: state.posts.length,
                 )
