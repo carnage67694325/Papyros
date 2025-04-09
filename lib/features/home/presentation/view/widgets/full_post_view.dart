@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
-import 'package:papyros/features/home/presentation/view/widgets/post_card.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_interact_seaction.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
 
@@ -127,43 +124,25 @@ class FullPostView extends StatelessWidget {
                 ),
               ),
 
-            // Stats section (views, etc.)
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-              child: Row(
-                children: [
-                  const Icon(Icons.remove_red_eye,
-                      color: Colors.grey, size: 16),
-                  SizedBox(width: 4.w),
-                  Text(
-                    '241 views',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                  SizedBox(width: 16.w),
-                  Text(
-                    '•',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                  SizedBox(width: 16.w),
-                  const Icon(Icons.chat_bubble_outline,
-                      color: Colors.grey, size: 16),
-                  SizedBox(width: 4.w),
-                  Text(
-                    '18 comments',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.sp,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // // Stats section (views, etc.)
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       SizedBox(width: 16.w),
+            //       Text(
+            //         '•',
+            //         textAlign: TextAlign.center,
+            //         style: TextStyle(
+            //           color: Colors.grey,
+            //           fontSize: 14.sp,
+            //         ),
+            //       ),
+            //       SizedBox(width: 16.w),
+            //     ],
+            //   ),
+            // ),
 
             // Divider before interaction section
             Divider(

@@ -22,7 +22,6 @@ class NewChatButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15))),
         onPressed: () {
           BlocProvider.of<SendPromptCubit>(context).startNewChatBotSession();
-          ;
         },
         child: Row(
           children: [

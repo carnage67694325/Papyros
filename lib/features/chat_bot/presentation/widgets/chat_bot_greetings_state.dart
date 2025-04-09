@@ -27,7 +27,7 @@ class ChatbotGreetingState extends StatelessWidget {
                 CrossAxisAlignment.start, // Align text at the top
             children: [
               Text(
-                S.of(context).hello + ",",
+                "${S.of(context).hello},",
                 style: AppStyles.chatHeader.copyWith(
                   color: AppColors.lightPeach,
                   fontSize: 32.sp,
