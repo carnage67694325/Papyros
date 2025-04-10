@@ -5,4 +5,5 @@ import '../../../../core/errors/failure.dart';
 
 abstract class GetPostsRepo {
   Future<Either<Failure, List<PostsEntity>>> getPosts();
+  Future<Either<Failure, void>> addPost();
 }

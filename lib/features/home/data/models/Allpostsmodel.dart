@@ -14,12 +14,12 @@ class Allpostsmodel {
     if (json['posts'] != null) {
       posts = [];
       json['posts'].forEach((v) {
-        posts?.add(Posts.fromJson(v));
+        posts?.add(PostModel.fromJson(v));
       });
     }
   }
   String? message;
-  List<Posts>? posts;
+  List<PostModel>? posts;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

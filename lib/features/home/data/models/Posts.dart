@@ -3,8 +3,8 @@ import 'package:papyros/features/home/data/models/createdBy.dart';
 import 'Images.dart';
 import '../../domain/entities/posts_entity.dart';
 
-class Posts extends PostsEntity {
-  Posts({
+class PostModel extends PostsEntity {
+  PostModel({
     String? id,
     String? description,
     CreatedBy? createdBy,
@@ -28,8 +28,8 @@ class Posts extends PostsEntity {
           updatedAt: updatedAt ?? '',
         );
 
-  factory Posts.fromJson(Map<String, dynamic> json) {
-    return Posts(
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    return PostModel(
       id: json['_id'],
       description: json['description'],
       createdBy: json['createdBy'] != null

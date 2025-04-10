@@ -13,8 +13,9 @@ class GetPostsRepoimp implements GetPostsRepo {
   Future<Either<Failure, List<PostsEntity>>> getPosts() async {
     try {
       final data = await postdau.getallposts();
-      final List<PostsEntity> postsList =
-          (data["posts"] as List).map((post) => Posts.fromJson(post)).toList();
+      final List<PostsEntity> postsList = (data["posts"] as List)
+          .map((post) => PostModel.fromJson(post))
+          .toList();
 
       return right(postsList);
     } catch (e) {
@@ -24,5 +25,11 @@ class GetPostsRepoimp implements GetPostsRepo {
         return left(ServerFailure(e.toString()));
       }
     }
+  }
+
+  @override
+  Future<Either<Failure, void>> addPost() {
+    // TODO: implement addPost
+    throw UnimplementedError();
   }
 }

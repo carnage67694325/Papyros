@@ -1,6 +1,10 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
@@ -18,7 +22,8 @@ class AddPostViewBody extends StatefulWidget {
 class _AddPostViewBodyState extends State<AddPostViewBody> {
   final TextEditingController _postController = TextEditingController();
   bool _hasText = false;
-  List<String> _selectedImages = [];
+  List<File> selectedImages = [];
+  final ImagePicker picker = ImagePicker();
 
   @override
   void initState() {
@@ -95,7 +100,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                       SizedBox(height: 16.h),
 
                       // Display selected images (if any)
-                      if (_selectedImages.isNotEmpty)
+                      if (selectedImages.isNotEmpty)
                         Container(
                           height: 150.h,
                           width: double.infinity,
@@ -126,9 +131,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                       color: AppColors.lightPeach,
                       size: 34.sp,
                     ),
-                    onPressed: () {
-                      // TODO: implement image picker
-                    },
+                    onPressed: () {},
                   ),
 
                   // Post button
