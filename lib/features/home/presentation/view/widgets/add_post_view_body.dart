@@ -127,7 +127,6 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                     padding:
                         EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
                           icon: Icon(
@@ -138,9 +137,23 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                           onPressed: () {
                             context
                                 .read<PickPostImageCubit>()
+                                .pickImageFromCamera();
+                          },
+                        ),
+                        SizedBox(width: 16.w),
+                        IconButton(
+                          icon: Icon(
+                            Icons.add,
+                            color: AppColors.lightPeach,
+                            size: 34.sp,
+                          ),
+                          onPressed: () {
+                            context
+                                .read<PickPostImageCubit>()
                                 .pickImageFromGallery();
                           },
                         ),
+                        SizedBox(width: 155.w),
                         ElevatedButton(
                           onPressed: _hasText
                               ? () {
@@ -171,7 +184,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 550.h),
+                  SizedBox(height: 400.h),
                 ],
               ),
             );

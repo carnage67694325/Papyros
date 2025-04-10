@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:papyros/features/home/data/models/Posts.dart';
 import 'package:papyros/features/home/domain/entities/posts_entity.dart';
 
 import '../../../../core/errors/failure.dart';
 
 abstract class GetPostsRepo {
   Future<Either<Failure, List<PostsEntity>>> getPosts();
-  Future<Either<Failure, void>> addPost();
+  Future<Either<Failure, void>> addPost(
+      {required String token, required PostModel post});
 }

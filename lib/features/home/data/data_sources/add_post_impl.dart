@@ -26,7 +26,7 @@ class AddPostImpl extends AddPost {
       )
     });
     await dio.put(
-      '${ApiService.baseUrl}${Endpiont.myProflieEndpoint}',
+      '${ApiService.baseUrl}${Endpiont.addPostEndpoint}',
       data: formData,
       options: Options(
         headers: {'token': token},
