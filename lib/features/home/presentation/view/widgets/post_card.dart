@@ -14,12 +14,14 @@ class PostCard extends StatelessWidget {
     this.imageUrl,
     required this.userName,
     required this.userProfileImageUrl,
+    required this.heroTag,
   });
 
   final String userName;
   final String userProfileImageUrl;
   final String description;
   final List<String?>? imageUrl;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +42,7 @@ class PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 4.h,
-          ),
+          SizedBox(height: 4.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: Row(
@@ -90,7 +90,7 @@ class PostCard extends StatelessWidget {
             ),
           ),
 
-          /// Description above image if image exists
+          /// Description above image
           if (hasImage)
             Padding(
               padding: EdgeInsets.only(left: 65.0.h, right: 32.h, top: 8.h),
@@ -102,7 +102,7 @@ class PostCard extends StatelessWidget {
               ),
             ),
 
-          /// Image
+          /// Image with unique Hero
           if (hasImage)
             Padding(
               padding: EdgeInsets.only(
@@ -110,7 +110,7 @@ class PostCard extends StatelessWidget {
               child: GestureDetector(
                 onTap: () => showImageInFull(context),
                 child: Hero(
-                  tag: imageUrl!,
+                  tag: heroTag, // Unique tag
                   child: Container(
                     height: 200,
                     decoration: BoxDecoration(
@@ -125,7 +125,6 @@ class PostCard extends StatelessWidget {
               ),
             ),
 
-          /// Interact Section
           const PostInteractSection(),
         ],
       ),
@@ -145,7 +144,7 @@ class PostCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Hero(
-                tag: imageUrl!,
+                tag: heroTag, // Consistent tag
                 child: GestureDetector(
                   onTap: () => GoRouter.of(context).pop(),
                   child: ClipRRect(
@@ -158,7 +157,6 @@ class PostCard extends StatelessWidget {
                   ),
                 ),
               ),
-              // Description container below the image
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                 padding: const EdgeInsets.all(12),
@@ -167,12 +165,10 @@ class PostCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: SelectionContainer.disabled(
-                  // Wrap with this to disable selection
                   child: Text(
                     description,
                     style: AppStyles.postContent.copyWith(
                       color: Colors.white,
-                      // Ensure no text decoration is applied
                       decoration: TextDecoration.none,
                     ),
                     textAlign: TextAlign.center,

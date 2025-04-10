@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -15,17 +16,27 @@ class AddPostImpl extends AddPost {
 
   @override
   Future<void> addPost({String? token, PostModel? post}) async {
-    final formData = FormData.fromMap({
+    final Map<String, dynamic> formDataMap = {
       'tag': post!.tag,
       'description': post.description,
-      'image': await MultipartFile.fromFile(
+    };
+
+// Only add the image if one exists
+    if (post.images != null &&
+        post.images!.isNotEmpty &&
+        post.images![0].image != null) {
+      formDataMap['image'] = await MultipartFile.fromFile(
         post.images![0].image!,
         filename: post.images![0].image!.split('/').last,
         contentType: MediaType.parse(
-            lookupMimeType(post.images![0].image!) ?? 'image/png'),
-      )
-    });
-    await dio.put(
+          lookupMimeType(post.images![0].image!) ?? 'image/png',
+        ),
+      );
+    }
+
+    final formData = FormData.fromMap(formDataMap);
+    log('${ApiService.baseUrl}${Endpiont.addPostEndpoint}');
+    await dio.post(
       '${ApiService.baseUrl}${Endpiont.addPostEndpoint}',
       data: formData,
       options: Options(

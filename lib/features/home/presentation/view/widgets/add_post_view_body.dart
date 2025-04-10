@@ -1,13 +1,15 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/data/models/Posts.dart';
 import 'package:papyros/features/home/data/models/Images.dart';
-import 'package:papyros/features/home/data/models/createdBy.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_post_cubit/add_post_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/pick_post_image/pick_post_image_cubit.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
@@ -25,8 +27,6 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
   bool _hasText = false;
   List<File> selectedImages = [];
   bool _isSubmitting = false;
-  String? _uploadedImageId;
-  String? _uploadedImageName;
 
   @override
   void initState() {
@@ -57,15 +57,6 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
             if (imageState is PickPostImageSuccess) {
               setState(() {
                 selectedImages = [File(imageState.imagePath)];
-
-                // In a real app, you'd upload the image here and get the imageId and name
-                // This is a placeholder for the actual image upload process
-                // After successful upload, you would set _uploadedImageId and _uploadedImageName
-                _uploadedImageId =
-                    "placeholder_image_id"; // This would come from your API after upload
-                _uploadedImageName = imageState.imagePath
-                    .split('/')
-                    .last; // Using filename as placeholder
               });
             } else if (imageState is PickPostImageFaliure) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -85,8 +76,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                 _isSubmitting = false;
                 _postController.clear();
                 selectedImages.clear();
-                _uploadedImageId = null;
-                _uploadedImageName = null;
+                GoRouter.of(context).push(AppRouter.kChatBot);
               });
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Post added successfully!')),
@@ -98,6 +88,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.errMessage)),
               );
+              log(state.errMessage);
             }
           },
         ),
@@ -178,8 +169,6 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                                       onPressed: () {
                                         setState(() {
                                           selectedImages.clear();
-                                          _uploadedImageId = null;
-                                          _uploadedImageName = null;
                                         });
                                       },
                                     ),
@@ -229,32 +218,38 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                           ElevatedButton(
                             onPressed: (_hasText && !_isSubmitting)
                                 ? () async {
-                                    List<Images>? postImages;
-                                    if (_uploadedImageId != null &&
-                                        _uploadedImageName != null) {
-                                      postImages = [
-                                        Images(
-                                          imageId: _uploadedImageId,
-                                          image: _uploadedImageName,
-                                        )
-                                      ];
-                                    }
-
-                                    // Create post model
+                                    // Create post model with empty images list
+                                    // The actual image will be sent via FormData
                                     final post = PostModel(
-                                      description: _postController
-                                          .text, // Parse mentions if needed
-                                      images: postImages,
+                                      description: _postController.text,
+                                      tag: '', // Add tag if needed
+                                      images: selectedImages.isNotEmpty
+                                          ? [
+                                              Images(
+                                                image:
+                                                    selectedImages.first.path,
+                                              )
+                                            ]
+                                          : null,
                                     );
 
-                                    // Get token (replace with your actual token retrieval logic)
-                                    // For example, from shared preferences or secure storage
-                                    final token = await PrefasHandelr()
-                                        .getAuthToken(); // Replace with actual token retrieval
+                                    // Get token
+                                    final token =
+                                        await PrefasHandelr().getAuthToken();
+
+                                    if (token == null) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                'Authentication required')),
+                                      );
+                                      return;
+                                    }
 
                                     // Call the add post function
                                     await context.read<AddPostCubit>().addPost(
-                                          token: token ?? "",
+                                          token: token,
                                           post: post,
                                         );
                                   }

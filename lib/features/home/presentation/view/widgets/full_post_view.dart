@@ -34,6 +34,7 @@ class FullPostView extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasImage =
         imageUrl != null && imageUrl!.isNotEmpty && imageUrl![0] != null;
+    final uniqueHeroTag = heroTag ?? 'full-post-image-${imageUrl?[0]}';
 
     return Scaffold(
       backgroundColor: AppColors.backGroundColor,
@@ -43,7 +44,7 @@ class FullPostView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // User info section
+            // User Info
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
@@ -73,37 +74,35 @@ class FullPostView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    height: 25.h,
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.lightPeach,
-                    ),
-                    child: Center(
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        tag!,
-                        style: TextStyle(
-                          color: AppColors.backGroundColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14.sp,
+                  if (tag != null)
+                    Container(
+                      height: 25.h,
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.lightPeach,
+                      ),
+                      child: Center(
+                        child: Text(
+                          tag!,
+                          style: TextStyle(
+                            color: AppColors.backGroundColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
-
-            // Content divider
             Divider(
               color: Colors.grey.withOpacity(0.2),
               thickness: 1,
               height: 30.h,
             ),
 
-            // Full description
+            // Description
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: SelectionContainer.disabled(
@@ -117,14 +116,14 @@ class FullPostView extends StatelessWidget {
               ),
             ),
 
-            // Image if exists
+            // Image
             if (hasImage)
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 child: GestureDetector(
-                  onTap: () => showImageInFull(context),
+                  onTap: () => showImageInFull(context, uniqueHeroTag),
                   child: Hero(
-                    tag: heroTag ?? 'fullPost-${imageUrl!}',
+                    tag: uniqueHeroTag,
                     child: Container(
                       height: 300.h,
                       width: double.infinity,
@@ -138,17 +137,17 @@ class FullPostView extends StatelessWidget {
                   ),
                 ),
               ),
-            // Divider before interaction section
+
             Divider(
               color: Colors.grey.withOpacity(0.2),
               thickness: 1,
               height: 30.h,
             ),
 
-            // Interaction section
+            // Interaction
             PostInteractSectionWithStats(numberOfLikes: numberOfLikes),
 
-            // Comments section header
+            // Comments Header
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: Row(
@@ -170,23 +169,21 @@ class FullPostView extends StatelessWidget {
               ),
             ),
 
-            // Sample comments (you would replace this with actual comments)
+            // Example comments
             _buildCommentItem(
               userName: 'User One',
-              comment:
-                  'This is really interesting! I didn\'t know that about Cleopatra.',
+              comment: 'Really interesting post!',
               timeAgo: '1h ago',
               avatarUrl: 'https://randomuser.me/api/portraits/men/1.jpg',
             ),
             _buildCommentItem(
               userName: 'User Two',
-              comment:
-                  'Great post! Would love to see more historical facts like this.',
+              comment: 'Nice info!',
               timeAgo: '30m ago',
               avatarUrl: 'https://randomuser.me/api/portraits/women/2.jpg',
             ),
 
-            // Add comment section
+            // Add comment
             Padding(
               padding: EdgeInsets.all(16.w),
               child: Row(
@@ -217,7 +214,6 @@ class FullPostView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 8.w),
                   IconButton(
                     icon: const Icon(Icons.send,
                         color: AppColors.backGroundColor),
@@ -294,9 +290,7 @@ class FullPostView extends StatelessWidget {
                 SelectionContainer.disabled(
                   child: Text(
                     comment,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                    ),
+                    style: TextStyle(fontSize: 14.sp),
                   ),
                 ),
                 SizedBox(height: 4.h),
@@ -305,23 +299,13 @@ class FullPostView extends StatelessWidget {
                     Icon(Icons.favorite_border,
                         size: 16.sp, color: Colors.grey),
                     SizedBox(width: 4.w),
-                    Text(
-                      'Like',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12.sp,
-                      ),
-                    ),
+                    Text('Like',
+                        style: TextStyle(color: Colors.grey, fontSize: 12.sp)),
                     SizedBox(width: 16.w),
                     Icon(Icons.reply, size: 16.sp, color: Colors.grey),
                     SizedBox(width: 4.w),
-                    Text(
-                      'Reply',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12.sp,
-                      ),
-                    ),
+                    Text('Reply',
+                        style: TextStyle(color: Colors.grey, fontSize: 12.sp)),
                   ],
                 ),
               ],
@@ -332,7 +316,7 @@ class FullPostView extends StatelessWidget {
     );
   }
 
-  Future<Object?> showImageInFull(BuildContext context) {
+  Future<Object?> showImageInFull(BuildContext context, String heroTag) {
     return showGeneralDialog(
       context: context,
       barrierLabel: "FullImagePreview",
@@ -344,7 +328,7 @@ class FullPostView extends StatelessWidget {
           child: GestureDetector(
             onTap: () => GoRouter.of(context).pop(),
             child: Hero(
-              tag: heroTag ?? 'fullPost-${imageUrl!}',
+              tag: heroTag,
               child: InteractiveViewer(
                 minScale: 0.5,
                 maxScale: 3.0,
@@ -360,37 +344,23 @@ class FullPostView extends StatelessWidget {
         );
       },
       transitionBuilder: (_, anim, __, child) {
-        return FadeTransition(
-          opacity: anim,
-          child: child,
-        );
+        return FadeTransition(opacity: anim, child: child);
       },
     );
   }
 }
 
 String timeAgo(String createdAtString) {
-  // Parse the ISO 8601 date string
   DateTime createdAt = DateTime.parse(createdAtString);
-  DateTime now = DateTime.now();
+  Duration diff = DateTime.now().difference(createdAt);
 
-  // Calculate the difference
-  Duration difference = now.difference(createdAt);
+  if (diff.inSeconds < 60) return '${diff.inSeconds}s ago';
+  if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
+  if (diff.inHours < 24) return '${diff.inHours}h ago';
+  if (diff.inDays < 30) return '${diff.inDays}d ago';
 
-  // Convert to appropriate time unit
-  if (difference.inSeconds < 60) {
-    return '${difference.inSeconds} ${difference.inSeconds == 1 ? 'second' : 'seconds'} ago';
-  } else if (difference.inMinutes < 60) {
-    return '${difference.inMinutes} ${difference.inMinutes == 1 ? 'minute' : 'minutes'} ago';
-  } else if (difference.inHours < 24) {
-    return '${difference.inHours} ${difference.inHours == 1 ? 'hour' : 'hours'} ago';
-  } else if (difference.inDays < 30) {
-    return '${difference.inDays} ${difference.inDays == 1 ? 'day' : 'days'} ago';
-  } else if (difference.inDays < 365) {
-    int months = (difference.inDays / 30).floor();
-    return '$months ${months == 1 ? 'month' : 'months'} ago';
-  } else {
-    int years = (difference.inDays / 365).floor();
-    return '$years ${years == 1 ? 'year' : 'years'} ago';
-  }
+  int months = (diff.inDays / 30).floor();
+  if (months < 12) return '$months mo ago';
+
+  return '${(diff.inDays / 365).floor()}y ago';
 }

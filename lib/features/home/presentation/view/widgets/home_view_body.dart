@@ -94,22 +94,25 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               // Show posts when data is loaded successfully
               else if (state is GetAllPostsSuccess)
                 SliverList.builder(
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
-                      openFullPostView(context, state, index);
-                    },
-                    child: PostCard(
-                      description: state.posts[index].description!,
-                      userName:
-                          state.posts[index].createdBy!.userName ?? "user-name",
-                      userProfileImageUrl: state
-                              .posts[index].createdBy!.profileImage ??
-                          "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
-                      imageUrl: state.posts[index].images
-                          ?.map((e) => e.image)
-                          .toList(),
-                    ),
-                  ),
+                  itemBuilder: (context, index) {
+                    final post = state.posts[index];
+                    final heroTag =
+                        "post-image-${post.id}"; // Unique tag using post ID
+
+                    return GestureDetector(
+                      onTap: () {
+                        openFullPostView(context, state, index, heroTag);
+                      },
+                      child: PostCard(
+                        description: post.description!,
+                        userName: post.createdBy?.userName ?? "user-name",
+                        userProfileImageUrl: post.createdBy?.profileImage ??
+                            "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
+                        imageUrl: post.images?.map((e) => e.image).toList(),
+                        heroTag: heroTag, // Pass the tag
+                      ),
+                    );
+                  },
                   itemCount: state.posts.length,
                 )
               // Show error state
@@ -151,19 +154,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     );
   }
 
-  void openFullPostView(
-      BuildContext context, GetAllPostsSuccess state, int index) {
-    log("post tapped");
-
-    // Create a unique hero tag for this post to ensure proper animation
-    final String heroTag = "post-${state.posts[index].id}";
-
+  void openFullPostView(BuildContext context, GetAllPostsSuccess state,
+      int index, String heroTag) {
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration: const Duration(milliseconds: 300),
         reverseTransitionDuration: const Duration(milliseconds: 300),
         pageBuilder: (context, animation, secondaryAnimation) {
-          // Scale animation
           final curvedAnimation = CurvedAnimation(
             parent: animation,
             curve: Curves.easeInOut,
@@ -191,7 +188,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           );
         },
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          // Add additional transition effects if needed
           return child;
         },
       ),
