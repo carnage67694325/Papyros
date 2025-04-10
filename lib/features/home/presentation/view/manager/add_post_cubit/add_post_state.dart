@@ -10,6 +10,6 @@ class AddPostLoading extends AddPostState {}
 class AddPostSuccess extends AddPostState {}
 
 class AddPostFailure extends AddPostState {
-  final String message;
-  AddPostFailure(this.message);
+  final String errMessage;
+  AddPostFailure(this.errMessage);
 }
