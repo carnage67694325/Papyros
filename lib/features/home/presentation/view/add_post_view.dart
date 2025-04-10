@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
+import 'package:papyros/features/home/presentation/view/manager/pick_post_image/pick_post_image_cubit.dart';
 import 'package:papyros/features/home/presentation/view/widgets/add_post_view_body.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
@@ -33,7 +34,8 @@ class AddPostView extends StatelessWidget {
       body: MultiBlocProvider(providers: [
         BlocProvider(
             create: (context) =>
-                GetUserProfileCubit(getIt.get<GetUserProfileUseCase>()))
+                GetUserProfileCubit(getIt.get<GetUserProfileUseCase>())),
+        BlocProvider(create: (context) => PickPostImageCubit()),
       ], child: const AddPostViewBody()),
     );
   }
