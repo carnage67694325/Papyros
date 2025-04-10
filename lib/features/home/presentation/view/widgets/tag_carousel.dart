@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:papyros/features/home/presentation/view/widgets/add_post_view_body.dart';
 import 'package:papyros/features/home/presentation/view/widgets/carousel_indicitor.dart';
 import 'package:papyros/features/home/presentation/view/widgets/tag_item.dart';
 
@@ -10,11 +9,11 @@ class TagCarousel extends StatefulWidget {
   final Function(String) onTagSelected;
 
   const TagCarousel({
-    Key? key,
+    super.key,
     required this.tags,
     this.selectedTag,
     required this.onTagSelected,
-  }) : super(key: key);
+  });
 
   @override
   State<TagCarousel> createState() => _TagCarouselState();
@@ -56,36 +55,46 @@ class _TagCarouselState extends State<TagCarousel> {
     return Column(
       children: [
         // Carousel
-        Container(
-          height: 50.h,
-          child: PageView.builder(
-            controller: _tagPageController,
-            itemCount: widget.tags.length,
-            onPageChanged: (index) {
-              widget.onTagSelected(widget.tags[index]);
-            },
-            itemBuilder: (context, index) {
-              final tag = widget.tags[index];
-              final isSelected = index == _currentTagPage;
+        SizedBox(
+          height: 55.h,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                // Move the PageView slightly to the left to reduce initial space
+                // while keeping some padding at the end for last items
+                left: -150.w,
+                right: -10.w,
+                child: PageView.builder(
+                  controller: _tagPageController,
+                  itemCount: widget.tags.length,
+                  onPageChanged: (index) {
+                    widget.onTagSelected(widget.tags[index]);
+                  },
+                  itemBuilder: (context, index) {
+                    final tag = widget.tags[index];
+                    final isSelected = index == _currentTagPage;
 
-              return TagItem(
-                tag: tag,
-                isSelected: isSelected,
-                onTap: () {
-                  widget.onTagSelected(tag);
-                  _tagPageController.animateToPage(
-                    index,
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              );
-            },
+                    return TagItem(
+                      tag: tag,
+                      isSelected: isSelected,
+                      onTap: () {
+                        widget.onTagSelected(tag);
+                        _tagPageController.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
 
         // Indicator dots
-        SizedBox(height: 12.h),
+        SizedBox(height: 14.h),
         CarouselIndicator(
           itemCount: widget.tags.length,
           currentIndex: _currentTagPage,

@@ -41,9 +41,6 @@ class AddPostView extends StatelessWidget {
         ),
       ),
       body: MultiBlocProvider(providers: [
-        BlocProvider(
-            create: (context) =>
-                GetUserProfileCubit(getIt.get<GetUserProfileUseCase>())),
         BlocProvider(create: (context) => PickPostImageCubit()),
         BlocProvider(
             create: (context) => AddPostCubit(AddPostUseCase(

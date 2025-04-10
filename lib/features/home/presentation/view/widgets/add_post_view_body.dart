@@ -50,6 +50,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
     'Cleopatra',
     'Papyrus',
     'Obelisk',
+    'Other'
   ];
 
   @override
@@ -200,7 +201,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                                 onTagSelected: _handleTagSelected,
                               ),
 
-                              SizedBox(height: 12.h),
+                              // SizedBox(height: 12.h),
                               // if (selectedTag != null)
                               //   SelectedTagIndicator(tagName: selectedTag!),
                             ],

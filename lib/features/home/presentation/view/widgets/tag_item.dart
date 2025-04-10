@@ -9,16 +9,16 @@ class TagItem extends StatelessWidget {
   final VoidCallback onTap;
 
   const TagItem({
-    Key? key,
+    super.key,
     required this.tag,
     required this.isSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       margin: EdgeInsets.symmetric(horizontal: 5.w),
       child: ElevatedButton(
         onPressed: onTap,

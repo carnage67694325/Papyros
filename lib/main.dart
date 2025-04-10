@@ -8,6 +8,8 @@ import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/simple_bloc_observer.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
+import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
+import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/generated/l10n.dart';
 import 'package:intl/intl.dart';
 
@@ -20,8 +22,15 @@ Future<void> main() async {
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   setupServiceLoactor();
-  runApp(BlocProvider(
-    create: (context) => ChangeLocalCubit(),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => ChangeLocalCubit(),
+      ),
+      BlocProvider(
+          create: (context) =>
+              GetUserProfileCubit(getIt.get<GetUserProfileUseCase>())),
+    ],
     child: const PapyrosApp(),
   ));
 }
