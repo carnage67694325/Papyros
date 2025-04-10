@@ -40,10 +40,13 @@ class PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// Header Row: User Profile + Name
+          SizedBox(
+            height: 4.h,
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UserProfileHomeAvatar(
                   userProfileImage: userProfileImageUrl,

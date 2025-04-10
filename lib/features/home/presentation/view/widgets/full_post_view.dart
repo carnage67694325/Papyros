@@ -18,6 +18,7 @@ class FullPostView extends StatelessWidget {
     required this.createdAtString,
     required this.numberOfLikes,
     this.heroTag,
+    this.tag,
   });
 
   final String userName;
@@ -27,6 +28,7 @@ class FullPostView extends StatelessWidget {
   final String createdAtString;
   final int numberOfLikes;
   final String? heroTag;
+  final String? tag;
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +37,9 @@ class FullPostView extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backGroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.backGroundColor,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.iconColor),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_horiz, color: AppColors.iconColor),
-            onPressed: () {},
-          ),
-        ],
-      ),
+      appBar: buildPostFullViewAppBar(context),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -82,6 +71,25 @@ class FullPostView extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Container(
+                    height: 25.h,
+                    width: 100.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.lightPeach,
+                    ),
+                    child: Center(
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        tag!,
+                        style: TextStyle(
+                          color: AppColors.backGroundColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -223,6 +231,23 @@ class FullPostView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  AppBar buildPostFullViewAppBar(BuildContext context) {
+    return AppBar(
+      backgroundColor: AppColors.backGroundColor,
+      elevation: 0,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: AppColors.iconColor),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.more_horiz, color: AppColors.iconColor),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 
