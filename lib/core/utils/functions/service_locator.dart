@@ -14,6 +14,7 @@ import 'package:papyros/features/authentication/verfiy_otp/domain/use_cases/verf
 import 'package:papyros/features/chat_bot/data/data_source/send_prompt_data_source_impl.dart';
 import 'package:papyros/features/chat_bot/data/repositories/chat_bot_repo_impl.dart';
 import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_UseCase.dart';
+import 'package:papyros/features/home/data/data_sources/add_post_impl.dart';
 import 'package:papyros/features/home/data/data_sources/get_posts_imp.dart';
 import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
@@ -51,5 +52,13 @@ void setupServiceLoactor() {
           sendPromptDataSource:
               SendPromptDataSourceImpl(apiService: getIt.get<ApiService>()))));
   getIt.registerSingleton<GetPostsUsecase>(
-      (GetPostsUsecase(GetPostsRepoimp(GetPostsImp(Dio())))));
+    (GetPostsUsecase(
+      GetPostsRepoimp(
+        GetPostsImp(
+          Dio(),
+        ),
+        AddPostImpl(dio: Dio()),
+      ),
+    )),
+  );
 }

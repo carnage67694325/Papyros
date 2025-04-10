@@ -9,8 +9,11 @@ import 'package:papyros/features/home/domain/repositories/post_repo.dart';
 
 class GetPostsRepoimp implements GetPostsRepo {
   final Getpostsdatasource postdau;
-  final AddPost addPostDataSource;
-  GetPostsRepoimp(this.postdau, this.addPostDataSource);
+  final AddPost? addPostDataSource;
+  GetPostsRepoimp(
+    this.postdau,
+    this.addPostDataSource,
+  );
   @override
   Future<Either<Failure, List<PostsEntity>>> getPosts() async {
     try {
@@ -33,7 +36,9 @@ class GetPostsRepoimp implements GetPostsRepo {
   Future<Either<Failure, void>> addPost(
       {required String token, required PostModel post}) async {
     try {
-      await addPostDataSource.addPost(token: token, post: post);
+      if (addPostDataSource != null) {
+        await addPostDataSource!.addPost(token: token, post: post);
+      }
       return const Right(null);
     } catch (e) {
       if (e is DioException) {
