@@ -6,6 +6,7 @@ import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
+import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -36,9 +37,7 @@ class _NavigationState extends State<Navigation> {
     return [
       const HomeView(),
       const GettingStartedView(),
-      Container(
-        color: Colors.red,
-      ),
+      const AddPostView(),
       Container(
         color: Colors.amber,
       ),
@@ -63,6 +62,7 @@ class _NavigationState extends State<Navigation> {
 
   @override
   Widget build(BuildContext context) {
+    final int preIndex = _controller.index;
     return PersistentTabView(
       context,
       controller: _controller,
@@ -76,7 +76,15 @@ class _NavigationState extends State<Navigation> {
           GoRouter.of(context).push(AppRouter.kChatBot);
           Future.delayed(const Duration(milliseconds: 100), () {
             setState(() {
-              _controller.index = index - 1;
+              _controller.index -= 1;
+            });
+          });
+        }
+        if (index == 2) {
+          GoRouter.of(context).push(AppRouter.kAddPost);
+          Future.delayed(const Duration(milliseconds: 100), () {
+            setState(() {
+              _controller.index -= 1;
             });
           });
         }

@@ -16,6 +16,7 @@ import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_
 import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
+import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/navigation/presentation/view/navigation.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
@@ -32,6 +33,7 @@ abstract class AppRouter {
   static const kVerfiyOtp = '/verfiyOtp';
   static const kProfileManage = '/profileManage';
   static const kChatBot = '/chatBot';
+  static const kAddPost = '/addPost';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -112,6 +114,14 @@ abstract class AppRouter {
                     SendPromptCubit(getIt.get<ChatBotSendPromptUseCase>()),
                 child: const ChatBotView(),
               ));
+        }),
+    GoRoute(
+        path: kAddPost,
+        pageBuilder: (context, state) {
+          return TransitionAnimation.slidingTransitionAnimations(
+            state,
+            route: const AddPostView(),
+          );
         }),
   ]);
 }
