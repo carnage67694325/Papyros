@@ -18,7 +18,7 @@ class AppLoadingAnimation extends StatelessWidget {
           child: LoadingAnimationWidget.flickr(
               leftDotColor: AppColors.darkBrown,
               rightDotColor: AppColors.lightPeach,
-              size: size ?? 65),
+              size: size ?? 35),
         ),
       ],
     );

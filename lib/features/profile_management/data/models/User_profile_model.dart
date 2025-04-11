@@ -2,29 +2,20 @@ import '../../domain/entities/user_profile_entity.dart';
 
 class UserProfileModel extends UserProfileEntity {
   UserProfileModel({
-    required String userName,
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String phone,
-    required String bio,
+    required String super.userName,
+    required String super.firstName,
+    required String super.lastName,
+    required String super.email,
+    required String super.phone,
+    required String super.bio,
     required dynamic profileImage,
     required dynamic backgroundImage,
-    required String location,
-    required String dob,
-    required String gender,
+    required String super.location,
+    required String super.dob,
+    required String super.gender,
   }) : super(
-          userName: userName,
-          lastName: lastName,
-          firstName: firstName,
-          email: email,
-          phone: phone,
-          bio: bio,
           profileImage: profileImage,
           backgroundImage: backgroundImage,
-          location: location,
-          dob: dob,
-          gender: gender,
         );
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {

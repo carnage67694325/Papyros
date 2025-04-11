@@ -28,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
         if (value == null || value.isEmpty) {
           return 'field is required';
         }
+        return null;
       },
       onChanged: onChanged,
       controller: controller,

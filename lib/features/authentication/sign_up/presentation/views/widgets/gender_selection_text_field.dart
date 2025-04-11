@@ -31,6 +31,7 @@ class _GenderSelectionTextFormFieldState
         if (value == null || value.isEmpty) {
           return 'field is required';
         }
+        return null;
       },
       readOnly: true,
       decoration: InputDecoration(

@@ -31,6 +31,7 @@ class _DateOfBirthTextFormFieldState extends State<DateOfBirthTextFormField> {
         if (value == null || value.isEmpty) {
           return 'field is required';
         }
+        return null;
       },
       readOnly: true,
       decoration: InputDecoration(

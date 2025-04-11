@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_interact_seaction.dart';
@@ -10,92 +10,181 @@ import 'package:papyros/features/home/presentation/view/widgets/user_profile_hom
 class PostCard extends StatelessWidget {
   const PostCard({
     super.key,
+    required this.description,
+    this.imageUrl,
+    required this.userName,
+    required this.userProfileImageUrl,
+    required this.heroTag,
   });
+
+  final String userName;
+  final String userProfileImageUrl;
+  final String description;
+  final List<String?>? imageUrl;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
+    final hasImage =
+        imageUrl != null && imageUrl!.isNotEmpty && imageUrl![0] != null;
+
     return Container(
-      decoration:
-          const BoxDecoration(color: AppColors.backGroundColor, boxShadow: [
-        BoxShadow(
-          color: Colors.grey,
-          offset: Offset(0, 2),
-          blurRadius: 6,
-        ),
-      ]),
+      decoration: const BoxDecoration(
+        color: AppColors.backGroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0, 2),
+            blurRadius: 6,
+          ),
+        ],
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 4.h),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UserProfileHomeAvatar(
-                  userProfileImage:
-                      "https://images.immediate.co.uk/production/volatile/sites/3/2017/12/yoda-the-empire-strikes-back-28a7558.jpg?quality=90&webp=true&resize=800,534",
+                  userProfileImage: userProfileImageUrl,
                   height: 55.h,
                   width: 55.w,
                 ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    Text(
-                      "Yoda",
-                      style: AppStyles.chatHeader.copyWith(fontSize: 16),
-                    ),
-                    SizedBox(
-                      width: 250.w,
-                      child: Text(
-                        "A different view of the pyramids in Egypt. ",
-                        maxLines: 4,
-                        style: AppStyles.postContent,
-                        overflow: TextOverflow.ellipsis,
+                SizedBox(width: 10.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 16.h),
+                      Text(
+                        userName,
+                        style: AppStyles.chatHeader.copyWith(fontSize: 16),
                       ),
-                    ),
-                  ],
+                      if (!hasImage)
+                        Padding(
+                          padding: EdgeInsets.only(top: 6.0.h),
+                          child: Text(
+                            description,
+                            style: AppStyles.postContent,
+                            maxLines: 6,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     IconButton(
-                      icon: const Icon(
-                          color: AppColors.iconColor, Icons.more_horiz),
+                      icon: const Icon(Icons.more_horiz,
+                          color: AppColors.iconColor),
                       onPressed: () {},
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
+                    SizedBox(height: 10.h),
                   ],
                 ),
               ],
             ),
           ),
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Padding(
+
+          /// Description above image
+          if (hasImage)
+            Padding(
+              padding: EdgeInsets.only(left: 65.0.h, right: 32.h, top: 8.h),
+              child: Text(
+                description,
+                style: AppStyles.postContent,
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+
+          /// Image with unique Hero
+          if (hasImage)
+            Padding(
               padding: EdgeInsets.only(
-                  left: 65.0.h, right: 32.h, top: 16.h, bottom: 6.h),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: const DecorationImage(
-                    image: CachedNetworkImageProvider(
-                        "https://www.thetimes.com/imageserver/image/%2Fmethode%2Ftimes%2Fprod%2Fweb%2Fbin%2F99fb9468-4b44-406d-a4c2-5646791b6367.jpg?crop=1600%2C900%2C0%2C0&resize=1200"),
-                    fit: BoxFit.cover,
+                  left: 65.0.h, right: 32.h, top: 8.h, bottom: 6.h),
+              child: GestureDetector(
+                onTap: () => showImageInFull(context),
+                child: Hero(
+                  tag: heroTag, // Unique tag
+                  child: Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(imageUrl![0]!),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          const PostInteractSection()
+
+          const PostInteractSection(),
         ],
       ),
+    );
+  }
+
+  Future<Object?> showImageInFull(BuildContext context) {
+    return showGeneralDialog(
+      context: context,
+      barrierLabel: "ImagePreview",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.7),
+      transitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (_, __, ___) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Hero(
+                tag: heroTag, // Consistent tag
+                child: GestureDetector(
+                  onTap: () => GoRouter.of(context).pop(),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl![0]!,
+                      fit: BoxFit.contain,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: SelectionContainer.disabled(
+                  child: Text(
+                    description,
+                    style: AppStyles.postContent.copyWith(
+                      color: Colors.white,
+                      decoration: TextDecoration.none,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return FadeTransition(
+          opacity: anim,
+          child: child,
+        );
+      },
     );
   }
 }

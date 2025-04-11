@@ -37,7 +37,7 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
           successSnackBar(context, 'OTP Verified');
         } else if (state is VerfiyOtpFaliure) {
           errorSnackBar(context, state.errMessage);
-          log('${state.errMessage}');
+          log(state.errMessage);
         }
       },
       builder: (context, state) => CustomScrollView(

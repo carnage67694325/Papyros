@@ -18,7 +18,7 @@ class AppStyles {
     color: Colors.black.withOpacity(0.53),
   );
   static TextStyle textfieldHint = GoogleFonts.notoSansSymbols(
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.normal,
   );
   static TextStyle chatHeader = GoogleFonts.inter(
