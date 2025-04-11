@@ -20,7 +20,7 @@ class CarouselIndicator extends StatelessWidget {
       children: List.generate(
         itemCount,
         (index) => AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           margin: EdgeInsets.symmetric(horizontal: 2.w),
           height: 8.h,
           width: index == currentIndex ? 20.w : 8.w,

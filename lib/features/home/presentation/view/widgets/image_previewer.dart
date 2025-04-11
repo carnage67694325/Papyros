@@ -8,10 +8,10 @@ class ImagePreview extends StatelessWidget {
   final VoidCallback onRemove;
 
   const ImagePreview({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.onRemove,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

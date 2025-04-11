@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:papyros/features/home/data/models/Posts.dart';
 
 abstract class AddPost {

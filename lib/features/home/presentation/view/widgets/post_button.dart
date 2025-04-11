@@ -9,11 +9,11 @@ class PostButton extends StatelessWidget {
   final VoidCallback onSubmit;
 
   const PostButton({
-    Key? key,
+    super.key,
     required this.isSubmitting,
     required this.canSubmit,
     required this.onSubmit,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class PostButton extends StatelessWidget {
           ? SizedBox(
               width: 20.w,
               height: 20.h,
-              child: CircularProgressIndicator(
+              child: const CircularProgressIndicator(
                 strokeWidth: 2,
                 color: Colors.white,
               ),

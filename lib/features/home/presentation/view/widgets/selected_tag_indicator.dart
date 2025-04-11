@@ -5,8 +5,7 @@ import 'package:papyros/core/utils/app_colors.dart';
 class SelectedTagIndicator extends StatelessWidget {
   final String tagName;
 
-  const SelectedTagIndicator({Key? key, required this.tagName})
-      : super(key: key);
+  const SelectedTagIndicator({super.key, required this.tagName});
 
   @override
   Widget build(BuildContext context) {

@@ -5,9 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
-import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
-import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/home/data/models/Posts.dart';
@@ -17,10 +15,8 @@ import 'package:papyros/features/home/presentation/view/manager/pick_post_image/
 import 'package:papyros/features/home/presentation/view/widgets/image_previewer.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_action_bar.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_input_area.dart';
-import 'package:papyros/features/home/presentation/view/widgets/selected_tag_indicator.dart';
 import 'package:papyros/features/home/presentation/view/widgets/tag_carousel.dart';
 import 'package:papyros/features/home/presentation/view/widgets/title_section.dart';
-import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 
 // Main AddPostViewBody widget

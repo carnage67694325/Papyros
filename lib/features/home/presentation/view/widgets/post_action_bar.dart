@@ -12,13 +12,13 @@ class PostActionBar extends StatelessWidget {
   final VoidCallback onGalleryTap;
 
   const PostActionBar({
-    Key? key,
+    super.key,
     required this.isSubmitting,
     required this.canSubmit,
     required this.onSubmit,
     required this.onCameraTap,
     required this.onGalleryTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
