@@ -8,6 +8,8 @@ import 'package:papyros/features/authentication/presentation/views/getting_start
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
+import 'package:papyros/features/notifications/presentation/view/notifications_view.dart';
+import 'package:papyros/features/notifications/presentation/view/widgets/notifications_view_body.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class Navigation extends StatefulWidget {
@@ -36,7 +38,7 @@ class _NavigationState extends State<Navigation> {
   List<Widget> _screens() {
     return [
       const HomeView(),
-      const GettingStartedView(),
+      const NotificationsView(),
       const AddPostView(),
       Container(
         color: Colors.amber,
