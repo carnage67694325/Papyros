@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/animations/transition_animation.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
@@ -25,6 +26,7 @@ import 'package:papyros/features/profile_management/presentation/manager/get_use
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
+import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
 abstract class AppRouter {
   static const kGettingStarted = '/gettingStarted';
@@ -34,14 +36,12 @@ abstract class AppRouter {
   static const kProfileManage = '/profileManage';
   static const kChatBot = '/chatBot';
   static const kAddPost = '/addPost';
+  static const kNavigation = '/navigation';
 
   static final router = GoRouter(routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => BlocProvider(
-        create: (context) => GetAllPostsCubit(getIt.get<GetPostsUsecase>()),
-        child: const Navigation(),
-      ),
+      builder: (context, state) => const SplashView(),
     ),
     /*GoRoute(
       path: '/',
@@ -52,6 +52,13 @@ abstract class AppRouter {
       pageBuilder: (context, state) {
         return TransitionAnimation.circularTransitionAnimation(state,
             route: const GettingStartedView());
+      },
+    ),
+    GoRoute(
+      path: kNavigation,
+      pageBuilder: (context, state) {
+        return TransitionAnimation.slidingTransitionAnimations(state,
+            route: const Navigation());
       },
     ),
     GoRoute(

@@ -222,7 +222,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                             .pickImageFromGallery();
                       },
                     ),
-                    SizedBox(height: 450.h),
+                    SizedBox(height: 15.h),
                   ],
                 ),
               );

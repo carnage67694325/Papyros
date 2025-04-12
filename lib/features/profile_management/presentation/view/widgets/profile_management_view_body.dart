@@ -2,8 +2,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_text_button.dart';
@@ -34,6 +36,7 @@ class ProfileManagementViewBody extends StatelessWidget {
             } else if (state is UpdateUserSuccess) {
               log('success');
               updatingLoading.value = false;
+              GoRouter.of(context).go(AppRouter.kNavigation);
 
               // Optionally show success snackbar or perform other actions
               successSnackBar(context, 'updated successfully!');
@@ -64,7 +67,7 @@ class ProfileManagementViewBody extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 20.h,
+                            height: 40.h,
                           ),
                           CustomProfileAppBar(
                             userProfileEntity: state.userProfileEntity,

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/data/data_sources/add_post_impl.dart';
 import 'package:papyros/features/home/data/data_sources/get_posts_imp.dart';
@@ -29,7 +30,7 @@ class AddPostView extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            GoRouter.of(context).go('/');
+            GoRouter.of(context).go(AppRouter.kNavigation);
           },
         ),
       ),
