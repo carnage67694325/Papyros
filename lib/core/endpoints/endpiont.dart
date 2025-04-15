@@ -6,4 +6,5 @@ class Endpiont {
   static const String chatPotEndpoint = "api/prompt";
   static const String allpostsEndpoint = "posts?size=200";
   static const String addPostEndpoint = "posts/addpost";
+  static const String addLikeEndpoint = "posts/like/{postId}";
 }

@@ -36,4 +36,11 @@ class ApiService {
         options: Options(headers: {'Content-Type': 'application/json'}));
     return response.data;
   }
+
+  Future<Map<String, dynamic>> addLike(
+      {required String endpoint, required token}) async {
+    var response = await dio.post('$baseUrl$endpoint',
+        options: Options(headers: {'token': 'token'}));
+    return response.data;
+  }
 }

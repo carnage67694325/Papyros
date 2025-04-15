@@ -8,4 +8,5 @@ abstract class GetPostsRepo {
   Future<Either<Failure, List<PostsEntity>>> getPosts();
   Future<Either<Failure, void>> addPost(
       {required String token, required PostModel post});
+  Future<Either<Failure, void>> addLike({required String token});
 }
