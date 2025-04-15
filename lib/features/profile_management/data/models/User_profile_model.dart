@@ -2,40 +2,55 @@ import '../../domain/entities/user_profile_entity.dart';
 
 class UserProfileModel extends UserProfileEntity {
   UserProfileModel({
-    required String super.userName,
-    required String super.firstName,
-    required String super.lastName,
-    required String super.email,
-    required String super.phone,
-    required String super.bio,
-    required dynamic profileImage,
-    required dynamic backgroundImage,
-    required String super.location,
-    required String super.dob,
-    required String super.gender,
+    String? userId,
+    String? userName,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? phone,
+    String? bio,
+    String? profileImage,
+    String? backgroundImage,
+    String? location,
+    String? dob,
+    String? gender,
   }) : super(
+          userId: userId,
+          userName: userName,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phone: phone,
+          bio: bio,
           profileImage: profileImage,
           backgroundImage: backgroundImage,
+          location: location,
+          dob: dob,
+          gender: gender,
         );
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
+    final user = json['user'] ?? {};
+
     return UserProfileModel(
-      userName: json['userName'] ?? '',
-      firstName: json['firstName'] ?? '',
-      lastName: json['lastName'] ?? '',
-      email: json['email'] ?? '',
-      phone: json['phone'] ?? '',
-      bio: json['bio'] ?? '',
-      profileImage: json['profileImage'] ?? '',
-      backgroundImage: json['backGroungImage'] ?? '',
-      location: json['location'] ?? '',
-      dob: json['DOB'] ?? '',
-      gender: json['gender'] ?? '',
+      userId: user['userId'] ?? '',
+      userName: user['userName'] ?? '',
+      firstName: user['firstName'] ?? '',
+      lastName: user['lastName'] ?? '',
+      email: user['email'] ?? '',
+      phone: user['phone'] ?? '',
+      bio: user['bio'] ?? '',
+      profileImage: user['profileImage'] ?? '',
+      backgroundImage: user['backGroungImage'] ?? '',
+      location: user['location'] ?? '',
+      dob: user['DOB'] ?? '',
+      gender: user['gender'] ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      'userId': userId,
       'userName': userName,
       'firstName': firstName,
       'lastName': lastName,
@@ -45,6 +60,8 @@ class UserProfileModel extends UserProfileEntity {
       'profileImage': profileImage,
       'backGroungImage': backgroundImage,
       'location': location,
+      'DOB': dob,
+      'gender': gender,
     };
   }
 }

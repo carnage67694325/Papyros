@@ -93,7 +93,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
     );
 
     // Get token
-    final token = await PrefasHandelr().getAuthToken();
+    final token = await PrefasHandelr.getAuthToken();
 
     if (token == null) {
       ScaffoldMessenger.of(context).showSnackBar(

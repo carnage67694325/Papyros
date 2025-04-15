@@ -52,7 +52,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void transitionFromSplash() {
     Future.delayed(const Duration(milliseconds: 1200), () {
-      PrefasHandelr().checkAuthToken(context);
+      PrefasHandelr.checkAuthToken(context);
     });
   }
 }

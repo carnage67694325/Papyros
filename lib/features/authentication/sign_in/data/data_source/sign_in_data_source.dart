@@ -20,8 +20,8 @@ class SignInDataSourceImpl implements SignInDataSource {
         body: {"email": email, "password": pass});
     if (response['token'] != null) {
       final token = response['token'];
-      await PrefasHandelr()
-          .storeToken(token); // Store the token in SharedPreferences
+      await PrefasHandelr.storeToken(
+          token); // Store the token in SharedPreferences
     }
     return SigninModel.fromJson(response);
   }

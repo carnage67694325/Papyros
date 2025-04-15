@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:mime/mime.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/endpoints/endpiont.dart';
 import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_managment_dau.dart';
@@ -18,7 +19,15 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       '${ApiService.baseUrl}${Endpiont.myProflieEndpoint}',
       options: Options(headers: {'token': token}),
     );
-    return response.data;
+
+    final data = response.data;
+
+    if (data['user'] != null && data['user']['userId'] != null) {
+      final userId = data['user']['userId'];
+      await PrefasHandelr.storeUserId(userId); // optional logic
+    }
+
+    return data;
   }
 
   @override

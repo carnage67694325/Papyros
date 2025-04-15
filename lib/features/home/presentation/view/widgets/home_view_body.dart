@@ -185,6 +185,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 numberOfLikes: state.posts[index].likes!.length,
                 numberOfComments: state.posts[index].comments!.length,
                 tag: state.posts[index].tag,
+                postId: state.posts[index].id,
               ),
             ),
           );

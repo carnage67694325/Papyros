@@ -48,15 +48,15 @@ void setupServiceLoactor() {
       VerfiyOtpDataSourceImpl(apiService: getIt.get<ApiService>()))));
   getIt.registerSingleton<GetUserProfileUseCase>(GetUserProfileUseCase(
     ProfileRepositoryImpl(
-        remoteDataSource: ProfileRemoteDataSourceImpl(dio: Dio()),
-        tokenHandler: PrefasHandelr()),
+      remoteDataSource: ProfileRemoteDataSourceImpl(dio: Dio()),
+    ),
   ));
   getIt.registerSingleton<UpdateUserProfileUseCase>(
       UpdateUserProfileUseCase(ProfileRepositoryImpl(
-          remoteDataSource: ProfileRemoteDataSourceImpl(
-            dio: Dio(),
-          ),
-          tokenHandler: PrefasHandelr())));
+    remoteDataSource: ProfileRemoteDataSourceImpl(
+      dio: Dio(),
+    ),
+  )));
   getIt.registerSingleton<ChatBotSendPromptUseCase>(
     ChatBotSendPromptUseCase(
       ChatBotRepoImpl(

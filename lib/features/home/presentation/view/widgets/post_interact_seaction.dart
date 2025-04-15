@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/core/utils/functions/like_post.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 
 class PostInteractSection extends StatefulWidget {
@@ -44,9 +45,7 @@ class _PostInteractSectionState extends State<PostInteractSection> {
           onPressed: () async {
             changeIconColor(2);
             log("Favorite clicked");
-            String? token = await PrefasHandelr().getAuthToken();
-            BlocProvider.of<AddLikeCubit>(context)
-                .addLike(token: token!, postId: widget.postId);
+            await likePost(context, widget.postId);
           },
         ),
         _buildIconButton(3, Assets.assetsCommentIcon, 20, () {

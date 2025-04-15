@@ -9,17 +9,15 @@ import '../models/User_profile_model.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileRemoteDataSource remoteDataSource;
-  final PrefasHandelr tokenHandler;
 
   ProfileRepositoryImpl({
     required this.remoteDataSource,
-    required this.tokenHandler,
   });
 
   @override
   Future<Either<Failure, UserProfileEntity>> getUserProfile() async {
     try {
-      final token = await tokenHandler.getAuthToken();
+      final token = await PrefasHandelr.getAuthToken();
 
       final data = await remoteDataSource.fetchUserProfile(token!);
       return right(UserProfileModel.fromJson(data['user']));
@@ -37,7 +35,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     UserProfileEntity profile,
   ) async {
     try {
-      final token = await tokenHandler.getAuthToken();
+      final token = await PrefasHandelr.getAuthToken();
       final profileModel = UserProfileModel(
         userName: profile.userName!,
         firstName: profile.firstName!,
