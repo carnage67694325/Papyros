@@ -182,6 +182,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
                 createdAtString: state.posts[index].createdAt!,
                 numberOfLikes: state.posts[index].likes!.length,
+                numberOfComments: state.posts[index].comments!.length,
                 tag: state.posts[index].tag,
               ),
             ),

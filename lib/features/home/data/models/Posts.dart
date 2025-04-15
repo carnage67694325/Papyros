@@ -1,3 +1,4 @@
+import 'package:papyros/features/comments/data/models/Addcommentmodel.dart';
 import 'package:papyros/features/home/data/models/Images.dart';
 import 'package:papyros/features/home/data/models/createdby.dart';
 import 'package:papyros/features/home/domain/entities/posts_entity.dart';
@@ -14,7 +15,7 @@ class PostModel extends PostsEntity {
     List<String>? mention,
     List<Images>? images,
     String? updatedAt,
-    List<String>? comments,
+    List<CommentModel>? comments,
   }) : super(
           id: id ?? '',
           description: description ?? '',
@@ -46,11 +47,14 @@ class PostModel extends PostsEntity {
           (json['images'] as List?)?.map((v) => Images.fromJson(v)).toList() ??
               [],
       updatedAt: json['updatedAt'],
-      comments:
-          (json['comments'] as List?)?.map((e) => e.toString()).toList() ?? [],
+      comments: (json['comments'] as List?)
+              ?.map((v) => CommentModel.fromJson(v))
+              .toList() ??
+          [],
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
@@ -61,9 +65,9 @@ class PostModel extends PostsEntity {
       'tag': tag,
       'likes': likes,
       'mention': mention,
-      'images': images?.map((v) => v.toJson()).toList() ?? [],
+      'images': images?.map((v) => v.toJson()).toList(),
       'updatedAt': updatedAt,
-      'comments': comments,
+      'comments': comments?.map((v) => v.toJson()).toList(),
     };
   }
 }

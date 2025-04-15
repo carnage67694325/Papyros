@@ -7,8 +7,10 @@ import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
 
 class PostInteractSectionWithStats extends StatefulWidget {
-  const PostInteractSectionWithStats({super.key, required this.numberOfLikes});
+  const PostInteractSectionWithStats(
+      {super.key, required this.numberOfLikes, required this.numberOfComments});
   final int numberOfLikes;
+  final int numberOfComments;
   @override
   State<PostInteractSectionWithStats> createState() =>
       _PostInteractSectionWithStatsState();
@@ -70,7 +72,7 @@ class _PostInteractSectionWithStatsState
             log("Comment clicked");
           }),
           Text(
-            "2",
+            widget.numberOfComments.toString(),
             style: TextStyle(
               color: AppColors.iconColor,
               fontSize: 14.sp,

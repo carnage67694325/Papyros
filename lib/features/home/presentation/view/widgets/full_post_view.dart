@@ -21,6 +21,7 @@ class FullPostView extends StatelessWidget {
     required this.numberOfLikes,
     this.heroTag,
     this.tag,
+    required this.numberOfComments,
   });
 
   final String userName;
@@ -29,6 +30,8 @@ class FullPostView extends StatelessWidget {
   final List<String?>? imageUrl;
   final String createdAtString;
   final int numberOfLikes;
+  final int numberOfComments;
+
   final String? heroTag;
   final String? tag;
 
@@ -88,7 +91,10 @@ class FullPostView extends StatelessWidget {
             const CustomDivider(),
 
             // Interaction
-            PostInteractSectionWithStats(numberOfLikes: numberOfLikes),
+            PostInteractSectionWithStats(
+              numberOfLikes: numberOfLikes,
+              numberOfComments: numberOfComments,
+            ),
 
             // Comments Section
             const CommentSection(),
