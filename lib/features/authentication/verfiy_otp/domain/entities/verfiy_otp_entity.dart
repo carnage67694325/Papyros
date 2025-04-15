@@ -1,6 +1,6 @@
 class VerfiyOtpEntity {
-  String emailEntity;
-  String otpEntity;
+  final String? emailEntity;
+  final String? otpEntity;
 
-  VerfiyOtpEntity({required this.emailEntity, required this.otpEntity});
+  VerfiyOtpEntity({this.emailEntity, this.otpEntity});
 }

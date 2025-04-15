@@ -14,7 +14,7 @@ class VerfiyOtpRepoImp implements VerfiyOtpRepo {
       VerfiyOtpEntity otp) async {
     try {
       var response = await verfiyOtpDataSource.verfiyOtp(
-          email: otp.emailEntity, otp: otp.otpEntity);
+          email: otp.emailEntity!, otp: otp.otpEntity!);
       return right(response);
     } catch (e) {
       if (e is DioException) {
