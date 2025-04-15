@@ -29,9 +29,7 @@ class UserProfileModel extends UserProfileEntity {
           gender: gender,
         );
 
-  factory UserProfileModel.fromJson(Map<String, dynamic> json) {
-    final user = json['user'] ?? {};
-
+  factory UserProfileModel.fromJson(Map<String, dynamic> user) {
     return UserProfileModel(
       userId: user['userId'] ?? '',
       userName: user['userName'] ?? '',

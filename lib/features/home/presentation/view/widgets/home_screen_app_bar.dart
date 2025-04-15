@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +16,14 @@ class HomeScreenAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetUserProfileCubit, GetUserProfileState>(
+    return BlocConsumer<GetUserProfileCubit, GetUserProfileState>(
+      listener: (context, state) {
+        if (state is GetUserProfileFailure) {
+          // Handle error state if needed
+        } else if (state is GetUserProfileSuccess) {
+          log(state.userProfileEntity.profileImage!);
+        }
+      },
       builder: (context, state) {
         return Container(
           decoration: const BoxDecoration(

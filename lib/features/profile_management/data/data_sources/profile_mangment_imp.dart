@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:mime/mime.dart';
@@ -15,11 +16,11 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
   @override
   Future<Map<String, dynamic>> fetchUserProfile(String token) async {
+    log('${ApiService.baseUrl}${Endpiont.myProflieEndpoint}');
     final response = await dio.get(
       '${ApiService.baseUrl}${Endpiont.myProflieEndpoint}',
       options: Options(headers: {'token': token}),
     );
-
     final data = response.data;
 
     if (data['user'] != null && data['user']['userId'] != null) {
