@@ -2,8 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/home/data/data_sources/add_like_data_source_imp.dart';
 import 'package:papyros/features/home/data/data_sources/add_post_impl.dart';
 import 'package:papyros/features/home/data/data_sources/get_posts_imp.dart';
 import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
@@ -43,6 +45,7 @@ class AddPostView extends StatelessWidget {
                       Dio(),
                     ),
                     AddPostImpl(dio: Dio()),
+                    AddLikeImp(apiService: ApiService(Dio())),
                   ),
                 )))
       ], child: const AddPostViewBody()),
