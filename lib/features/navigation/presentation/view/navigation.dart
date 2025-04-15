@@ -10,6 +10,7 @@ import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
 import 'package:papyros/features/notifications/presentation/view/notifications_view.dart';
 import 'package:papyros/features/notifications/presentation/view/widgets/notifications_view_body.dart';
+import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class Navigation extends StatefulWidget {
@@ -43,9 +44,7 @@ class _NavigationState extends State<Navigation> {
       Container(
         color: Colors.amber,
       ),
-      Container(
-        color: Colors.black,
-      ),
+      const ProfileManagementView(),
       const ChatBotView(),
     ];
   }
@@ -76,6 +75,14 @@ class _NavigationState extends State<Navigation> {
       onItemSelected: (index) {
         if (index == 5) {
           GoRouter.of(context).push(AppRouter.kChatBot);
+          Future.delayed(const Duration(milliseconds: 100), () {
+            setState(() {
+              _controller.index -= 1;
+            });
+          });
+        }
+        if (index == 4) {
+          GoRouter.of(context).push(AppRouter.kProfileManage);
           Future.delayed(const Duration(milliseconds: 100), () {
             setState(() {
               _controller.index -= 1;
