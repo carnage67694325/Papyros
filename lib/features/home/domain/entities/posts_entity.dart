@@ -1,29 +1,30 @@
-import 'package:papyros/features/home/data/models/createdBy.dart';
-
-import '../../data/models/Images.dart';
+import 'package:papyros/features/home/data/models/Images.dart';
+import 'package:papyros/features/home/data/models/createdby.dart';
 
 class PostsEntity {
-  String? id;
-  String? description;
-  CreatedBy? createdBy;
-  String? createdAt;
-  bool? isEdited;
-  String? tag;
-  List<String>? likes;
-  List<String>? mention;
-  List<Images>? images;
-  String? updatedAt;
+  final String id;
+  final String description;
+  final CreatedBy createdBy;
+  final String createdAt;
+  final bool isEdited;
+  final String tag;
+  final List<String> likes;
+  final List<String> mention;
+  final List<Images> images;
+  final String updatedAt;
+  final List<String> comments;
 
-  PostsEntity({
-    this.id,
-    this.description,
-    this.createdBy,
-    this.createdAt,
-    this.isEdited,
-    this.tag,
-    this.likes,
-    this.mention,
-    this.images,
-    this.updatedAt,
+  const PostsEntity({
+    required this.id,
+    required this.description,
+    required this.createdBy,
+    required this.createdAt,
+    required this.isEdited,
+    required this.tag,
+    required this.likes,
+    required this.mention,
+    required this.images,
+    required this.updatedAt,
+    required this.comments,
   });
 }

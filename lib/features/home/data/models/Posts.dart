@@ -1,7 +1,6 @@
-import 'package:papyros/features/home/data/models/createdBy.dart';
-
-import 'Images.dart';
-import '../../domain/entities/posts_entity.dart';
+import 'package:papyros/features/home/data/models/Images.dart';
+import 'package:papyros/features/home/data/models/createdby.dart';
+import 'package:papyros/features/home/domain/entities/posts_entity.dart';
 
 class PostModel extends PostsEntity {
   PostModel({
@@ -15,6 +14,7 @@ class PostModel extends PostsEntity {
     List<String>? mention,
     List<Images>? images,
     String? updatedAt,
+    List<String>? comments,
   }) : super(
           id: id ?? '',
           description: description ?? '',
@@ -26,6 +26,7 @@ class PostModel extends PostsEntity {
           mention: mention ?? [],
           images: images ?? [],
           updatedAt: updatedAt ?? '',
+          comments: comments ?? [],
         );
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
@@ -45,6 +46,8 @@ class PostModel extends PostsEntity {
           (json['images'] as List?)?.map((v) => Images.fromJson(v)).toList() ??
               [],
       updatedAt: json['updatedAt'],
+      comments:
+          (json['comments'] as List?)?.map((e) => e.toString()).toList() ?? [],
     );
   }
 
@@ -60,6 +63,7 @@ class PostModel extends PostsEntity {
       'mention': mention,
       'images': images?.map((v) => v.toJson()).toList() ?? [],
       'updatedAt': updatedAt,
+      'comments': comments,
     };
   }
 }
