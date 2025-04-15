@@ -22,7 +22,7 @@ Future<void> main() async {
   await PrefasHandelr.init();
   //PrefasHandelr().clearAuthToken();
   // await PrefasHandelr().printAuthToken();
-  await PrefasHandelr.printUserId();
+  // await PrefasHandelr.printUserId();
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   setupServiceLoactor();

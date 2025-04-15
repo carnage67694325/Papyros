@@ -22,6 +22,7 @@ class FullViewBody extends StatelessWidget {
     required this.numberOfLikes,
     required this.numberOfComments,
     required this.postId,
+    required this.likes,
   });
 
   final String userName;
@@ -35,7 +36,7 @@ class FullViewBody extends StatelessWidget {
   final int numberOfLikes;
   final int numberOfComments;
   final String? postId;
-
+  final List<String> likes;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -86,6 +87,7 @@ class FullViewBody extends StatelessWidget {
             numberOfLikes: numberOfLikes,
             numberOfComments: numberOfComments,
             postId: postId!,
+            likes: likes,
           ),
 
           // Comments Section

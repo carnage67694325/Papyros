@@ -28,6 +28,7 @@ class FullPostView extends StatelessWidget {
     this.tag,
     required this.numberOfComments,
     this.postId,
+    required this.likes,
   });
 
   final String userName;
@@ -40,7 +41,7 @@ class FullPostView extends StatelessWidget {
   final String? postId;
   final String? heroTag;
   final String? tag;
-
+  final List<String> likes;
   @override
   Widget build(BuildContext context) {
     final hasImage =
@@ -56,17 +57,19 @@ class FullPostView extends StatelessWidget {
       body: BlocProvider(
         create: (context) => AddLikeCubit(getIt.get<AddLikeUscase>()),
         child: FullViewBody(
-            userName: userName,
-            userProfileImageUrl: userProfileImageUrl,
-            createdAtString: createdAtString,
-            tag: tag,
-            description: description,
-            hasImage: hasImage,
-            imageUrl: imageUrl,
-            uniqueHeroTag: uniqueHeroTag,
-            numberOfLikes: numberOfLikes,
-            numberOfComments: numberOfComments,
-            postId: postId),
+          userName: userName,
+          userProfileImageUrl: userProfileImageUrl,
+          createdAtString: createdAtString,
+          tag: tag,
+          description: description,
+          hasImage: hasImage,
+          imageUrl: imageUrl,
+          uniqueHeroTag: uniqueHeroTag,
+          numberOfLikes: numberOfLikes,
+          numberOfComments: numberOfComments,
+          postId: postId,
+          likes: likes,
+        ),
       ),
     );
   }

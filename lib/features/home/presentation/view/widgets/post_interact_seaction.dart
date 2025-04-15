@@ -11,14 +11,29 @@ import 'package:papyros/core/utils/functions/like_post.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 
 class PostInteractSection extends StatefulWidget {
-  const PostInteractSection({super.key, required this.postId});
-  final String postId; // Replace with actual post ID
+  const PostInteractSection(
+      {super.key, required this.postId, required this.likes});
+  final String postId;
+  final List<String> likes; // Replace with actual post ID
   @override
   State<PostInteractSection> createState() => _PostInteractSectionState();
 }
 
 class _PostInteractSectionState extends State<PostInteractSection> {
   Map<int, bool> isClicked = {};
+  String? currentUserId;
+  @override
+  void initState() {
+    initFavoriteStatus(
+      state: this,
+      likes: widget.likes,
+      isClicked: isClicked,
+      onUserIdFetched: (id) {
+        currentUserId = id;
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

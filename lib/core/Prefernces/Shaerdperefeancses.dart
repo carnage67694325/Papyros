@@ -69,7 +69,7 @@ class PrefasHandelr {
     await prefs.setString('user_id', userId);
   }
 
-  static Future<String?> geUserId(String userId) async {
+  static Future<String?> geUserId() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('user_id');
   }

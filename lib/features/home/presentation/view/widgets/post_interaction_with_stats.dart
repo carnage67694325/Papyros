@@ -4,20 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/core/utils/functions/like_post.dart';
-import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 
 class PostInteractSectionWithStats extends StatefulWidget {
   const PostInteractSectionWithStats(
       {super.key,
       required this.numberOfLikes,
       required this.numberOfComments,
-      required this.postId});
+      required this.postId,
+      required this.likes});
   final int numberOfLikes;
   final int numberOfComments;
-  final String postId; // Replace with actual post ID
+  final String postId;
+  final List<String> likes; // Replace with actual post ID
   @override
   State<PostInteractSectionWithStats> createState() =>
       _PostInteractSectionWithStatsState();
@@ -26,6 +28,20 @@ class PostInteractSectionWithStats extends StatefulWidget {
 class _PostInteractSectionWithStatsState
     extends State<PostInteractSectionWithStats> {
   Map<int, bool> isClicked = {};
+  String? currentUserId;
+  @override
+  void initState() {
+    initFavoriteStatus(
+      state: this,
+      likes: widget.likes,
+      isClicked: isClicked,
+      onUserIdFetched: (id) {
+        currentUserId = id;
+      },
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -104,13 +104,14 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         openFullPostView(context, state, index, heroTag);
                       },
                       child: PostCard(
-                        description: post.description!,
-                        userName: post.createdBy?.userName ?? "user-name",
-                        userProfileImageUrl: post.createdBy?.profileImage ??
+                        description: post.description,
+                        userName: post.createdBy.userName ?? "user-name",
+                        userProfileImageUrl: post.createdBy.profileImage ??
                             "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
-                        imageUrl: post.images?.map((e) => e.image).toList(),
+                        imageUrl: post.images.map((e) => e.image).toList(),
                         postId: post.id,
-                        heroTag: heroTag, // Pass the tag
+                        heroTag: heroTag,
+                        likes: state.posts[index].likes, // Pass the tag
                       ),
                     );
                   },
@@ -186,6 +187,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 numberOfComments: state.posts[index].comments!.length,
                 tag: state.posts[index].tag,
                 postId: state.posts[index].id,
+                likes: state.posts[index].likes,
               ),
             ),
           );
