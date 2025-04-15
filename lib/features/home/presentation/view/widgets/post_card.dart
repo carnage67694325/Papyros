@@ -15,6 +15,7 @@ class PostCard extends StatelessWidget {
     required this.userName,
     required this.userProfileImageUrl,
     required this.heroTag,
+    required this.postId,
   });
 
   final String userName;
@@ -22,6 +23,7 @@ class PostCard extends StatelessWidget {
   final String description;
   final List<String?>? imageUrl;
   final String heroTag;
+  final String postId;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +127,9 @@ class PostCard extends StatelessWidget {
               ),
             ),
 
-          const PostInteractSection(),
+          PostInteractSection(
+            postId: postId,
+          ),
         ],
       ),
     );

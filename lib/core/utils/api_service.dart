@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -39,8 +41,10 @@ class ApiService {
 
   Future<Map<String, dynamic>> addLike(
       {required String endpoint, required token}) async {
-    var response = await dio.post('$baseUrl$endpoint',
-        options: Options(headers: {'token': 'token'}));
+    log('$baseUrl$endpoint');
+    var response = await dio.get('$baseUrl$endpoint',
+        options: Options(headers: {'token': token}));
+
     return response.data;
   }
 }

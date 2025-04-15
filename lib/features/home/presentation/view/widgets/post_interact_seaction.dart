@@ -1,14 +1,17 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 
 class PostInteractSection extends StatefulWidget {
-  const PostInteractSection({super.key});
-
+  const PostInteractSection({super.key, required this.postId});
+  final String postId; // Replace with actual post ID
   @override
   State<PostInteractSection> createState() => _PostInteractSectionState();
 }
@@ -38,9 +41,12 @@ class _PostInteractSectionState extends State<PostInteractSection> {
                 ? AppColors.lightPeach
                 : AppColors.iconColor,
           ),
-          onPressed: () {
+          onPressed: () async {
             changeIconColor(2);
             log("Favorite clicked");
+            String? token = await PrefasHandelr().getAuthToken();
+            BlocProvider.of<AddLikeCubit>(context)
+                .addLike(token: token!, postId: widget.postId);
           },
         ),
         _buildIconButton(3, Assets.assetsCommentIcon, 20, () {

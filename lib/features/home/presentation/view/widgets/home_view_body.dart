@@ -109,6 +109,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         userProfileImageUrl: post.createdBy?.profileImage ??
                             "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
                         imageUrl: post.images?.map((e) => e.image).toList(),
+                        postId: post.id,
                         heroTag: heroTag, // Pass the tag
                       ),
                     );

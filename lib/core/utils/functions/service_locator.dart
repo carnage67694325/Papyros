@@ -18,6 +18,7 @@ import 'package:papyros/features/home/data/data_sources/add_like_data_source_imp
 import 'package:papyros/features/home/data/data_sources/add_post_impl.dart';
 import 'package:papyros/features/home/data/data_sources/get_posts_imp.dart';
 import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
+import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_mangment_imp.dart';
 import 'package:papyros/features/profile_management/data/repositories/profile_managment_repo_imp.dart';
@@ -27,6 +28,14 @@ import 'package:papyros/features/profile_management/domain/use_cases/update_use_
 final getIt = GetIt.instance;
 void setupServiceLoactor() {
   getIt.registerSingleton<ApiService>(ApiService(Dio()));
+  getIt.registerSingleton<AddLikeUscase>(AddLikeUscase(
+      getPostsRepoimp: GetPostsRepoimp(
+    GetPostsImp(
+      Dio(),
+    ),
+    AddPostImpl(dio: Dio()),
+    AddLikeImp(apiService: ApiService(Dio())),
+  )));
   getIt.registerSingleton<SignInUseCase>(SignInUseCase(
       signInRepo: SignInRepoImpl(
           signInDataSource:
@@ -48,10 +57,14 @@ void setupServiceLoactor() {
             dio: Dio(),
           ),
           tokenHandler: PrefasHandelr())));
-  getIt.registerSingleton<ChatBotSendPromptUseCase>(ChatBotSendPromptUseCase(
+  getIt.registerSingleton<ChatBotSendPromptUseCase>(
+    ChatBotSendPromptUseCase(
       ChatBotRepoImpl(
-          sendPromptDataSource:
-              SendPromptDataSourceImpl(apiService: getIt.get<ApiService>()))));
+        sendPromptDataSource:
+            SendPromptDataSourceImpl(apiService: getIt.get<ApiService>()),
+      ),
+    ),
+  );
   getIt.registerSingleton<GetPostsUsecase>(
     (GetPostsUsecase(
       GetPostsRepoimp(
@@ -59,7 +72,9 @@ void setupServiceLoactor() {
           Dio(),
         ),
         AddPostImpl(dio: Dio()),
-        AddLikeImp(apiService: ApiService(Dio())),
+        AddLikeImp(
+          apiService: ApiService(Dio()),
+        ),
       ),
     )),
   );
