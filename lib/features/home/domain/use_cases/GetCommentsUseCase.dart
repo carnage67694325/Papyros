@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../entities/CommentEntity.dart';
+import '../entities/comment_entity.dart';
 import '../repositories/CommentRepo.dart';
 
 class GetCommentsUseCase {

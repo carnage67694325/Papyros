@@ -1,5 +1,5 @@
-import 'package:papyros/features/comments/data/models/Addcommentmodel.dart';
 import 'package:papyros/features/home/data/models/Images.dart';
+import 'package:papyros/features/home/data/models/comments.dart';
 import 'package:papyros/features/home/data/models/createdby.dart';
 import 'package:papyros/features/home/domain/entities/posts_entity.dart';
 

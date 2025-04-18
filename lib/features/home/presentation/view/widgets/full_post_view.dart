@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
-import 'package:papyros/features/comments/data/models/Addcommentmodel.dart';
+import 'package:papyros/features/home/data/models/comments.dart';
 
 import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';

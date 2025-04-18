@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../entities/CommentEntity.dart';
+import '../entities/comment_entity.dart';
 import '../repositories/CommentRepo.dart';
 
 class ReplyToCommentUseCase {
@@ -9,7 +9,8 @@ class ReplyToCommentUseCase {
 
   ReplyToCommentUseCase(this.repository);
 
-  Future<Either<Failure, void>> call(String commentId, CommentEntity reply) async {
+  Future<Either<Failure, void>> call(
+      String commentId, CommentEntity reply) async {
     return await repository.replyToComment(commentId, reply);
   }
 }
