@@ -49,7 +49,7 @@ class _PostInteractSectionWithStatsState
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: 10.w,
+          width: 2.w,
         ),
         Row(
           children: [
@@ -119,7 +119,7 @@ class _PostInteractSectionWithStatsState
           ],
         ),
         SizedBox(
-          width: 10.w,
+          width: 20.w,
         ),
       ],
     );

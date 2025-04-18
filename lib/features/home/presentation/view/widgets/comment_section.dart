@@ -152,6 +152,7 @@ class _CommentSectionState extends State<CommentSection> {
           AddCommentField(
             commentController: _commentController,
             onPressed: _isSubmitting || !_hasText ? () {} : _submitComment,
+            isSubmitting: _isSubmitting, // Pass the submitting state
           ),
         ],
       ),
