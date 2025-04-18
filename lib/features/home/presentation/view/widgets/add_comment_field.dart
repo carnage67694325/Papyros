@@ -7,12 +7,10 @@ import 'package:papyros/features/home/presentation/view/widgets/user_profile_hom
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 
 class AddCommentField extends StatelessWidget {
-  final String userProfileImageUrl;
   final TextEditingController commentController;
   final void Function() onPressed;
   const AddCommentField({
     super.key,
-    required this.userProfileImageUrl,
     required this.commentController,
     required this.onPressed,
   });

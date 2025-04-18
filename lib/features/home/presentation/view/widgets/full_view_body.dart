@@ -97,7 +97,6 @@ class FullViewBody extends StatelessWidget {
           // Comments Section with Add Comment field always visible
           CommentSection(
             comments: comments,
-            userProfileImageUrl: userProfileImageUrl,
             postId: postId!,
           ),
 

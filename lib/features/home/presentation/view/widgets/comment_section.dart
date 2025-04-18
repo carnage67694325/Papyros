@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
@@ -18,12 +17,11 @@ class CommentSection extends StatefulWidget {
   const CommentSection({
     super.key,
     required this.comments,
-    required this.userProfileImageUrl,
     required this.postId,
   });
 
   final List<CommentModel> comments;
-  final String userProfileImageUrl;
+
   final String postId;
 
   @override
@@ -152,7 +150,6 @@ class _CommentSectionState extends State<CommentSection> {
 
           // Replace with AddCommentField widget
           AddCommentField(
-            userProfileImageUrl: widget.userProfileImageUrl,
             commentController: _commentController,
             onPressed: _isSubmitting || !_hasText ? () {} : _submitComment,
           ),

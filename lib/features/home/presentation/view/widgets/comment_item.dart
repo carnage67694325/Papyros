@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/features/home/presentation/view/widgets/comment_action.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_app_bar.dart';
+import 'package:papyros/features/home/presentation/view/widgets/time_formarter.dart';
 
 class CommentItem extends StatelessWidget {
   final String userName;
@@ -46,7 +47,7 @@ class CommentItem extends StatelessWidget {
                     ),
                     SizedBox(width: 8.w),
                     Text(
-                      timeAgo,
+                      TimeFormatter.timeAgo(timeAgo),
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 12.sp,
