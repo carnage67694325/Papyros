@@ -188,6 +188,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 tag: state.posts[index].tag,
                 postId: state.posts[index].id,
                 likes: state.posts[index].likes,
+                comments: state.posts[index].comments!,
               ),
             ),
           );

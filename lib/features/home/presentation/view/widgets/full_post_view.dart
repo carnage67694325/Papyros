@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
-import 'package:papyros/features/authentication/presentation/views/widgets/custom_divider.dart';
+import 'package:papyros/features/comments/data/models/Addcommentmodel.dart';
+
 import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
-import 'package:papyros/features/home/presentation/view/widgets/comment_field.dart';
-import 'package:papyros/features/home/presentation/view/widgets/comment_section.dart';
+
 import 'package:papyros/features/home/presentation/view/widgets/full_view_body.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_app_bar.dart';
-import 'package:papyros/features/home/presentation/view/widgets/post_header.dart';
-import 'package:papyros/features/home/presentation/view/widgets/post_image.dart';
-import 'package:papyros/features/home/presentation/view/widgets/post_interaction_with_stats.dart';
 
 class FullPostView extends StatelessWidget {
   const FullPostView({
@@ -29,6 +24,7 @@ class FullPostView extends StatelessWidget {
     required this.numberOfComments,
     this.postId,
     required this.likes,
+    required this.comments,
   });
 
   final String userName;
@@ -42,6 +38,7 @@ class FullPostView extends StatelessWidget {
   final String? heroTag;
   final String? tag;
   final List<String> likes;
+  final List<CommentModel> comments;
   @override
   Widget build(BuildContext context) {
     final hasImage =
@@ -69,6 +66,7 @@ class FullPostView extends StatelessWidget {
           numberOfComments: numberOfComments,
           postId: postId,
           likes: likes,
+          comments: comments,
         ),
       ),
     );

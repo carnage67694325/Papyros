@@ -102,10 +102,6 @@ abstract class AppRouter {
                   create: (context) =>
                       GetUserProfileCubit(getIt.get<GetUserProfileUseCase>()),
                 ),
-                BlocProvider(
-                  create: (context) =>
-                      UpdateUserCubit(getIt.get<UpdateUserProfileUseCase>()),
-                ),
                 BlocProvider(create: (context) => UpdateProfileImageCubit()),
               ],
               child: const ProfileManagementView(),

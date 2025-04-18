@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_divider.dart';
-import 'package:papyros/features/home/presentation/view/widgets/comment_field.dart';
+import 'package:papyros/features/comments/data/models/Addcommentmodel.dart';
+import 'package:papyros/features/home/presentation/view/widgets/add_comment_field.dart';
 import 'package:papyros/features/home/presentation/view/widgets/comment_section.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_header.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_image.dart';
@@ -23,6 +24,7 @@ class FullViewBody extends StatelessWidget {
     required this.numberOfComments,
     required this.postId,
     required this.likes,
+    required this.comments,
   });
 
   final String userName;
@@ -37,6 +39,8 @@ class FullViewBody extends StatelessWidget {
   final int numberOfComments;
   final String? postId;
   final List<String> likes;
+  final List<CommentModel> comments;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -91,7 +95,9 @@ class FullViewBody extends StatelessWidget {
           ),
 
           // Comments Section
-          const CommentSection(),
+          CommentSection(
+            comments: comments,
+          ),
 
           // Add comment
           AddCommentField(userProfileImageUrl: userProfileImageUrl),
