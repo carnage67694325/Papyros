@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:papyros/features/home/data/models/comments.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../entities/comment_entity.dart';
 import '../repositories/CommentRepo.dart';
 
 class AddCommentUseCase {
@@ -9,7 +9,8 @@ class AddCommentUseCase {
 
   AddCommentUseCase(this.repository);
 
-  Future<Either<Failure, void>> call(CommentEntity comment) async {
-    return await repository.addComment(comment);
+  Future<Either<Failure, void>> call(
+      CommentModel comment, String token, String postId) async {
+    return await repository.addComment(comment, token, postId);
   }
 }

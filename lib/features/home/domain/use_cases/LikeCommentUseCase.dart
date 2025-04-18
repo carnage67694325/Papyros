@@ -8,7 +8,7 @@ class LikeCommentUseCase {
 
   LikeCommentUseCase(this.repository);
 
-  Future<Either<Failure, void>> call(String commentId) async {
-    return await repository.likeComment(commentId);
+  Future<Either<Failure, void>> call(String commentId, String token) async {
+    return await repository.likeComment(commentId, token);
   }
 }
