@@ -6,10 +6,13 @@ import 'package:papyros/features/home/presentation/view/widgets/user_profile_hom
 
 class AddCommentField extends StatelessWidget {
   final String userProfileImageUrl;
-
+  final TextEditingController commentController;
+  final void Function() onPressed;
   const AddCommentField({
     super.key,
     required this.userProfileImageUrl,
+    required this.commentController,
+    required this.onPressed,
   });
 
   @override
@@ -33,6 +36,7 @@ class AddCommentField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: TextField(
+                controller: commentController,
                 decoration: InputDecoration(
                   hintText: 'Add a comment...',
                   hintStyle: TextStyle(
@@ -45,8 +49,8 @@ class AddCommentField extends StatelessWidget {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.send, color: AppColors.backGroundColor),
-            onPressed: () {},
+            icon: const Icon(Icons.send, color: AppColors.lightBrown),
+            onPressed: onPressed,
           ),
         ],
       ),

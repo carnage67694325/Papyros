@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:papyros/features/home/data/models/comments.dart';
 
@@ -25,10 +27,13 @@ class CommentRemoteDataSourceImpl implements CommentRemoteDataSource {
   @override
   Future<void> addComment(
       CommentModel comment, String token, String postId) async {
+    log('${ApiService.baseUrl}${Endpiont.addCommentEndpoint}$postId');
     await dio.post(
-      '${ApiService.baseUrl}${Endpiont.addCommentEndpoint}/$postId',
-      data: comment.toJson(),
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      '${ApiService.baseUrl}${Endpiont.addCommentEndpoint}$postId',
+      data: {
+        'description': comment.description,
+      },
+      options: Options(headers: {'token': token}),
     );
   }
 
@@ -38,7 +43,7 @@ class CommentRemoteDataSourceImpl implements CommentRemoteDataSource {
     await dio.put(
       '${ApiService.baseUrl}${Endpiont.editcommentEndpoint}/$commentId',
       data: {'text': newText},
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      options: Options(headers: {'token': token}),
     );
   }
 
@@ -46,7 +51,7 @@ class CommentRemoteDataSourceImpl implements CommentRemoteDataSource {
   Future<void> deleteComment(String commentId, String token) async {
     await dio.delete(
       '${ApiService.baseUrl}${Endpiont.deleteCommentEndpoint}/$commentId',
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      options: Options(headers: {token: token}),
     );
   }
 
@@ -54,7 +59,7 @@ class CommentRemoteDataSourceImpl implements CommentRemoteDataSource {
   Future<void> likeComment(String commentId, String token) async {
     await dio.post(
       '${ApiService.baseUrl}${Endpiont.addLikecommentEndpoint}/$commentId/like',
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      options: Options(headers: {token: token}),
     );
   }
 
@@ -64,7 +69,7 @@ class CommentRemoteDataSourceImpl implements CommentRemoteDataSource {
     await dio.post(
       '${ApiService.baseUrl}${Endpiont.replyCommentEndpoint}/$commentId/reply',
       data: reply.toJson(),
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
+      options: Options(headers: {token: token}),
     );
   }
 }

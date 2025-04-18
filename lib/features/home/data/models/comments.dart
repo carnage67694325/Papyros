@@ -1,26 +1,26 @@
 import 'package:papyros/features/home/domain/entities/comment_entity.dart';
 
 class CommentModel {
-  final String id;
-  final String post;
-  final String createdBy;
-  final String createdAt;
-  final bool isEdited;
-  final String description;
-  final List<String> likes;
-  final List<CommentModel> replies;
-  final String updatedAt;
+  final String? id;
+  final String? post;
+  final String? createdBy;
+  final String? createdAt;
+  final bool? isEdited;
+  final String? description;
+  final List<String>? likes;
+  final List<CommentModel>? replies;
+  final String? updatedAt;
 
   CommentModel({
-    required this.id,
-    required this.post,
-    required this.createdBy,
-    required this.createdAt,
-    required this.isEdited,
-    required this.description,
-    required this.likes,
-    required this.replies,
-    required this.updatedAt,
+    this.id,
+    this.post,
+    this.createdBy,
+    this.createdAt,
+    this.isEdited,
+    this.description,
+    this.likes,
+    this.replies,
+    this.updatedAt,
   });
 
   factory CommentModel.fromJson(Map<String, dynamic> json) {
@@ -48,8 +48,8 @@ class CommentModel {
       'createdAt': createdAt,
       'isEdited': isEdited,
       'description': description,
-      'likes': likes,
-      'reply': replies.map((reply) => reply.toJson()).toList(),
+      'likes': likes ?? [],
+      'reply': replies?.map((reply) => reply.toJson()).toList() ?? [],
       'updatedAt': updatedAt,
     };
   }
@@ -57,15 +57,15 @@ class CommentModel {
   // Convert Model to Entity
   CommentEntity toEntity() {
     return CommentEntity(
-      id: id,
-      post: post,
-      createdBy: createdBy,
-      createdAt: createdAt,
-      isEdited: isEdited,
-      description: description,
-      likes: likes,
-      replies: replies.map((reply) => reply.toEntity()).toList(),
-      updatedAt: updatedAt,
+      id: id ?? '',
+      post: post ?? '',
+      createdBy: createdBy ?? '',
+      createdAt: createdAt ?? '',
+      isEdited: isEdited ?? false,
+      description: description ?? '',
+      likes: likes ?? [],
+      replies: replies?.map((reply) => reply.toEntity()).toList() ?? [],
+      updatedAt: updatedAt ?? '',
     );
   }
 

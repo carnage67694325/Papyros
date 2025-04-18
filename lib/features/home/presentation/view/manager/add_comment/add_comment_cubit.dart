@@ -20,7 +20,7 @@ class AddCommentCubit extends Cubit<AddCommentState> {
 
     result.fold(
       (failure) => emit(AddCommentFailure(failure.errMessage)),
-      (_) => emit(AddCommentSuccess()),
+      (_) => emit(AddCommentSuccess(comment)),
     );
   }
 }

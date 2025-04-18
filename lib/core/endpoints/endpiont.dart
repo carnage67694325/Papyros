@@ -11,6 +11,6 @@ class Endpiont {
   static const String addCommentEndpoint = "comments/addComment/";
   static const String editcommentEndpoint = "comments/editComment/";
   static const String deleteCommentEndpoint = "posts/addlike/";
-  static const String addLikecommentEndpoint = "/comments/likeComment//";
+  static const String addLikecommentEndpoint = "/comments/likeComment/";
   static const String replyCommentEndpoint = "comments/replyComment/";
 }

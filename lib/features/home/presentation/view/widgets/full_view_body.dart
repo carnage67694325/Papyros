@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/custom_divider.dart';
 import 'package:papyros/features/home/data/models/comments.dart';
-import 'package:papyros/features/home/presentation/view/widgets/add_comment_field.dart';
 import 'package:papyros/features/home/presentation/view/widgets/comment_section.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_header.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_image.dart';
@@ -99,6 +98,7 @@ class FullViewBody extends StatelessWidget {
           CommentSection(
             comments: comments,
             userProfileImageUrl: userProfileImageUrl,
+            postId: postId!,
           ),
 
           SizedBox(height: 20.h),

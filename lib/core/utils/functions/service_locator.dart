@@ -15,8 +15,11 @@ import 'package:papyros/features/chat_bot/data/repositories/chat_bot_repo_impl.d
 import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_UseCase.dart';
 import 'package:papyros/features/home/data/data_sources/add_like_data_source_imp.dart';
 import 'package:papyros/features/home/data/data_sources/add_post_impl.dart';
+import 'package:papyros/features/home/data/data_sources/commentdauimp.dart';
 import 'package:papyros/features/home/data/data_sources/get_posts_imp.dart';
+import 'package:papyros/features/home/data/repositories/CommentRepoimp.dart';
 import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
+import 'package:papyros/features/home/domain/use_cases/add_comments_use_case.dart';
 import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_mangment_imp.dart';
@@ -77,4 +80,7 @@ void setupServiceLoactor() {
       ),
     )),
   );
+  getIt.registerSingleton<AddCommentUseCase>(AddCommentUseCase(
+      CommentRepositoryImpl(
+          remoteDataSource: CommentRemoteDataSourceImpl(dio: Dio()))));
 }

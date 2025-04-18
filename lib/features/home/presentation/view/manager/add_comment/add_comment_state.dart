@@ -12,4 +12,7 @@ final class AddCommentFailure extends AddCommentState {
   AddCommentFailure(this.errorMessage);
 }
 
-final class AddCommentSuccess extends AddCommentState {}
+final class AddCommentSuccess extends AddCommentState {
+  final CommentModel comment;
+  AddCommentSuccess(this.comment);
+}
