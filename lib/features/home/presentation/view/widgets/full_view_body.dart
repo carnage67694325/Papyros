@@ -1,3 +1,4 @@
+// FullViewBody.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_styles.dart';
@@ -94,13 +95,11 @@ class FullViewBody extends StatelessWidget {
             likes: likes,
           ),
 
-          // Comments Section
+          // Comments Section with Add Comment field always visible
           CommentSection(
             comments: comments,
+            userProfileImageUrl: userProfileImageUrl,
           ),
-
-          // Add comment
-          AddCommentField(userProfileImageUrl: userProfileImageUrl),
 
           SizedBox(height: 20.h),
         ],

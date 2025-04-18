@@ -8,7 +8,8 @@ class EditCommentUseCase {
 
   EditCommentUseCase(this.repository);
 
-  Future<Either<Failure, void>> call(String commentId, String newText) async {
-    return await repository.editComment(commentId, newText);
+  Future<Either<Failure, void>> call(
+      String commentId, String newText, String token) async {
+    return await repository.editComment(commentId, newText, token);
   }
 }
