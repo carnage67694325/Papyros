@@ -11,6 +11,7 @@ import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/features/home/data/models/comments.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_comment/add_comment_cubit.dart';
+import 'package:papyros/features/home/presentation/view/widgets/add_comment_field.dart';
 import 'package:papyros/features/home/presentation/view/widgets/comment_item.dart';
 
 class CommentSection extends StatefulWidget {
@@ -149,60 +150,11 @@ class _CommentSectionState extends State<CommentSection> {
               ),
             ),
 
-          // Add comment field
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  radius: 20.r,
-                  backgroundImage: NetworkImage(widget.userProfileImageUrl),
-                ),
-                SizedBox(width: 10.w),
-                Expanded(
-                  child: TextField(
-                    controller: _commentController,
-                    maxLines: null,
-                    decoration: InputDecoration(
-                      hintText: 'Add a comment...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.r),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.r),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.r),
-                        borderSide:
-                            const BorderSide(color: AppColors.backGroundColor),
-                      ),
-                      contentPadding: EdgeInsets.all(12.r),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10.w),
-                IconButton(
-                  onPressed: _isSubmitting || !_hasText ? null : _submitComment,
-                  icon: _isSubmitting
-                      ? SizedBox(
-                          width: 24.w,
-                          height: 24.h,
-                          child: AppLoadingAnimation(
-                            size: 15.w,
-                          ))
-                      : Icon(
-                          Icons.send_rounded,
-                          color: _hasText
-                              ? AppColors.lightBrown
-                              : AppColors.lightBrown,
-                          size: 24.r,
-                        ),
-                ),
-              ],
-            ),
+          // Replace with AddCommentField widget
+          AddCommentField(
+            userProfileImageUrl: widget.userProfileImageUrl,
+            commentController: _commentController,
+            onPressed: _isSubmitting || !_hasText ? () {} : _submitComment,
           ),
         ],
       ),
