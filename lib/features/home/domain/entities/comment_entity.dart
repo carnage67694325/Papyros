@@ -1,9 +1,10 @@
 import 'package:papyros/features/home/data/models/comments.dart';
+import 'package:papyros/features/home/data/models/createdby.dart';
 
 class CommentEntity {
   final String id;
   final String post;
-  final String createdBy;
+  final CreatedBy createdBy;
   final String createdAt;
   final bool isEdited;
   final String description;

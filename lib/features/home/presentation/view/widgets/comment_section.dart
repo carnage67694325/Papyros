@@ -138,11 +138,12 @@ class _CommentSectionState extends State<CommentSection> {
                 physics: const ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return CommentItem(
-                    userName: "userName",
+                    userName: _allComments[index].createdBy?.userName ?? "user",
                     comment: _allComments[index].description!,
                     timeAgo: _allComments[index].createdAt ??
                         DateTime.now().toString(),
-                    avatarUrl: "avatarUrl",
+                    avatarUrl: _allComments[index].createdBy?.profileImage ??
+                        "https://example.com/default_avatar.png",
                   );
                 },
               ),

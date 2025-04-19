@@ -1,9 +1,10 @@
+import 'package:papyros/features/home/data/models/createdby.dart';
 import 'package:papyros/features/home/domain/entities/comment_entity.dart';
 
 class CommentModel {
   final String? id;
   final String? post;
-  final String? createdBy;
+  final CreatedBy? createdBy;
   final String? createdAt;
   final bool? isEdited;
   final String? description;
@@ -27,7 +28,9 @@ class CommentModel {
     return CommentModel(
       id: json['_id'],
       post: json['post'],
-      createdBy: json['createdBy'],
+      createdBy: json['createdBy'] != null
+          ? CreatedBy.fromJson(json['createdBy'])
+          : null,
       createdAt: json['createdAt'],
       isEdited: json['isEdited'],
       description: json['description'],
@@ -59,7 +62,7 @@ class CommentModel {
     return CommentEntity(
       id: id ?? '',
       post: post ?? '',
-      createdBy: createdBy ?? '',
+      createdBy: createdBy ?? CreatedBy(),
       createdAt: createdAt ?? '',
       isEdited: isEdited ?? false,
       description: description ?? '',
