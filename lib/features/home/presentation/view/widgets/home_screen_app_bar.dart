@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
@@ -22,6 +23,9 @@ class HomeScreenAppBar extends StatelessWidget {
           // Handle error state if needed
         } else if (state is GetUserProfileSuccess) {
           log(state.userProfileEntity.profileImage!);
+          PrefasHandelr.saveUserName(state.userProfileEntity.userName!);
+          PrefasHandelr.saveUserProfileImage(
+              state.userProfileEntity.profileImage!);
         }
       },
       builder: (context, state) {

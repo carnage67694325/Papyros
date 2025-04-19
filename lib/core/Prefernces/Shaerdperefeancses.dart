@@ -18,6 +18,26 @@ class PrefasHandelr {
     return prefs.getString('auth_token');
   }
 
+  static Future<String?> getUserProfileImage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('profile_image');
+  }
+
+  static Future<void> saveUserProfileImage(String profileImage) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('profile_image', profileImage);
+  }
+
+  static Future<String?> getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('user_name');
+  }
+
+  static Future<void> saveUserName(String userName) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_name', userName);
+  }
+
   static Future<void> storeToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('auth_token', token);

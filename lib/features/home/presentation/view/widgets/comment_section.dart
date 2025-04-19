@@ -32,6 +32,8 @@ class _CommentSectionState extends State<CommentSection> {
   final TextEditingController _commentController = TextEditingController();
   bool _isSubmitting = false;
   bool _hasText = false;
+  late String? userName;
+  late String? userProfileImage;
 
   // Add a list to track all comments including newly added ones
   late List<CommentModel> _allComments;
@@ -39,6 +41,7 @@ class _CommentSectionState extends State<CommentSection> {
   @override
   void initState() {
     super.initState();
+    _loadUserPrefs(); // Load user preferences
     // Initialize with the comments passed from parent
     _allComments = List<CommentModel>.from(widget.comments);
 
@@ -138,12 +141,13 @@ class _CommentSectionState extends State<CommentSection> {
                 physics: const ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return CommentItem(
-                    userName: _allComments[index].createdBy?.userName ?? "user",
+                    userName:
+                        _allComments[index].createdBy?.userName ?? userName!,
                     comment: _allComments[index].description!,
                     timeAgo: _allComments[index].createdAt ??
                         DateTime.now().toString(),
                     avatarUrl: _allComments[index].createdBy?.profileImage ??
-                        "https://example.com/default_avatar.png",
+                        userProfileImage!,
                   );
                 },
               ),
@@ -158,5 +162,11 @@ class _CommentSectionState extends State<CommentSection> {
         ],
       ),
     );
+  }
+
+  Future<String?> _loadUserPrefs() async {
+    userName = await PrefasHandelr.getUserName();
+    userProfileImage = await PrefasHandelr.getUserProfileImage();
+    ; // trigger rebuild if needed
   }
 }
