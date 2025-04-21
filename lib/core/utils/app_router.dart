@@ -19,6 +19,7 @@ import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
+import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
 import 'package:papyros/features/navigation/presentation/view/navigation.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
@@ -37,6 +38,7 @@ abstract class AppRouter {
   static const kChatBot = '/chatBot';
   static const kAddPost = '/addPost';
   static const kNavigation = '/navigation';
+  static const kMessaging = '/messaging';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -126,5 +128,13 @@ abstract class AppRouter {
             route: const AddPostView(),
           );
         }),
+    GoRoute(
+        path: kMessaging,
+        pageBuilder: (context, state) {
+          return TransitionAnimation.slidingTransitionAnimations(
+            state,
+            route: const MessagingView(),
+          );
+        })
   ]);
 }

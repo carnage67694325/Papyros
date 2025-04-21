@@ -4,9 +4,11 @@ import 'package:papyros/core/utils/app_colors.dart';
 
 class ChatBubble extends StatelessWidget {
   final String message;
+  final bool? isSender;
   const ChatBubble({
     super.key,
     required this.message,
+    this.isSender,
   });
 
   @override
@@ -14,6 +16,7 @@ class ChatBubble extends StatelessWidget {
     return BubbleSpecialOne(
       text: message,
       color: AppColors.lightPeach,
+      isSender: isSender ?? true,
     );
   }
 }

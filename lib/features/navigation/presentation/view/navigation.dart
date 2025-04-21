@@ -4,14 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/assets.dart';
-import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
 import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
 import 'package:papyros/features/notifications/presentation/view/notifications_view.dart';
-import 'package:papyros/features/notifications/presentation/view/widgets/notifications_view_body.dart';
-import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class Navigation extends StatefulWidget {
@@ -23,7 +20,7 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   late PersistentTabController _controller;
-  bool isVisable = true;
+  bool isVisible = true;
 
   @override
   void initState() {
@@ -42,9 +39,7 @@ class _NavigationState extends State<Navigation> {
       const HomeView(),
       const NotificationsView(),
       const AddPostView(),
-      Container(
-        color: Colors.amber,
-      ),
+      Container(color: Colors.amber), // Index 3: hide navbar
       const MessagingView(),
       const ChatBotView(),
     ];
@@ -58,66 +53,51 @@ class _NavigationState extends State<Navigation> {
       buildNaviIcon(Icons.search),
       buildNaviIcon(Icons.sms_outlined),
       PersistentBottomNavBarItem(
-          icon: SvgPicture.asset(Assets.assetsRoboNavIcon)),
+        icon: SvgPicture.asset(Assets.assetsRoboNavIcon),
+      ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    final int preIndex = _controller.index;
     return PersistentTabView(
       context,
       controller: _controller,
-      isVisible: isVisable,
       screens: _screens(),
       items: _navBarsItems(),
       navBarStyle: NavBarStyle.style2,
+      isVisible: isVisible,
       hideNavigationBarWhenKeyboardAppears: true,
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
       onItemSelected: (index) {
-        if (index == 5) {
-          GoRouter.of(context).push(AppRouter.kChatBot);
-          Future.delayed(const Duration(milliseconds: 100), () {
-            setState(() {
-              _controller.index -= 1;
-            });
-          });
+        if (index == 4) {
+          GoRouter.of(context).push(AppRouter.kMessaging);
         }
-        // if (index == 4) {
-        //   GoRouter.of(context).push(AppRouter.kProfileManage);
-        //   Future.delayed(const Duration(milliseconds: 100), () {
-        //     setState(() {
-        //       _controller.index -= 1;
-        //     });
-        //   });
-        // }
         if (index == 2) {
           GoRouter.of(context).push(AppRouter.kAddPost);
-          Future.delayed(const Duration(milliseconds: 100), () {
-            setState(() {
-              _controller.index -= 1;
-            });
-          });
+        } else if (index == 5) {
+          GoRouter.of(context).push(AppRouter.kChatBot);
         }
       },
       hideOnScrollSettings:
           const HideOnScrollSettings(hideNavBarOnScroll: true),
       animationSettings: const NavBarAnimationSettings(
-          onNavBarHideAnimation: OnHideAnimationSettings(),
-          screenTransitionAnimation: ScreenTransitionAnimationSettings(
-            animateTabTransition: true,
-            duration: Duration(milliseconds: 200),
-            screenTransitionAnimationType: ScreenTransitionAnimationType.slide,
-          )),
+        onNavBarHideAnimation: OnHideAnimationSettings(),
+        screenTransitionAnimation: ScreenTransitionAnimationSettings(
+          animateTabTransition: true,
+          duration: Duration(milliseconds: 200),
+          screenTransitionAnimationType: ScreenTransitionAnimationType.slide,
+        ),
+      ),
     );
   }
 }
 
 PersistentBottomNavBarItem buildNaviIcon(IconData icon) {
   return PersistentBottomNavBarItem(
-    icon: Icon(
-      icon,
-      size: 30,
-    ),
+    icon: Icon(icon, size: 30),
     activeColorPrimary: AppColors.lightPeach,
     inactiveColorPrimary: Colors.grey,
   );

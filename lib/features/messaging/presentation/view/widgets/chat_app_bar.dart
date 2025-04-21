@@ -17,13 +17,14 @@ class ChatAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ContactAvatar(avatarSize: 15, userImage: userImage),
+        ContactAvatar(avatarSize: 20, userImage: userImage),
         SizedBox(
           width: 8.w,
         ),
         Text(
           userName,
-          style: GoogleFonts.oleoScript(),
+          style: GoogleFonts.oleoScript(
+              fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         const Spacer(),
         IconButton(
