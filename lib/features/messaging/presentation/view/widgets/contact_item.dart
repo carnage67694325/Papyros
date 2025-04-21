@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/features/messaging/presentation/view/widgets/contact_avatar.dart';
+import 'package:papyros/features/messaging/presentation/view/widgets/message_chat_view.dart';
 
 class ContactItem extends StatelessWidget {
   const ContactItem(
@@ -24,6 +26,14 @@ class ContactItem extends StatelessWidget {
       padding: EdgeInsets.all(12.0.h),
       child: GestureDetector(
         onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MessageChatView(
+                  userName: userName,
+                  userImage: userImage,
+                ),
+              ));
           log('contact tapped');
         },
         child: Container(
@@ -43,12 +53,7 @@ class ContactItem extends StatelessWidget {
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
               padding: EdgeInsets.all(8.0.h),
-              child: CircleAvatar(
-                radius: 30.r,
-                backgroundImage: CachedNetworkImageProvider(
-                  userImage,
-                ),
-              ),
+              child: ContactAvatar(userImage: userImage),
             ),
             SizedBox(width: 25.w),
             Column(
