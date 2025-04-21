@@ -141,7 +141,6 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                 _postController.clear();
                 selectedImages.clear();
                 selectedTag = null;
-                GoRouter.of(context).push(AppRouter.kChatBot);
               });
               successSnackBar(context, 'Post added successfully!');
             } else if (state is AddPostFailure) {
