@@ -8,6 +8,7 @@ import 'package:papyros/features/authentication/presentation/views/getting_start
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
+import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
 import 'package:papyros/features/notifications/presentation/view/notifications_view.dart';
 import 'package:papyros/features/notifications/presentation/view/widgets/notifications_view_body.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
@@ -44,7 +45,7 @@ class _NavigationState extends State<Navigation> {
       Container(
         color: Colors.amber,
       ),
-      const ProfileManagementView(),
+      const MessagingView(),
       const ChatBotView(),
     ];
   }
@@ -81,14 +82,14 @@ class _NavigationState extends State<Navigation> {
             });
           });
         }
-        if (index == 4) {
-          GoRouter.of(context).push(AppRouter.kProfileManage);
-          Future.delayed(const Duration(milliseconds: 100), () {
-            setState(() {
-              _controller.index -= 1;
-            });
-          });
-        }
+        // if (index == 4) {
+        //   GoRouter.of(context).push(AppRouter.kProfileManage);
+        //   Future.delayed(const Duration(milliseconds: 100), () {
+        //     setState(() {
+        //       _controller.index -= 1;
+        //     });
+        //   });
+        // }
         if (index == 2) {
           GoRouter.of(context).push(AppRouter.kAddPost);
           Future.delayed(const Duration(milliseconds: 100), () {

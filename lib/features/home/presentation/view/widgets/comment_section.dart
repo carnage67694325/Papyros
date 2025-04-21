@@ -164,9 +164,8 @@ class _CommentSectionState extends State<CommentSection> {
     );
   }
 
-  Future<String?> _loadUserPrefs() async {
+  Future<void> _loadUserPrefs() async {
     userName = await PrefasHandelr.getUserName();
     userProfileImage = await PrefasHandelr.getUserProfileImage();
-    ; // trigger rebuild if needed
   }
 }
