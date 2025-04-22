@@ -1,3 +1,4 @@
+// lib/features/home/presentation/view/widgets/home_screen_app_bar.dart
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -19,9 +20,7 @@ class HomeScreenAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<GetUserProfileCubit, GetUserProfileState>(
       listener: (context, state) {
-        if (state is GetUserProfileFailure) {
-          // Handle error state if needed
-        } else if (state is GetUserProfileSuccess) {
+        if (state is GetUserProfileSuccess) {
           log(state.userProfileEntity.profileImage!);
           PrefasHandelr.saveUserName(state.userProfileEntity.userName!);
           PrefasHandelr.saveUserProfileImage(
@@ -50,10 +49,17 @@ class HomeScreenAppBar extends StatelessWidget {
                   SizedBox(
                     width: 7.w,
                   ),
-                  UserProfileHomeAvatar(
+                  GestureDetector(
+                    onTap: () {
+                      Scaffold.of(context).openDrawer(); // Open the drawer
+                    },
+                    child: UserProfileHomeAvatar(
                       userProfileImage: state is GetUserProfileSuccess
                           ? state.userProfileEntity.profileImage!
-                          : "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-color-icon.png"),
+                          : "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-color-icon.png",
+                      // Add this onTap to open the drawer when avatar is tapped
+                    ),
+                  ),
                   SizedBox(
                     width: 85.w,
                   ),
