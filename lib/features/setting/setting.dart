@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/utils/app_colors.dart';
 
-
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 

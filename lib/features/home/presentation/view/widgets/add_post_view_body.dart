@@ -233,24 +233,4 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 9. Post Button
-

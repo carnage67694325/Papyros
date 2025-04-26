@@ -89,7 +89,6 @@ class ChatViewBody extends StatelessWidget {
           ),
           child: const MessageInputField(
             sendButtonColor: AppColors.lightPeach,
-            
           ),
         ),
       ],
