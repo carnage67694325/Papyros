@@ -8,6 +8,10 @@ class ChatLoading extends ChatState {}
 
 class ChatConnected extends ChatState {}
 
+class MessageLoading extends ChatState {}
+
+class MessageSent extends ChatState {}
+
 class ChatMessagesLoaded extends ChatState {
   final List<MessageEntity> messages;
   ChatMessagesLoaded(this.messages);

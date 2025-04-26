@@ -35,8 +35,6 @@ class _MessagingViewState extends State<MessagingView> {
 
       BlocProvider.of<GetContactsCubit>(context).getContacts();
       BlocProvider.of<ChatCubit>(context).connectToSocket(token, userId);
-      BlocProvider.of<ChatCubit>(context)
-          .sendMessage('673ef6243ebec6fda14bbd2b', 'hello', token);
     }
   }
 
@@ -56,7 +54,9 @@ class _MessagingViewState extends State<MessagingView> {
           ),
         ),
       ),
-      body: const MessagingViewBody(),
+      body: MessagingViewBody(
+        token: token,
+      ),
     );
   }
 }

@@ -7,8 +7,8 @@ import 'package:papyros/features/messaging/presentation/view/widgets/contact_ite
 import 'package:papyros/features/messaging/presentation/view/widgets/contact_shimmer_loading.dart';
 
 class ContactList extends StatelessWidget {
-  const ContactList({super.key});
-
+  const ContactList({super.key, required this.token});
+  final String token;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GetContactsCubit, GetContactsState>(
@@ -29,6 +29,7 @@ class ContactList extends StatelessWidget {
                 lastMessage: 'Last message preview',
                 timeOfLastMessage: '10:30 AM',
                 userId: state.contacts[index].id ?? 'Unknown',
+                token: token,
               );
             },
           );

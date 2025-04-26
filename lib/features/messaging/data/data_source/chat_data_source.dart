@@ -11,7 +11,7 @@ class ChatSocketDatasource {
   void connectSocket({required String token, required String userId}) {
     socket = IO.io('https://paramedia.onrender.com', <String, dynamic>{
       'transports': ['websocket'],
-      'autoConnect': false,
+      'autoConnect': true,
     });
 
     socket.connect();

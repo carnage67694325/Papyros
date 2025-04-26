@@ -30,7 +30,7 @@ class ChatCubit extends Cubit<ChatState> {
     final result = await repository.sendMessage(toUserId, message, token);
     result.fold(
       (failure) => emit(ChatError(failure.errMessage)),
-      (_) => null,
+      (_) => emit(MessageSent()),
     );
   }
 }

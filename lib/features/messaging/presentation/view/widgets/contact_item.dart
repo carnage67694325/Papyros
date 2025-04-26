@@ -13,12 +13,14 @@ class ContactItem extends StatelessWidget {
       required this.userName,
       required this.lastMessage,
       required this.timeOfLastMessage,
-      required this.userId});
+      required this.userId,
+      required this.token});
   final String userImage;
   final String userName;
   final String lastMessage;
   final String timeOfLastMessage;
   final String userId;
+  final String token;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class ContactItem extends StatelessWidget {
                   userName: userName,
                   userImage: userImage,
                   userID: userId,
+                  token: token,
                 ),
               ));
           log('contact tapped');
