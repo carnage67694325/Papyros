@@ -13,4 +13,5 @@ class Endpiont {
   static const String deleteCommentEndpoint = "posts/addlike/";
   static const String addLikecommentEndpoint = "/comments/likeComment/";
   static const String replyCommentEndpoint = "comments/replyComment/";
+  static const String getAllusers = "myprofile/getAllUsers";
 }

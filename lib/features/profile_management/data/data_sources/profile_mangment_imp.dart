@@ -16,7 +16,6 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
 
   @override
   Future<Map<String, dynamic>> fetchUserProfile(String token) async {
-    log('${ApiService.baseUrl}${Endpiont.myProflieEndpoint}');
     final response = await dio.get(
       '${ApiService.baseUrl}${Endpiont.myProflieEndpoint}',
       options: Options(headers: {'token': token}),
