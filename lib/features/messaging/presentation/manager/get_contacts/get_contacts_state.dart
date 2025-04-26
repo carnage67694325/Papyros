@@ -7,7 +7,10 @@ final class GetContactsInitial extends GetContactsState {}
 
 final class GetContactsLoading extends GetContactsState {}
 
-final class GetContactsFaliure extends GetContactsState {}
+final class GetContactsFaliure extends GetContactsState {
+  final String errMessage;
+  GetContactsFaliure(this.errMessage);
+}
 
 final class GetContactsSuccess extends GetContactsState {
   final List<ContactEntity> contacts;

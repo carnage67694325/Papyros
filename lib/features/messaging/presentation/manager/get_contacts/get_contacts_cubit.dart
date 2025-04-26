@@ -12,7 +12,7 @@ class GetContactsCubit extends Cubit<GetContactsState> {
   GetContactsCubit(this.getContactUseCase) : super(GetContactsInitial());
   Future<Either<Failure, List<ContactEntity>>> getContacts() async {
     emit(GetContactsLoading());
-    final result = await getContactUseCase();
+    final result = await getContactUseCase.call();
     return result.fold(
       (failure) {
         emit(GetContactsFaliure(failure.errMessage));

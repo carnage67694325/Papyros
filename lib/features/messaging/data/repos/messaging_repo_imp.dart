@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:papyros/core/errors/failure.dart';
 import 'package:papyros/features/messaging/data/data_source/messaging_data_source.dart';
 import 'package:papyros/features/messaging/domain/entites/contact_entity.dart';
@@ -11,10 +12,24 @@ class MessagingRepoImp extends MessagingRepo {
   @override
   Future<Either<Failure, List<ContactEntity>>> getContacts() async {
     try {
-      final contacts = await dataSource.getContacts();
+      final response =
+          await dataSource.getContacts(); // response is Map<String, dynamic>
+
+      final List<ContactEntity> contacts = (response['data'] as List)
+          .map((item) => ContactEntity(
+                id: item['id'] as String?,
+                name: item['userName'] as String?,
+                profileImage: item['profileImage'] as String?,
+              ))
+          .toList();
+
       return Right(contacts);
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
     }
   }
 }

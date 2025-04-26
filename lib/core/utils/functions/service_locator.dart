@@ -22,6 +22,9 @@ import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
 import 'package:papyros/features/home/domain/use_cases/add_comments_use_case.dart';
 import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
+import 'package:papyros/features/messaging/data/data_source/messaging_data_source_imp.dart';
+import 'package:papyros/features/messaging/data/repos/messaging_repo_imp.dart';
+import 'package:papyros/features/messaging/domain/use_cases/get_contact_use_case.dart';
 import 'package:papyros/features/profile_management/data/data_sources/profile_mangment_imp.dart';
 import 'package:papyros/features/profile_management/data/repositories/profile_managment_repo_imp.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
@@ -83,4 +86,13 @@ void setupServiceLoactor() {
   getIt.registerSingleton<AddCommentUseCase>(AddCommentUseCase(
       CommentRepositoryImpl(
           remoteDataSource: CommentRemoteDataSourceImpl(dio: Dio()))));
+  getIt.registerSingleton<GetContactUseCase>(
+    GetContactUseCase(
+      messagingRepo: MessagingRepoImp(
+        dataSource: MessagingDataSourceimp(
+          dio: Dio(),
+        ),
+      ),
+    ),
+  );
 }

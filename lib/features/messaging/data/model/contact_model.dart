@@ -1,9 +1,16 @@
-class ContactModel {
+import 'package:papyros/features/messaging/domain/entites/contact_entity.dart';
+
+class ContactModel extends ContactEntity {
   String? id;
   String? userName;
   String? profileImage;
 
-  ContactModel({this.id, this.userName, this.profileImage});
+  ContactModel({this.id, this.userName, this.profileImage})
+      : super(
+          id: id ?? '',
+          name: userName ?? '',
+          profileImage: profileImage ?? '',
+        );
 
   factory ContactModel.fromJson(Map<String, dynamic> json) => ContactModel(
         id: json['_id'] as String?,
