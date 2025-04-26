@@ -9,7 +9,7 @@ class ChatSocketDatasource {
   List<MessageModel> get cachedMessages => _cachedMessages;
 
   void connectSocket({required String token, required String userId}) {
-    socket = IO.io('http://<your-server-ip>:3000', <String, dynamic>{
+    socket = IO.io('https://paramedia.onrender.com', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });

@@ -11,7 +11,7 @@ class ChatCubit extends Cubit<ChatState> {
     emit(ChatLoading());
     final result = await repository.initSocket(token, userId);
     result.fold(
-      (failure) => emit(ChatError(failure.message)),
+      (failure) => emit(ChatError(failure.errMessage)),
       (_) => emit(ChatConnected()),
     );
   }
@@ -20,7 +20,7 @@ class ChatCubit extends Cubit<ChatState> {
     emit(ChatLoading());
     final result = await repository.getMessages(toUserId);
     result.fold(
-      (failure) => emit(ChatError(failure.message)),
+      (failure) => emit(ChatError(failure.errMessage)),
       (messages) => emit(ChatMessagesLoaded(messages)),
     );
   }
@@ -29,7 +29,7 @@ class ChatCubit extends Cubit<ChatState> {
       String toUserId, String message, String token) async {
     final result = await repository.sendMessage(toUserId, message, token);
     result.fold(
-      (failure) => emit(ChatError(failure.message)),
+      (failure) => emit(ChatError(failure.errMessage)),
       (_) => null,
     );
   }

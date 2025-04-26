@@ -10,7 +10,10 @@ import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
+import 'package:papyros/features/messaging/data/data_source/chat_data_source.dart';
+import 'package:papyros/features/messaging/data/repos/chat_repo_imp.dart';
 import 'package:papyros/features/messaging/domain/use_cases/get_contact_use_case.dart';
+import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_cubit.dart';
 import 'package:papyros/features/messaging/presentation/manager/get_contacts_cubit/get_contacts_cubit.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
@@ -47,6 +50,10 @@ Future<void> main() async {
       ),
       BlocProvider(
         create: (context) => GetContactsCubit(getIt.get<GetContactUseCase>()),
+      ),
+      BlocProvider(
+        create: (context) => ChatCubit(
+            repository: ChatRepositoryImpl(datasource: ChatSocketDatasource())),
       ),
     ],
     child: const PapyrosApp(),

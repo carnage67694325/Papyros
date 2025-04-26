@@ -25,6 +25,7 @@ class HomeScreenAppBar extends StatelessWidget {
           PrefasHandelr.saveUserName(state.userProfileEntity.userName!);
           PrefasHandelr.saveUserProfileImage(
               state.userProfileEntity.profileImage!);
+          PrefasHandelr.saveUserId(state.userProfileEntity.userId!);
         }
       },
       builder: (context, state) {

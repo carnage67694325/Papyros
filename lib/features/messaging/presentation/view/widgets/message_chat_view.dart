@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/chat_app_bar.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/chat_view_body.dart';
-import 'package:papyros/features/messaging/presentation/view/widgets/contact_avatar.dart';
 
 class MessageChatView extends StatelessWidget {
   const MessageChatView(
