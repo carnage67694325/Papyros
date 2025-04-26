@@ -32,9 +32,25 @@ class ChatList extends StatelessWidget {
               childCount: state.messages.length,
             ),
           );
+        } else if (state is MessageLoading) {
+          return SliverToBoxAdapter(
+            child: Center(
+              child: AppLoadingAnimation(
+                size: 50.h,
+              ),
+            ),
+          );
+        } else if (state is ChatError) {
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text(state.errMessage),
+            ),
+          );
         } else {
-          return const SliverToBoxAdapter(
-            child: AppLoadingAnimation(),
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text('No messages yet.'),
+            ),
           );
         }
       },

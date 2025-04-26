@@ -10,6 +10,7 @@ class MessageInputField extends StatelessWidget {
   final Color? backgroundColor;
   final Color? sendButtonColor;
   final EdgeInsets contentPadding;
+  final bool isEnabled;
 
   const MessageInputField({
     super.key,
@@ -23,6 +24,7 @@ class MessageInputField extends StatelessWidget {
     this.sendButtonColor,
     this.contentPadding =
         const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+    this.isEnabled = true,
   });
 
   @override
@@ -37,7 +39,9 @@ class MessageInputField extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: backgroundColor,
+                color: isEnabled
+                    ? backgroundColor
+                    : backgroundColor?.withOpacity(0.8),
                 borderRadius: BorderRadius.circular(30.0),
                 boxShadow: [
                   BoxShadow(
@@ -53,6 +57,7 @@ class MessageInputField extends StatelessWidget {
                     child: TextField(
                       controller: controller,
                       focusNode: focusNode,
+                      enabled: isEnabled,
                       decoration: InputDecoration(
                         hintText: hintText,
                         hintStyle: TextStyle(
@@ -66,13 +71,14 @@ class MessageInputField extends StatelessWidget {
                       maxLines: 1,
                       minLines: 1,
                       textInputAction: TextInputAction.send,
-                      onSubmitted: (_) => onSendPressed?.call(),
+                      onSubmitted:
+                          isEnabled ? (_) => onSendPressed?.call() : null,
                     ),
                   ),
                   IconButton(
                     icon: const Icon(Icons.camera_alt_outlined),
                     color: Colors.grey[400],
-                    onPressed: onCameraPressed,
+                    onPressed: isEnabled ? onCameraPressed : null,
                     constraints: const BoxConstraints(maxWidth: 40),
                     visualDensity: VisualDensity.compact,
                     splashRadius: 20,
@@ -80,7 +86,7 @@ class MessageInputField extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.attach_file),
                     color: Colors.grey[400],
-                    onPressed: onAttachmentPressed,
+                    onPressed: isEnabled ? onAttachmentPressed : null,
                     constraints: const BoxConstraints(maxWidth: 40),
                     visualDensity: VisualDensity.compact,
                     splashRadius: 20,
@@ -95,7 +101,9 @@ class MessageInputField extends StatelessWidget {
             width: 46.0,
             height: 46.0,
             decoration: BoxDecoration(
-              color: actualSendButtonColor,
+              color: isEnabled
+                  ? actualSendButtonColor
+                  : actualSendButtonColor.withOpacity(0.6),
               shape: BoxShape.circle,
             ),
             child: IconButton(
@@ -104,7 +112,7 @@ class MessageInputField extends StatelessWidget {
                 color: Colors.white,
               ),
               color: Colors.white,
-              onPressed: onSendPressed,
+              onPressed: isEnabled ? onSendPressed : null,
             ),
           ),
         ],
