@@ -8,9 +8,13 @@ import 'package:papyros/features/messaging/presentation/view/widgets/contact_ava
 
 class MessageChatView extends StatelessWidget {
   const MessageChatView(
-      {super.key, required this.userName, required this.userImage});
+      {super.key,
+      required this.userName,
+      required this.userImage,
+      required this.userID});
   final String userName;
   final String userImage;
+  final String userID;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

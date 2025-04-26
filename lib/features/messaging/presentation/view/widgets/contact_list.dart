@@ -2,8 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:papyros/core/animations/app_loading_animation.dart';
-import 'package:papyros/features/messaging/presentation/manager/get_contacts/get_contacts_cubit.dart';
+import 'package:papyros/features/messaging/presentation/manager/get_contacts_cubit/get_contacts_cubit.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/contact_item.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/contact_shimmer_loading.dart';
 
@@ -29,6 +28,7 @@ class ContactList extends StatelessWidget {
                     "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-color-icon.png",
                 lastMessage: 'Last message preview',
                 timeOfLastMessage: '10:30 AM',
+                userId: state.contacts[index].id ?? 'Unknown',
               );
             },
           );

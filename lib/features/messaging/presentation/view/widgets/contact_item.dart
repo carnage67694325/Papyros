@@ -1,9 +1,7 @@
 import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/contact_avatar.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/message_chat_view.dart';
@@ -14,11 +12,13 @@ class ContactItem extends StatelessWidget {
       required this.userImage,
       required this.userName,
       required this.lastMessage,
-      required this.timeOfLastMessage});
+      required this.timeOfLastMessage,
+      required this.userId});
   final String userImage;
   final String userName;
   final String lastMessage;
   final String timeOfLastMessage;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,7 @@ class ContactItem extends StatelessWidget {
                 builder: (context) => MessageChatView(
                   userName: userName,
                   userImage: userImage,
+                  userID: userId,
                 ),
               ));
           log('contact tapped');

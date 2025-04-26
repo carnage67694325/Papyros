@@ -5,7 +5,7 @@ import 'package:papyros/features/messaging/data/data_source/messaging_data_sourc
 import 'package:papyros/features/messaging/domain/entites/contact_entity.dart';
 import 'package:papyros/features/messaging/domain/repos/messaging_repo.dart';
 
-class MessagingRepoImp extends MessagingRepo {
+class MessagingRepoImp implements MessagingRepo {
   final MessagingDataSource dataSource;
 
   MessagingRepoImp({required this.dataSource});

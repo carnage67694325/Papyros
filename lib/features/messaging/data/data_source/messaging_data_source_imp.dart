@@ -2,9 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:papyros/core/endpoints/endpiont.dart';
 import 'package:papyros/core/utils/api_service.dart';
 import 'package:papyros/features/messaging/data/data_source/messaging_data_source.dart';
-import 'package:papyros/features/messaging/domain/entites/contact_entity.dart';
 
-class MessagingDataSourceimp extends MessagingDataSource {
+class MessagingDataSourceimp implements MessagingDataSource {
   final Dio dio;
 
   MessagingDataSourceimp({required this.dio});
