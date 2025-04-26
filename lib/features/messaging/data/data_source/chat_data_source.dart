@@ -8,7 +8,8 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class ChatSocketDatasource {
   late IO.Socket socket;
   final List<MessageModel> _cachedMessages = [];
-  final controller = StreamController<List<MessageEntity>>();
+  final StreamController<List<MessageEntity>> _controller =
+      StreamController.broadcast();
 
   List<MessageModel> get cachedMessages => _cachedMessages;
 
@@ -21,6 +22,7 @@ class ChatSocketDatasource {
     socket.connect();
 
     socket.onConnect((_) {
+      log('Socket connected: ${socket.id}');
       socket.emit('join', userId);
       socket.emit('updateSocketId', {'token': token});
     });
@@ -28,35 +30,47 @@ class ChatSocketDatasource {
     socket.on('newMessage', (data) {
       final message = MessageModel.fromJson(data['msg']);
       _cachedMessages.add(message);
+      _controller
+          .add(List<MessageEntity>.from(_cachedMessages)); // update stream
     });
-  }
 
-  // Change here: Listening for messages instead of returning a value.
-  void emitGetMessages({required String token, required String toUserId}) {
-    socket.emit('getMessages', {'token': token, 'to': toUserId});
-  }
-
-  Stream<List<MessageEntity>> getMessagesStream() {
     socket.on('retrieveMessages', (data) {
-      final List<MessageEntity> messages = (data['messages'] as List)
+      final messages = (data['messages'] as List)
           .map((item) => MessageEntity(
                 content: item['message'] as String,
                 to: item['to'] as String,
                 from: item['from'] as String,
               ))
           .toList();
-      controller.add(messages);
-      log('$messages');
+      _controller.add(messages);
+      log('Retrieved messages: $messages');
     });
 
-    return controller.stream;
+    socket.on('error', (data) {
+      log('Socket error: ${data['message']}');
+    });
   }
 
-  void emitSendMessage(
-      {required String token,
-      required String toUserId,
-      required String message}) {
+  void emitGetMessages({required String token, required String toUserId}) {
+    log(toUserId);
+    socket.emit('getMessages', {'token': token, 'to': toUserId});
+  }
+
+  void emitSendMessage({
+    required String token,
+    required String toUserId,
+    required String message,
+  }) {
     socket.emit(
         'sendMessage', {'token': token, 'to': toUserId, 'message': message});
+  }
+
+  Stream<List<MessageEntity>> getMessagesStream() {
+    return _controller.stream;
+  }
+
+  void dispose() {
+    socket.dispose();
+    _controller.close();
   }
 }

@@ -26,7 +26,7 @@ class _MessageChatViewState extends State<MessageChatView> {
   @override
   void initState() {
     BlocProvider.of<ChatCubit>(context)
-        .fetchMessages(widget.userID, widget.token);
+        .fetchMessages(widget.token, widget.userID);
     log(widget.userID);
     super.initState();
   }
