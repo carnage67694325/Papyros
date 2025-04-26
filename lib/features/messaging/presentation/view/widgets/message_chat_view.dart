@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_cubit.dart';
@@ -24,6 +26,7 @@ class _MessageChatViewState extends State<MessageChatView> {
   @override
   void initState() {
     BlocProvider.of<ChatCubit>(context).fetchMessages(widget.userID);
+    log(widget.userID);
     super.initState();
   }
 

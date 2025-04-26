@@ -17,7 +17,7 @@ class MessagingRepoImp implements MessagingRepo {
 
       final List<ContactEntity> contacts = (response['data'] as List)
           .map((item) => ContactEntity(
-                id: item['id'] as String?,
+                id: item['_id'] as String?,
                 name: item['userName'] as String?,
                 profileImage: item['profileImage'] as String?,
               ))
