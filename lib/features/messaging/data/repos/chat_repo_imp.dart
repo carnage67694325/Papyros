@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:papyros/features/messaging/data/data_source/chat_data_source.dart';
 import 'package:papyros/features/messaging/domain/entites/message_entity.dart';
 import 'package:papyros/features/messaging/domain/repos/chat_repo.dart';
@@ -21,13 +22,23 @@ class ChatRepositoryImpl implements ChatRepository {
 
   @override
   Future<Either<Failure, List<MessageEntity>>> getMessages(
-      String toUserId) async {
+      String token, String toUserId) async {
     try {
-      // This just gets cached messages for now.
-      final messages = datasource.cachedMessages;
-      return Right(messages);
+      // Emit the request to the server to get messages
+      datasource.emitGetMessages(token: token, toUserId: toUserId);
+
+      // Use the stream from the socket datasource
+      await for (var messages in datasource.getMessagesStream()) {
+        return Right(messages); // Return messages once they are received
+      }
+
+      return Left(ServerFailure('No messages received.'));
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      } else {
+        return Left(ServerFailure(e.toString()));
+      }
     }
   }
 

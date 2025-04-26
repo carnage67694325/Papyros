@@ -16,9 +16,9 @@ class ChatCubit extends Cubit<ChatState> {
     );
   }
 
-  Future<void> fetchMessages(String toUserId) async {
-    emit(ChatLoading());
-    final result = await repository.getMessages(toUserId);
+  Future<void> fetchMessages(String token, String toUserId) async {
+    emit(MessageLoading());
+    final result = await repository.getMessages(token, toUserId);
     result.fold(
       (failure) => emit(ChatError(failure.errMessage)),
       (messages) => emit(ChatMessagesLoaded(messages)),
