@@ -37,6 +37,10 @@ class _ChatViewBodyState extends State<ChatViewBody> {
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<ChatCubit>(context).getMessages(
+      token: widget.token,
+      toUserId: widget.toUserId,
+    );
     _messageController = TextEditingController();
   }
 
@@ -68,17 +72,14 @@ class _ChatViewBodyState extends State<ChatViewBody> {
 
       // Send the message
       await BlocProvider.of<ChatCubit>(context).sendMessage(
-        widget.toUserId,
-        messageText,
-        widget.token,
+        token: widget.token,
+        toUserId: widget.toUserId,
+        message: messageText,
       );
-
       // Clear input field immediately after initiating send
       _messageController.clear();
 
       // Refresh messages without showing loading state
-      await BlocProvider.of<ChatCubit>(context)
-          .refreshMessagesWithoutLoading(widget.token, widget.toUserId);
 
       setState(() {
         _isSending = false;
