@@ -7,7 +7,7 @@ import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_
 
 class ChatCubit extends Cubit<ChatState> {
   final ChatRepository repository;
-  late StreamSubscription<List<MessageEntity>> _messagesSubscription;
+  StreamSubscription<List<MessageEntity>>? _messagesSubscription;
   List<MessageEntity> messagesList = [];
 
   ChatCubit({required this.repository}) : super(ChatInitial());
@@ -26,22 +26,12 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void _startListeningToMessages() {
+    _messagesSubscription?.cancel(); // cancel if exists
     _messagesSubscription = repository.messagesStream.listen(
-      (incomingMessages) {
-        log("Received ${incomingMessages.length} messages in stream");
-
-        for (var incomingMessage in incomingMessages) {
-          // Try to find and remove the optimistic message
-          messagesList.removeWhere((existingMessage) =>
-              existingMessage.content == incomingMessage.content &&
-              existingMessage.from == "local" &&
-              existingMessage.to == incomingMessage.to);
-
-          // Always add the incoming real message
-          messagesList.add(incomingMessage);
-        }
-
-        emit(ChatMessagesLoaded(List.from(messagesList)));
+      (messages) {
+        log("Received ${messages.length} messages in stream");
+        messagesList = List.from(messages);
+        emit(ChatMessagesLoaded(messagesList));
       },
       onError: (error) {
         emit(ChatError(error.toString()));
@@ -104,7 +94,7 @@ class ChatCubit extends Cubit<ChatState> {
 
   @override
   Future<void> close() async {
-    await _messagesSubscription.cancel();
+    await _messagesSubscription?.cancel(); // safe cancel
     return super.close();
   }
 }

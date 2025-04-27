@@ -29,15 +29,24 @@ class ChatSocketDatasource {
 
     // Clear cached messages when reconnecting
     _cachedMessages.clear();
-
     socket.on('newMessage', (data) {
       log('New message received: $data');
       final message = MessageModel.fromJson(data['msg']);
-      _cachedMessages.add(message);
 
-      // Convert to entities and update stream
-      final entities = _cachedMessages.map((m) => m.toEntity()).toList();
-      _controller.add(entities);
+      // Check if the same message already exists based on (from, to, content)
+      final alreadyExists = _cachedMessages.any((m) =>
+          m.from == message.from &&
+          m.to == message.to &&
+          m.content == message.content);
+
+      if (!alreadyExists) {
+        _cachedMessages.add(message);
+
+        final entities = _cachedMessages.map((m) => m.toEntity()).toList();
+        _controller.add(entities);
+      } else {
+        log('Duplicate message ignored: from=${message.from}, to=${message.to}, content=${message.content}');
+      }
     });
 
     socket.on('retrieveMessages', (data) {
