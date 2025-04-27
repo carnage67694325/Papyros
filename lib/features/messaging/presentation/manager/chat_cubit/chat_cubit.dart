@@ -27,11 +27,21 @@ class ChatCubit extends Cubit<ChatState> {
 
   void _startListeningToMessages() {
     _messagesSubscription = repository.messagesStream.listen(
-      (messages) {
-        log("Received ${messages.length} messages in stream");
-        messagesList =
-            List.from(messages); // Create a new list to ensure state update
-        emit(ChatMessagesLoaded(messagesList));
+      (incomingMessages) {
+        log("Received ${incomingMessages.length} messages in stream");
+
+        for (var incomingMessage in incomingMessages) {
+          // Try to find and remove the optimistic message
+          messagesList.removeWhere((existingMessage) =>
+              existingMessage.content == incomingMessage.content &&
+              existingMessage.from == "local" &&
+              existingMessage.to == incomingMessage.to);
+
+          // Always add the incoming real message
+          messagesList.add(incomingMessage);
+        }
+
+        emit(ChatMessagesLoaded(List.from(messagesList)));
       },
       onError: (error) {
         emit(ChatError(error.toString()));

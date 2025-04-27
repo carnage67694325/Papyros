@@ -101,10 +101,6 @@ class _ChatViewBodyState extends State<ChatViewBody> {
         toUserId: widget.toUserId,
         message: messageText,
       );
-      await BlocProvider.of<ChatCubit>(context).getMessages(
-        token: widget.token,
-        toUserId: widget.toUserId,
-      );
     } finally {
       if (mounted) {
         setState(() {

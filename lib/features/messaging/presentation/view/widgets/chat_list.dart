@@ -90,7 +90,7 @@ class ChatList extends StatelessWidget {
             child: ChatMessagingBubble(
               key: ValueKey('chat_bubble_${message.from}_${index}'),
               message: message.content,
-              isSender: message.from == userId,
+              isSender: message.to != userId,
             ),
           );
         },
