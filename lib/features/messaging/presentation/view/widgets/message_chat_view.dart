@@ -1,8 +1,5 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_cubit.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/chat_app_bar.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/chat_view_body.dart';
 
@@ -11,11 +8,14 @@ class MessageChatView extends StatefulWidget {
       {super.key,
       required this.userName,
       required this.userImage,
-      required this.userID,
-      required this.token});
+      required this.toUserID,
+      required this.token,
+      required this.userID});
   final String userName;
   final String userImage;
+  final String toUserID;
   final String userID;
+
   final String token;
 
   @override
@@ -25,7 +25,7 @@ class MessageChatView extends StatefulWidget {
 class _MessageChatViewState extends State<MessageChatView> {
   @override
   void initState() {
-    log(widget.userID);
+    log(widget.toUserID);
     super.initState();
   }
 
@@ -39,8 +39,9 @@ class _MessageChatViewState extends State<MessageChatView> {
         body: ChatViewBody(
           userName: widget.userName,
           userImage: widget.userImage,
-          toUserId: widget.userID,
+          toUserId: widget.toUserID,
           token: widget.token,
+          userId: widget.userID,
         ));
   }
 }

@@ -56,6 +56,7 @@ class _MessagingViewState extends State<MessagingView> {
       ),
       body: MessagingViewBody(
         token: token,
+        userId: userId,
       ),
     );
   }

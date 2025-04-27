@@ -7,8 +7,9 @@ import 'package:papyros/features/messaging/presentation/view/widgets/contact_ite
 import 'package:papyros/features/messaging/presentation/view/widgets/contact_shimmer_loading.dart';
 
 class ContactList extends StatelessWidget {
-  const ContactList({super.key, required this.token});
+  const ContactList({super.key, required this.token, required this.userId});
   final String token;
+  final String userId;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GetContactsCubit, GetContactsState>(
@@ -28,7 +29,8 @@ class ContactList extends StatelessWidget {
                     "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-color-icon.png",
                 lastMessage: 'Last message preview',
                 timeOfLastMessage: '10:30 AM',
-                userId: state.contacts[index].id ?? 'Unknown',
+                toUserId: state.contacts[index].id ?? 'Unknown',
+                userId: userId,
                 token: token,
               );
             },

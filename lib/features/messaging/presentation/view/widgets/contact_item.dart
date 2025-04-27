@@ -13,12 +13,14 @@ class ContactItem extends StatelessWidget {
       required this.userName,
       required this.lastMessage,
       required this.timeOfLastMessage,
-      required this.userId,
-      required this.token});
+      required this.toUserId,
+      required this.token,
+      required this.userId});
   final String userImage;
   final String userName;
   final String lastMessage;
   final String timeOfLastMessage;
+  final String toUserId;
   final String userId;
   final String token;
 
@@ -34,6 +36,7 @@ class ContactItem extends StatelessWidget {
                 builder: (context) => MessageChatView(
                   userName: userName,
                   userImage: userImage,
+                  toUserID: toUserId,
                   userID: userId,
                   token: token,
                 ),

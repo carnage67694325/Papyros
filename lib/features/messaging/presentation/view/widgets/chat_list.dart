@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
-import 'package:papyros/features/chat_bot/presentation/widgets/chat_bubble.dart';
 import 'package:papyros/features/messaging/domain/entites/message_entity.dart';
 import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_cubit.dart';
 import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_states.dart';
+import 'package:papyros/features/messaging/presentation/view/widgets/chat_messaging_bubble.dart';
 
 class ChatList extends StatelessWidget {
-  const ChatList({super.key});
-
+  const ChatList({super.key, required this.userId});
+  final String userId;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChatCubit, ChatState>(
@@ -25,8 +25,7 @@ class ChatList extends StatelessWidget {
       builder: (context, state) {
         // Always get the latest messages directly from the cubit
         final messagesList = BlocProvider.of<ChatCubit>(context).messagesList;
-
-        // Handle error states
+        log('$userId this user '); // Handle error states
         if (state is ChatError) {
           log('Chat Error: ${state.errMessage}');
 
@@ -73,8 +72,8 @@ class ChatList extends StatelessWidget {
         // Default initialization state
         return SliverToBoxAdapter(
           child: Center(
-            child:
-                Text('Initializing chat...', style: TextStyle(fontSize: 16.sp)),
+            child: Text('ٍStart your conversation!',
+                style: TextStyle(fontSize: 16.sp)),
           ),
         );
       },
@@ -88,9 +87,10 @@ class ChatList extends StatelessWidget {
           final message = messages[index];
           return Padding(
             padding: EdgeInsets.only(bottom: 20.h),
-            child: ChatBubble(
+            child: ChatMessagingBubble(
               key: ValueKey('chat_bubble_${message.from}_${index}'),
               message: message.content,
+              isSender: message.from == userId,
             ),
           );
         },

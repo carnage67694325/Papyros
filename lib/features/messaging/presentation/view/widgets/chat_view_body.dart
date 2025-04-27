@@ -17,12 +17,14 @@ class ChatViewBody extends StatefulWidget {
     required this.userImage,
     required this.toUserId,
     required this.token,
+    required this.userId,
   });
 
   final String userName;
   final String userImage;
   final String toUserId;
   final String token;
+  final String userId;
 
   @override
   State<ChatViewBody> createState() => _ChatViewBodyState();
@@ -153,29 +155,15 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            "Location",
-                            style: GoogleFonts.oleoScript(
-                              fontSize: 18.sp,
-                              color: Colors.grey[750],
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            "Jan 26, 2025",
-                            style: GoogleFonts.inter(
-                              fontSize: 15.sp,
-                              color: const Color(0xff89868C),
-                            ),
-                          ),
                           SizedBox(height: 5.h),
                         ],
                       ),
                     ),
                   ),
                   // Using the improved ChatList widget without the problematic key
-                  const ChatList(),
+                  ChatList(
+                    userId: widget.userId,
+                  ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                 ],
               ),
