@@ -27,32 +27,55 @@ class ChatSocketDatasource {
       socket.emit('updateSocketId', {'token': token});
     });
 
+    // Clear cached messages when reconnecting
+    _cachedMessages.clear();
+
     socket.on('newMessage', (data) {
+      log('New message received: $data');
       final message = MessageModel.fromJson(data['msg']);
       _cachedMessages.add(message);
-      _controller
-          .add(List<MessageEntity>.from(_cachedMessages)); // update stream
+
+      // Convert to entities and update stream
+      final entities = _cachedMessages.map((m) => m.toEntity()).toList();
+      _controller.add(entities);
     });
 
     socket.on('retrieveMessages', (data) {
+      log('Retrieved messages from server: ${data['messages']}');
+
+      // Clear previous messages when receiving history
+      _cachedMessages.clear();
+
       final messages = (data['messages'] as List)
-          .map((item) => MessageEntity(
-                content: item['message'] as String,
-                to: item['to'] as String,
-                from: item['from'] as String,
-              ))
+          .map((item) => MessageModel.fromJson(item))
           .toList();
-      _controller.add(messages);
-      log('Retrieved messages: $messages');
+
+      // Add all messages to cache
+      _cachedMessages.addAll(messages);
+
+      // Convert to entities and update stream
+      final entities = _cachedMessages.map((m) => m.toEntity()).toList();
+      _controller.add(entities);
     });
 
     socket.on('error', (data) {
       log('Socket error: ${data['message']}');
     });
+
+    // Handle disconnect and reconnect events
+    socket.on('disconnect', (_) {
+      log('Socket disconnected');
+    });
+
+    socket.on('reconnect', (_) {
+      log('Socket reconnected');
+      socket.emit('join', userId);
+      socket.emit('updateSocketId', {'token': token});
+    });
   }
 
   void emitGetMessages({required String token, required String toUserId}) {
-    log(toUserId);
+    log('Requesting messages for user: $toUserId');
     socket.emit('getMessages', {'token': token, 'to': toUserId});
   }
 
@@ -61,6 +84,7 @@ class ChatSocketDatasource {
     required String toUserId,
     required String message,
   }) {
+    log('Sending message to user: $toUserId');
     socket.emit(
         'sendMessage', {'token': token, 'to': toUserId, 'message': message});
   }
@@ -70,6 +94,7 @@ class ChatSocketDatasource {
   }
 
   void dispose() {
+    socket.disconnect();
     socket.dispose();
     _controller.close();
   }

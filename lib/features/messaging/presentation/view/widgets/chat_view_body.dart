@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_cubit.dart';
 import 'package:papyros/features/messaging/presentation/manager/chat_cubit/chat_states.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/chat_list.dart';
@@ -37,11 +36,27 @@ class _ChatViewBodyState extends State<ChatViewBody> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ChatCubit>(context).getMessages(
+    _messageController = TextEditingController();
+
+    // Initialize connection after the first frame is rendered
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initChat();
+    });
+  }
+
+  void _initChat() async {
+    final cubit = BlocProvider.of<ChatCubit>(context);
+
+    // First connect to socket if needed
+    if (cubit.state is ChatInitial) {
+      await cubit.connectToSocket(widget.token, widget.toUserId);
+    }
+
+    // Then get messages
+    await cubit.getMessages(
       token: widget.token,
       toUserId: widget.toUserId,
     );
-    _messageController = TextEditingController();
   }
 
   @override
@@ -53,40 +68,47 @@ class _ChatViewBodyState extends State<ChatViewBody> {
 
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
-      Future.delayed(const Duration(milliseconds: 100), () {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
+      // Use a smaller delay to avoid visible lag but still ensure messages are rendered
+      Future.delayed(const Duration(milliseconds: 50), () {
+        if (_scrollController.hasClients) {
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+          );
+        }
       });
     }
   }
 
   void _handleSendMessage() async {
     final messageText = _messageController.text.trim();
-    if (messageText.isNotEmpty && !_isSending) {
-      setState(() {
-        _isSending = true;
-      });
+    if (messageText.isEmpty || _isSending) return;
 
+    setState(() {
+      _isSending = true;
+    });
+
+    // Clear input field immediately after initiating send
+    _messageController.clear();
+
+    try {
       // Send the message
       await BlocProvider.of<ChatCubit>(context).sendMessage(
         token: widget.token,
         toUserId: widget.toUserId,
         message: messageText,
       );
-      // Clear input field immediately after initiating send
-      _messageController.clear();
-
-      // Refresh messages without showing loading state
-
-      setState(() {
-        _isSending = false;
-      });
-
-      // Scroll to the bottom to show the new message
-      _scrollToBottom();
+      await BlocProvider.of<ChatCubit>(context).getMessages(
+        token: widget.token,
+        toUserId: widget.toUserId,
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isSending = false;
+        });
+      }
     }
   }
 
@@ -94,10 +116,14 @@ class _ChatViewBodyState extends State<ChatViewBody> {
   Widget build(BuildContext context) {
     return BlocConsumer<ChatCubit, ChatState>(
       listener: (context, state) {
-        if (state is MessageSent) {
-        } else if (state is ChatMessagesLoaded) {
-          // Scroll to bottom when new messages are loaded
+        if (state is MessageSent || state is ChatMessagesLoaded) {
+          // Scroll to bottom when a message is sent or new messages are loaded
           _scrollToBottom();
+        } else if (state is ChatError) {
+          // Handle error state
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.errMessage)),
+          );
         }
       },
       builder: (context, state) {
@@ -148,6 +174,7 @@ class _ChatViewBodyState extends State<ChatViewBody> {
                       ),
                     ),
                   ),
+                  // Using the improved ChatList widget without the problematic key
                   const ChatList(),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
                 ],

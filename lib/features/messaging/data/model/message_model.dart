@@ -23,4 +23,12 @@ class MessageModel extends MessageEntity {
       'message': content,
     };
   }
+
+  MessageEntity toEntity() {
+    return MessageEntity(
+      content: content,
+      to: to,
+      from: from,
+    );
+  }
 }

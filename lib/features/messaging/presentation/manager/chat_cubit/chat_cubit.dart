@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/features/messaging/domain/entites/message_entity.dart';
 import 'package:papyros/features/messaging/domain/repos/chat_repo.dart';
@@ -27,8 +28,10 @@ class ChatCubit extends Cubit<ChatState> {
   void _startListeningToMessages() {
     _messagesSubscription = repository.messagesStream.listen(
       (messages) {
-        messagesList = messages;
-        emit(ChatMessagesLoaded(List.from(messagesList)));
+        log("Received ${messages.length} messages in stream");
+        messagesList =
+            List.from(messages); // Create a new list to ensure state update
+        emit(ChatMessagesLoaded(messagesList));
       },
       onError: (error) {
         emit(ChatError(error.toString()));
@@ -40,11 +43,14 @@ class ChatCubit extends Cubit<ChatState> {
     required String token,
     required String toUserId,
   }) async {
+    emit(MessageLoading());
+
     final result = await repository.getMessages(token, toUserId);
     result.fold(
       (failure) => emit(ChatError(failure.errMessage)),
       (_) {
-        // No need to emit anything here, messages will be received via the stream
+        // Messages will be received via the stream,
+        // but we emit loading state while waiting
       },
     );
   }
@@ -54,11 +60,36 @@ class ChatCubit extends Cubit<ChatState> {
     required String toUserId,
     required String message,
   }) async {
+    // Optimistically add message to list
+    final optimisticMessage = MessageEntity(
+      content: message,
+      from: "local", // Replace with actual user ID if available
+      to: toUserId,
+    );
+
+    // Only add optimistic message if actually sending a real message
+    if (message.trim().isNotEmpty) {
+      messagesList.add(optimisticMessage);
+      emit(ChatMessagesLoaded(List.from(messagesList)));
+    }
+
     final result = await repository.sendMessage(toUserId, message, token);
     result.fold(
-      (failure) => emit(ChatError(failure.errMessage)),
+      (failure) {
+        // Remove optimistic message on failure
+        messagesList.remove(optimisticMessage);
+        emit(ChatError(failure.errMessage));
+        emit(ChatMessagesLoaded(
+            List.from(messagesList))); // Re-emit correct list
+      },
       (_) => emit(MessageSent()),
     );
+  }
+
+  void refreshMessages() {
+    if (messagesList.isNotEmpty) {
+      emit(ChatMessagesLoaded(List.from(messagesList)));
+    }
   }
 
   @override
