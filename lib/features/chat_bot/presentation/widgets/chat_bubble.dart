@@ -27,7 +27,7 @@ class _ChatBubbleState extends State<ChatBubble>
 
     // Initialize animation controller with a short duration
     _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 1200));
+        vsync: this, duration: const Duration(milliseconds: 800));
 
     // Create a scale animation that starts small and pops to normal size
     _scaleAnimation = CurvedAnimation(
