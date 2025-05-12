@@ -13,12 +13,12 @@ class CommentItem extends StatelessWidget {
   final String avatarUrl;
 
   const CommentItem({
-    Key? key,
+    super.key,
     required this.userName,
     required this.comment,
     required this.timeAgo,
     required this.avatarUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,10 @@
 import 'package:papyros/features/messaging/domain/entites/contact_entity.dart';
 
 class ContactModel extends ContactEntity {
+  @override
   String? id;
   String? userName;
+  @override
   String? profileImage;
 
   ContactModel({this.id, this.userName, this.profileImage})

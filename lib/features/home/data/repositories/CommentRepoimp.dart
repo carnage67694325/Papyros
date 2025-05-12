@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:papyros/features/home/data/data_sources/comments_dau.dart';
 import 'package:papyros/features/home/data/models/comments.dart';
 import 'package:papyros/features/home/domain/entities/comment_entity.dart';

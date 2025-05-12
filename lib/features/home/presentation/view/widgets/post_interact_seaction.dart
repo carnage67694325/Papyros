@@ -1,14 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/core/utils/functions/like_post.dart';
-import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 
 class PostInteractSection extends StatefulWidget {
   const PostInteractSection(

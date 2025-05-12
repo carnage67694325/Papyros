@@ -8,10 +8,10 @@ class PostImage extends StatelessWidget {
   final String heroTag;
 
   const PostImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.heroTag,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

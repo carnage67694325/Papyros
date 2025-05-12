@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:papyros/features/home/data/models/comments.dart';
-import 'package:papyros/features/home/domain/entities/comment_entity.dart';
 import 'package:papyros/features/home/domain/use_cases/add_comments_use_case.dart';
 
 part 'add_comment_state.dart';

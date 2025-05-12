@@ -88,7 +88,7 @@ class ChatList extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: ChatMessagingBubble(
-              key: ValueKey('chat_bubble_${message.from}_${index}'),
+              key: ValueKey('chat_bubble_${message.from}_$index'),
               message: message.content,
               isSender: message.to != userId,
             ),

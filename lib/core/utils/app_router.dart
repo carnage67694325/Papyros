@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/animations/transition_animation.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/features/authentication/presentation/views/getting_started_view.dart';
@@ -16,16 +15,12 @@ import 'package:papyros/features/authentication/verfiy_otp/presentation/view/ver
 import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_UseCase.dart';
 import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
-import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
-import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
 import 'package:papyros/features/navigation/presentation/view/navigation.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
-import 'package:papyros/features/profile_management/domain/use_cases/update_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
-import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
 import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 

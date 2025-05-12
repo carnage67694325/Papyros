@@ -175,15 +175,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation),
               child: FullPostView(
                 heroTag: heroTag,
-                description: state.posts[index].description!,
+                description: state.posts[index].description,
                 imageUrl:
-                    state.posts[index].images?.map((e) => e.image).toList(),
-                userName: state.posts[index].createdBy!.userName ?? "user-name",
+                    state.posts[index].images.map((e) => e.image).toList(),
+                userName: state.posts[index].createdBy.userName ?? "user-name",
                 userProfileImageUrl: state
-                        .posts[index].createdBy!.profileImage ??
+                        .posts[index].createdBy.profileImage ??
                     "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
-                createdAtString: state.posts[index].createdAt!,
-                numberOfLikes: state.posts[index].likes!.length,
+                createdAtString: state.posts[index].createdAt,
+                numberOfLikes: state.posts[index].likes.length,
                 numberOfComments: state.posts[index].comments!.length,
                 tag: state.posts[index].tag,
                 postId: state.posts[index].id,

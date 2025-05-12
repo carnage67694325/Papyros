@@ -21,14 +21,12 @@ class AddPostImpl extends AddPost {
     };
 
 // Only add the image if one exists
-    if (post.images != null &&
-        post.images!.isNotEmpty &&
-        post.images![0].image != null) {
+    if (post.images.isNotEmpty && post.images[0].image != null) {
       formDataMap['image'] = await MultipartFile.fromFile(
-        post.images![0].image!,
-        filename: post.images![0].image!.split('/').last,
+        post.images[0].image!,
+        filename: post.images[0].image!.split('/').last,
         contentType: MediaType.parse(
-          lookupMimeType(post.images![0].image!) ?? 'image/png',
+          lookupMimeType(post.images[0].image!) ?? 'image/png',
         ),
       );
     }

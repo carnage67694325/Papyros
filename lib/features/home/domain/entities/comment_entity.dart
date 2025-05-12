@@ -1,4 +1,3 @@
-import 'package:papyros/features/home/data/models/comments.dart';
 import 'package:papyros/features/home/data/models/createdby.dart';
 
 class CommentEntity {

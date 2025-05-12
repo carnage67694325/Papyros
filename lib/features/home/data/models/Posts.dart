@@ -59,13 +59,13 @@ class PostModel extends PostsEntity {
     return {
       '_id': id,
       'description': description,
-      'createdBy': createdBy?.toJson(),
+      'createdBy': createdBy.toJson(),
       'createdAt': createdAt,
       'isEdited': isEdited,
       'tag': tag,
       'likes': likes,
       'mention': mention,
-      'images': images?.map((v) => v.toJson()).toList(),
+      'images': images.map((v) => v.toJson()).toList(),
       'updatedAt': updatedAt,
       'comments': comments?.map((v) => v.toJson()).toList(),
     };
