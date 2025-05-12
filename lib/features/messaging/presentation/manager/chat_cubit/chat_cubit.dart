@@ -9,11 +9,13 @@ class ChatCubit extends Cubit<ChatState> {
   final ChatRepository repository;
   StreamSubscription<List<MessageEntity>>? _messagesSubscription;
   List<MessageEntity> messagesList = [];
+  String? currentUserId;
 
   ChatCubit({required this.repository}) : super(ChatInitial());
 
   Future<void> connectToSocket(String token, String userId) async {
     emit(ChatLoading());
+    currentUserId = userId;
     final result = await repository.initSocket(token, userId);
 
     result.fold(
@@ -30,8 +32,28 @@ class ChatCubit extends Cubit<ChatState> {
     _messagesSubscription = repository.messagesStream.listen(
       (messages) {
         log("Received ${messages.length} messages in stream");
-        messagesList = List.from(messages);
-        emit(ChatMessagesLoaded(messagesList));
+
+        if (messages.length == 1) {
+          // This is likely a single new message
+          // Add it to our existing list instead of replacing everything
+          final newMessage = messages.first;
+
+          // Check if this message already exists in our list to avoid duplicates
+          final isDuplicate = messagesList.any((existingMsg) =>
+              existingMsg.from == newMessage.from &&
+              existingMsg.to == newMessage.to &&
+              existingMsg.content == newMessage.content);
+
+          if (!isDuplicate) {
+            messagesList.add(newMessage);
+          }
+        } else {
+          // This is likely the full message history
+          // Replace our list with the new one
+          messagesList = List.from(messages);
+        }
+
+        emit(ChatMessagesLoaded(List.from(messagesList)));
       },
       onError: (error) {
         emit(ChatError(error.toString()));
@@ -60,18 +82,18 @@ class ChatCubit extends Cubit<ChatState> {
     required String toUserId,
     required String message,
   }) async {
-    // Optimistically add message to list
+    if (message.trim().isEmpty) return;
+
+    // Create optimistic message
     final optimisticMessage = MessageEntity(
       content: message,
-      from: "local", // Replace with actual user ID if available
+      from: currentUserId ?? "unknown", // Use actual user ID instead of "local"
       to: toUserId,
     );
 
-    // Only add optimistic message if actually sending a real message
-    if (message.trim().isNotEmpty) {
-      messagesList.add(optimisticMessage);
-      emit(ChatMessagesLoaded(List.from(messagesList)));
-    }
+    // Add optimistic message to list
+    messagesList.add(optimisticMessage);
+    emit(ChatMessagesLoaded(List.from(messagesList)));
 
     final result = await repository.sendMessage(toUserId, message, token);
     result.fold(
@@ -94,7 +116,7 @@ class ChatCubit extends Cubit<ChatState> {
 
   @override
   Future<void> close() async {
-    await _messagesSubscription?.cancel(); // safe cancel
+    await _messagesSubscription?.cancel();
     return super.close();
   }
 }

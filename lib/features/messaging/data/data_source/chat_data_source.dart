@@ -7,11 +7,8 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ChatSocketDatasource {
   late IO.Socket socket;
-  final List<MessageModel> _cachedMessages = [];
   final StreamController<List<MessageEntity>> _controller =
       StreamController.broadcast();
-
-  List<MessageModel> get cachedMessages => _cachedMessages;
 
   void connectSocket({required String token, required String userId}) {
     socket = IO.io('https://paramedia.onrender.com', <String, dynamic>{
@@ -27,43 +24,24 @@ class ChatSocketDatasource {
       socket.emit('updateSocketId', {'token': token});
     });
 
-    // Clear cached messages when reconnecting
-    _cachedMessages.clear();
     socket.on('newMessage', (data) {
       log('New message received: $data');
       final message = MessageModel.fromJson(data['msg']);
 
-      // Check if the same message already exists based on (from, to, content)
-      final alreadyExists = _cachedMessages.any((m) =>
-          m.from == message.from &&
-          m.to == message.to &&
-          m.content == message.content);
-
-      if (!alreadyExists) {
-        _cachedMessages.add(message);
-
-        final entities = _cachedMessages.map((m) => m.toEntity()).toList();
-        _controller.add(entities);
-      } else {
-        log('Duplicate message ignored: from=${message.from}, to=${message.to}, content=${message.content}');
-      }
+      // Simply emit the new message via the stream
+      // The Cubit will handle adding it to the existing list
+      _controller.add([message.toEntity()]);
     });
 
     socket.on('retrieveMessages', (data) {
       log('Retrieved messages from server: ${data['messages']}');
 
-      // Clear previous messages when receiving history
-      _cachedMessages.clear();
-
       final messages = (data['messages'] as List)
           .map((item) => MessageModel.fromJson(item))
           .toList();
 
-      // Add all messages to cache
-      _cachedMessages.addAll(messages);
-
       // Convert to entities and update stream
-      final entities = _cachedMessages.map((m) => m.toEntity()).toList();
+      final entities = messages.map((m) => m.toEntity()).toList();
       _controller.add(entities);
     });
 

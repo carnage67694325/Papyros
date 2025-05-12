@@ -12,6 +12,7 @@ import 'package:papyros/features/messaging/presentation/view/widgets/chat_messag
 class ChatList extends StatelessWidget {
   const ChatList({super.key, required this.userId});
   final String userId;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChatCubit, ChatState>(
@@ -25,7 +26,6 @@ class ChatList extends StatelessWidget {
       builder: (context, state) {
         // Always get the latest messages directly from the cubit
         final messagesList = BlocProvider.of<ChatCubit>(context).messagesList;
-        log('$userId this user '); // Handle error states
         if (state is ChatError) {
           log('Chat Error: ${state.errMessage}');
 
@@ -72,7 +72,7 @@ class ChatList extends StatelessWidget {
         // Default initialization state
         return SliverToBoxAdapter(
           child: Center(
-            child: Text('ٍStart your conversation!',
+            child: Text('Start your conversation!',
                 style: TextStyle(fontSize: 16.sp)),
           ),
         );
@@ -81,20 +81,27 @@ class ChatList extends StatelessWidget {
   }
 
   Widget _buildMessageList(BuildContext context, List<MessageEntity> messages) {
+    // Create a new list to avoid modifying the original
+    final displayMessages = List<MessageEntity>.from(messages);
+
+    // Use displayMessages.reversed.toList() if you want messages in reverse chronological order
+    // This would show newest messages at the bottom
+    // final displayMessages = messages.reversed.toList();
+
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          final message = messages[index];
+          final message = displayMessages[index];
           return Padding(
             padding: EdgeInsets.only(bottom: 20.h),
             child: ChatMessagingBubble(
               key: ValueKey('chat_bubble_${message.from}_$index'),
               message: message.content,
-              isSender: message.to != userId,
+              isSender: message.from == userId,
             ),
           );
         },
-        childCount: messages.length,
+        childCount: displayMessages.length,
       ),
     );
   }
