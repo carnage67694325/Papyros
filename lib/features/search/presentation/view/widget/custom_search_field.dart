@@ -13,7 +13,6 @@ class CustomSearchField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(8.w),
       child: SearchField(
-        
         searchInputDecoration: SearchInputDecoration(
           fillColor: AppColors.lightGreyBlue.withAlpha(75),
           filled: true,
