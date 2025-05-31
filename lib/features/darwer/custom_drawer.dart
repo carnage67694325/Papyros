@@ -105,6 +105,9 @@ class CustomDrawer extends StatelessWidget {
         } else if (index == 0) {
           // Special handling for the first item (index 0)
           GoRouter.of(context).push(AppRouter.kProfileManage);
+        } else if (index == 3) {
+          // Special handling for the first item (index 0)
+          GoRouter.of(context).push(AppRouter.kSettings);
         } else {
           // Handle other items
           try {

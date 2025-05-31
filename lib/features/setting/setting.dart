@@ -20,9 +20,6 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 12),
         children: [
-          settingTile(Icons.lock_outline, "Your account"),
-          settingTile(Icons.security, "Security and account access"),
-          settingTile(Icons.privacy_tip_outlined, "Privacy and safety"),
           settingTile(Icons.notifications_outlined, "Notifications"),
           settingTile(Icons.language_outlined, "Language and display"),
           settingTile(Icons.help_outline, "Help center"),
