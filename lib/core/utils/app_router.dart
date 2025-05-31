@@ -22,6 +22,7 @@ import 'package:papyros/features/profile_management/domain/use_cases/get_user_us
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
+import 'package:papyros/features/setting/language_display.dart';
 import 'package:papyros/features/setting/setting.dart';
 import 'package:papyros/features/splash/presentation/view/splash_view.dart';
 
@@ -36,6 +37,7 @@ abstract class AppRouter {
   static const kNavigation = '/navigation';
   static const kMessaging = '/messaging';
   static const kSettings = '/settings';
+  static const Klanguage = '/language';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -51,6 +53,13 @@ abstract class AppRouter {
       pageBuilder: (context, state) {
         return TransitionAnimation.slidingTransitionAnimations(state,
             route: const SettingsScreen());
+      },
+    ),
+    GoRoute(
+      path: Klanguage,
+      pageBuilder: (context, state) {
+        return TransitionAnimation.slidingTransitionAnimations(state,
+            route: const LanguageDisplay());
       },
     ),
     GoRoute(
