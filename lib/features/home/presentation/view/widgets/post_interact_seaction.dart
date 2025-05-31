@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/core/utils/functions/like_post.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PostInteractSection extends StatefulWidget {
   const PostInteractSection(
@@ -41,8 +42,12 @@ class _PostInteractSectionState extends State<PostInteractSection> {
         SizedBox(
           width: 10.w,
         ),
-        _buildIconButton(0, Assets.assetsShareIcon, 20, () {
+        _buildIconButton(0, Assets.assetsShareIcon, 20, () async {
           log("Share clicked");
+          await SharePlus.instance.share(ShareParams(
+            uri: Uri.parse(
+                "https://paramedia.onrender.com/posts/one/${widget.postId}"),
+          ));
         }),
         _buildIconButton(1, Assets.assetsBookMarkIcon, 25, () {
           log("Bookmark clicked");

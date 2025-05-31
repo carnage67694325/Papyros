@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/features/authentication/presentation/views/widgets/language_toggle.dart';
+import 'package:papyros/features/setting/theme_toggle.dart';
 
 class LanguageDisplay extends StatelessWidget {
   const LanguageDisplay({super.key});
@@ -55,6 +56,10 @@ class LanguageDisplay extends StatelessWidget {
               height: 6.h,
             ),
             Divider(indent: 16.w, endIndent: 16.w, height: 0.h),
+            SizedBox(
+              height: 12.h,
+            ),
+            const ThemeToggle()
           ],
         ),
       ),

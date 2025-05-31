@@ -1,3 +1,4 @@
+// 4. Updated main.dart with theme support
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,6 +9,9 @@ import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/simple_bloc_observer.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
+import 'package:papyros/core/utils/manager/theme_cubit/cubit/theme_cubit.dart';
+// Add theme cubit import
+// import 'package:papyros/core/utils/manager/theme_cubit/theme_cubit.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/messaging/data/data_source/chat_data_source.dart';
@@ -27,9 +31,6 @@ import 'core/Prefernces/Shaerdperefeancses.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PrefasHandelr.init();
-  //PrefasHandelr.clearAuthToken();
-  //await PrefasHandelr.printAuthToken();
-  // await PrefasHandelr.printUserId();
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   setupServiceLoactor();
@@ -37,6 +38,9 @@ Future<void> main() async {
     providers: [
       BlocProvider(
         create: (context) => ChangeLocalCubit(),
+      ),
+      BlocProvider(
+        create: (context) => ThemeCubit(), // Add theme cubit
       ),
       BlocProvider(
           create: (context) =>
@@ -69,6 +73,8 @@ class PapyrosApp extends StatefulWidget {
 
 class _PapyrosAppState extends State<PapyrosApp> {
   Locale local = const Locale('en');
+  ThemeMode themeMode = ThemeMode.light; // Add theme mode state
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -76,16 +82,39 @@ class _PapyrosAppState extends State<PapyrosApp> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (_, context) {
-          return BlocConsumer<ChangeLocalCubit, ChangeLocalState>(
-              listener: (context, state) {
-            if (state is ChangeLocalCurrent) {
-              local = state.currentLocale;
-            }
-          }, builder: (context, state) {
-            return MaterialApp.router(
+          return MultiBlocListener(
+            listeners: [
+              BlocListener<ChangeLocalCubit, ChangeLocalState>(
+                listener: (context, state) {
+                  if (state is ChangeLocalCurrent) {
+                    setState(() {
+                      local = state.currentLocale;
+                    });
+                  }
+                },
+              ),
+              BlocListener<ThemeCubit, ThemeState>(
+                listener: (context, state) {
+                  if (state is ThemeChanged) {
+                    setState(() {
+                      themeMode = state.themeMode;
+                    });
+                  }
+                },
+              ),
+            ],
+            child: MaterialApp.router(
               theme: ThemeData(
                 scaffoldBackgroundColor: AppColors.backGroundColor,
+                brightness: Brightness.light,
+                // Add more light theme properties
               ),
+              darkTheme: ThemeData(
+                scaffoldBackgroundColor: Colors.grey[900],
+                brightness: Brightness.dark,
+                // Add more dark theme properties
+              ),
+              themeMode: themeMode, // Use the theme mode
               locale: local,
               localizationsDelegates: const [
                 S.delegate,
@@ -95,8 +124,8 @@ class _PapyrosAppState extends State<PapyrosApp> {
               ],
               supportedLocales: S.delegate.supportedLocales,
               routerConfig: AppRouter.router,
-            );
-          });
+            ),
+          );
         });
   }
 }
@@ -104,4 +133,3 @@ class _PapyrosAppState extends State<PapyrosApp> {
 bool isArabic() {
   return Intl.getCurrentLocale() == 'ar';
 }
-// No changes to ChangeLocalCubit and GettingStartedBody (already provided)

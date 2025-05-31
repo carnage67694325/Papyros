@@ -81,8 +81,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
                       child: Center(
                         child: Icon(
                           Icons.dark_mode,
-                          color:
-                              isDarkSelected ? Colors.white : Colors.grey[400],
+                          color: isDarkSelected ? Colors.white : Colors.white,
                           size: 18.sp,
                         ),
                       ),
