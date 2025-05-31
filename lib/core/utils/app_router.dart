@@ -37,7 +37,7 @@ abstract class AppRouter {
   static const kNavigation = '/navigation';
   static const kMessaging = '/messaging';
   static const kSettings = '/settings';
-  static const Klanguage = '/language';
+  static const kLanguage = '/language';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -56,7 +56,7 @@ abstract class AppRouter {
       },
     ),
     GoRoute(
-      path: Klanguage,
+      path: kLanguage,
       pageBuilder: (context, state) {
         return TransitionAnimation.slidingTransitionAnimations(state,
             route: const LanguageDisplay());

@@ -25,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
         children: [
           settingTile(Icons.notifications_outlined, "Notifications", () {}),
           settingTile(Icons.language_outlined, "Language and display", () {
-            GoRouter.of(context).push(AppRouter.Klanguage);
+            GoRouter.of(context).push(AppRouter.kLanguage);
           }),
           settingTile(Icons.help_outline, "Help center", () {}),
         ],
