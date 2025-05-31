@@ -14,7 +14,7 @@ final class SearchFailure extends SearchState {
 }
 
 final class SearchSuccess extends SearchState {
-  final UserProfileEntity userProfileEntity;
+  final List<UserEntity> userProfileEntityList;
 
-  SearchSuccess({required this.userProfileEntity});
+  SearchSuccess({required this.userProfileEntityList});
 }

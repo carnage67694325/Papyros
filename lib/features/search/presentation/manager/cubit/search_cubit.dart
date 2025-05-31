@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
+import 'package:papyros/features/search/domain/entity/user_entity.dart';
 import 'package:papyros/features/search/domain/usecase/search_usecase.dart';
 
 part 'search_state.dart';
@@ -15,8 +16,8 @@ class SearchCubit extends Cubit<SearchState> {
       (failure) {
         return emit(SearchFailure(errMessage: failure.errMessage));
       },
-      (userProfileEntity) {
-        return emit(SearchSuccess(userProfileEntity: userProfileEntity));
+      (userList) {
+        return emit(SearchSuccess(userProfileEntityList: userList));
       },
     );
   }

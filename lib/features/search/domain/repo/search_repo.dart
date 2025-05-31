@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:papyros/core/errors/failure.dart';
-import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
+import 'package:papyros/features/search/domain/entity/user_entity.dart';
 
 abstract class SearchRepo {
-  Future<Either<Failure, UserProfileEntity>> search(String query);
+  Future<Either<Failure, List<UserEntity>>> search(String query);
 }
