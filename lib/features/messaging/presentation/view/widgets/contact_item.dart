@@ -78,7 +78,7 @@ class ContactItem extends StatelessWidget {
                     )),
               ],
             ),
-            SizedBox(width: 75.w),
+            Spacer(),
             Padding(
               padding: EdgeInsets.only(top: 10.0.h),
               child: Text(
@@ -89,6 +89,7 @@ class ContactItem extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(width: 14.w),
           ]),
         ),
       ),
