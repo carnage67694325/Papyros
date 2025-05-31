@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
-import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
+import 'package:papyros/features/search/domain/entity/user_entity.dart';
 import 'package:papyros/features/search/presentation/manager/cubit/search_cubit.dart';
+import 'package:papyros/features/search/presentation/view/widget/search_sug_item.dart';
 import 'package:searchfield/searchfield.dart';
 
 class CustomSearchField extends StatefulWidget {
@@ -20,18 +20,18 @@ class CustomSearchField extends StatefulWidget {
 class _CustomSearchFieldState extends State<CustomSearchField> {
   Timer? _debounce;
   final _controller = TextEditingController();
-  List<SearchFieldListItem<String>> _suggestions = [];
+  List<SearchFieldListItem<UserEntity>> _suggestions = [];
 
-  Future<List<SearchFieldListItem<String>>> _onSearchChanged(
+  Future<List<SearchFieldListItem<UserEntity>>> _onSearchChanged(
       String query) async {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
+    _debounce = Timer(const Duration(milliseconds: 200), () {
       if (query.isNotEmpty) {
         context.read<SearchCubit>().search(query: query);
       }
     });
 
-    return _suggestions; // Just return current suggestions for compatibility
+    return _suggestions;
   }
 
   @override
@@ -49,15 +49,22 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
           errorSnackBar(context, state.errMessage);
           log(state.errMessage);
         } else if (state is SearchSuccess) {
-          // Here we expect a List<UserProfileEntity>
-          final users = state
-              .userProfileEntityList; // <-- You must update SearchSuccess to expose a list
+          final users = state.userProfileEntityList;
           setState(() {
             _suggestions = users
                 .map(
-                  (user) => SearchFieldListItem<String>(
+                  (user) => SearchFieldListItem<UserEntity>(
                     '${user.firstName} ${user.lastName}',
-                    item: user.userName,
+                    item: user,
+                    child: Container(
+                      height: 250.h,
+                      alignment: Alignment.centerLeft,
+                      child: SearchSugItem(
+                        name: user.userName!,
+                        profileImage: user.profileImage!,
+                      ),
+                    ), // pass full user object here
+                    // Optional: you can add a widget here to show profile image in suggestions if SearchField supports it
                   ),
                 )
                 .toList();
@@ -66,10 +73,14 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
       },
       child: Padding(
         padding: EdgeInsets.all(8.w),
-        child: SearchField<String>(
+        child: SearchField<UserEntity>(
           controller: _controller,
           onSearchTextChanged: _onSearchChanged,
           suggestions: _suggestions,
+          // When user selects a suggestion, you get the UserEntity:
+          // onSuggestionTap: (UserEntity user) {
+          //   // Do something with user profile here
+          // },
           searchInputDecoration: SearchInputDecoration(
             fillColor: AppColors.lightGreyBlue.withAlpha(75),
             filled: true,
