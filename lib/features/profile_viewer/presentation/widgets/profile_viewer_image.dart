@@ -5,7 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProfileViewerImage extends StatelessWidget {
   const ProfileViewerImage({
     super.key,
+    required this.profileImage,
+    required this.backgroundImage,
   });
+  final String profileImage;
+  final String backgroundImage;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +20,9 @@ class ProfileViewerImage extends StatelessWidget {
           Container(
             width: double.infinity,
             height: 175.h,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                    'https://www.pelago.com/img/countries/egypt/0801-0336_egypt-xlarge.jpg'),
+                image: CachedNetworkImageProvider(backgroundImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -27,10 +30,9 @@ class ProfileViewerImage extends StatelessWidget {
           Positioned(
             right: 280.w,
             top: 150.h,
-            child: const CircleAvatar(
+            child: CircleAvatar(
               radius: 50,
-              backgroundImage: CachedNetworkImageProvider(
-                  'https://www.pelago.com/img/countries/egypt/0801-0336_egypt-xlarge.jpg'),
+              backgroundImage: CachedNetworkImageProvider(profileImage),
             ),
           ),
         ],

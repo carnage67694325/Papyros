@@ -1,3 +1,5 @@
+import 'package:papyros/features/profile_viewer/data/model/user_viewer/Images.dart';
+
 import 'like.dart';
 
 class Post {
@@ -9,7 +11,7 @@ class Post {
   List<Like>? likes;
   List<dynamic>? mention;
   DateTime? createdAt;
-  List<dynamic>? images;
+  List<Images>? images;
   DateTime? updatedAt;
   int? likescount;
   String? postId;
@@ -42,7 +44,9 @@ class Post {
         createdAt: json['createdAt'] == null
             ? null
             : DateTime.parse(json['createdAt'] as String),
-        images: json['images'] as List<dynamic>?,
+        images: (json['images'] as List<dynamic>?)
+            ?.map((e) => Images.fromJson(e as Map<String, dynamic>))
+            .toList(),
         updatedAt: json['updatedAt'] == null
             ? null
             : DateTime.parse(json['updatedAt'] as String),
@@ -59,7 +63,7 @@ class Post {
         'likes': likes?.map((e) => e.toJson()).toList(),
         'mention': mention,
         'createdAt': createdAt?.toIso8601String(),
-        'images': images,
+        'images': images?.map((e) => e.toJson()).toList(),
         'updatedAt': updatedAt?.toIso8601String(),
         'likescount': likescount,
         'id': id,

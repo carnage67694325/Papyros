@@ -5,8 +5,11 @@ import 'package:papyros/core/utils/app_styles.dart';
 class ProfileNameNBio extends StatelessWidget {
   const ProfileNameNBio({
     super.key,
+    required this.name,
+    required this.bio,
   });
-
+  final String name;
+  final String bio;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +19,7 @@ class ProfileNameNBio extends StatelessWidget {
         children: [
           Text(
             textAlign: TextAlign.start,
-            "User Name",
+            name,
             style: AppStyles.subHeader.copyWith(
               fontSize: 22.sp,
               color: Colors.black,
@@ -28,7 +31,7 @@ class ProfileNameNBio extends StatelessWidget {
             width: 300.w,
             child: Text(
               textAlign: TextAlign.start,
-              "blah blah blah blah blah blah blah blah",
+              bio,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: AppStyles.subHeader.copyWith(

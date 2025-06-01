@@ -1,10 +1,8 @@
 import 'dart:developer';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/features/home/presentation/view/widgets/full_post_view.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_card.dart';
@@ -27,6 +25,10 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
   late ScrollController _scrollController;
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
+  String? userName;
+  String? bio;
+  String? profileImage;
+  String? backgroundImage;
 
   @override
   void initState() {
@@ -67,6 +69,14 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
             errorSnackBar(context, state.errMessage);
             log(state.errMessage);
           }
+          if (state is ProfileViewSuccess) {
+            userName = state.userViewer.user?.userName ?? "Unknown User";
+            bio = state.userViewer.user?.bio ?? "No bio available";
+            profileImage = state.userViewer.user?.profileImage ??
+                "https://uxwing.com/wp-content/themes/uxwing/download/peoples";
+            backgroundImage = state.userViewer.user?.backGroungImage ??
+                "https://uxwing.com/wp-content/themes/uxwing/download/peoples";
+          }
         },
         builder: (context, state) {
           return RefreshIndicator(
@@ -81,17 +91,20 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
               physics: const AlwaysScrollableScrollPhysics(),
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
-                  const SliverAppBar(
-                    title: Text('Profile Viewer'),
+                  SliverAppBar(
+                    title: Text(userName ?? "Profile"),
                     floating: true,
                   ),
                   SliverToBoxAdapter(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const ProfileViewerImage(),
+                        ProfileViewerImage(
+                          profileImage: profileImage ?? "",
+                          backgroundImage: backgroundImage ?? "",
+                        ),
                         SizedBox(height: 20.h),
-                        const ProfileNameNBio(),
+                        ProfileNameNBio(name: userName ?? "", bio: bio ?? ""),
                         SizedBox(height: 10.h),
                         if (state is ProfileViewSuccess)
                           _buildFollowStats(state.userViewer.user),
@@ -147,7 +160,7 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
         children: [
           TextSpan(
             text: count,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
@@ -225,7 +238,7 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
                   userProfileImageUrl: state.userViewer.user?.profileImage ??
                       "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
                   imageUrl:
-                      post.images?.map((e) => e.toString()).toList() ?? [],
+                      post.images?.map((e) => e.image ?? '').toList() ?? [],
                   postId: post.id ?? "",
                   heroTag: heroTag,
                   likes: post.likes ?? [],
@@ -408,7 +421,7 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
               child: FullPostView(
                 heroTag: heroTag,
                 description: post.description ?? "",
-                imageUrl: post.images?.map((e) => e.toString()).toList() ?? [],
+                imageUrl: post.images?.map((e) => e.image ?? '').toList() ?? [],
                 userName: user?.userName ?? "user-name",
                 userProfileImageUrl: user?.profileImage ??
                     "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/man-user-circle-icon.png",
