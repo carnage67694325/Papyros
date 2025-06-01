@@ -233,6 +233,7 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
                   _openFullPostView(context, state, index, heroTag);
                 },
                 child: PostCard(
+                  userId: state.userViewer.user?.id ?? "unknown-user-id",
                   description: post.description ?? "",
                   userName: state.userViewer.user?.userName ?? "user-name",
                   userProfileImageUrl: state.userViewer.user?.profileImage ??
@@ -419,6 +420,7 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
               opacity:
                   Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation),
               child: FullPostView(
+                userId: user?.id ?? "user-id",
                 heroTag: heroTag,
                 description: post.description ?? "",
                 imageUrl: post.images?.map((e) => e.image ?? '').toList() ?? [],

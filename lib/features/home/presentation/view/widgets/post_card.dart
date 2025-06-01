@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_interact_seaction.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
@@ -17,6 +18,7 @@ class PostCard extends StatelessWidget {
     required this.heroTag,
     required this.postId,
     required this.likes,
+    required this.userId,
   });
 
   final String userName;
@@ -26,6 +28,7 @@ class PostCard extends StatelessWidget {
   final String heroTag;
   final String postId;
   final List<dynamic> likes;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +55,16 @@ class PostCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                UserProfileHomeAvatar(
-                  userProfileImage: userProfileImageUrl,
-                  height: 55.h,
-                  width: 55.w,
+                GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context)
+                        .push(AppRouter.kProfileViewer, extra: userId);
+                  },
+                  child: UserProfileHomeAvatar(
+                    userProfileImage: userProfileImageUrl,
+                    height: 55.h,
+                    width: 55.w,
+                  ),
                 ),
                 SizedBox(width: 10.w),
                 Expanded(

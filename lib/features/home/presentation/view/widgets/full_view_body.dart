@@ -25,6 +25,7 @@ class FullViewBody extends StatelessWidget {
     required this.postId,
     required this.likes,
     required this.comments,
+    required this.userId,
   });
 
   final String userName;
@@ -40,6 +41,7 @@ class FullViewBody extends StatelessWidget {
   final String? postId;
   final List<dynamic> likes;
   final List<CommentModel> comments;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,7 @@ class FullViewBody extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: PostHeader(
+              userId: userId,
               userName: userName,
               userProfileImageUrl: userProfileImageUrl,
               createdAtString: createdAtString,

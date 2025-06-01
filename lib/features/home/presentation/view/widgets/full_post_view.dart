@@ -27,6 +27,7 @@ class FullPostView extends StatelessWidget {
     this.postId,
     required this.likes,
     required this.comments,
+    required this.userId,
   });
 
   final String userName;
@@ -41,6 +42,7 @@ class FullPostView extends StatelessWidget {
   final String? tag;
   final List<dynamic> likes;
   final List<CommentModel> comments;
+  final String userId;
   @override
   Widget build(BuildContext context) {
     final hasImage =
@@ -63,6 +65,7 @@ class FullPostView extends StatelessWidget {
                   AddCommentCubit(getIt.get<AddCommentUseCase>()))
         ],
         child: FullViewBody(
+          userId: userId,
           userName: userName,
           userProfileImageUrl: userProfileImageUrl,
           createdAtString: createdAtString,

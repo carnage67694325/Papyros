@@ -104,6 +104,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         openFullPostView(context, state, index, heroTag);
                       },
                       child: PostCard(
+                        userId: post.createdBy.id ?? "user-id",
                         description: post.description,
                         userName: post.createdBy.userName ?? "user-name",
                         userProfileImageUrl: post.createdBy.profileImage ??
@@ -174,6 +175,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               opacity:
                   Tween<double>(begin: 0.0, end: 1.0).animate(curvedAnimation),
               child: FullPostView(
+                userId: state.posts[index].createdBy.id ?? "user-id",
                 heroTag: heroTag,
                 description: state.posts[index].description,
                 imageUrl:
