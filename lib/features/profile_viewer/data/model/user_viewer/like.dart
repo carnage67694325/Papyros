@@ -1,13 +1,27 @@
 class Like {
-  Like();
+  final String? id;
+  final String? userName;
+  final String? profileImage;
+  final String? backGroungImage;
 
-  factory Like.fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError('Like.fromJson($json) is not implemented');
-  }
+  Like({
+    this.id,
+    this.userName,
+    this.profileImage,
+    this.backGroungImage,
+  });
 
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  factory Like.fromJson(Map<String, dynamic> json) => Like(
+        id: json['_id'] as String?,
+        userName: json['userName'] as String?,
+        profileImage: json['profileImage'] as String?,
+        backGroungImage: json['backGroungImage'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        '_id': id,
+        'userName': userName,
+        'profileImage': profileImage,
+        'backGroungImage': backGroungImage,
+      };
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:papyros/core/endpoints/endpiont.dart';
 import 'package:papyros/core/utils/api_service.dart';
@@ -13,6 +15,7 @@ class ProfileViewerDataSourceImpl implements ProfileViewerDataSource {
     final response = await dio.get(
       '${ApiService.baseUrl}${Endpiont.profileViewer}$userId',
     );
+    log('${ApiService.baseUrl}${Endpiont.profileViewer}$userId');
     final data = response.data;
     return UserViewer.fromJson(data);
   }

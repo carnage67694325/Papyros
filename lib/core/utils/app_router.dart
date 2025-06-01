@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/animations/transition_animation.dart';
@@ -18,10 +19,15 @@ import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
 import 'package:papyros/features/navigation/presentation/view/navigation.dart';
+import 'package:papyros/features/profile_management/data/repositories/profile_managment_repo_imp.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
+import 'package:papyros/features/profile_viewer/data/data_source/profile_viewer_data_source_impl.dart';
+import 'package:papyros/features/profile_viewer/data/repos/profile_viewer_repo_impl.dart';
+import 'package:papyros/features/profile_viewer/domain/usecase/profile_view_usecase.dart';
+import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profile_view_cubit.dart';
 import 'package:papyros/features/profile_viewer/presentation/profile_viewer.dart';
 import 'package:papyros/features/setting/language_display.dart';
 import 'package:papyros/features/setting/setting.dart';
@@ -156,7 +162,13 @@ abstract class AppRouter {
         pageBuilder: (context, state) {
           return TransitionAnimation.slidingTransitionAnimations(
             state,
-            route: const ProfileViewer(),
+            route: BlocProvider(
+              create: (context) => ProfileViewCubit(ProfileViewUsecase(
+                  ProfileViewerRepoImpl(
+                      remoteDataSource:
+                          ProfileViewerDataSourceImpl(dio: Dio())))),
+              child: const ProfileViewer(),
+            ),
           );
         }),
   ]);
