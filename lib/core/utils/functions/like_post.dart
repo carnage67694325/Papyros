@@ -10,7 +10,7 @@ Future<void> likePost(BuildContext context, String postId) async {
 
 Future<void> initFavoriteStatus({
   required State state,
-  required List<String> likes,
+  required List<dynamic> likes,
   required Map<int, bool> isClicked,
   required void Function(String userId) onUserIdFetched,
 }) async {

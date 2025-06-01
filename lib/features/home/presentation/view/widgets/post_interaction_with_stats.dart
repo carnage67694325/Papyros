@@ -17,7 +17,7 @@ class PostInteractSectionWithStats extends StatefulWidget {
   final int numberOfLikes;
   final int numberOfComments;
   final String postId;
-  final List<String> likes; // Replace with actual post ID
+  final List<dynamic> likes; // Replace with actual post ID
   @override
   State<PostInteractSectionWithStats> createState() =>
       _PostInteractSectionWithStatsState();

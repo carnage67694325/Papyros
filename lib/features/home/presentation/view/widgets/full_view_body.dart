@@ -38,7 +38,7 @@ class FullViewBody extends StatelessWidget {
   final int numberOfLikes;
   final int numberOfComments;
   final String? postId;
-  final List<String> likes;
+  final List<dynamic> likes;
   final List<CommentModel> comments;
 
   @override

@@ -39,7 +39,7 @@ class FullPostView extends StatelessWidget {
   final String? postId;
   final String? heroTag;
   final String? tag;
-  final List<String> likes;
+  final List<dynamic> likes;
   final List<CommentModel> comments;
   @override
   Widget build(BuildContext context) {

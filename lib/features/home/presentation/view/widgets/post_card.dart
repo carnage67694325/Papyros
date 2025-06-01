@@ -25,7 +25,7 @@ class PostCard extends StatelessWidget {
   final List<String?>? imageUrl;
   final String heroTag;
   final String postId;
-  final List<String> likes;
+  final List<dynamic> likes;
 
   @override
   Widget build(BuildContext context) {

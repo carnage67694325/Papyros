@@ -12,7 +12,7 @@ class PostInteractSection extends StatefulWidget {
   const PostInteractSection(
       {super.key, required this.postId, required this.likes});
   final String postId;
-  final List<String> likes; // Replace with actual post ID
+  final List<dynamic> likes; // Replace with actual post ID
   @override
   State<PostInteractSection> createState() => _PostInteractSectionState();
 }
