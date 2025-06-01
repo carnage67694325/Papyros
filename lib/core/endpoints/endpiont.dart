@@ -15,4 +15,5 @@ class Endpiont {
   static const String replyCommentEndpoint = "comments/replyComment/";
   static const String getAllusers = "myprofile/getAllUsers";
   static const String search = "user?search=";
+  static const String profileViewer = "myprofile/";
 }
