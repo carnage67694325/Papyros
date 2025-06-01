@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:papyros/core/utils/app_router.dart';
 
 class SearchSugItem extends StatelessWidget {
   const SearchSugItem({
@@ -16,24 +18,29 @@ class SearchSugItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleAvatar(
-          backgroundImage: CachedNetworkImageProvider(profileImage),
-        ),
-        SizedBox(width: 12.w),
-        Expanded(
-          child: Text(
-            name,
-            style: TextStyle(
-              fontSize: 22.sp,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-            overflow: TextOverflow.ellipsis,
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context).push(AppRouter.kProfileViewer);
+      },
+      child: Row(
+        children: [
+          CircleAvatar(
+            backgroundImage: CachedNetworkImageProvider(profileImage),
           ),
-        ),
-      ],
+          SizedBox(width: 12.w),
+          Expanded(
+            child: Text(
+              name,
+              style: TextStyle(
+                fontSize: 22.sp,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
