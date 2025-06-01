@@ -188,7 +188,7 @@ class _ProfileViewerBodyState extends State<ProfileViewerBody>
       ),
       child: TabBar(
         controller: _tabController,
-        indicatorColor: Colors.blue,
+        indicatorColor: AppColors.lightPeach,
         labelColor: Colors.black,
         unselectedLabelColor: Colors.grey[600],
         labelStyle: TextStyle(

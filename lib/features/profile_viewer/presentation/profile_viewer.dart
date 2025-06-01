@@ -4,8 +4,8 @@ import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profi
 import 'package:papyros/features/profile_viewer/presentation/widgets/profile_viewer_body.dart';
 
 class ProfileViewer extends StatefulWidget {
-  const ProfileViewer({super.key});
-
+  const ProfileViewer({super.key, required this.userId});
+  final String userId;
   @override
   State<ProfileViewer> createState() => _ProfileViewerState();
 }
@@ -14,7 +14,7 @@ class _ProfileViewerState extends State<ProfileViewer> {
   @override
   void initState() {
     BlocProvider.of<ProfileViewCubit>(context)
-        .getUserProfile(userId: "673ef6243ebec6fda14bbd2b");
+        .getUserProfile(userId: widget.userId);
   }
 
   @override

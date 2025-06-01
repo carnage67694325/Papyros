@@ -160,6 +160,7 @@ abstract class AppRouter {
     GoRoute(
         path: kProfileViewer,
         pageBuilder: (context, state) {
+          final userId = state.extra as String;
           return TransitionAnimation.slidingTransitionAnimations(
             state,
             route: BlocProvider(
@@ -167,7 +168,9 @@ abstract class AppRouter {
                   ProfileViewerRepoImpl(
                       remoteDataSource:
                           ProfileViewerDataSourceImpl(dio: Dio())))),
-              child: const ProfileViewer(),
+              child: ProfileViewer(
+                userId: userId,
+              ),
             ),
           );
         }),

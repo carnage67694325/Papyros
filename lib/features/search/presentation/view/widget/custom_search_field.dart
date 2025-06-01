@@ -60,6 +60,7 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
                       height: 250.h,
                       alignment: Alignment.centerLeft,
                       child: SearchSugItem(
+                        userId: user.id!,
                         name: user.userName!,
                         profileImage: user.profileImage!,
                       ),

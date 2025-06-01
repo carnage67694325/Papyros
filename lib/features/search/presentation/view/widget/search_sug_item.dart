@@ -11,16 +11,20 @@ class SearchSugItem extends StatelessWidget {
     super.key,
     required this.name,
     required this.profileImage,
+    required this.userId,
   });
 
   final String name;
   final String profileImage;
-
+  final String userId;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kProfileViewer);
+        GoRouter.of(context).push(
+          AppRouter.kProfileViewer,
+          extra: userId,
+        );
       },
       child: Row(
         children: [
