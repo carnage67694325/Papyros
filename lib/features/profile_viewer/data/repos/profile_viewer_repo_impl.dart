@@ -22,4 +22,11 @@ class ProfileViewerRepoImpl implements ProfileViewerRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, void>> follow(
+      {required String token, required String userId}) {
+    // TODO: implement follow
+    throw UnimplementedError();
+  }
 }

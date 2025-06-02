@@ -19,10 +19,11 @@ class FollowButton extends StatelessWidget {
           ),
         ),
         onPressed: () {},
-        child: const Text(
+        child: Text(
           'Follow',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 14.sp,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ));

@@ -19,4 +19,10 @@ class ProfileViewerDataSourceImpl implements ProfileViewerDataSource {
     final data = response.data;
     return UserViewer.fromJson(data);
   }
+
+  @override
+  Future<void> follow({required String token, required String userId}) async {
+    await dio.get('${ApiService.baseUrl}${Endpiont.profileViewer}$userId',
+        options: Options(headers: {'token': token}));
+  }
 }
