@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/features/profile_viewer/data/model/user_viewer/user.dart';
 import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profile_view_cubit.dart';
+import 'package:papyros/features/profile_viewer/presentation/widgets/follow_button.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/profile_name_n_bio.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/profile_viewer_image.dart';
 import 'follow_stats.dart';
@@ -46,12 +47,21 @@ class ProfileHeader extends StatelessWidget {
               profileImage: profileImage ?? "",
               backgroundImage: backgroundImage ?? "",
             ),
-            SizedBox(height: 20.h),
-            ProfileNameNBio(
-              name: userName ?? "",
-              bio: bio ?? "",
+            SizedBox(height: 15.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ProfileNameNBio(
+                    name: userName ?? "",
+                    bio: bio ?? "",
+                  ),
+                ),
+                const FollowButton(),
+                SizedBox(width: 10.w),
+              ],
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 15.h),
             if (state is ProfileViewSuccess) FollowStats(user: user),
             SizedBox(height: 20.h),
           ],
