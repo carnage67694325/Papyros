@@ -1,5 +1,5 @@
+import 'package:papyros/features/home/data/models/comments.dart';
 import 'package:papyros/features/profile_viewer/data/model/user_viewer/Images.dart';
-
 import 'like.dart';
 
 class Post {
@@ -15,6 +15,7 @@ class Post {
   DateTime? updatedAt;
   int? likescount;
   String? postId;
+  List<CommentModel>? comments;
 
   Post({
     this.id,
@@ -29,6 +30,7 @@ class Post {
     this.updatedAt,
     this.likescount,
     this.postId,
+    this.comments,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) => Post(
@@ -52,6 +54,9 @@ class Post {
             : DateTime.parse(json['updatedAt'] as String),
         likescount: json['likescount'] as int?,
         postId: json['id'] as String?,
+        comments: (json['comments'] as List<dynamic>?)
+            ?.map((e) => CommentModel.fromJson(e as Map<String, dynamic>))
+            .toList(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -67,5 +72,6 @@ class Post {
         'updatedAt': updatedAt?.toIso8601String(),
         'likescount': likescount,
         'id': id,
+        'comments': comments?.map((e) => e.toJson()).toList(),
       };
 }

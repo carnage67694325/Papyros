@@ -25,21 +25,31 @@ class CommentModel {
   });
 
   factory CommentModel.fromJson(Map<String, dynamic> json) {
+    // Defensive reply parsing
+    List<CommentModel> parsedReplies = [];
+
+    final replyData = json['reply'];
+    if (replyData is List) {
+      for (var reply in replyData) {
+        if (reply is Map<String, dynamic>) {
+          parsedReplies.add(CommentModel.fromJson(reply));
+        }
+      }
+    }
+
     return CommentModel(
-      id: json['_id'],
-      post: json['post'],
-      createdBy: json['createdBy'] != null
-          ? CreatedBy.fromJson(json['createdBy'])
-          : null,
-      createdAt: json['createdAt'],
-      isEdited: json['isEdited'],
-      description: json['description'],
-      likes: List<String>.from(json['likes'] ?? []),
-      replies: (json['reply'] as List<dynamic>?)
-              ?.map((reply) => CommentModel.fromJson(reply))
-              .toList() ??
-          [],
-      updatedAt: json['updatedAt'],
+      id: json['_id'] as String?,
+      post: json['post'] as String?,
+      createdBy:
+          json['createdBy'] != null && json['createdBy'] is Map<String, dynamic>
+              ? CreatedBy.fromJson(json['createdBy'] as Map<String, dynamic>)
+              : null,
+      createdAt: json['createdAt'] as String?,
+      isEdited: json['isEdited'] as bool?,
+      description: json['description'] as String?,
+      likes: (json['likes'] as List?)?.whereType<String>().toList() ?? [],
+      replies: parsedReplies,
+      updatedAt: json['updatedAt'] as String?,
     );
   }
 
@@ -47,7 +57,7 @@ class CommentModel {
     return {
       '_id': id,
       'post': post,
-      'createdBy': createdBy,
+      'createdBy': createdBy?.toJson(),
       'createdAt': createdAt,
       'isEdited': isEdited,
       'description': description,
