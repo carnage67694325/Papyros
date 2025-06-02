@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profile_view_cubit.dart';
+import 'package:papyros/features/profile_viewer/presentation/manager/profile_view_cubit/profile_view_cubit.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/profile_viewer_body.dart';
 
 class ProfileViewer extends StatefulWidget {

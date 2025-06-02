@@ -24,10 +24,14 @@ import 'package:papyros/features/profile_management/domain/use_cases/get_user_us
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/view/profile_management_view.dart';
+import 'package:papyros/features/profile_viewer/data/data_source/follow_datasource_impl.dart';
 import 'package:papyros/features/profile_viewer/data/data_source/profile_viewer_data_source_impl.dart';
+import 'package:papyros/features/profile_viewer/data/repos/follow_repo_impl.dart';
 import 'package:papyros/features/profile_viewer/data/repos/profile_viewer_repo_impl.dart';
+import 'package:papyros/features/profile_viewer/domain/usecase/follow_usecase.dart';
 import 'package:papyros/features/profile_viewer/domain/usecase/profile_view_usecase.dart';
-import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profile_view_cubit.dart';
+import 'package:papyros/features/profile_viewer/presentation/manager/follow_cubit/follow_cubit.dart';
+import 'package:papyros/features/profile_viewer/presentation/manager/profile_view_cubit/profile_view_cubit.dart';
 import 'package:papyros/features/profile_viewer/presentation/profile_viewer.dart';
 import 'package:papyros/features/setting/language_display.dart';
 import 'package:papyros/features/setting/setting.dart';
@@ -163,11 +167,19 @@ abstract class AppRouter {
           final userId = state.extra as String;
           return TransitionAnimation.slidingTransitionAnimations(
             state,
-            route: BlocProvider(
-              create: (context) => ProfileViewCubit(ProfileViewUsecase(
-                  ProfileViewerRepoImpl(
-                      remoteDataSource:
-                          ProfileViewerDataSourceImpl(dio: Dio())))),
+            route: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => ProfileViewCubit(ProfileViewUsecase(
+                      ProfileViewerRepoImpl(
+                          remoteDataSource:
+                              ProfileViewerDataSourceImpl(dio: Dio())))),
+                ),
+                BlocProvider(
+                  create: (context) => FollowCubit(FollowUsecase(FollowRepoImpl(
+                      followDatascoure: FollowDatasourceImpl(dio: Dio())))),
+                ),
+              ],
               child: ProfileViewer(
                 userId: userId,
               ),

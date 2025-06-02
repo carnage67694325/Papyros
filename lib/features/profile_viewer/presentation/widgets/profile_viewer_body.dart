@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
-import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profile_view_cubit.dart';
+import 'package:papyros/features/profile_viewer/presentation/manager/profile_view_cubit/profile_view_cubit.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/profile_header.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/profile_tab_bar.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/profile_tab_view_bar.dart';

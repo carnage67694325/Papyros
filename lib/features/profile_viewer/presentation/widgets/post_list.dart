@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:papyros/features/home/presentation/view/widgets/full_post_view.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_card.dart';
 import 'package:papyros/features/home/presentation/view/widgets/shimmer_post_card.dart';
-import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profile_view_cubit.dart';
+import 'package:papyros/features/profile_viewer/presentation/manager/profile_view_cubit/profile_view_cubit.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/empty_state.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/error_state.dart';
 

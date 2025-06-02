@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:papyros/features/profile_viewer/presentation/manager/cubit/profile_view_cubit.dart';
+import 'package:papyros/features/profile_viewer/presentation/manager/profile_view_cubit/profile_view_cubit.dart';
 import 'package:papyros/features/profile_viewer/presentation/widgets/post_list.dart';
 import 'empty_tab.dart';
 
