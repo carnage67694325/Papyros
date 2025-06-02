@@ -120,7 +120,7 @@ class PostsList extends StatelessWidget {
                 tag: post.tag ?? "",
                 postId: post.id ?? "",
                 likes: post.likes ?? [],
-                comments: [],
+                comments: post.comments ?? [],
               ),
             ),
           );
