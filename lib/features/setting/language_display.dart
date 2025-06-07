@@ -14,9 +14,9 @@ class LanguageDisplay extends StatelessWidget {
         elevation: 0,
         title: const Text(
           "Language and display",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(),
       ),
       body: Padding(
         padding: EdgeInsets.all(8.0.w),

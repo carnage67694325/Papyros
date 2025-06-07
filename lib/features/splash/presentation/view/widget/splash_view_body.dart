@@ -32,7 +32,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: AppColors.buildLinearGradient(),
+          gradient: AppColors.buildLinearGradient(context),
         ),
         child: SlidingAnimatedLogo(
             animationController: animationController,

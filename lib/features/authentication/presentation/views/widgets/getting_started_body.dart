@@ -17,7 +17,8 @@ class GettingStartedBody extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: BoxDecoration(gradient: AppColors.buildLinearGradient()),
+      decoration:
+          BoxDecoration(gradient: AppColors.buildLinearGradient(context)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
