@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 
@@ -11,9 +12,11 @@ class PostCardShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.backGroundColor,
-        boxShadow: [
+      decoration: BoxDecoration(
+        color: ThemeHelper.isDarkMode(context)
+            ? AppColors.darkBackGroundColor
+            : AppColors.backGroundColor,
+        boxShadow: const [
           BoxShadow(
             color: Colors.grey,
             offset: Offset(0, 2),
@@ -22,7 +25,9 @@ class PostCardShimmer extends StatelessWidget {
         ],
       ),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey.shade300,
+        baseColor: ThemeHelper.isDarkMode(context)
+            ? Color(0xffFAEBD7)
+            : Colors.grey.shade300,
         highlightColor: Colors.grey.shade100,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,48 +163,6 @@ class PostCardShimmer extends StatelessWidget {
             SizedBox(height: 8.h),
           ],
         ),
-      ),
-    );
-  }
-}
-
-// Usage Example:
-class ShimmerLoadingScreen extends StatelessWidget {
-  const ShimmerLoadingScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-        title: Row(
-          children: [
-            const CircleAvatar(
-              radius: 12,
-              backgroundColor: Colors.grey,
-            ),
-            SizedBox(width: 8.w),
-            Text(
-              'Papyrus',
-              style: TextStyle(
-                color: Colors.orange.shade400,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: 3, // Show multiple loading posts
-        itemBuilder: (context, index) {
-          // Alternate between posts with and without images
-          return Padding(
-            padding: EdgeInsets.only(bottom: 10.h),
-            child: PostCardShimmer(hasImage: index % 2 == 0),
-          );
-        },
       ),
     );
   }

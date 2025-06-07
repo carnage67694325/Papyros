@@ -128,7 +128,7 @@ class _PapyrosAppState extends State<PapyrosApp> {
                 // Add more light theme properties
               ),
               darkTheme: ThemeData(
-                scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
+                scaffoldBackgroundColor: AppColors.darkBackGroundColor,
                 brightness: Brightness.dark,
                 // Add more dark theme properties
               ),

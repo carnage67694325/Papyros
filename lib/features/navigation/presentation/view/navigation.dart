@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
@@ -62,6 +63,9 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return PersistentTabView(
+      backgroundColor: ThemeHelper.isDarkMode(context)
+          ? AppColors.darkBackGroundColor
+          : AppColors.backGroundColor,
       context,
       controller: _controller,
       screens: _screens(),

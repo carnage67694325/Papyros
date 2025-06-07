@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_tag.dart';
 import 'package:papyros/features/home/presentation/view/widgets/time_formarter.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
@@ -42,10 +43,15 @@ class PostHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                userName,
-                style: AppStyles.chatHeader.copyWith(fontSize: 18),
-              ),
+              Text(userName,
+                  style: AppStyles.chatHeader.copyWith(
+                    fontSize: 18,
+                    color: ThemeHelper.isDarkMode(context)
+                        ? Colors.white
+                        : Colors.black.withValues(
+                            alpha: 0.75,
+                          ),
+                  )),
               SizedBox(height: 4.h),
               Text(
                 TimeFormatter.timeAgo(createdAtString),

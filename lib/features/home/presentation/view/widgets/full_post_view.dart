@@ -50,7 +50,6 @@ class FullPostView extends StatelessWidget {
     final uniqueHeroTag = heroTag ?? 'full-post-image-${imageUrl?[0]}';
 
     return Scaffold(
-      backgroundColor: AppColors.backGroundColor,
       appBar: PostAppBar(
         onBackPressed: () => Navigator.of(context).pop(),
         onMorePressed: () {},

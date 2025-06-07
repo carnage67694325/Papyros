@@ -15,15 +15,18 @@ class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backGroundColor,
       elevation: 0,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back, color: AppColors.iconColor),
+        icon: const Icon(
+          Icons.arrow_back,
+        ),
         onPressed: onBackPressed,
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.more_horiz, color: AppColors.iconColor),
+          icon: const Icon(
+            Icons.more_horiz,
+          ),
           onPressed: onMorePressed,
         ),
       ],

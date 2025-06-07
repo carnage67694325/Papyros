@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 
@@ -43,11 +44,18 @@ class AddCommentField extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextField(
+                      style: TextStyle(
+                        color: ThemeHelper.isDarkMode(context)
+                            ? Colors.black
+                            : Colors.white,
+                      ),
                       controller: commentController,
                       decoration: InputDecoration(
                         hintText: 'Add a comment...',
                         hintStyle: TextStyle(
-                          color: Colors.grey,
+                          color: ThemeHelper.isDarkMode(context)
+                              ? Colors.black
+                              : Colors.grey,
                           fontSize: 14.sp,
                         ),
                         border: InputBorder.none,
