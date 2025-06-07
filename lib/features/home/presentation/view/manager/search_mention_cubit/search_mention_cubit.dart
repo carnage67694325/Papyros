@@ -9,7 +9,7 @@ part 'search_mention_state.dart';
 class SearchMentionCubit extends Cubit<SearchMentionState> {
   final SearchMentionUsecase searchUsecase;
   SearchMentionCubit(this.searchUsecase) : super(SearchMentionInitial());
-  Future<void> search({required String query}) async {
+  Future<void> searchMention({required String query}) async {
     emit(SearchMentionLoading());
     final token = await PrefasHandelr.getAuthToken();
     var response = await searchUsecase.call(

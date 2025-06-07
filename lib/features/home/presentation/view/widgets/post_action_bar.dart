@@ -13,7 +13,7 @@ class PostActionBar extends StatelessWidget {
   final VoidCallback onSubmit;
   final VoidCallback onCameraTap;
   final VoidCallback onGalleryTap;
-
+  final TextEditingController postController;
   const PostActionBar({
     super.key,
     required this.isSubmitting,
@@ -21,6 +21,7 @@ class PostActionBar extends StatelessWidget {
     required this.onSubmit,
     required this.onCameraTap,
     required this.onGalleryTap,
+    required this.postController,
   });
 
   @override
@@ -65,7 +66,9 @@ class PostActionBar extends StatelessWidget {
                     ),
                     child: Container(
                       padding: EdgeInsets.all(16.w),
-                      child: const MentionSearchField(),
+                      child: MentionSearchField(
+                        postController: postController,
+                      ),
                     ),
                   );
                 },

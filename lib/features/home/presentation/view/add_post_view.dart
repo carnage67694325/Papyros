@@ -8,11 +8,16 @@ import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/features/home/data/data_sources/add_like_data_source_imp.dart';
 import 'package:papyros/features/home/data/data_sources/add_post_impl.dart';
 import 'package:papyros/features/home/data/data_sources/get_posts_imp.dart';
+import 'package:papyros/features/home/data/data_sources/search_mention_data_source_impl.dart';
 import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
+import 'package:papyros/features/home/data/repositories/search_mention_repo_impl.dart';
 import 'package:papyros/features/home/domain/use_cases/add_post_usecase.dart';
+import 'package:papyros/features/home/domain/use_cases/search_mention_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_post_cubit/add_post_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/pick_post_image/pick_post_image_cubit.dart';
+import 'package:papyros/features/home/presentation/view/manager/search_mention_cubit/search_mention_cubit.dart';
 import 'package:papyros/features/home/presentation/view/widgets/add_post_view_body.dart';
+import 'package:papyros/features/search/data/data_source/search_data_source_imp.dart';
 
 class AddPostView extends StatelessWidget {
   const AddPostView({super.key});

@@ -205,6 +205,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
                     Divider(height: 1, color: Colors.grey[300]),
                     // Bottom Action Bar
                     PostActionBar(
+                      postController: _postController,
                       isSubmitting: _isSubmitting,
                       canSubmit: _hasText,
                       onSubmit: _submitPost,

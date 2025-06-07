@@ -12,13 +12,17 @@ import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 import 'package:papyros/core/utils/manager/theme_cubit/cubit/theme_cubit.dart';
 import 'package:papyros/features/home/data/data_sources/repost_data_source_imp.dart';
+import 'package:papyros/features/home/data/data_sources/search_mention_data_source_impl.dart';
 import 'package:papyros/features/home/data/repositories/repost_repo_impl.dart';
+import 'package:papyros/features/home/data/repositories/search_mention_repo_impl.dart';
 // Add theme cubit import
 // import 'package:papyros/core/utils/manager/theme_cubit/theme_cubit.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/repost_usecase.dart';
+import 'package:papyros/features/home/domain/use_cases/search_mention_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/repost_cubit/repost_cubit.dart';
+import 'package:papyros/features/home/presentation/view/manager/search_mention_cubit/search_mention_cubit.dart';
 import 'package:papyros/features/messaging/data/data_source/chat_data_source.dart';
 import 'package:papyros/features/messaging/data/repos/chat_repo_imp.dart';
 import 'package:papyros/features/messaging/domain/use_cases/get_contact_use_case.dart';
@@ -69,6 +73,10 @@ Future<void> main() async {
             repostRepo: RepostRepoImpl(
                 repostDataSource: RepostDataSourceImp(dio: Dio())))),
       ),
+      BlocProvider(
+          create: (context) => SearchMentionCubit(SearchMentionUsecase(
+              searchRepo: SearchMentionRepoImpl(
+                  searchDataSource: SearchMentionDataSourceImpl(dio: Dio()))))),
     ],
     child: const PapyrosApp(),
   ));
