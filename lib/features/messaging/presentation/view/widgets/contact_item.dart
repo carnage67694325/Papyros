@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/contact_avatar.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/message_chat_view.dart';
 
@@ -46,7 +48,9 @@ class ContactItem extends StatelessWidget {
         child: Container(
           height: 70.h,
           decoration: BoxDecoration(
-            color: Colors.grey[50],
+            color: ThemeHelper.isDarkMode(context)
+                ? AppColors.darkBackGroundColor
+                : Colors.grey[50],
             borderRadius: BorderRadius.circular(10.r),
             boxShadow: [
               BoxShadow(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ContactListShimmer extends StatelessWidget {
@@ -29,7 +31,9 @@ class ContactItemShimmer extends StatelessWidget {
     return Container(
       height: 70.h,
       decoration: BoxDecoration(
-        color: Colors.grey[50],
+        color: ThemeHelper.isDarkMode(context)
+            ? AppColors.darkBackGroundColor
+            : AppColors.backGroundColor,
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
@@ -41,7 +45,9 @@ class ContactItemShimmer extends StatelessWidget {
         ],
       ),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey.shade300,
+        baseColor: ThemeHelper.isDarkMode(context)
+            ? Color(0xffFAEBD7)
+            : Colors.grey.shade300,
         highlightColor: Colors.grey.shade100,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
