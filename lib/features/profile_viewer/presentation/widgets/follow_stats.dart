@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/profile_viewer/data/model/user_viewer/user.dart';
 
 class FollowStats extends StatelessWidget {
@@ -56,9 +57,10 @@ class _StatItem extends StatelessWidget {
         children: [
           TextSpan(
             text: count,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color:
+                  ThemeHelper.isDarkMode(context) ? Colors.white : Colors.black,
             ),
           ),
           TextSpan(

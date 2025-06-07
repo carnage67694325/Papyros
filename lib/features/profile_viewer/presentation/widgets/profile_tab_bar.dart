@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 
 class ProfileTabBar extends StatelessWidget {
   final TabController tabController;
@@ -24,7 +25,8 @@ class ProfileTabBar extends StatelessWidget {
       child: TabBar(
         controller: tabController,
         indicatorColor: AppColors.lightPeach,
-        labelColor: Colors.black,
+        labelColor:
+            ThemeHelper.isDarkMode(context) ? Colors.white : Colors.black,
         unselectedLabelColor: Colors.grey[600],
         labelStyle: TextStyle(
           fontSize: 16.sp,

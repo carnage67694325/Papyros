@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 
 class ProfileNameNBio extends StatelessWidget {
   const ProfileNameNBio({
@@ -22,7 +23,8 @@ class ProfileNameNBio extends StatelessWidget {
             name,
             style: AppStyles.subHeader.copyWith(
               fontSize: 22.sp,
-              color: Colors.black,
+              color:
+                  ThemeHelper.isDarkMode(context) ? Colors.white : Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -36,7 +38,9 @@ class ProfileNameNBio extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: AppStyles.subHeader.copyWith(
                 fontSize: 16.sp,
-                color: Colors.black,
+                color: ThemeHelper.isDarkMode(context)
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
           )

@@ -37,7 +37,6 @@ class SearchSugItem extends StatelessWidget {
               name,
               style: TextStyle(
                 fontSize: 22.sp,
-                color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),
               overflow: TextOverflow.ellipsis,
