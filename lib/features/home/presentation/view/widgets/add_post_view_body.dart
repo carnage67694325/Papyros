@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
+import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/functions/success_snack.dart';
 import 'package:papyros/core/utils/golabls/mentionId.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/home/data/models/Posts.dart';
 import 'package:papyros/features/home/data/models/Images.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_post_cubit/add_post_cubit.dart';
@@ -158,7 +160,9 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
           return BlocBuilder<PickPostImageCubit, PickPostImageState>(
             builder: (context, imageState) {
               return Container(
-                color: Colors.white,
+                color: ThemeHelper.isDarkMode(context)
+                    ? AppColors.darkBackGroundColor
+                    : AppColors.backGroundColor,
                 child: Column(
                   children: [
                     Divider(height: 1, color: Colors.grey[300]),
