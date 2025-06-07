@@ -8,7 +8,7 @@ part 'repost_state.dart';
 class RepostCubit extends Cubit<RepostState> {
   final RepostUsecase repostUseCase;
   RepostCubit(this.repostUseCase) : super(RepostInitial());
-  Future<void> addLike({
+  Future<void> repost({
     required String postId,
   }) async {
     emit(RepostLoading());
