@@ -18,6 +18,7 @@ class AddPostImpl extends AddPost {
     final Map<String, dynamic> formDataMap = {
       'tag': post!.tag,
       'description': post.description,
+      'mention': post.mention,
     };
 
 // Only add the image if one exists

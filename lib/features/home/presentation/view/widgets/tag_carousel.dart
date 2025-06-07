@@ -60,8 +60,6 @@ class _TagCarouselState extends State<TagCarousel> {
           child: Stack(
             children: [
               Positioned.fill(
-                // Move the PageView slightly to the left to reduce initial space
-                // while keeping some padding at the end for last items
                 left: -150.w,
                 right: -10.w,
                 child: PageView.builder(

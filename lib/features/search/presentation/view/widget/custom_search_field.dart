@@ -78,10 +78,6 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
           controller: _controller,
           onSearchTextChanged: _onSearchChanged,
           suggestions: _suggestions,
-          // When user selects a suggestion, you get the UserEntity:
-          // onSuggestionTap: (UserEntity user) {
-          //   // Do something with user profile here
-          // },
           searchInputDecoration: SearchInputDecoration(
             fillColor: AppColors.lightGreyBlue.withAlpha(75),
             filled: true,

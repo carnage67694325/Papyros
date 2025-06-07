@@ -18,4 +18,5 @@ class Endpiont {
   static const String profileViewer = "myprofile/";
   static const String followUser = "follow/addfollow/";
   static const String repost = "posts/repost/";
+  static const String searchMention = "posts/mention?name=";
 }
