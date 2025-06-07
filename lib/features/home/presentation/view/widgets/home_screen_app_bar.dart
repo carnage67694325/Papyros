@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 
@@ -30,8 +31,10 @@ class HomeScreenAppBar extends StatelessWidget {
       },
       builder: (context, state) {
         return Container(
-          decoration: const BoxDecoration(
-            color: AppColors.backGroundColor,
+          decoration: BoxDecoration(
+            color: ThemeHelper.isDarkMode(context)
+                ? AppColors.darkBackGroundColor
+                : AppColors.backGroundColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,

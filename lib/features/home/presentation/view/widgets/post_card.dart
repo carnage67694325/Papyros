@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_interact_seaction.dart';
 import 'package:papyros/features/home/presentation/view/widgets/user_profile_home_avatar.dart';
 
@@ -36,9 +37,11 @@ class PostCard extends StatelessWidget {
         imageUrl != null && imageUrl!.isNotEmpty && imageUrl![0] != null;
 
     return Container(
-      decoration: const BoxDecoration(
-        color: AppColors.backGroundColor,
-        boxShadow: [
+      decoration: BoxDecoration(
+        color: ThemeHelper.isDarkMode(context)
+            ? AppColors.darkBackGroundColor
+            : AppColors.backGroundColor,
+        boxShadow: const [
           BoxShadow(
             color: Colors.grey,
             offset: Offset(0, 2),
@@ -74,14 +77,23 @@ class PostCard extends StatelessWidget {
                       SizedBox(height: 16.h),
                       Text(
                         userName,
-                        style: AppStyles.chatHeader.copyWith(fontSize: 16),
+                        style: AppStyles.chatHeader.copyWith(
+                            fontSize: 16,
+                            color: ThemeHelper.isDarkMode(context)
+                                ? Colors.white
+                                : Colors.black.withValues(
+                                    alpha: 0.75,
+                                  )),
                       ),
                       if (!hasImage)
                         Padding(
                           padding: EdgeInsets.only(top: 6.0.h),
                           child: Text(
                             description,
-                            style: AppStyles.postContent,
+                            style: AppStyles.postContent.copyWith(
+                                color: ThemeHelper.isDarkMode(context)
+                                    ? Colors.white.withAlpha(700)
+                                    : Colors.black.withOpacity(0.53)),
                             maxLines: 6,
                             overflow: TextOverflow.ellipsis,
                           ),

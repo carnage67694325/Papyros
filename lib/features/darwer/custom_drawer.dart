@@ -28,7 +28,6 @@ class CustomDrawer extends StatelessWidget {
           bottomRight: Radius.circular(0),
         ),
       ),
-      backgroundColor: Colors.white,
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,7 +85,6 @@ class CustomDrawer extends StatelessWidget {
     return ListTile(
       leading: Icon(
         item.icon,
-        color: Colors.black,
         size: 22.h,
       ),
       title: Text(
