@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/features/home/presentation/view/widgets/mention_searchfield.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_button.dart';
-import 'package:papyros/features/search/presentation/view/widget/custom_search_field.dart';
 
 class PostActionBar extends StatelessWidget {
   final bool isSubmitting;

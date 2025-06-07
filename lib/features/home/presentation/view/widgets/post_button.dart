@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 
@@ -33,9 +34,8 @@ class PostButton extends StatelessWidget {
           ? SizedBox(
               width: 20.w,
               height: 20.h,
-              child: const CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Colors.white,
+              child: const AppLoadingAnimation(
+                size: 16,
               ),
             )
           : Text(

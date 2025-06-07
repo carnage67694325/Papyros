@@ -59,7 +59,6 @@ class _MentionSearchFieldState extends State<MentionSearchField> {
                     item: user,
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(vertical: 8.h),
                       child: MentionSugItem(
                         name: user.userName ?? '',
                         profileImage: user.profileImage ?? '',

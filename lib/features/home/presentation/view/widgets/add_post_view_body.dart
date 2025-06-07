@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/functions/success_snack.dart';
+import 'package:papyros/core/utils/golabls/mentionId.dart';
 import 'package:papyros/features/home/data/models/Posts.dart';
 import 'package:papyros/features/home/data/models/Images.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_post_cubit/add_post_cubit.dart';
@@ -88,6 +89,7 @@ class _AddPostViewBodyState extends State<AddPostViewBody> {
               )
             ]
           : null,
+      mention: mentIonId, // Use global mentionId list
     );
 
     // Get token

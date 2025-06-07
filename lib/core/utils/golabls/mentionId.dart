@@ -1,4 +1,4 @@
 library papyros.globals;
 
-String? mentIonId;
+List<String>? mentIonId = [];
 String? mentIonUserName;

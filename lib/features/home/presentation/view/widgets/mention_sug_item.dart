@@ -23,7 +23,7 @@ class MentionSugItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        mentIonId = userId;
+        mentIonId!.add(userId);
         mentIonUserName = name;
 
         // Optional callback to insert the mention text
