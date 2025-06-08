@@ -14,56 +14,43 @@ class SendPromptTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100.h,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: AppColors.textfieldBackGroundColor,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withAlpha(140),
-            blurRadius: 30,
-            spreadRadius: 15,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: controller,
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'your message here .......',
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                hintStyle: TextStyle(color: Colors.grey),
-              ),
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            controller: controller,
+            style: TextStyle(
+              color: Colors.black,
+            ),
+            decoration: const InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              hintText: 'your message here .......',
+              border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.all(Radius.circular(30))),
+              hintStyle: TextStyle(color: Colors.grey),
             ),
           ),
-          const SizedBox(width: 9),
-          GestureDetector(
-            onTap: onSend,
-            child: Container(
-              height: 40.h,
-              width: 40.w,
-              decoration: const BoxDecoration(
-                color: AppColors.lightPeach,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.send,
-                color: Colors.white,
-                size: 20,
-              ),
+        ),
+        const SizedBox(width: 9),
+        GestureDetector(
+          onTap: onSend,
+          child: Container(
+            height: 40.h,
+            width: 40.w,
+            decoration: const BoxDecoration(
+              color: AppColors.lightPeach,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.send,
+              color: Colors.white,
+              size: 20,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
 
 class ChatBotResponse extends StatefulWidget {
@@ -52,10 +54,14 @@ class _ChatBotResponseState extends State<ChatBotResponse> {
               child: Text(
                 widget.response..replaceAll(RegExp(r'[*]+'), '').trim(),
                 style: AppStyles.chatHeader.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  wordSpacing: 1.0,
-                ),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    wordSpacing: 1.0,
+                    color: ThemeHelper.isDarkMode(context)
+                        ? Colors.white
+                        : Colors.black.withValues(
+                            alpha: 0.75,
+                          )),
                 softWrap: true,
               ),
             ),

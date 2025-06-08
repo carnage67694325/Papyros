@@ -66,9 +66,12 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
           ));
           return Column(
             children: [
-              const SizedBox(height: 25),
+              SizedBox(height: 45.h),
               Padding(
-                padding: EdgeInsets.only(left: 10.w, right: 26.w),
+                padding: EdgeInsets.only(
+                  left: 10.w,
+                  right: 26.w,
+                ),
                 child: const ChatBotAppBar(),
               ),
               SizedBox(height: 50.h),
@@ -96,12 +99,13 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                   controller.clear();
                 },
               ),
+              SizedBox(height: 40.h),
             ],
           );
         } else {
           return Column(
             children: [
-              SizedBox(height: 25.h),
+              SizedBox(height: 45.h),
               Padding(
                 padding: EdgeInsets.only(left: 10.w, right: 26.w),
                 child: const ChatBotAppBar(),
@@ -135,6 +139,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                   } else {}
                 },
               ),
+              SizedBox(height: 40.h),
             ],
           );
         }

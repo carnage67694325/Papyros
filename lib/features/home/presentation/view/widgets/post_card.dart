@@ -121,7 +121,11 @@ class PostCard extends StatelessWidget {
               padding: EdgeInsets.only(left: 65.0.h, right: 32.h, top: 8.h),
               child: Text(
                 description,
-                style: AppStyles.postContent,
+                style: AppStyles.postContent.copyWith(
+                  color: ThemeHelper.isDarkMode(context)
+                      ? Colors.white.withAlpha(700)
+                      : Colors.black.withOpacity(0.53),
+                ),
                 maxLines: 5,
                 overflow: TextOverflow.ellipsis,
               ),

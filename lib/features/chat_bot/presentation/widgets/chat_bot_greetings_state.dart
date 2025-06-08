@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
 import 'package:papyros/generated/l10n.dart';
 
@@ -39,8 +40,12 @@ class ChatbotGreetingState extends StatelessWidget {
                   S.of(context).chatBotGreetings,
                   softWrap: true, // Ensure text wraps if necessary
                   style: AppStyles.chatHeader.copyWith(
-                    fontSize: 32.sp,
-                  ),
+                      fontSize: 32.sp,
+                      color: ThemeHelper.isDarkMode(context)
+                          ? Colors.white
+                          : Colors.black.withValues(
+                              alpha: 0.75,
+                            )),
                   overflow: TextOverflow
                       .visible, // Allow the text to go beyond if needed
                 ),

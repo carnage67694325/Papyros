@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/new_chat_button.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/user_name_profile_circle.dart';
 
@@ -13,7 +14,9 @@ class ChatBotDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 250,
-      color: AppColors.backGroundColor,
+      color: ThemeHelper.isDarkMode(context)
+          ? AppColors.darkBackGroundColor
+          : AppColors.backGroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -21,8 +24,12 @@ class ChatBotDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 51),
             child: Text(
-              'Papchat',
-              style: AppStyles.chatHeader,
+              'Pyroschat',
+              style: AppStyles.chatHeader.copyWith(
+                color: ThemeHelper.isDarkMode(context)
+                    ? Colors.white
+                    : Colors.black.withValues(alpha: .75),
+              ),
             ),
           ),
           SizedBox(height: 10.h),

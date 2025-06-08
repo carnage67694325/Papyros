@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 
 class MessageInputField extends StatelessWidget {
   final TextEditingController? controller;
@@ -55,13 +56,16 @@ class MessageInputField extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextField(
+                      style: const TextStyle(color: Colors.black),
                       controller: controller,
                       focusNode: focusNode,
                       enabled: isEnabled,
                       decoration: InputDecoration(
                         hintText: hintText,
                         hintStyle: TextStyle(
-                          color: Colors.grey[400],
+                          color: ThemeHelper.isDarkMode(context)
+                              ? Colors.black
+                              : Colors.grey[400],
                         ),
                         border: InputBorder.none,
                         contentPadding: contentPadding,

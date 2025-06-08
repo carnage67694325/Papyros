@@ -44,11 +44,7 @@ class AddCommentField extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextField(
-                      style: TextStyle(
-                        color: ThemeHelper.isDarkMode(context)
-                            ? Colors.black
-                            : Colors.white,
-                      ),
+                      style: const TextStyle(color: Colors.black),
                       controller: commentController,
                       decoration: InputDecoration(
                         hintText: 'Add a comment...',

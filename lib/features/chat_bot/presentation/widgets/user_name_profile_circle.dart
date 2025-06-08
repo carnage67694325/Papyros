@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/assets.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 
 class UserNameAndProfileCircle extends StatelessWidget {
   const UserNameAndProfileCircle({
@@ -17,8 +18,11 @@ class UserNameAndProfileCircle extends StatelessWidget {
         SizedBox(width: 10.w),
         Text(
           'User Name',
-          style: AppStyles.chatHeader
-              .copyWith(fontSize: 15.sp, color: Colors.black),
+          style: AppStyles.chatHeader.copyWith(
+              fontSize: 15.sp,
+              color: ThemeHelper.isDarkMode(context)
+                  ? Colors.white
+                  : Colors.black),
         ),
         SizedBox(
           height: 19.h,

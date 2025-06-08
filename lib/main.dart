@@ -1,22 +1,22 @@
-// 4. Updated main.dart with theme support
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+
+import 'package:papyros/core/simple_bloc_observer.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
-import 'package:papyros/core/simple_bloc_observer.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 import 'package:papyros/core/utils/manager/theme_cubit/cubit/theme_cubit.dart';
 import 'package:papyros/features/home/data/data_sources/repost_data_source_imp.dart';
 import 'package:papyros/features/home/data/data_sources/search_mention_data_source_impl.dart';
 import 'package:papyros/features/home/data/repositories/repost_repo_impl.dart';
 import 'package:papyros/features/home/data/repositories/search_mention_repo_impl.dart';
-// Add theme cubit import
-// import 'package:papyros/core/utils/manager/theme_cubit/theme_cubit.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/repost_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/search_mention_usecase.dart';
@@ -33,9 +33,6 @@ import 'package:papyros/features/profile_management/domain/use_cases/update_use_
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_user_cubit/update_user_cubit.dart';
 import 'package:papyros/generated/l10n.dart';
-import 'package:intl/intl.dart';
-
-import 'core/Prefernces/Shaerdperefeancses.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,43 +40,43 @@ Future<void> main() async {
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   setupServiceLoactor();
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (context) => ChangeLocalCubit(),
-      ),
-      BlocProvider(
-        create: (context) => ThemeCubit(), // Add theme cubit
-      ),
-      BlocProvider(
-          create: (context) =>
-              GetUserProfileCubit(getIt.get<GetUserProfileUseCase>())),
-      BlocProvider(
-        create: (context) => GetAllPostsCubit(getIt.get<GetPostsUsecase>()),
-      ),
-      BlocProvider(
-        create: (context) =>
-            UpdateUserCubit(getIt.get<UpdateUserProfileUseCase>()),
-      ),
-      BlocProvider(
-        create: (context) => GetContactsCubit(getIt.get<GetContactUseCase>()),
-      ),
-      BlocProvider(
-        create: (context) => ChatCubit(
-            repository: ChatRepositoryImpl(datasource: ChatSocketDatasource())),
-      ),
-      BlocProvider(
-        create: (context) => RepostCubit(RepostUsecase(
-            repostRepo: RepostRepoImpl(
-                repostDataSource: RepostDataSourceImp(dio: Dio())))),
-      ),
-      BlocProvider(
-          create: (context) => SearchMentionCubit(SearchMentionUsecase(
-              searchRepo: SearchMentionRepoImpl(
-                  searchDataSource: SearchMentionDataSourceImpl(dio: Dio()))))),
-    ],
-    child: const PapyrosApp(),
-  ));
+
+  final bool isDarkMode = PrefasHandelr.prefs.getBool('is_dark_mode') ?? false;
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ChangeLocalCubit()),
+        BlocProvider(create: (context) => ThemeCubit()..setTheme(isDarkMode)),
+        BlocProvider(
+            create: (context) =>
+                GetUserProfileCubit(getIt.get<GetUserProfileUseCase>())),
+        BlocProvider(
+            create: (context) =>
+                GetAllPostsCubit(getIt.get<GetPostsUsecase>())),
+        BlocProvider(
+            create: (context) =>
+                UpdateUserCubit(getIt.get<UpdateUserProfileUseCase>())),
+        BlocProvider(
+            create: (context) =>
+                GetContactsCubit(getIt.get<GetContactUseCase>())),
+        BlocProvider(
+            create: (context) => ChatCubit(
+                repository:
+                    ChatRepositoryImpl(datasource: ChatSocketDatasource()))),
+        BlocProvider(
+            create: (context) => RepostCubit(RepostUsecase(
+                repostRepo: RepostRepoImpl(
+                    repostDataSource: RepostDataSourceImp(dio: Dio()))))),
+        BlocProvider(
+            create: (context) => SearchMentionCubit(SearchMentionUsecase(
+                searchRepo: SearchMentionRepoImpl(
+                    searchDataSource:
+                        SearchMentionDataSourceImpl(dio: Dio()))))),
+      ],
+      child: const PapyrosApp(),
+    ),
+  );
 }
 
 class PapyrosApp extends StatefulWidget {
@@ -90,64 +87,68 @@ class PapyrosApp extends StatefulWidget {
 }
 
 class _PapyrosAppState extends State<PapyrosApp> {
-  Locale local = const Locale('en');
-  ThemeMode themeMode = ThemeMode.light; // Add theme mode state
+  Locale _locale = const Locale('en');
+  ThemeMode _themeMode = ThemeMode.light;
+
+  @override
+  void initState() {
+    super.initState();
+    final isDarkMode = PrefasHandelr.prefs.getBool('is_dark_mode') ?? false;
+    _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
+  }
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(393, 915),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (_, context) {
-          return MultiBlocListener(
-            listeners: [
-              BlocListener<ChangeLocalCubit, ChangeLocalState>(
-                listener: (context, state) {
-                  if (state is ChangeLocalCurrent) {
-                    setState(() {
-                      local = state.currentLocale;
-                    });
-                  }
-                },
-              ),
-              BlocListener<ThemeCubit, ThemeState>(
-                listener: (context, state) {
-                  if (state is ThemeChanged) {
-                    setState(() {
-                      themeMode = state.themeMode;
-                    });
-                  }
-                },
-              ),
-            ],
-            child: MaterialApp.router(
-              theme: ThemeData(
-                scaffoldBackgroundColor: AppColors.backGroundColor,
-                brightness: Brightness.light,
-                // Add more light theme properties
-              ),
-              darkTheme: ThemeData(
-                scaffoldBackgroundColor: AppColors.darkBackGroundColor,
-                brightness: Brightness.dark,
-                // Add more dark theme properties
-              ),
-              themeMode: themeMode, // Use the theme mode
-              locale: local,
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              routerConfig: AppRouter.router,
+      designSize: const Size(393, 915),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, __) {
+        return MultiBlocListener(
+          listeners: [
+            BlocListener<ChangeLocalCubit, ChangeLocalState>(
+              listener: (context, state) {
+                if (state is ChangeLocalCurrent) {
+                  setState(() {
+                    _locale = state.currentLocale;
+                  });
+                }
+              },
             ),
-          );
-        });
+            BlocListener<ThemeCubit, ThemeState>(
+              listener: (context, state) {
+                if (state is ThemeChanged) {
+                  setState(() {
+                    _themeMode = state.themeMode;
+                  });
+                }
+              },
+            ),
+          ],
+          child: MaterialApp.router(
+            theme: ThemeData(
+              scaffoldBackgroundColor: AppColors.backGroundColor,
+              brightness: Brightness.light,
+            ),
+            darkTheme: ThemeData(
+              scaffoldBackgroundColor: AppColors.darkBackGroundColor,
+              brightness: Brightness.dark,
+            ),
+            themeMode: _themeMode,
+            locale: _locale,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            routerConfig: AppRouter.router,
+          ),
+        );
+      },
+    );
   }
 }
 
-bool isArabic() {
-  return Intl.getCurrentLocale() == 'ar';
-}
+bool isArabic() => Intl.getCurrentLocale() == 'ar';
