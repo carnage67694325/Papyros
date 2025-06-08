@@ -22,6 +22,7 @@ import 'package:papyros/features/home/data/repositories/posts_entity_imp.dart';
 import 'package:papyros/features/home/domain/use_cases/add_comments_use_case.dart';
 import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
+import 'package:papyros/features/home/domain/use_cases/get_recommand_posts_usecase.dart';
 import 'package:papyros/features/messaging/data/data_source/messaging_data_source_imp.dart';
 import 'package:papyros/features/messaging/data/repos/messaging_repo_imp.dart';
 import 'package:papyros/features/messaging/domain/use_cases/get_contact_use_case.dart';
@@ -73,6 +74,19 @@ void setupServiceLoactor() {
   getIt.registerSingleton<GetPostsUsecase>(
     (GetPostsUsecase(
       GetPostsRepoimp(
+        GetPostsImp(
+          Dio(),
+        ),
+        AddPostImpl(dio: Dio()),
+        AddLikeImp(
+          apiService: ApiService(Dio()),
+        ),
+      ),
+    )),
+  );
+  getIt.registerSingleton<GetRecommandPostsUsecase>(
+    (GetRecommandPostsUsecase(
+      postrepo: GetPostsRepoimp(
         GetPostsImp(
           Dio(),
         ),

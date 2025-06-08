@@ -18,9 +18,11 @@ import 'package:papyros/features/home/data/data_sources/search_mention_data_sour
 import 'package:papyros/features/home/data/repositories/repost_repo_impl.dart';
 import 'package:papyros/features/home/data/repositories/search_mention_repo_impl.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
+import 'package:papyros/features/home/domain/use_cases/get_recommand_posts_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/repost_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/search_mention_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
+import 'package:papyros/features/home/presentation/view/manager/get_recomm_posts_cubit/get_recomm_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/repost_cubit/repost_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/search_mention_cubit/search_mention_cubit.dart';
 import 'package:papyros/features/messaging/data/data_source/chat_data_source.dart';
@@ -54,6 +56,9 @@ Future<void> main() async {
         BlocProvider(
             create: (context) =>
                 GetAllPostsCubit(getIt.get<GetPostsUsecase>())),
+        BlocProvider(
+            create: (context) =>
+                GetRecommPostsCubit(getIt.get<GetRecommandPostsUsecase>())),
         BlocProvider(
             create: (context) =>
                 UpdateUserCubit(getIt.get<UpdateUserProfileUseCase>())),

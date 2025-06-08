@@ -10,7 +10,7 @@ class GetRecommPostsCubit extends Cubit<GetRecommPostsState> {
   final GetRecommandPostsUsecase recommandPostsUsecase;
   GetRecommPostsCubit(this.recommandPostsUsecase)
       : super(GetRecommPostsInitial());
-  Future<void> getAllPosts() async {
+  Future<void> getRecommPosts() async {
     emit(GetRecommPostsLoading());
     String? token = await PrefasHandelr.getAuthToken();
     var response = await recommandPostsUsecase.call(token: token!);

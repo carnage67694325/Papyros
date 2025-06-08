@@ -70,7 +70,7 @@ class GetPostsRepoimp implements GetPostsRepo {
 
   @override
   Future<Either<Failure, List<PostsEntity>>> getRecommendPosts(
-      {String token}) async {
+      {required String token}) async {
     try {
       final data = await postdau.getallposts();
       final List<PostsEntity> postsList = (data["posts"] as List)
