@@ -6,6 +6,9 @@ import '../../../../core/errors/failure.dart';
 
 abstract class GetPostsRepo {
   Future<Either<Failure, List<PostsEntity>>> getPosts();
+  Future<Either<Failure, List<PostsEntity>>> getRecommendPosts(
+      {required String token});
+
   Future<Either<Failure, void>> addPost(
       {required String token, required PostModel post});
   Future<Either<Failure, void>> addLike(

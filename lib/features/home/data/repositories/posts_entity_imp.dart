@@ -67,4 +67,23 @@ class GetPostsRepoimp implements GetPostsRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, List<PostsEntity>>> getRecommendPosts(
+      {String token}) async {
+    try {
+      final data = await postdau.getallposts();
+      final List<PostsEntity> postsList = (data["posts"] as List)
+          .map((post) => PostModel.fromJson(post))
+          .toList();
+
+      return right(postsList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
+    }
+  }
 }

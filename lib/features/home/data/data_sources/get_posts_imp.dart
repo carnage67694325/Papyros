@@ -30,4 +30,15 @@ class GetPostsImp implements Getpostsdatasource {
     );
     return response.data;
   }
+
+  @override
+  Future<Map<String, dynamic>> getRecommendPosts(
+      {required String token}) async {
+    final String url = '${ApiService.baseUrl}${Endpiont.recommePostsEndpoint}';
+    log(url);
+    final response =
+        await dio.get(url, options: Options(headers: {'token': token}));
+
+    return response.data;
+  }
 }
