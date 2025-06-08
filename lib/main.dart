@@ -39,6 +39,7 @@ import 'package:papyros/generated/l10n.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PrefasHandelr.init();
+  PrefasHandelr.printAuthToken();
   await dotenv.load(fileName: "lib/.env");
   Bloc.observer = SimpleBlocObserver();
   setupServiceLoactor();

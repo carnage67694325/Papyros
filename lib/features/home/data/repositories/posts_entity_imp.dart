@@ -72,7 +72,7 @@ class GetPostsRepoimp implements GetPostsRepo {
   Future<Either<Failure, List<PostsEntity>>> getRecommendPosts(
       {required String token}) async {
     try {
-      final data = await postdau.getallposts();
+      final data = await postdau.getRecommendPosts(token: token);
       final List<PostsEntity> postsList = (data["posts"] as List)
           .map((post) => PostModel.fromJson(post))
           .toList();

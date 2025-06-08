@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/search/domain/entity/user_entity.dart';
 import 'package:papyros/features/search/presentation/manager/cubit/search_cubit.dart';
 import 'package:papyros/features/search/presentation/view/widget/search_sug_item.dart';
@@ -84,7 +85,9 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
             hintText: 'Search',
             hintStyle: TextStyle(
               fontSize: 16.sp,
-              color: Colors.black,
+              color: ThemeHelper.isDarkMode(context)
+                  ? AppColors.lightPeach
+                  : Colors.black,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.r),

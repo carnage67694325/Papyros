@@ -68,7 +68,7 @@ class _PostInteractSectionWithStatsState
         Row(children: [
           IconButton(
             icon: Icon(
-              Icons.favorite_border,
+              isClicked[2] == true ? Icons.favorite : Icons.favorite_border,
               color: isClicked[2] == true
                   ? AppColors.lightPeach
                   : AppColors.iconColor,

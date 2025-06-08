@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
+import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/home/data/models/mention_model/datum.dart';
 import 'package:papyros/features/home/presentation/view/manager/search_mention_cubit/search_mention_cubit.dart';
 import 'package:papyros/features/home/presentation/view/widgets/mention_sug_item.dart';
@@ -107,7 +108,9 @@ class _MentionSearchFieldState extends State<MentionSearchField> {
             hintText: 'Mention someone',
             hintStyle: TextStyle(
               fontSize: 16.sp,
-              color: Colors.black,
+              color: ThemeHelper.isDarkMode(context)
+                  ? AppColors.lightPeach
+                  : Colors.black,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.r),

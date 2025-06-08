@@ -1,12 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/widgets/full_post_view.dart';
-import 'package:papyros/features/home/presentation/view/widgets/home_screen_app_bar.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_card.dart';
 import 'package:papyros/features/home/presentation/view/widgets/shimmer_post_card.dart';
 
@@ -73,15 +71,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             controller: _scrollController,
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    SizedBox(height: 16.h),
-                    const HomeScreenAppBar(),
-                    SizedBox(height: 2.h),
-                  ],
-                ),
-              ),
               // Show shimmer when loading
               if (state is GetAllPostsLoading)
                 SliverList.builder(
