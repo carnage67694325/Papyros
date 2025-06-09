@@ -73,7 +73,7 @@ class GetPostsRepoimp implements GetPostsRepo {
       {required String token}) async {
     try {
       final data = await postdau.getRecommendPosts(token: token);
-      final List<PostsEntity> postsList = (data["posts"] as List)
+      final List<PostsEntity> postsList = (data["data"] as List)
           .map((post) => PostModel.fromJson(post))
           .toList();
 
