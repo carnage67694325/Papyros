@@ -6,6 +6,7 @@ import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/assets.dart';
 import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
+import 'package:papyros/features/groups/presentation/view/groups_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
 import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
@@ -39,7 +40,7 @@ class _NavigationState extends State<Navigation> {
   List<Widget> _screens() {
     return [
       const HomeView(),
-      const NotificationsView(),
+      const GroupsView(),
       const AddPostView(),
       const SearchView(), // Index 3: hide navbar
       const MessagingView(),
@@ -50,7 +51,7 @@ class _NavigationState extends State<Navigation> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       buildNaviIcon(Icons.home),
-      buildNaviIcon(Icons.notifications_none),
+      buildNaviIcon(Icons.group),
       buildNaviIcon(Icons.add_box_outlined),
       buildNaviIcon(Icons.search),
       buildNaviIcon(Icons.sms_outlined),
