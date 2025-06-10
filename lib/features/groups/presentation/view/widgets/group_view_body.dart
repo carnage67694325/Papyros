@@ -142,8 +142,4 @@ class GroupViewAppbar extends StatelessWidget {
 
 // Posts Tab using your existing PostsTab structure
 
-
 // Members Tab
-
-
-
