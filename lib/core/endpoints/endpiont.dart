@@ -20,4 +20,5 @@ class Endpiont {
   static const String followUser = "follow/addfollow/";
   static const String repost = "posts/repost/";
   static const String searchMention = "posts/mention?name=";
+  static const String getGroups = "group/getgroups";
 }
