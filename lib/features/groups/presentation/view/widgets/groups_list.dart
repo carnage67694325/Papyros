@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/groups/presentation/model/group_mdel.dart';
 
@@ -79,7 +83,9 @@ class _GroupsListState extends State<GroupsList> {
           Icons.more_vert,
           color: AppColors.getIconColor(context),
         ),
-        onTap: () {},
+        onTap: () {
+          GoRouter.of(context).push(AppRouter.kGroupView);
+        },
       ),
     );
   }
