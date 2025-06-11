@@ -169,10 +169,10 @@ abstract class AppRouter {
     GoRoute(
         path: kGroupView,
         pageBuilder: (context, state) {
-          final group = state.extra as Group;
+          final groupId = state.extra as String;
           return TransitionAnimation.slidingTransitionAnimations(
             state,
-            route: GroupView(group: group),
+            route: GroupView(groupId: groupId),
           );
         }),
     GoRoute(

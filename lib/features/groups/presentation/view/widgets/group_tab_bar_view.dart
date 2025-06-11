@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
 import 'package:papyros/features/groups/presentation/view/widgets/group_members_tab.dart';
 import 'package:papyros/features/groups/presentation/view/widgets/group_view_body.dart';
 import 'package:papyros/features/groups/presentation/view/widgets/posts_tab.dart';
@@ -7,11 +8,11 @@ class GroupTabBarView extends StatelessWidget {
   const GroupTabBarView({
     super.key,
     required TabController tabController,
-    required this.widget,
+    required this.groupModel,
   }) : _tabController = tabController;
 
   final TabController _tabController;
-  final GroupViewBody widget;
+  final SingleGroupModel groupModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,9 @@ class GroupTabBarView extends StatelessWidget {
       controller: _tabController,
       children: [
         // Posts Tab
-        GroupPostsTab(group: widget.group),
+        GroupPostsTab(group: groupModel),
         // Members Tab
-        GroupMembersTab(group: widget.group),
+        GroupMembersTab(group: groupModel),
       ],
     );
   }

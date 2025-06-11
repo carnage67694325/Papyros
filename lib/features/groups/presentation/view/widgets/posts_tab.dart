@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/features/groups/data/models/groups/group.dart';
+import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
 import 'package:papyros/features/groups/presentation/model/group_mdel.dart';
 
 class GroupPostsTab extends StatelessWidget {
-  final Group group;
+  final SingleGroupModel group;
 
   const GroupPostsTab({
     super.key,
