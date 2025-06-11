@@ -1,12 +1,12 @@
 // Group View with Tabs
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
-import 'package:papyros/features/groups/presentation/model/group_mdel.dart';
+import 'package:papyros/features/groups/data/models/groups/group.dart';
 import 'package:papyros/features/groups/presentation/view/widgets/group_tab_bar.dart';
 import 'package:papyros/features/groups/presentation/view/widgets/group_tab_bar_view.dart';
 
 class GroupViewBody extends StatefulWidget {
-  final GroupModel group;
+  final Group group;
 
   const GroupViewBody({
     super.key,
@@ -85,7 +85,7 @@ class GroupViewAppbar extends StatelessWidget {
       iconTheme: const IconThemeData(color: Colors.white),
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
-          widget.group.name,
+          widget.group.name!,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -103,7 +103,7 @@ class GroupViewAppbar extends StatelessWidget {
                 radius: 40,
                 backgroundColor: Colors.white.withOpacity(0.2),
                 child: Text(
-                  widget.group.name[0].toUpperCase(),
+                  widget.group.name![0].toUpperCase(),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 32,
@@ -113,7 +113,7 @@ class GroupViewAppbar extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                '${widget.group.memberCount} members',
+                '${widget.group} members',
                 style: const TextStyle(
                   color: Colors.white70,
                   fontSize: 14,

@@ -62,4 +62,16 @@ class GroupsDataSourceImp implements GroupsDataSource {
       ),
     );
   }
+
+  @override
+  Future<Map<String, dynamic>> getSingleGroup(
+      {required String token, required String groupId}) async {
+    final String url =
+        '${ApiService.baseUrl}${Endpiont.getSingleGroup}$groupId';
+
+    final response =
+        await dio.get(url, options: Options(headers: {'token': token}));
+
+    return response.data;
+  }
 }

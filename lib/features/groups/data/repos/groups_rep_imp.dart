@@ -4,6 +4,7 @@ import 'package:papyros/core/errors/failure.dart';
 import 'package:papyros/features/groups/data/data_source/groups_data_source.dart';
 import 'package:papyros/features/groups/data/models/groups/group.dart';
 import 'package:papyros/features/groups/data/models/groups/groups.dart';
+import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
 import 'package:papyros/features/groups/domain/repo/group_repo.dart';
 
 class GroupsRepoImp implements GroupRepo {
@@ -37,6 +38,23 @@ class GroupsRepoImp implements GroupRepo {
         return Left(ServerFailure.fromDioException(e));
       } else {
         return Left(ServerFailure(e.toString()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, SingleGroupModel>> getSingleGroup(
+      {required String token, required String groupId}) async {
+    try {
+      final data =
+          await groupsDataSource.getSingleGroup(token: token, groupId: groupId);
+      final group = SingleGroupModel.fromJson(data);
+      return right(group);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      } else {
+        return left(ServerFailure(e.toString()));
       }
     }
   }

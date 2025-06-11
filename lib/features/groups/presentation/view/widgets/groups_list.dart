@@ -108,7 +108,7 @@ class _GroupsListState extends State<GroupsList> {
           color: AppColors.getIconColor(context),
         ),
         onTap: () {
-          GoRouter.of(context).push(AppRouter.kGroupView);
+          GoRouter.of(context).push(AppRouter.kGroupView, extra: group);
         },
       ),
     );
