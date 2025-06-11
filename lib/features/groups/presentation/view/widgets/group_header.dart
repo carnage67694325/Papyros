@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/features/groups/presentation/view/widgets/create_group_dialog.dart';
 
-class GroupsHeader extends StatelessWidget {
+class GroupsHeader extends StatefulWidget {
   const GroupsHeader({
     super.key,
   });
+
+  @override
+  State<GroupsHeader> createState() => _GroupsHeaderState();
+}
+
+class _GroupsHeaderState extends State<GroupsHeader> {
+  void _showCreateGroupDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const CreateGroupDialog();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +52,7 @@ class GroupsHeader extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: _showCreateGroupDialog,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
