@@ -1,9 +1,16 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/functions/error_snack.dart';
+import 'package:papyros/core/utils/functions/success_snack.dart';
+import 'package:papyros/features/groups/data/models/groups/cover_images.dart';
+import 'package:papyros/features/groups/data/models/groups/group.dart';
+import 'package:papyros/features/groups/presentation/manager/add_group_cubit/add_group_cubit.dart';
 
 class CreateGroupDialog extends StatefulWidget {
   const CreateGroupDialog({super.key});
@@ -44,257 +51,209 @@ class _CreateGroupDialogState extends State<CreateGroupDialog> {
         });
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error picking image: $e')),
-      );
+      errorSnackBar(context, 'Error picking image: $e');
     }
   }
 
   void _createGroup() {
     if (_nameController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a group name')),
-      );
+      errorSnackBar(context, 'Please enter a group name');
       return;
     }
 
-    // Handle group creation logic here
-    // You can access:
-    // - _nameController.text for group name
-    // - _descriptionController.text for description
-    // - _frontImage for front image file
-    // - _backgroundImage for background image file
-
-    Navigator.of(context).pop();
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Group created successfully!')),
+    final group = Group(
+      name: _nameController.text.trim(),
+      description: _descriptionController.text.trim(),
+      coverImages: CoverImages(
+        frontImage: _frontImage?.path,
+        backgroundImage: _backgroundImage?.path,
+      ),
     );
+
+    context.read<AddGroupCubit>().addGroup(group: group);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Dialog Title
-              Text(
-                'Create New Group',
+    return BlocConsumer<AddGroupCubit, AddGroupState>(
+      listener: (context, state) {
+        if (state is AddGroupSuccess) {
+          Navigator.of(context).pop();
+          successSnackBar(context, 'Group created successfully!');
+        } else if (state is AddGroupFailure) {
+          errorSnackBar(context, state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: AbsorbPointer(
+            absorbing: state is AddGroupLoading,
+            child: Stack(
+              children: [
+                _buildDialogContent(),
+                if (state is AddGroupLoading)
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black26,
+                      child: const Center(child: AppLoadingAnimation()),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildDialogContent() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Create New Group',
                 style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.bold,
                   color: AppColors.lightPeach,
-                ),
-              ),
+                )),
+            SizedBox(height: 20.h),
+            TextField(
+              controller: _nameController,
+              decoration: _inputDecoration('Group Name', Icons.group),
+            ),
+            SizedBox(height: 16.h),
+            TextField(
+              controller: _descriptionController,
+              maxLines: 3,
+              decoration: _inputDecoration('Description', Icons.description),
+            ),
+            SizedBox(height: 20.h),
+            Text('Group Images',
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600)),
+            SizedBox(height: 12.h),
+            _imagePickerSection(isFront: true, image: _frontImage),
+            SizedBox(height: 12.h),
+            _imagePickerSection(isFront: false, image: _backgroundImage),
+            SizedBox(height: 24.h),
+            _actionButtons(),
+          ],
+        ),
+      ),
+    );
+  }
 
-              SizedBox(height: 20.h),
+  InputDecoration _inputDecoration(String label, IconData icon) {
+    return InputDecoration(
+      labelText: label,
+      hintText: 'Enter $label'.toLowerCase(),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      prefixIcon: Icon(icon),
+      alignLabelWithHint: true,
+    );
+  }
 
-              // Group Name Field
-              TextField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: 'Group Name',
-                  hintText: 'Enter group name',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  prefixIcon: const Icon(Icons.group),
-                ),
-              ),
-
-              SizedBox(height: 16.h),
-
-              // Description Field
-              TextField(
-                controller: _descriptionController,
-                maxLines: 3,
-                decoration: InputDecoration(
-                  labelText: 'Description',
-                  hintText: 'Enter group description (optional)',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  prefixIcon: const Icon(Icons.description),
-                  alignLabelWithHint: true,
-                ),
-              ),
-
-              SizedBox(height: 20.h),
-
-              // Images Section
-              Text(
-                'Group Images',
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-
-              SizedBox(height: 12.h),
-
-              // Front Image Picker
-              Container(
-                width: double.infinity,
-                height: 120.h,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: InkWell(
-                  onTap: () => _pickImage(true),
-                  borderRadius: BorderRadius.circular(8),
-                  child: _frontImage != null
-                      ? Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.file(
-                                _frontImage!,
-                                width: double.infinity,
-                                height: double.infinity,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Positioned(
-                              top: 8,
-                              right: 8,
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Colors.black54,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: IconButton(
-                                  icon: const Icon(Icons.close,
-                                      color: Colors.white, size: 20),
-                                  onPressed: () =>
-                                      setState(() => _frontImage = null),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.image, size: 40.sp, color: Colors.grey),
-                            SizedBox(height: 8.h),
-                            Text(
-                              'Tap to select front image',
-                              style: TextStyle(
-                                color: Colors.grey.shade600,
-                                fontSize: 14.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                ),
-              ),
-
-              SizedBox(height: 12.h),
-
-              // Background Image Picker
-              Container(
-                width: double.infinity,
-                height: 120.h,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: InkWell(
-                  onTap: () => _pickImage(false),
-                  borderRadius: BorderRadius.circular(8),
-                  child: _backgroundImage != null
-                      ? Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.file(
-                                _backgroundImage!,
-                                width: double.infinity,
-                                height: double.infinity,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Positioned(
-                              top: 8,
-                              right: 8,
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Colors.black54,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: IconButton(
-                                  icon: const Icon(Icons.close,
-                                      color: Colors.white, size: 20),
-                                  onPressed: () =>
-                                      setState(() => _backgroundImage = null),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.wallpaper,
-                                size: 40.sp, color: Colors.grey),
-                            SizedBox(height: 8.h),
-                            Text(
-                              'Tap to select background image',
-                              style: TextStyle(
-                                color: Colors.grey.shade600,
-                                fontSize: 14.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                ),
-              ),
-
-              SizedBox(height: 24.h),
-
-              // Action Buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+  Widget _imagePickerSection({required bool isFront, required File? image}) {
+    return Container(
+      width: double.infinity,
+      height: 120.h,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: InkWell(
+        onTap: () => _pickImage(isFront),
+        borderRadius: BorderRadius.circular(8),
+        child: image != null
+            ? Stack(
                 children: [
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Cancel'),
-                  ),
-                  SizedBox(width: 12.w),
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: AppColors.buildLinearGradient(context),
-                      borderRadius: BorderRadius.circular(8),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.file(
+                      image,
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
                     ),
-                    child: ElevatedButton(
-                      onPressed: _createGroup,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.black54,
+                        shape: BoxShape.circle,
                       ),
-                      child: const Text(
-                        'Create Group',
-                        style: TextStyle(color: Colors.white),
+                      child: IconButton(
+                        icon: const Icon(Icons.close,
+                            color: Colors.white, size: 20),
+                        onPressed: () => setState(() {
+                          if (isFront) {
+                            _frontImage = null;
+                          } else {
+                            _backgroundImage = null;
+                          }
+                        }),
                       ),
                     ),
                   ),
                 ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(isFront ? Icons.image : Icons.wallpaper,
+                      size: 40.sp, color: Colors.grey),
+                  SizedBox(height: 8.h),
+                  Text(
+                    isFront
+                        ? 'Tap to select front image'
+                        : 'Tap to select background image',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ],
               ),
-            ],
+      ),
+    );
+  }
+
+  Widget _actionButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('Cancel'),
+        ),
+        SizedBox(width: 12.w),
+        Container(
+          decoration: BoxDecoration(
+            gradient: AppColors.buildLinearGradient(context),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: ElevatedButton(
+            onPressed: _createGroup,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: const Text('Create Group',
+                style: TextStyle(color: Colors.white)),
           ),
         ),
-      ),
+      ],
     );
   }
 }

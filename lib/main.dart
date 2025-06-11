@@ -13,6 +13,10 @@ import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 import 'package:papyros/core/utils/manager/theme_cubit/cubit/theme_cubit.dart';
+import 'package:papyros/features/groups/data/data_source/groups_data_source_imp.dart';
+import 'package:papyros/features/groups/data/repos/groups_rep_imp.dart';
+import 'package:papyros/features/groups/domain/use_case/add_group_usecase.dart';
+import 'package:papyros/features/groups/presentation/manager/add_group_cubit/add_group_cubit.dart';
 import 'package:papyros/features/home/data/data_sources/repost_data_source_imp.dart';
 import 'package:papyros/features/home/data/data_sources/search_mention_data_source_impl.dart';
 import 'package:papyros/features/home/data/repositories/repost_repo_impl.dart';
@@ -79,6 +83,10 @@ Future<void> main() async {
                 searchRepo: SearchMentionRepoImpl(
                     searchDataSource:
                         SearchMentionDataSourceImpl(dio: Dio()))))),
+        BlocProvider(
+            create: (context) => AddGroupCubit(AddGroupUsecase(
+                groupRepo: GroupsRepoImp(
+                    groupsDataSource: GroupsDataSourceImp(dio: Dio()))))),
       ],
       child: const PapyrosApp(),
     ),

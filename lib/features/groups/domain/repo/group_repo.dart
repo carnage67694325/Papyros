@@ -5,6 +5,6 @@ import 'package:papyros/features/groups/data/models/groups/groups.dart';
 
 abstract class GroupRepo {
   Future<Either<Failure, Groups>> getGroups({required String token});
-  Future<Either<Failure, void>> addPost(
+  Future<Either<Failure, void>> addGroup(
       {required String token, required Group group});
 }

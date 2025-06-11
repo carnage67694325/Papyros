@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:papyros/core/utils/app_colors.dart';
 
 void successSnackBar(BuildContext context, String errMessage) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -12,7 +13,7 @@ void successSnackBar(BuildContext context, String errMessage) {
       // ignore: prefer_const_constructors
       style: TextStyle(color: Colors.white),
     ),
-    backgroundColor: Colors.green[400],
+    backgroundColor: AppColors.lightPeach,
     duration: const Duration(seconds: 3),
     animation: CurvedAnimation(
       parent: AnimationController(
