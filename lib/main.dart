@@ -21,10 +21,12 @@ import 'package:papyros/features/home/data/data_sources/repost_data_source_imp.d
 import 'package:papyros/features/home/data/data_sources/search_mention_data_source_impl.dart';
 import 'package:papyros/features/home/data/repositories/repost_repo_impl.dart';
 import 'package:papyros/features/home/data/repositories/search_mention_repo_impl.dart';
+import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/get_all_posts_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/get_recommand_posts_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/repost_usecase.dart';
 import 'package:papyros/features/home/domain/use_cases/search_mention_usecase.dart';
+import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_recomm_posts_cubit/get_recomm_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/repost_cubit/repost_cubit.dart';
@@ -87,6 +89,10 @@ Future<void> main() async {
             create: (context) => AddGroupCubit(AddGroupUsecase(
                 groupRepo: GroupsRepoImp(
                     groupsDataSource: GroupsDataSourceImp(dio: Dio()))))),
+        BlocProvider(
+            create: (context) => AddLikeCubit(
+                  getIt.get<AddLikeUscase>(),
+                )),
       ],
       child: const PapyrosApp(),
     ),

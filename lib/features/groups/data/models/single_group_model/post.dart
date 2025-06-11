@@ -1,3 +1,5 @@
+import 'package:papyros/features/home/data/models/comments.dart';
+
 import 'comment.dart';
 import 'image.dart';
 
@@ -10,7 +12,7 @@ class Post {
   List<dynamic>? mention;
   DateTime? createdAt;
   List<Image>? images;
-  List<Comment>? comments;
+  List<CommentModel>? comments;
   String? postId;
 
   Post({
@@ -39,9 +41,10 @@ class Post {
         images: (json['images'] as List<dynamic>?)
             ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
             .toList(),
-        comments: (json['comments'] as List<dynamic>?)
-            ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
-            .toList(),
+        comments: (json['comments'] as List?)
+                ?.map((v) => CommentModel.fromJson(v))
+                .toList() ??
+            [],
         postId: json['id'] as String?,
       );
 
@@ -54,7 +57,7 @@ class Post {
         'mention': mention,
         'createdAt': createdAt?.toIso8601String(),
         'images': images?.map((e) => e.toJson()).toList(),
-        'comments': comments?.map((e) => e.toJson()).toList(),
+        'comments': comments?.map((v) => v.toJson()).toList(),
         'id': id,
       };
 }

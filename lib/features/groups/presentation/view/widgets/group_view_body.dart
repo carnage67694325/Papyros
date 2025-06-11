@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
 import 'package:papyros/features/groups/presentation/manager/get_single_group_cubit/get_single_group_cubit.dart';
@@ -40,7 +41,7 @@ class _GroupViewBodyState extends State<GroupViewBody>
     return BlocBuilder<GetSingleGroupCubit, GetSingleGroupState>(
       builder: (context, state) {
         if (state is GetSingleGroupLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: AppLoadingAnimation());
         } else if (state is GetSingleGroupFailure) {
           return Center(child: Text('Error: ${state.errMessage}'));
         } else if (state is GetSingleGroupSuccess) {

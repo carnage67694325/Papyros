@@ -3,6 +3,8 @@ import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/features/groups/data/models/groups/group.dart';
 import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
 import 'package:papyros/features/groups/presentation/model/group_mdel.dart';
+import 'package:papyros/features/groups/presentation/view/widgets/group_posts_list.dart';
+import 'package:papyros/features/profile_viewer/presentation/widgets/post_list.dart';
 
 class GroupPostsTab extends StatelessWidget {
   final SingleGroupModel group;
@@ -70,12 +72,9 @@ class GroupPostsTab extends StatelessWidget {
         ),
 
         // Posts List - Using sample data for demo
-        SliverList.builder(
-          itemBuilder: (context, index) {
-            return _buildSamplePostCard(context, index);
-          },
-          itemCount: 5, // Sample count
-        ),
+        GroupPostsList(
+          group: group.fullgroup!,
+        )
       ],
     );
   }

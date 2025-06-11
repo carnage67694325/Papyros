@@ -68,12 +68,7 @@ class _HomeViewState extends State<HomeView> {
         userName: userName,
         items: drawerItems,
       ),
-      body: BlocProvider(
-        create: (context) => AddLikeCubit(
-          getIt.get<AddLikeUscase>(),
-        ),
-        child: const HomeTabs(),
-      ),
+      body: const HomeTabs(),
     );
   }
 

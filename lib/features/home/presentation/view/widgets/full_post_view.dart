@@ -57,9 +57,6 @@ class FullPostView extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => AddLikeCubit(getIt.get<AddLikeUscase>()),
-          ),
-          BlocProvider(
               create: (context) =>
                   AddCommentCubit(getIt.get<AddCommentUseCase>()))
         ],

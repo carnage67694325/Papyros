@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
@@ -33,6 +34,8 @@ class GroupViewAppbar extends StatelessWidget {
               const SizedBox(height: 40),
               CircleAvatar(
                 radius: 40,
+                backgroundImage: CachedNetworkImageProvider(
+                    group.fullgroup!.coverImages!.frontImage!),
                 backgroundColor: Colors.white.withOpacity(0.2),
                 child: Text(
                   (group.fullgroup!.name?.isNotEmpty == true

@@ -1,13 +1,13 @@
 class Image {
-  Image();
+  String? image;
 
-  factory Image.fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError('Image.fromJson($json) is not implemented');
-  }
+  Image({this.image});
 
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  factory Image.fromJson(Map<String, dynamic> json) => Image(
+        image: json['image'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'image': image,
+      };
 }
