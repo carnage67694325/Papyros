@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
@@ -24,15 +25,16 @@ class GroupMembersTab extends StatelessWidget {
         // Members List
         SliverList.builder(
           itemBuilder: (context, index) {
-            return _buildMemberCard(context, index);
+            return _buildMemberCard(context, index, group);
           },
-          itemCount: 20, // Sample count
+          itemCount: group.fullgroup!.members!.length, // Sample count
         ),
       ],
     );
   }
 
-  Widget _buildMemberCard(BuildContext context, int index) {
+  Widget _buildMemberCard(
+      BuildContext context, int index, SingleGroupModel group) {
     final isAdmin = index == 0;
     final isModerator = index < 3;
 
@@ -47,14 +49,8 @@ class GroupMembersTab extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 25,
-              backgroundColor: AppColors.getLightPeach(context),
-              child: Text(
-                'M${index + 1}',
-                style: TextStyle(
-                  color: AppColors.getDarkBrown(context),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              backgroundImage: CachedNetworkImageProvider(
+                  group.fullgroup!.members![index].profileImage!),
             ),
             if (isAdmin || isModerator)
               Positioned(
@@ -78,7 +74,7 @@ class GroupMembersTab extends StatelessWidget {
           ],
         ),
         title: Text(
-          'Member ${index + 1}',
+          group.fullgroup!.members![index].userName!,
           style: TextStyle(
             fontWeight: FontWeight.w600,
             color: ThemeHelper.isDarkMode(context)
