@@ -16,62 +16,49 @@ class GroupChatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GroupChatCubit, GroupChatState>(
-      buildWhen: (previous, current) {
-        return current is GroupMessagesLoaded ||
-            current is GroupChatError ||
-            (current is GroupChatLoading &&
-                BlocProvider.of<GroupChatCubit>(context)
-                    .groupMessagesList
-                    .isEmpty);
-      },
       builder: (context, state) {
-        final messagesList =
-            BlocProvider.of<GroupChatCubit>(context).groupMessagesList;
+        if (state is GroupMessagesLoading) {
+          return SliverToBoxAdapter(
+            child: Center(child: AppLoadingAnimation(size: 50.h)),
+          );
+        }
 
         if (state is GroupChatError) {
           log('Group Chat Error: ${state.errMessage}');
-
-          if (messagesList.isNotEmpty) {
-            return _buildMessageList(messagesList);
-          }
-
           return SliverToBoxAdapter(
-            child: Center(
-              child: Text(
-                state.errMessage,
-                style: TextStyle(color: Colors.red, fontSize: 16.sp),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(
+                child: Text(
+                  state.errMessage,
+                  style: TextStyle(color: Colors.red, fontSize: 16.sp),
+                ),
               ),
             ),
           );
         }
 
-        if (state is GroupChatLoading && messagesList.isEmpty) {
-          return SliverToBoxAdapter(
-            child: Center(
-              child: AppLoadingAnimation(size: 50.h),
-            ),
-          );
+        if (state is GroupMessagesLoaded) {
+          final messages = state.messages;
+
+          if (messages.isEmpty) {
+            return SliverToBoxAdapter(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30.0),
+                  child: Text(
+                    'No messages yet. Start the conversation!',
+                    style: TextStyle(fontSize: 16.sp, color: Colors.grey),
+                  ),
+                ),
+              ),
+            );
+          }
+
+          return _buildMessageList(messages);
         }
 
-        if (messagesList.isNotEmpty) {
-          return _buildMessageList(messagesList);
-        }
-
-        if (state is GroupChatConnected) {
-          return SliverToBoxAdapter(
-            child: Center(
-              child: Text('Connected. Waiting for group messages...',
-                  style: TextStyle(fontSize: 16.sp)),
-            ),
-          );
-        }
-
-        return SliverToBoxAdapter(
-          child: Center(
-            child: Text('Start the group conversation!',
-                style: TextStyle(fontSize: 16.sp)),
-          ),
-        );
+        return const SliverToBoxAdapter(child: SizedBox.shrink());
       },
     );
   }

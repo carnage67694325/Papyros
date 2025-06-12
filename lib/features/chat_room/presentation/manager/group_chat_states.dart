@@ -1,4 +1,4 @@
-import 'package:papyros/features/messaging/domain/entites/message_entity.dart';
+import 'package:papyros/features/chat_room/domain/entities/group_message_entity.dart';
 
 abstract class GroupChatState {}
 
@@ -11,7 +11,7 @@ class GroupChatConnected extends GroupChatState {}
 class GroupMessagesLoading extends GroupChatState {}
 
 class GroupMessagesLoaded extends GroupChatState {
-  final List<MessageEntity> messages;
+  final List<GroupMessageEntity> messages;
   GroupMessagesLoaded(this.messages);
 }
 
