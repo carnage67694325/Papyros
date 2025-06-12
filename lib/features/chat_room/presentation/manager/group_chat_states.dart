@@ -18,6 +18,6 @@ class GroupMessagesLoaded extends GroupChatState {
 class GroupMessageSent extends GroupChatState {}
 
 class GroupChatError extends GroupChatState {
-  final String message;
-  GroupChatError(this.message);
+  final String errMessage;
+  GroupChatError(this.errMessage);
 }

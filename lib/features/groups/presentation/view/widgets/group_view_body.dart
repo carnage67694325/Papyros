@@ -64,8 +64,7 @@ class _GroupViewBodyState extends State<GroupViewBody>
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                GoRouter.of(context)
-                    .push(AppRouter.kChatRoom, extra: widget.groupId);
+                GoRouter.of(context).push(AppRouter.kChatRoom, extra: group);
               },
               backgroundColor: AppColors.getPrimaryBlue(context),
               child: const Icon(Icons.chat, color: Colors.white),

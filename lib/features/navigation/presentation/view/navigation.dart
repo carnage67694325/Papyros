@@ -10,7 +10,6 @@ import 'package:papyros/features/groups/presentation/view/groups_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/home/presentation/view/home_view.dart';
 import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
-import 'package:papyros/features/notifications/presentation/view/notifications_view.dart';
 import 'package:papyros/features/search/presentation/view/search_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 

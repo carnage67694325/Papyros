@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/features/home/data/models/comments.dart';
 import 'package:papyros/features/home/domain/use_cases/add_comments_use_case.dart';
 
-import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
 import 'package:papyros/features/home/presentation/view/manager/add_comment/add_comment_cubit.dart';
-import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 
 import 'package:papyros/features/home/presentation/view/widgets/full_view_body.dart';
 import 'package:papyros/features/home/presentation/view/widgets/post_app_bar.dart';

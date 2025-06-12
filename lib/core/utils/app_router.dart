@@ -17,6 +17,7 @@ import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_
 import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
 import 'package:papyros/features/chat_room/presentation/view/chat_room_view.dart';
+import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
 import 'package:papyros/features/groups/presentation/view/group_view.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
@@ -176,10 +177,12 @@ abstract class AppRouter {
     GoRoute(
         path: kChatRoom,
         pageBuilder: (context, state) {
-          final groupId = state.extra as String;
+          final group = state.extra as SingleGroupModel;
           return TransitionAnimation.slidingTransitionAnimations(
             state,
-            route: ChatRoom(groupId: groupId),
+            route: ChatRoomView(
+              fullgroup: group,
+            ),
           );
         }),
     GoRoute(

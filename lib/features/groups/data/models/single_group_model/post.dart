@@ -1,6 +1,5 @@
 import 'package:papyros/features/home/data/models/comments.dart';
 
-import 'comment.dart';
 import 'image.dart';
 
 class Post {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:papyros/core/utils/theme_helper.dart';
 
 class AppStyles {
   static TextStyle logo = GoogleFonts.sonsieOne(

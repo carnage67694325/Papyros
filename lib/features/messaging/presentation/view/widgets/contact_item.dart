@@ -82,7 +82,7 @@ class ContactItem extends StatelessWidget {
                     )),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: EdgeInsets.only(top: 10.0.h),
               child: Text(

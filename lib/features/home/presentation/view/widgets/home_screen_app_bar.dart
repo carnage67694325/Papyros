@@ -35,7 +35,7 @@ class HomeScreenAppBar extends StatelessWidget {
             color: ThemeHelper.isDarkMode(context)
                 ? AppColors.darkBackGroundColor
                 : AppColors.backGroundColor,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.grey,
                 offset: Offset(0, 2),

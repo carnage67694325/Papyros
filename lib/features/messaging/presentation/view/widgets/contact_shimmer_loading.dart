@@ -46,7 +46,7 @@ class ContactItemShimmer extends StatelessWidget {
       ),
       child: Shimmer.fromColors(
         baseColor: ThemeHelper.isDarkMode(context)
-            ? Color(0xffFAEBD7)
+            ? const Color(0xffFAEBD7)
             : Colors.grey.shade300,
         highlightColor: Colors.grey.shade100,
         child: Row(

@@ -13,6 +13,9 @@ import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 import 'package:papyros/core/utils/manager/theme_cubit/cubit/theme_cubit.dart';
+import 'package:papyros/features/chat_room/data/data_source/chat_room_data_source.dart';
+import 'package:papyros/features/chat_room/data/repos/group_chat_repo_imp.dart';
+import 'package:papyros/features/chat_room/presentation/manager/group_chat_cubit.dart';
 import 'package:papyros/features/groups/data/data_source/groups_data_source_imp.dart';
 import 'package:papyros/features/groups/data/repos/groups_rep_imp.dart';
 import 'package:papyros/features/groups/domain/use_case/add_group_usecase.dart';
@@ -93,6 +96,11 @@ Future<void> main() async {
             create: (context) => AddLikeCubit(
                   getIt.get<AddLikeUscase>(),
                 )),
+        BlocProvider(
+          create: (context) => GroupChatCubit(
+              repository: GroupChatRepositoryImpl(
+                  datasource: GroupChatSocketDatasource())),
+        ),
       ],
       child: const PapyrosApp(),
     ),

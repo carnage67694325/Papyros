@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:papyros/features/profile_management/domain/entities/user_profile_entity.dart';
 import 'package:papyros/features/search/domain/entity/user_entity.dart';
 import 'package:papyros/features/search/domain/usecase/search_usecase.dart';
 

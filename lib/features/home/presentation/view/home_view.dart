@@ -2,15 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
-import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/features/darwer/custom_drawer.dart';
 import 'package:papyros/features/darwer/drawer_item.dart';
-import 'package:papyros/features/home/domain/use_cases/add_like_usecase.dart';
-import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_recomm_posts_cubit/get_recomm_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/widgets/home_tabs.dart';
-import 'package:papyros/features/home/presentation/view/widgets/home_view_body.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 
 class HomeView extends StatefulWidget {

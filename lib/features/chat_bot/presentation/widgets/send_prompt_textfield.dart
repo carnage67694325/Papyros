@@ -19,7 +19,7 @@ class SendPromptTextfield extends StatelessWidget {
         Expanded(
           child: TextField(
             controller: controller,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
             ),
             decoration: const InputDecoration(

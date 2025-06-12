@@ -1,6 +1,5 @@
 // File: post/presentation/widgets/post_app_bar.dart
 import 'package:flutter/material.dart';
-import 'package:papyros/core/utils/app_colors.dart';
 
 class PostAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onBackPressed;
