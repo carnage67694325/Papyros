@@ -16,14 +16,11 @@ import 'package:papyros/features/authentication/verfiy_otp/presentation/view/ver
 import 'package:papyros/features/chat_bot/domain/use_cases/chat_bot_send_prompt_UseCase.dart';
 import 'package:papyros/features/chat_bot/presentation/manager/cubit/send_prompt_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/view/chat_bot_view.dart';
-import 'package:papyros/features/groups/data/models/groups/group.dart';
-import 'package:papyros/features/groups/presentation/model/group_mdel.dart';
+import 'package:papyros/features/chat_room/presentation/view/chat_room_view.dart';
 import 'package:papyros/features/groups/presentation/view/group_view.dart';
-import 'package:papyros/features/groups/presentation/view/widgets/group_view_body.dart';
 import 'package:papyros/features/home/presentation/view/add_post_view.dart';
 import 'package:papyros/features/messaging/presentation/view/messaging_view.dart';
 import 'package:papyros/features/navigation/presentation/view/navigation.dart';
-import 'package:papyros/features/profile_management/data/repositories/profile_managment_repo_imp.dart';
 import 'package:papyros/features/profile_management/domain/use_cases/get_user_use_case.dart';
 import 'package:papyros/features/profile_management/presentation/manager/get_user_profile_cubit/get_user_profile_cubit.dart';
 import 'package:papyros/features/profile_management/presentation/manager/update_profile_image_cubit/update_profile_image_cubit.dart';
@@ -55,6 +52,7 @@ abstract class AppRouter {
   static const kLanguage = '/language';
   static const kProfileViewer = '/profileViewer';
   static const kGroupView = '/groupView';
+  static const kChatRoom = '/chatRoom';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -173,6 +171,15 @@ abstract class AppRouter {
           return TransitionAnimation.slidingTransitionAnimations(
             state,
             route: GroupView(groupId: groupId),
+          );
+        }),
+    GoRoute(
+        path: kChatRoom,
+        pageBuilder: (context, state) {
+          final groupId = state.extra as String;
+          return TransitionAnimation.slidingTransitionAnimations(
+            state,
+            route: ChatRoom(groupId: groupId),
           );
         }),
     GoRoute(

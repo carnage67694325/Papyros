@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:papyros/core/animations/app_loading_animation.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/features/groups/data/models/single_group_model/single_group_model.dart';
 import 'package:papyros/features/groups/presentation/manager/get_single_group_cubit/get_single_group_cubit.dart';
 import 'package:papyros/features/groups/presentation/view/widgets/group_tab_bar.dart';
@@ -62,7 +64,8 @@ class _GroupViewBodyState extends State<GroupViewBody>
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                // open chat logic
+                GoRouter.of(context)
+                    .push(AppRouter.kChatRoom, extra: widget.groupId);
               },
               backgroundColor: AppColors.getPrimaryBlue(context),
               child: const Icon(Icons.chat, color: Colors.white),
