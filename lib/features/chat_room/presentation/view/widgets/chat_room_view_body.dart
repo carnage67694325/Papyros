@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +9,6 @@ import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/features/chat_room/presentation/manager/group_chat_cubit.dart';
 import 'package:papyros/features/chat_room/presentation/manager/group_chat_states.dart';
 import 'package:papyros/features/chat_room/presentation/view/widgets/group_chat_list.dart';
-import 'package:papyros/features/messaging/presentation/view/widgets/chat_list.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/contact_avatar.dart';
 import 'package:papyros/features/messaging/presentation/view/widgets/message_input_field.dart';
 
@@ -39,6 +40,7 @@ class _GroupChatViewBodyState extends State<GroupChatViewBody> {
   @override
   void initState() {
     super.initState();
+    log('userId: $widget.userId');
     _messageController = TextEditingController();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -52,7 +54,8 @@ class _GroupChatViewBodyState extends State<GroupChatViewBody> {
     if (cubit.state is GroupChatInitial) {
       await cubit.connectToSocket(widget.token, widget.userId);
     }
-
+    log('userid ${widget.userId}');
+    log('token: ${widget.token}');
     await cubit.getGroupMessages(
       token: widget.token,
       groupId: widget.groupId,
@@ -115,6 +118,8 @@ class _GroupChatViewBodyState extends State<GroupChatViewBody> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.errMessage)),
           );
+
+          log(state.errMessage);
         }
       },
       builder: (context, state) {
