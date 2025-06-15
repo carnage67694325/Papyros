@@ -32,6 +32,7 @@ import 'package:papyros/features/home/domain/use_cases/search_mention_usecase.da
 import 'package:papyros/features/home/presentation/view/manager/add_like_cubit/add_like_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_all_posts/get_all_posts_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/get_recomm_posts_cubit/get_recomm_posts_cubit.dart';
+import 'package:papyros/features/home/presentation/view/manager/pick_post_image/pick_post_image_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/repost_cubit/repost_cubit.dart';
 import 'package:papyros/features/home/presentation/view/manager/search_mention_cubit/search_mention_cubit.dart';
 import 'package:papyros/features/messaging/data/data_source/chat_data_source.dart';
@@ -100,6 +101,9 @@ Future<void> main() async {
           create: (context) => GroupChatCubit(
               repository: GroupChatRepositoryImpl(
                   datasource: GroupChatSocketDatasource())),
+        ),
+        BlocProvider(
+          create: (context) => PickPostImageCubit(),
         ),
       ],
       child: const PapyrosApp(),

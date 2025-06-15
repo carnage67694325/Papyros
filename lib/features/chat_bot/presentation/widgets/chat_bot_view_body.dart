@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +12,7 @@ import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_message_
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_respsne.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bubble.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/send_prompt_textfield.dart';
+import 'package:papyros/features/home/presentation/view/manager/pick_post_image/pick_post_image_cubit.dart';
 
 class ChatBotViewBody extends StatefulWidget {
   const ChatBotViewBody({super.key});
@@ -20,9 +23,11 @@ class ChatBotViewBody extends StatefulWidget {
 class _ChatBotViewBodyState extends State<ChatBotViewBody> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController scrollController = ScrollController();
-  List<Widget> messages = [];
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
+
+  final List<Widget> messages = [];
   bool isLoadingAdded = false;
+
   void scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (scrollController.hasClients) {
@@ -31,119 +36,127 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
     });
   }
 
+  void handleImagePick(BuildContext context) {
+    BlocProvider.of<PickPostImageCubit>(context).pickImageFromGallery();
+  }
+
+  void addImageMessage(String imagePath) {
+    setState(() {
+      messages.add(
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.h),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12.r),
+              child: Image.file(
+                File(imagePath),
+                width: 150.w,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+
+    scrollToBottom();
+
+    BlocProvider.of<SendPromptCubit>(context).sendPrompt(
+      prompt: '',
+      image: imagePath,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SendPromptCubit, SendPromptState>(
-      listener: (context, state) {
-        if (state is SendPromptInitial) {
-          messages.clear();
-          isLoadingAdded = false;
-        } else if (state is SendPromptFailure) {
-          errorSnackBar(context, state.errMessage);
-          if (isLoadingAdded) {
-            messages.removeLast(); // Remove loading animation on failure
-            isLoadingAdded = false;
-          }
-        } else if (state is SendPromptLoading && !isLoadingAdded) {
-          messages.add(const AppLoadingAnimation(
-            size: 35,
-          ));
-          isLoadingAdded = true;
-          setState(() {});
-        } else if (state is SendPromptSuccess) {
-          if (isLoadingAdded) {
-            messages.removeLast(); // Remove loading animation on success
-            isLoadingAdded = false;
-          }
-          scrollToBottom();
-        }
-      },
-      builder: (context, state) {
-        if (state is SendPromptSuccess) {
-          messages.add(ChatBotResponse(
-            response: state.chatBotEntity.botResponse!,
-            scrollController: scrollController,
-          ));
-          return Column(
-            children: [
-              SizedBox(height: 45.h),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 10.w,
-                  right: 26.w,
-                ),
-                child: const ChatBotAppBar(),
-              ),
-              SizedBox(height: 50.h),
-              Expanded(
-                child: ChatbotMessagesList(
-                  messages: messages,
-                  controller: scrollController,
-                ),
-              ),
-              SendPromptTextfield(
-                controller: controller,
-                onSend: () async {
-                  setState(() {
-                    messages.add(Padding(
-                      padding: EdgeInsets.only(bottom: 8.0.h, top: 8.0.h),
-                      child: ChatBubble(
-                        message: controller.text,
-                      ),
-                    ));
-                  });
-                  scrollToBottom();
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<PickPostImageCubit, PickPostImageState>(
+          listener: (context, state) {
+            if (state is PickPostImageFaliure) {
+              errorSnackBar(context, state.errMessage);
+            } else if (state is PickPostImageSuccess) {
+              addImageMessage(state.imagePath);
+            }
+          },
+        ),
+        BlocListener<SendPromptCubit, SendPromptState>(
+          listener: (context, state) {
+            if (state is SendPromptInitial) {
+              messages.clear();
+              isLoadingAdded = false;
+            } else if (state is SendPromptFailure) {
+              errorSnackBar(context, state.errMessage);
+              if (isLoadingAdded) {
+                messages.removeLast();
+                isLoadingAdded = false;
+              }
+            } else if (state is SendPromptLoading && !isLoadingAdded) {
+              messages.add(const AppLoadingAnimation(size: 35));
+              isLoadingAdded = true;
+              setState(() {});
+            } else if (state is SendPromptSuccess) {
+              if (isLoadingAdded) {
+                messages.removeLast();
+                isLoadingAdded = false;
+              }
 
-                  await BlocProvider.of<SendPromptCubit>(context)
-                      .sendPrompt(prompt: controller.text);
-                  controller.clear();
-                },
-              ),
-              SizedBox(height: 40.h),
-            ],
-          );
-        } else {
-          return Column(
-            children: [
-              SizedBox(height: 45.h),
-              Padding(
-                padding: EdgeInsets.only(left: 10.w, right: 26.w),
-                child: const ChatBotAppBar(),
-              ),
-              SizedBox(height: 50.h),
-              Expanded(
-                child: state is SendPromptInitial
-                    ? const ChatbotGreetingState()
-                    : ChatbotMessagesList(
-                        messages: messages,
-                        controller: scrollController,
-                      ),
-              ),
-              SendPromptTextfield(
-                controller: controller,
-                onSend: () async {
-                  if (controller.text.isNotEmpty) {
-                    setState(() {
-                      messages.add(Padding(
-                        padding: EdgeInsets.only(bottom: 8.0.h),
-                        child: ChatBubble(
-                          message: controller.text,
-                        ),
-                      ));
-                    });
-                    scrollToBottom();
+              messages.add(
+                ChatBotResponse(
+                  response: state.chatBotEntity.botResponse!,
+                  scrollController: scrollController,
+                ),
+              );
+              scrollToBottom();
+              setState(() {});
+            }
+          },
+        ),
+      ],
+      child: Column(
+        children: [
+          SizedBox(height: 45.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: const ChatBotAppBar(),
+          ),
+          SizedBox(height: 50.h),
+          Expanded(
+            child: messages.isEmpty
+                ? const ChatbotGreetingState()
+                : ChatbotMessagesList(
+                    messages: messages,
+                    controller: scrollController,
+                  ),
+          ),
+          SendPromptTextfield(
+            controller: controller,
+            onSend: () async {
+              if (controller.text.trim().isEmpty) return;
 
-                    await BlocProvider.of<SendPromptCubit>(context)
-                        .sendPrompt(prompt: controller.text);
-                    controller.clear();
-                  } else {}
-                },
-              ),
-              SizedBox(height: 40.h),
-            ],
-          );
-        }
-      },
+              setState(() {
+                messages.add(
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.h),
+                    child: ChatBubble(message: controller.text.trim()),
+                  ),
+                );
+              });
+
+              scrollToBottom();
+
+              await BlocProvider.of<SendPromptCubit>(context).sendPrompt(
+                prompt: controller.text.trim(),
+              );
+
+              controller.clear();
+            },
+            onPickImage: () => handleImagePick(context),
+          ),
+          SizedBox(height: 40.h),
+        ],
+      ),
     );
   }
 }

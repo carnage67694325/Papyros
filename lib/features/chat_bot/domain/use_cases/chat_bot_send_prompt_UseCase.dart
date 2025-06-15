@@ -8,7 +8,8 @@ class ChatBotSendPromptUseCase {
 
   ChatBotSendPromptUseCase(this.repo);
 
-  Future<Either<Failure, ChatBotEntity>> call(String prompt) async {
-    return await repo.sendPrompt(prompt);
+  Future<Either<Failure, ChatBotEntity>> call(
+      String prompt, String? image) async {
+    return await repo.sendPrompt(prompt, image);
   }
 }

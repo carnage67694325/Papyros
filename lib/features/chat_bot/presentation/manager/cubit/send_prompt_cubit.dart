@@ -14,9 +14,9 @@ class SendPromptCubit extends Cubit<SendPromptState> {
     emit(SendPromptInitial());
   }
 
-  Future<void> sendPrompt({required String prompt}) async {
+  sendPrompt({required String prompt, String? image}) async {
     emit(SendPromptLoading());
-    final response = await chatBotSendPromptUseCase.call(prompt);
+    final response = await chatBotSendPromptUseCase.call(prompt, image);
     response.fold(
       (failure) {
         emit(SendPromptFailure(errMessage: failure.toString()));

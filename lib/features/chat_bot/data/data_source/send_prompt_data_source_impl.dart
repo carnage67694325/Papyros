@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
@@ -19,7 +17,7 @@ class SendPromptDataSourceImpl implements SendPromptDataSource {
       'text': prompt,
     };
     if (image != null) {
-      formDataMap['frontimage'] = await MultipartFile.fromFile(
+      formDataMap['image'] = await MultipartFile.fromFile(
         image,
         filename: image.split('/').last,
         contentType: MediaType.parse(
