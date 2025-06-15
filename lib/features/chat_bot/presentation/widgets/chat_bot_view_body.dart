@@ -152,7 +152,11 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
 
               controller.clear();
             },
-            onPickImage: () => handleImagePick(context),
+            onPickFromGallery: () =>
+                BlocProvider.of<PickPostImageCubit>(context)
+                    .pickImageFromGallery(),
+            onPickFromCamera: () => BlocProvider.of<PickPostImageCubit>(context)
+                .pickImageFromCamera(),
           ),
           SizedBox(height: 40.h),
         ],

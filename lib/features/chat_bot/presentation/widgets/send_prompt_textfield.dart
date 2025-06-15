@@ -5,22 +5,58 @@ import 'package:papyros/core/utils/app_colors.dart';
 class SendPromptTextfield extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSend;
-  final VoidCallback onPickImage; // 👈 Add this for image picking
+  final VoidCallback onPickFromGallery;
+  final VoidCallback onPickFromCamera;
 
   const SendPromptTextfield({
     super.key,
     required this.controller,
     required this.onSend,
-    required this.onPickImage, // 👈 Accept callback
+    required this.onPickFromGallery,
+    required this.onPickFromCamera,
   });
+
+  void _showPickImageOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+      ),
+      builder: (_) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 20.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: const Text("Pick from Camera"),
+                onTap: () {
+                  Navigator.pop(context);
+                  onPickFromCamera();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo),
+                title: const Text("Pick from Gallery"),
+                onTap: () {
+                  Navigator.pop(context);
+                  onPickFromGallery();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // 👇 Image button
         GestureDetector(
-          onTap: onPickImage,
+          onTap: () => _showPickImageOptions(context),
           child: Container(
             height: 40.h,
             width: 40.w,
@@ -36,13 +72,10 @@ class SendPromptTextfield extends StatelessWidget {
             ),
           ),
         ),
-        // 👇 Text input
         Expanded(
           child: TextField(
             controller: controller,
-            style: const TextStyle(
-              color: Colors.black,
-            ),
+            style: const TextStyle(color: Colors.black),
             decoration: const InputDecoration(
               filled: true,
               fillColor: Colors.white,
@@ -56,7 +89,6 @@ class SendPromptTextfield extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 9),
-        // 👇 Send button
         GestureDetector(
           onTap: onSend,
           child: Container(
