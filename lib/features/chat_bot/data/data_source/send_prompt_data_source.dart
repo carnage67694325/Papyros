@@ -1,3 +1,4 @@
 abstract class SendPromptDataSource {
-  Future<Map<String, dynamic>> sendPrompt({required String prompt});
+  Future<Map<String, dynamic>> sendPrompt(
+      {required String prompt, String image});
 }

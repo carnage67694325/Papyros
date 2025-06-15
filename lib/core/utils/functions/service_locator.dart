@@ -69,8 +69,7 @@ void setupServiceLoactor() {
   getIt.registerSingleton<ChatBotSendPromptUseCase>(
     ChatBotSendPromptUseCase(
       ChatBotRepoImpl(
-        sendPromptDataSource:
-            SendPromptDataSourceImpl(apiService: getIt.get<ApiService>()),
+        sendPromptDataSource: SendPromptDataSourceImpl(dio: Dio()),
       ),
     ),
   );

@@ -18,7 +18,7 @@ class ChatBotRepoImpl implements ChatBotRepo {
       // Create a ChatBotEntity with the response data
       return Right(ChatBotModel(
         userInput: message,
-        response: response['response'], // Pass the API response
+        text: response['text'], // Pass the API response
       ));
     } catch (e) {
       if (e is DioException) {
