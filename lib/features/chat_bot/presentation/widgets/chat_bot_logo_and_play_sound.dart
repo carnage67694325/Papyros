@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:papyros/core/utils/app_colors.dart';
+import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/manager/audio_handling_cubit/audio_handling_cubit.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
 
@@ -14,7 +15,11 @@ class ChatBotLogoAndPlaySound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AudioHandlingCubit, AudioHandlingState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is AudioHandlingFailure) {
+          errorSnackBar(context, state.errMessage);
+        }
+      },
       builder: (context, state) {
         return Column(
           children: [
