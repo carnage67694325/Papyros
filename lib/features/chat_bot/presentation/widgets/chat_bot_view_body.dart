@@ -106,6 +106,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                 ChatBotResponse(
                   response: state.chatBotEntity.botResponse!,
                   scrollController: scrollController,
+                  audioRespone: state.chatBotEntity.botAudio!,
                 ),
               );
               scrollToBottom();

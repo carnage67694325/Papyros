@@ -11,6 +11,7 @@ import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/functions/service_locator.dart';
 import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
+import 'package:papyros/core/utils/manager/audio_handling_cubit/audio_handling_cubit.dart';
 import 'package:papyros/core/utils/manager/locale_cubit/change_local_cubit.dart';
 import 'package:papyros/core/utils/manager/theme_cubit/cubit/theme_cubit.dart';
 import 'package:papyros/features/chat_room/data/data_source/chat_room_data_source.dart';
@@ -105,6 +106,7 @@ Future<void> main() async {
         BlocProvider(
           create: (context) => PickPostImageCubit(),
         ),
+        BlocProvider(create: (context) => AudioHandlingCubit()),
       ],
       child: const PapyrosApp(),
     ),

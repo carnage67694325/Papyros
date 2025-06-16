@@ -7,7 +7,9 @@ final class AudioHandlingInitial extends AudioHandlingState {}
 
 final class AudioHandlingLoading extends AudioHandlingState {}
 
-final class AudioHandlingSuccess extends AudioHandlingState {}
+final class AudioHandlingPlaying extends AudioHandlingState {}
+
+final class AudioHandlingStopped extends AudioHandlingState {}
 
 final class AudioHandlingFailure extends AudioHandlingState {
   final String errMessage;

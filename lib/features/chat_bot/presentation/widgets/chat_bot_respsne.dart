@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:papyros/core/utils/app_colors.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/theme_helper.dart';
 import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo.dart';
+import 'package:papyros/features/chat_bot/presentation/widgets/chat_bot_logo_and_play_sound.dart';
 
 class ChatBotResponse extends StatefulWidget {
   const ChatBotResponse({
     super.key,
     required this.response,
     required this.scrollController,
+    required this.audioRespone,
   });
 
   final String response;
+  final String audioRespone;
+
   final ScrollController scrollController;
 
   @override
@@ -64,8 +70,8 @@ class _ChatBotResponseState extends State<ChatBotResponse> {
                 softWrap: true,
               ),
             ),
-            const ChatBotLogo(
-              height: 35,
+            ChatBotLogoAndPlaySound(
+              audioUrl: widget.audioRespone,
             ),
           ],
         ),

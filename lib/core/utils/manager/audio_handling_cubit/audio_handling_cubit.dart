@@ -13,17 +13,17 @@ class AudioHandlingCubit extends Cubit<AudioHandlingState> {
     final result = await AudioHandler.playChatBotResponse(url);
     result.fold(
       (failure) => emit(AudioHandlingFailure(errMessage: failure.errMessage)),
-      (_) => emit(AudioHandlingSuccess()),
+      (_) => emit(AudioHandlingPlaying()),
     );
   }
 
-  Future<void> stopSound(String url) async {
+  Future<void> stopSound() async {
     emit(AudioHandlingLoading());
 
     final result = await AudioHandler.stopChatBotResponse();
     result.fold(
       (failure) => emit(AudioHandlingFailure(errMessage: failure.errMessage)),
-      (_) => emit(AudioHandlingSuccess()),
+      (_) => emit(AudioHandlingStopped()),
     );
   }
 }
