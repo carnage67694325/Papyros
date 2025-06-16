@@ -96,6 +96,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
             if (state is SendPromptInitial) {
               messages.clear();
               isLoadingAdded = false;
+              setState(() {});
             } else if (state is SendPromptFailure) {
               errorSnackBar(context, state.errMessage);
               if (isLoadingAdded) {
