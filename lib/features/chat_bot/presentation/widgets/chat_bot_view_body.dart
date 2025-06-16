@@ -28,10 +28,20 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
   final List<Widget> messages = [];
   bool isLoadingAdded = false;
 
-  void scrollToBottom() {
+  bool shouldAutoScroll() {
+    return scrollController.hasClients &&
+        scrollController.offset >=
+            scrollController.position.maxScrollExtent - 100;
+  }
+
+  void scrollToBottom({bool force = false}) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (scrollController.hasClients) {
-        scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      if (scrollController.hasClients && (force || shouldAutoScroll())) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
       }
     });
   }
@@ -60,7 +70,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
       );
     });
 
-    scrollToBottom();
+    scrollToBottom(force: true);
 
     BlocProvider.of<SendPromptCubit>(context).sendPrompt(
       prompt: '',
@@ -145,7 +155,7 @@ class _ChatBotViewBodyState extends State<ChatBotViewBody> {
                 );
               });
 
-              scrollToBottom();
+              scrollToBottom(force: true);
 
               await BlocProvider.of<SendPromptCubit>(context).sendPrompt(
                 prompt: controller.text.trim(),
