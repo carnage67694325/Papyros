@@ -51,21 +51,6 @@ class _GroupsViewBodyState extends State<GroupsViewBody> {
           // Groups List
           const GroupsList(),
 
-          // Suggested Groups Section
-          const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.all(16),
-              child: Text(
-                'Suggested for You',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.lightPeach,
-                ),
-              ),
-            ),
-          ),
-
           SliverToBoxAdapter(
             child: SizedBox(
               height: 16.h,

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:papyros/core/utils/app_icons.dart';
+import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/core/utils/app_styles.dart';
 import 'package:papyros/core/utils/functions/error_snack.dart';
 import 'package:papyros/core/utils/functions/success_snack.dart';
@@ -26,8 +28,8 @@ class VerfiyOtpBody extends StatefulWidget {
 
 class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
   final GlobalKey<FormState> formKey = GlobalKey();
-  String email = '';
-  String otp = '';
+  String? email;
+  String? otp;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
       listener: (context, state) {
         if (state is VerfiyOtpSuccess) {
           successSnackBar(context, 'OTP Verified');
+          GoRouter.of(context).go(AppRouter.kSignIn);
         } else if (state is VerfiyOtpFaliure) {
           errorSnackBar(context, state.errMessage);
           log(state.errMessage);
@@ -82,13 +85,25 @@ class _VerfiyOtpBodyState extends State<VerfiyOtpBody> {
                     child: CustomElevatedButton(
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
+                          if (email == null ||
+                              email!.isEmpty ||
+                              otp == null ||
+                              otp!.isEmpty) {
+                            errorSnackBar(
+                                context, 'Email or OTP cannot be empty');
+                            return;
+                          }
+
                           final verfiyOtpEntity = VerfiyOtpEntity(
                             emailEntity: email,
                             otpEntity: otp,
                           );
+
                           await BlocProvider.of<VerfiyOtpCubit>(context)
-                              .verfiyOtp(verfiyOtpEntity.emailEntity!,
-                                  verfiyOtpEntity.otpEntity!);
+                              .verfiyOtp(
+                            verfiyOtpEntity.emailEntity!,
+                            verfiyOtpEntity.otpEntity!,
+                          );
                         }
                       },
                       buttonText: state is! VerfiyOtpLoading

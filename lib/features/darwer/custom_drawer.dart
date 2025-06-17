@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:papyros/core/Prefernces/Shaerdperefeancses.dart';
 import 'package:papyros/core/utils/app_router.dart';
 import 'package:papyros/features/darwer/drawer_item.dart';
 
@@ -108,9 +109,7 @@ class CustomDrawer extends StatelessWidget {
           GoRouter.of(context).push(AppRouter.kSettings);
         } else {
           // Handle other items
-          try {
-            GoRouter.of(context).push("");
-          } catch (e) {}
+          try {} catch (e) {}
         }
       },
     );
@@ -128,10 +127,9 @@ class CustomDrawer extends StatelessWidget {
             child: const Text("Cancel"),
           ),
           TextButton(
-            onPressed: () {
-              Navigator.pop(context); // Close dialog
-              GoRouter.of(context)
-                  .go('/'); // Navigate to root route after logout
+            onPressed: () async {
+              await PrefasHandelr.clearAuthToken();
+              GoRouter.of(context).push(AppRouter.kSignIn);
             },
             child: const Text("Log out", style: TextStyle(color: Colors.red)),
           ),
