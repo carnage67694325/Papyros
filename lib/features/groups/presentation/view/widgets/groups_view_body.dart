@@ -66,7 +66,6 @@ class _GroupsViewBodyState extends State<GroupsViewBody> {
             ),
           ),
 
-          const SuggestedGroupsList(),
           SliverToBoxAdapter(
             child: SizedBox(
               height: 16.h,
