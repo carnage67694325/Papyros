@@ -82,7 +82,6 @@ class _SignInBodyState extends State<SignInBody> {
                       SizedBox(
                         height: 25.h,
                       ),
-                      const RememberMeSection(),
                       SizedBox(height: 47.h),
                       CustomElevatedButton(
                         onPressed: () {
